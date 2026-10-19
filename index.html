@@ -1,0 +1,2618 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ATEQ Portugal · Guia Técnico de Ensaios & Calculadora de Campo</title>
+  <style>
+    :root {
+      --ateq-red: #E30613;
+      --ateq-red-dark: #B5040F;
+      --ateq-red-light: #FEE2E2;
+      --slate-900: #0F172A;
+      --slate-800: #1E293B;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748B;
+      --slate-300: #CBD5E1;
+      --slate-200: #E2E8F0;
+      --slate-100: #F1F5F9;
+      --slate-50: #F8FAFC;
+      --green-600: #16A34A;
+      --green-50: #F0FDF4;
+      --blue-600: #2563EB;
+      --blue-50: #EFF6FF;
+      --amber-600: #D97706;
+      --amber-50: #FFFBEB;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.08);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #F1F5F9;
+      color: var(--slate-800);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* CABEÇALHO COM LOGÓTIPO OFICIAL ATEQ */
+    header {
+      background: var(--slate-900);
+      color: white;
+      padding: 10px 16px;
+      border-bottom: 3px solid var(--ateq-red);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-container {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-logo-img {
+      height: 38px;
+      width: auto;
+      background: white;
+      padding: 3px 6px;
+      border-radius: var(--radius-sm);
+      display: block;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .header-text h1 {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #FFFFFF;
+    }
+
+    .header-text span {
+      font-size: 11px;
+      color: var(--slate-300);
+      display: block;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-header {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      touch-action: manipulation;
+    }
+
+    .btn-header:active {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* CONTAINER PRINCIPAL CENTRADO & COMPACTO */
+    main {
+      flex: 1;
+      max-width: 860px;
+      width: 100%;
+      margin: 14px auto;
+      padding: 0 12px;
+    }
+
+    /* BARRA DE NAVEGAÇÃO "VOLTAR AO MENU" */
+    .top-nav-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      background: white;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-back {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-300);
+      color: var(--slate-800);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      touch-action: manipulation;
+    }
+
+    .btn-back:active {
+      background: var(--slate-200);
+    }
+
+    .top-module-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--ateq-red);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* =========================================
+       CAIXA 1: MENU PRINCIPAL GUIA (ESCOLHA)
+       ========================================= */
+    #view-menu {
+      animation: fadeIn 0.2s ease;
+    }
+
+    .welcome-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .welcome-logo {
+      height: 48px;
+      width: auto;
+      flex-shrink: 0;
+    }
+
+    .welcome-card-text h2 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 2px;
+    }
+
+    .welcome-card-text p {
+      font-size: 12.5px;
+      color: var(--slate-500);
+      line-height: 1.35;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .menu-btn {
+      background: white;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 15px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    .menu-btn:active, .menu-btn:hover {
+      border-color: var(--ateq-red);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .menu-btn-icon {
+      font-size: 26px;
+      line-height: 1;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      background: var(--slate-50);
+      flex-shrink: 0;
+    }
+
+    .menu-btn.red .menu-btn-icon { background: #FEE2E2; }
+    .menu-btn.blue .menu-btn-icon { background: #DBEAFE; }
+    .menu-btn.green .menu-btn-icon { background: #DCFCE7; }
+    .menu-btn.amber .menu-btn-icon { background: #FEF3C7; }
+    .menu-btn.purple .menu-btn-icon { background: #F3E8FF; }
+
+    .menu-btn-content h3 {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--slate-900);
+      margin-bottom: 3px;
+    }
+
+    .menu-btn-content p {
+      font-size: 12px;
+      color: var(--slate-500);
+      line-height: 1.35;
+    }
+
+    /* =========================================
+       CAIXA 2: MÓDULOS DE CONTEÚDO ESPECÍFICOS
+       ========================================= */
+    .module-view {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .card {
+      background: white;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--slate-200);
+      box-shadow: var(--shadow-sm);
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--slate-100);
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--slate-600);
+      margin-bottom: 14px;
+      line-height: 1.45;
+    }
+
+    /* RECEITAS: SELETOR DE CASOS (PILLS) */
+    .recipe-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .recipe-pill {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-300);
+      color: var(--slate-700);
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      touch-action: manipulation;
+    }
+
+    .recipe-pill:active, .recipe-pill:hover {
+      background: var(--slate-200);
+    }
+
+    .recipe-pill.active {
+      background: var(--ateq-red);
+      color: white;
+      border-color: var(--ateq-red);
+      box-shadow: 0 2px 4px rgba(227, 6, 19, 0.25);
+    }
+
+    /* TABELAS WINATEQ */
+    .winateq-card {
+      background: #F8FAFC;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+
+    .winateq-header {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--slate-800);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 6px;
+      border-bottom: 1.5px solid var(--slate-200);
+    }
+
+    .winateq-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .winateq-table th, .winateq-table td {
+      padding: 6px 8px;
+      text-align: left;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .winateq-table th {
+      background: #EDF2F7;
+      color: var(--slate-700);
+      font-weight: 700;
+      font-size: 11px;
+    }
+
+    .tag-val {
+      font-family: monospace;
+      font-weight: 700;
+      color: #0F172A;
+      background: #E2E8F0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    .tag-check {
+      background: #DCFCE7;
+      color: #166534;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      display: inline-block;
+    }
+
+    .tag-uncheck {
+      background: #F1F5F9;
+      color: #64748B;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      display: inline-block;
+    }
+
+    /* VISOR DIGITAL ATEQ */
+    .ateq-screen {
+      background: #0B0F17;
+      border: 2px solid #1E293B;
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      color: #E2E8F0;
+      text-align: center;
+      margin: 12px 0;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .screen-header-txt {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #94A3B8;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .digital-val {
+      font-size: 34px;
+      font-weight: 800;
+      color: #4ADE80;
+      font-family: "Courier New", Courier, monospace;
+      line-height: 1;
+      margin: 6px 0;
+    }
+
+    .digital-unit {
+      font-size: 12px;
+      color: #CBD5E1;
+      font-weight: 600;
+    }
+
+    .screen-details-row {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #334155;
+      font-size: 11.5px;
+    }
+
+    .screen-details-row span {
+      display: block;
+      color: #94A3B8;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .screen-details-row strong {
+      color: #F8FAFC;
+      font-size: 12.5px;
+    }
+
+    /* FORMULÁRIOS & CAMPOS */
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--slate-700);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 9px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--slate-900);
+      background: var(--slate-50);
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: all 0.15s;
+    }
+
+    .form-control:focus {
+      border-color: var(--ateq-red);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.15);
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-unit {
+      position: absolute;
+      right: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--slate-500);
+      pointer-events: none;
+    }
+
+    /* ALERTAS & CAIXAS */
+    .tip-box {
+      background: #FEF3C7;
+      border-left: 4px solid var(--amber-600);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      color: #92400E;
+      line-height: 1.45;
+      margin-top: 10px;
+    }
+
+    .alert-danger-box {
+      background: #FEF2F2;
+      border-left: 4px solid var(--ateq-red);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      color: #991B1B;
+      line-height: 1.45;
+      margin-top: 10px;
+    }
+
+    .success-box {
+      background: var(--green-50);
+      border-left: 4px solid var(--green-600);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      color: #166534;
+      line-height: 1.45;
+      margin-top: 10px;
+    }
+
+    .btn-action {
+      background: var(--ateq-red);
+      color: white;
+      border: none;
+      padding: 11px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 10px;
+      touch-action: manipulation;
+    }
+
+    .btn-action:active {
+      background: var(--ateq-red-dark);
+    }
+
+    /* DICIONÁRIO DE FUNÇÕES */
+    .dict-search-input {
+      width: 100%;
+      padding: 11px 14px;
+      font-size: 14px;
+      border: 1.5px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      outline: none;
+    }
+
+    .dict-search-input:focus {
+      border-color: var(--ateq-red);
+      box-shadow: 0 0 0 3px rgba(227, 6, 19, 0.15);
+    }
+
+    .func-card {
+      background: white;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .func-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .func-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--slate-900);
+    }
+
+    .func-loc {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #E0E7FF;
+      color: #3730A3;
+      text-transform: uppercase;
+    }
+
+    .func-rec {
+      font-size: 11px;
+      font-weight: 700;
+      background: #DCFCE7;
+      color: #166534;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    .func-desc {
+      font-size: 12px;
+      color: var(--slate-700);
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .func-danger {
+      font-size: 11px;
+      color: #991B1B;
+      background: #FFF1F2;
+      padding: 6px 10px;
+      border-radius: 4px;
+      border-left: 3px solid #E11D48;
+      line-height: 1.35;
+    }
+
+    /* ALARMES */
+    .alarm-card {
+      background: white;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .alarm-card-header {
+      background: #991B1B;
+      color: white;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .alarm-card-header.warning {
+      background: var(--amber-600);
+    }
+
+    .alarm-card-body {
+      padding: 12px 14px;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .alarm-screen-txt {
+      background: #0B0F17;
+      color: #F87171;
+      font-family: monospace;
+      padding: 6px 10px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .alarm-fix-box {
+      background: var(--green-50);
+      border-left: 3px solid var(--green-600);
+      padding: 8px 10px;
+      border-radius: 4px;
+      color: #166534;
+      font-size: 11.5px;
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* MODAL DE EMAIL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 16px;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: var(--radius-md);
+      max-width: 600px;
+      width: 100%;
+      padding: 20px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .email-preview {
+      background: #0F172A;
+      color: #E2E8F0;
+      font-family: monospace;
+      font-size: 11px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      white-space: pre-wrap;
+      max-height: 200px;
+      overflow-y: auto;
+      margin: 10px 0;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid var(--slate-200);
+      padding: 14px 16px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--slate-500);
+      margin-top: auto;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+  <!-- PWA & Mobile Web App Meta Tags para iPhone e Android -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#E30613">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ATEQ Calc">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="header-container">
+      <div class="header-brand">
+        <!-- Logótipo Oficial ATEQ embutido em Base64 -->
+        <img class="header-logo-img" alt="ATEQ" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKEAAAA+CAYAAABDYXsgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAiwSURBVHhe7ZxbiE7dH8fH+XwmEpEzRQiJERqEkQtJjdcdboYLJBdcIOECecMNInJMuSAhwihyDFdEOWac38b5zPr3WdOe/35+e+9nr/3MY/bz2Otb36ZnnrXX3s/an3X6rbV3gbKyilkF8h+Z6Pv37+rt27faVlZRlRUICwoKqrxx40b5tVWe6d27d+r8+fNq27Zt+n6uX79ebdq0SR08eFDduXNH/fr1Sx5SLWUdwiVLlsiva0wU0NSpU9XEiRMDPX78eHXu3Dl5qC7Y2bNne9Jny5MmTVKPHj2Sp1Vdu3ZVvXv39qTPxJzj4cOH8hSh+v37ty6T6dOnq3bt2ql69eqp5s2bq8aNG6v69evrzw0aNFDNmjVTTZs21Z/79u2r1qxZo168eCGzi6y/BsL379+rTp06pVxLkOfPny8PVx8+fPCky6br1q2r9uzZI0/rSVcdc47du3fLUwTqy5cvavXq1ap9+/Yarlq1annyTOeGDRtqOMeOHasuXLggszfWXwNhcXGxLhBZUH4OgpCbKNNmy9xkPwg7duzoSZupOYcphCdPnlQdOnTQrZ3MJxOTT0lJiXrz5o08Vaj+CgjXrVunmjRp4imYICcZwq9fv6pp06ZlDT63nS772LFj8rRplfcQXrx4UTVq1MhTIOmcVAiJXgwZMiRyeUU1+e/YsUOePlB5DeHLly9V69atPYUQ5iRC+OrVK9W9e3c90ZDH/QnT0q5du1Zehq/yFsKfP3+qYcOGZQRO0iBk9jtixAg9q5XH/EkD4vHjx+XleJS3EC5atCjjcU3SIFyxYkWkMXM2Tajn6dOn8pJSlJcQHjlypFrjGj8IP336pL9jYC3NzZV5+JmujrTyeMz3Bw4ckKc1gpDfSr5hJu3Ro0dT8r9x40ZGZQW0/B7CNlTO2rVr69/BX5k2nTmWVjid8g7CBw8eGEMRZD8IUVlZmQZFesyYMUZdGXGz5cuXe47Hhw4d0subUiYQ4nv37oX6/v37MnsdxDaN/9WpU0f/hgEDBqitW7eq169fV+Xz48cPHQucNWuW7oGitKykvXz5csp1uZVXEBJc7dmzZ+TaKB0EYZA2bNhgBCEtBas2UWQCIa1JJgJM01aQ8EqPHj30MWH6/PmzWrhwofFwiEowbtw4mU2V8grCmTNnGhdqOicFwjlz5hiNc4Fp1KhRetUpirZs2WJ8P0hHL+anvIFw+/btxjUvzPkGIWZTQZiZXLllsoxJK0XskO42EwGiyfCILnnnzp3ycK28gPDmzZvGNc5k/JNvEDJW4/xhJu2pU6d0vhUVFUbXTDc8efJk1bJlS72G7JiNDKwr+40z3WKc26ZNG0++fqYn81POQ0iUnzVO+YP8zKC6f//+nv9L5xuEpnaHaFgbJjwi0/g5qMsGUMbfzG4vXbokL71KbPcymah07txZHqqV0xASZC0qKjKK8gPJsmXL1OjRoz3fSScBwmwOX2iJMTN/Pz158sToXDQSfsppCFetWmVUw/CgQYP0nkALYSWEjNW46TJNdUyrWFpa6gk1ffz40ah8ANlPOQshmyxNx4EUPuvIyEJYCSFxvrDyMxk/S9NFDx8+XAf3HT1//jz0XM6xfspJCMvLy/VAWf4IPwPH2bNnq461EFZCSHDcWalJZ1on+b8wUxaAyLYwdPjwYaNzsdnETzkHIaGCgQMHBg6W3aYms4bsVpIhzFi7sOAAEE/9vK7Kewj/AQwM4KxJ3iJqAAAAAElFTkSuQmCC">
+        <div class="header-text">
+          <h1>Sistemas ATEQ Portugal</h1>
+          <span>Suporte Técnico & Metrologia · São João da Madeira</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button type="button" class="btn-header" onclick="openReportModal()">
+          ✉️ Relatório
+        </button>
+        <button type="button" class="btn-header" onclick="goToMenu()">
+          🏠 Início
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- BARRA SUPERIOR PARA VOLTAR -->
+    <div class="top-nav-bar" id="topNavBar">
+      <button type="button" class="btn-back" onclick="goToMenu()">
+        ⬅ Voltar às Opções
+      </button>
+      <span class="top-module-title" id="moduleTitleBadge">MÓDULO</span>
+    </div>
+
+    <!-- ========================================================
+         CAIXA 1: MENU PRINCIPAL DE ESCOLHA (GUIA DE ENTRADA)
+         ======================================================== -->
+    <section id="view-menu">
+      <div class="welcome-card">
+        <img class="welcome-logo" alt="ATEQ" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKEAAAA+CAYAAABDYXsgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAiwSURBVHhe7ZxbiE7dH8fH+XwmEpEzRQiJERqEkQtJjdcdboYLJBdcIOECecMNInJMuSAhwihyDFdEOWac38b5zPr3WdOe/35+e+9nr/3MY/bz2Otb36ZnnrXX3s/an3X6rbV3gbKyilkF8h+Z6Pv37+rt27faVlZRlRUICwoKqrxx40b5tVWe6d27d+r8+fNq27Zt+n6uX79ebdq0SR08eFDduXNH/fr1Sx5SLWUdwiVLlsiva0wU0NSpU9XEiRMDPX78eHXu3Dl5qC7Y2bNne9Jny5MmTVKPHj2Sp1Vdu3ZVvXv39qTPxJzj4cOH8hSh+v37ty6T6dOnq3bt2ql69eqp5s2bq8aNG6v69evrzw0aNFDNmjVTTZs21Z/79u2r1qxZo168eCGzi6y/BsL379+rTp06pVxLkOfPny8PVx8+fPCky6br1q2r9uzZI0/rSVcdc47du3fLUwTqy5cvavXq1ap9+/Yarlq1annyTOeGDRtqOMeOHasuXLggszfWXwNhcXGxLhBZUH4OgpCbKNNmy9xkPwg7duzoSZupOYcphCdPnlQdOnTQrZ3MJxOTT0lJiXrz5o08Vaj+CgjXrVunmjRp4imYICcZwq9fv6pp06ZlDT63nS772LFj8rRplfcQXrx4UTVq1MhTIOmcVAiJXgwZMiRyeUU1+e/YsUOePlB5DeHLly9V69atPYUQ5iRC+OrVK9W9e3c90ZDH/QnT0q5du1Zehq/yFsKfP3+qYcOGZQRO0iBk9jtixAg9q5XH/EkD4vHjx+XleJS3EC5atCjjcU3SIFyxYkWkMXM2Tajn6dOn8pJSlJcQHjlypFrjGj8IP336pL9jYC3NzZV5+JmujrTyeMz3Bw4ckKc1gpDfSr5hJu3Ro0dT8r9x40ZGZQW0/B7CNlTO2rVr69/BX5k2nTmWVjid8g7CBw8eGEMRZD8IUVlZmQZFesyYMUZdGXGz5cuXe47Hhw4d0subUiYQ4nv37oX6/v37MnsdxDaN/9WpU0f/hgEDBqitW7eq169fV+Xz48cPHQucNWuW7oGitKykvXz5csp1uZVXEBJc7dmzZ+TaKB0EYZA2bNhgBCEtBas2UWQCIa1JJgJM01aQ8EqPHj30MWH6/PmzWrhwofFwiEowbtw4mU2V8grCmTNnGhdqOicFwjlz5hiNc4Fp1KhRetUpirZs2WJ8P0hHL+anvIFw+/btxjUvzPkGIWZTQZiZXLllsoxJK0XskO42EwGiyfCILnnnzp3ycK28gPDmzZvGNc5k/JNvEDJW4/xhJu2pU6d0vhUVFUbXTDc8efJk1bJlS72G7JiNDKwr+40z3WKc26ZNG0++fqYn81POQ0iUnzVO+YP8zKC6f//+nv9L5xuEpnaHaFgbJjwi0/g5qMsGUMbfzG4vXbokL71KbPcymah07txZHqqV0xASZC0qKjKK8gPJsmXL1OjRoz3fSScBwmwOX2iJMTN/Pz158sToXDQSfsppCFetWmVUw/CgQYP0nkALYSWEjNW46TJNdUyrWFpa6gk1ffz40ah8ANlPOQshmyxNx4EUPuvIyEJYCSFxvrDyMxk/S9NFDx8+XAf3HT1//jz0XM6xfspJCMvLy/VAWf4IPwPH2bNnq461EFZCSHDcWalJZ1on+b8wUxaAyLYwdPjwYaNzsdnETzkHIaGCgQMHBg6W3aYms4bsVpIhzFi7sOAAEE/9vK7Kewj/AQwM4KxJ3iJqAAAAAElFTkSuQmCC">
+        <div class="welcome-card-text">
+          <h2>Calculadora & Guia Metrológico ATEQ</h2>
+          <p>Escolhe o que pretendes fazer hoje para veres as receitas de funções, parâmetros e cálculos:</p>
+        </div>
+      </div>
+
+      <div class="menu-grid">
+        <!-- 1. RECEITAS & CHECKLIST DE FUNÇÕES F620 (COMPLETO) -->
+        <div class="menu-btn red" onclick="openModule('mod-recipes')">
+          <div class="menu-btn-icon">📋</div>
+          <div class="menu-btn-content">
+            <h3>1. Receitas & Checklist F620</h3>
+            <p><strong>A ferramenta mestra:</strong> 7 casos completos com tabelas PARAMETERS, FUNCTIONS, More functions e botão copiar receita.</p>
+          </div>
+        </div>
+
+        <!-- 2. FUGA DIRETA -->
+        <div class="menu-btn red" onclick="openModule('mod-fuga')">
+          <div class="menu-btn-icon">🚗</div>
+          <div class="menu-btn-content">
+            <h3>2. Ensaio de Fuga Direta</h3>
+            <p>Definições detalhadas para peças abertas (Radiador, tubo, cárter) e calculador de Test FAIL em Pa/s.</p>
+          </div>
+        </div>
+
+        <!-- 3. COMPONENTE SELADO -->
+        <div class="menu-btn blue" onclick="openModule('mod-selado')">
+          <div class="menu-btn-icon">📦</div>
+          <div class="menu-btn-content">
+            <h3>3. Componente Selado</h3>
+            <p>Definições para campânulas (Help Flash V16, sensores), cálculo de volume livre e sensor piezo ideal.</p>
+          </div>
+        </div>
+
+        <!-- 4. VÁCUO -->
+        <div class="menu-btn green" onclick="openModule('mod-vacuo')">
+          <div class="menu-btn-icon">💨</div>
+          <div class="menu-btn-content">
+            <h3>4. Ensaio em Vácuo / Depressão</h3>
+            <p>Definições completas a pressão negativa (-200 a -700 mbar) para embalagens flexíveis e blisters.</p>
+          </div>
+        </div>
+
+        <!-- 5. CALIBRAÇÃO CDF 60 -->
+        <div class="menu-btn amber" onclick="openModule('mod-cdf')">
+          <div class="menu-btn-icon">🎯</div>
+          <div class="menu-btn-content">
+            <h3>5. Medir Volume Real (CDF 60)</h3>
+            <p>Determinar matematicamente o volume exato da peça em cliente com o calibrador em derivação "T".</p>
+          </div>
+        </div>
+
+        <!-- 6. DICIONÁRIO DE FUNÇÕES -->
+        <div class="menu-btn purple" onclick="openModule('mod-dict')">
+          <div class="menu-btn-icon">🔍</div>
+          <div class="menu-btn-content">
+            <h3>6. Dicionário de Funções Winateq</h3>
+            <p>Auditar qualquer função da máquina (FILL REG, STD, FILTER, NO NEGATIVE, Min FILL, AUTO AZ...).</p>
+          </div>
+        </div>
+
+        <!-- 7. RESOLUÇÃO DE ALARMES -->
+        <div class="menu-btn red" onclick="openModule('mod-alarms')">
+          <div class="menu-btn-icon">🚨</div>
+          <div class="menu-btn-content">
+            <h3>7. Resolver Alarmes F620</h3>
+            <p>Pressure Low, Do Learning Cycle, Large Leak, Volume a 0... Soluções rápidas em 30 segundos.</p>
+          </div>
+        </div>
+
+        <!-- 8. TEMPOS DE CICLO -->
+        <div class="menu-btn amber" onclick="openModule('mod-timing')">
+          <div class="menu-btn-icon">⏱️</div>
+          <div class="menu-btn-content">
+            <h3>8. Tempos de Ciclo & Cadência</h3>
+            <p>Dimensionar Fill, Stab, Test e Dump segundo o material (Alumínio, Aço, Borracha, Plástico).</p>
+          </div>
+        </div>
+
+        <!-- 9. CONVERSOR DE UNIDADES -->
+        <div class="menu-btn" onclick="openModule('mod-converter')">
+          <div class="menu-btn-icon">🔄</div>
+          <div class="menu-btn-content">
+            <h3>9. Conversor de Unidades</h3>
+            <p>Converter pressões (bar, mbar, Pa, psi, mmH2O, Torr) e caudais (L/min, L/h, cm³/min, cm³/h).</p>
+          </div>
+        </div>
+
+        <!-- 10. SELETOR DE CAUDAL D620 & D670 -->
+        <div class="menu-btn blue" onclick="openModule('mod-d620')">
+          <div class="menu-btn-icon">🌊</div>
+          <div class="menu-btn-content">
+            <h3>10. Caudal D620 & D670 (Tabela & Capilares)</h3>
+            <p>Converter L/min para L/h e descobrir logo o Fundo de Escala, Capilar (OL), Saída e Regulador Hoerbiger da tabela.</p>
+          </div>
+        </div>
+
+        <!-- 11. ATEQ TOOL BOX OFICIAL (VOLUME INTERNO & BOYLE) -->
+        <div class="menu-btn purple" onclick="openModule('mod-toolbox')">
+          <div class="menu-btn-icon">🧰</div>
+          <div class="menu-btn-content">
+            <h3>11. ATEQ Tool Box (Volume Interno & P1·V1)</h3>
+            <p>Calcular o volume interno real das máquinas Série 5 / Série 6 (válvulas + Stäubli) e Lei de Boyle-Mariotte.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.1: MÓDULO 1 — RECEITAS & CHECKLIST DE FUNÇÕES F620
+         ======================================================== -->
+    <section id="mod-recipes" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">📋 Receitas & Checklist de Funções da F620 (Por Tipo de Peça)</h2>
+          <span class="card-badge" style="background:#FEE2E2; color:#991B1B;">GUIA DE CAMPO EM CLIENTE</span>
+        </div>
+        <p class="card-desc">
+          Nunca adivinhes à frente do cliente que funções marcar ou parâmetros colocar. Escolhe o teu caso e vê a receita exata para configurar o Winateq 300 e evitar alarmes:
+        </p>
+
+        <!-- SELETOR DE CASO (PILLS) -->
+        <div class="recipe-nav">
+          <button type="button" class="recipe-pill active" id="btn_rec_direct" onclick="selectRecipe('direct_radiator')">🚗 1. Peça Aberta (Radiador / Tubagem)</button>
+          <button type="button" class="recipe-pill" id="btn_rec_sealed" onclick="selectRecipe('sealed_campanula')">📦 2. Componente Selado (Help Flash V16)</button>
+          <button type="button" class="recipe-pill" id="btn_rec_cdf" onclick="selectRecipe('cdf_calib')">🎯 3. Calibração com CDF 60 (Em "T")</button>
+          <button type="button" class="recipe-pill" id="btn_rec_deformable" onclick="selectRecipe('deformable')">🧴 4. Peça Deformável (Borracha / Plástico)</button>
+          <button type="button" class="recipe-pill" id="btn_rec_large" onclick="selectRecipe('large_vol')">⚡ 5. Grande Volume (> 5 Litros)</button>
+          <button type="button" class="recipe-pill" id="btn_rec_blockage" onclick="selectRecipe('blockage_flow')">🚿 6. Desobstrução / Passagem (Tubos / Válvulas)</button>
+          <button type="button" class="recipe-pill" id="btn_rec_vacuum" onclick="selectRecipe('vacuum_test')">💨 7. Ensaio em Depressão / Vácuo (Embalagens)</button>
+        </div>
+
+        <!-- 1. PARAMETERS -->
+        <div class="winateq-card">
+          <div class="winateq-header">
+            <span>1. SEPARADOR PARAMETERS (Winateq 300)</span>
+            <span id="rec_badge_type" style="color:var(--ateq-red); font-weight:700;">TYPE: LEAK TEST</span>
+          </div>
+          <table class="winateq-table">
+            <thead>
+              <tr><th>Parâmetro</th><th>Valor Recomendado</th><th>Nota Técnica</th></tr>
+            </thead>
+            <tbody id="rec_params_tbody">
+              <!-- Dinâmico -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 2. FUNCTIONS -->
+        <div class="winateq-card">
+          <div class="winateq-header">
+            <span>2. SEPARADOR FUNCTIONS (Caixas a Marcar)</span>
+            <span style="color:var(--green-600); font-weight:700;">CHECKLIST [X]</span>
+          </div>
+          <table class="winateq-table">
+            <thead>
+              <tr><th>Função</th><th>Estado</th><th>Definição Interna</th></tr>
+            </thead>
+            <tbody id="rec_functions_tbody">
+              <!-- Dinâmico -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3. MORE FUNCTIONS & SPE CYCLE -->
+        <div class="winateq-card">
+          <div class="winateq-header">
+            <span>3. MORE FUNCTIONS... & PAINEL SPE CYCLE</span>
+            <span style="color:var(--blue-600); font-weight:700;">OPÇÕES CRÍTICAS</span>
+          </div>
+          <table class="winateq-table">
+            <thead>
+              <tr><th>Opção</th><th>Definição</th><th>Regra Obrigatória</th></tr>
+            </thead>
+            <tbody id="rec_more_tbody">
+              <!-- Dinâmico -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ALERTA CRÍTICO -->
+        <div class="alert-danger-box" id="rec_alert_box">
+          <!-- Dinâmico -->
+        </div>
+
+        <button type="button" class="btn-action" onclick="copyCurrentRecipe()">
+          📋 Copiar Esta Receita de Funções para Bloco de Notas / WhatsApp
+        </button>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.2: MÓDULO 2 — FUGA DIRETA (PEÇA ABERTA)
+         ======================================================== -->
+    <section id="mod-fuga" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🚗 Ensaio de Fuga Direta (Peça Aberta)</h2>
+          <span class="card-badge" style="background:#FEE2E2; color:#991B1B;">LEAK TEST DIRETO</span>
+        </div>
+        <p class="card-desc">
+          <strong>Definição:</strong> O ar comprimido é injetado diretamente no interior da peça através do conetor de ensaio. A F620 fecha as válvulas e mede a queda de pressão diferencial no sensor piezoelétrico.
+        </p>
+
+        <!-- TABELA DE DEFINIÇÕES NA F620 -->
+        <div class="winateq-card">
+          <div class="winateq-header">
+            <span>Definições no Winateq 300 (F620)</span>
+            <span style="color:var(--ateq-red);">CHECKLIST OFICIAL</span>
+          </div>
+          <table class="winateq-table">
+            <thead>
+              <tr><th>Separador</th><th>Parâmetro</th><th>Valor Recomendado</th><th>Porquê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>PARAMETERS</strong></td><td>TYPE</td><td><span class="tag-val">LEAK TEST</span></td><td>Ensaio diferencial</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Set FILL</td><td><span class="tag-val">1.00 bar</span></td><td>Pressão nominal</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Min FILL</td><td><span class="tag-val">0.85 bar</span></td><td>15% abaixo do alvo</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Max FILL</td><td><span class="tag-val">1.10 bar</span></td><td>+10% sobrepressão</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Tempos</td><td><span class="tag-val">3s / 4s / 3s / 1s</span></td><td>Fill / Stab / Test / Dump</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>LeakUnit</td><td><span class="tag-val">Pa/s</span> ou <span class="tag-val">cm3/mn</span></td><td>Pa/s dispensa volumes</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Test FAIL</td><td><span class="tag-val">40 Pa/s</span> (ou 5 cm³/min)</td><td>Limite de rejeição</td></tr>
+              <tr><td><strong>FUNCTIONS</strong></td><td>FILL REG</td><td><span class="tag-check">✔ REGUL 2</span></td><td>Regulador eletrónico de 1 bar</td></tr>
+              <tr><td><strong>FUNCTIONS</strong></td><td>STD CONDITIONS</td><td><span class="tag-check">✔ [X] Sim</span></td><td>Normaliza 20ºC / 1013 hPa (*)</td></tr>
+              <tr><td><strong>FUNCTIONS</strong></td><td>NO NEGATIVE</td><td><span class="tag-check">✔ [X] Sim</span></td><td>Elimina valores negativos</td></tr>
+              <tr><td><strong>FUNCTIONS</strong></td><td>FILTER</td><td><span class="tag-check">✔ 1.0 s</span></td><td>Filtro do sinal piezo</td></tr>
+              <tr><td><strong>More functions</strong></td><td>SEALED PART</td><td><span class="tag-val">[ ] DESMARCADO</span></td><td>Obrigatório desligado</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- CALCULADOR RÁPIDO PA/S <-> CM3/MIN -->
+        <div style="background:#F8FAFC; border:1px solid var(--slate-200); border-radius:var(--radius-sm); padding:14px; margin-top:14px;">
+          <h3 style="font-size:13px; font-weight:700; margin-bottom:10px;">Calculador de Limite (Test FAIL):</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div class="form-group">
+              <label>Volume Peça + Tubo:</label>
+              <div class="input-wrapper">
+                <input type="number" id="fuga_vol" class="form-control" value="910" oninput="calcFugaDirect()">
+                <span class="input-unit">cm³</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Tempo TEST TIME:</label>
+              <div class="input-wrapper">
+                <input type="number" id="fuga_time" class="form-control" value="5.0" oninput="calcFugaDirect()">
+                <span class="input-unit">s</span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Caudal do Cliente (cm³/min):</label>
+            <div class="input-wrapper">
+              <input type="number" id="fuga_q" class="form-control" value="13.08" step="0.1" oninput="calcFugaFromQ()">
+              <span class="input-unit">cm³/min</span>
+            </div>
+          </div>
+
+          <div class="ateq-screen" style="margin:10px 0;">
+            <div class="screen-header-txt">
+              <span>LIMITE TEST FAIL RECOMENDADO</span>
+              <span style="color:#4ADE80;">Pa/s</span>
+            </div>
+            <div class="digital-val" id="res_fuga_pas">24.3</div>
+            <div class="digital-unit">Pa/s (Queda correspondente)</div>
+          </div>
+        </div>
+
+        <div class="alert-danger-box">
+          <strong>⚠️ Dica Crítica ATEQ:</strong> Na F620 com circuito proporcional a 1.0 bar, certifica-te sempre de que em <code>FUNCTIONS -> FILL REG</code> está selecionado <strong>REGUL 2</strong>! Se estiver em REGUL 1 dá alarme <code>Pressure Low: 0.495 bar</code>.
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.3: MÓDULO 3 — COMPONENTE SELADO (CAMPÂNULA)
+         ======================================================== -->
+    <section id="mod-selado" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">📦 Componente Selado em Campânula</h2>
+          <span class="card-badge" style="background:#DBEAFE; color:#1E40AF;">SEALED PART</span>
+        </div>
+        <p class="card-desc">
+          <strong>Definição:</strong> Para componentes herméticos sem entrada de ar (ex: farolins Help Flash V16, sensores, eletrónica estanque). A peça vai para dentro de uma câmara estanque (campânula). A campânula é pressurizada a 200 mbar; se a peça tiver fuga, o ar escapa para o seu interior e a pressão da campânula cai.
+        </p>
+
+        <!-- TABELA DE DEFINIÇÕES NA F620 -->
+        <div class="winateq-card">
+          <div class="winateq-header">
+            <span>Definições no Winateq 300 (F620) — 2 MÉTODOS</span>
+            <span style="color:var(--green-600); font-weight:800;">RECOMENDADO EM CLIENTE</span>
+          </div>
+          <table class="winateq-table">
+            <thead>
+              <tr><th>Separador</th><th>Parâmetro</th><th>Valor Recomendado (Em Cliente)</th><th>Porquê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>PARAMETERS</strong></td><td>TYPE</td><td><span class="tag-val">LEAK TEST</span></td><td>Estanqueidade direta na campânula</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Set FILL</td><td><span class="tag-val">200.0 mbar</span></td><td>Baixa pressão padrão para campânula</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Min / Max FILL</td><td><span class="tag-val">180 / 220 mbar</span></td><td>Janela de enchimento (±10%)</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Tempos</td><td><span class="tag-val">2.5s / 3.0s / 3.0s / 1.0s</span></td><td>Cadência testada na bancada ATEQ</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>VOLUME</td><td><span class="tag-val">221.0 cm³</span> (Livre)</td><td>Volume livre de ar (medido no CDF 60)</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Test FAIL</td><td><span class="tag-val">0.500 cm3/mn</span> ou 1.0</td><td>Exigência IP67 / IP68</td></tr>
+              <tr><td><strong>FUNCTIONS</strong></td><td>FILL REG</td><td><span class="tag-check">✔ REGUL 2</span></td><td>Canal eletrónico da campânula</td></tr>
+              <tr><td><strong>FUNCTIONS</strong></td><td>STD CONDITIONS</td><td><span class="tag-check">✔ [X] Sim</span></td><td>Gera o asterisco * sccm normalizado</td></tr>
+              <tr style="background:#FEF2F2;"><td><strong>More functions</strong></td><td>SEALED PART</td><td><span class="tag-check" style="background:#DCFCE7; color:#166534;">✔ [ ] DESMARCADO</span></td><td><strong>REGRA DE OURO EM CLIENTE:</strong> Deixar desmarcado! Testa a campânula como volume direto e <strong>NUNCA dá alarmes de aprendizagem</strong>!</td></tr>
+              <tr><td><strong>SPE CYCLE</strong></td><td>SPE CYCLE</td><td><span class="tag-val">none</span></td><td>Ciclo normal direto (sem bloqueios)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tip-box" style="margin-bottom:12px; background:#EFF6FF; border-left:4px solid #3B82F6;">
+          <strong style="color:#1D4ED8;">💡 Regra de Ouro da Bancada ATEQ (Método Direto vs. Modo Aprendizagem):</strong><br>
+          • <strong>Método 1 (Recomendado em Cliente):</strong> Deixa <code>SEALED PART</code> <strong>DESMARCADO</strong> e coloca o volume livre (ex.: <code>221 cm³</code>). A F620 testa diretamente a pressão da campânula, dá logo <strong>OK Verde</strong> e nunca encrava.<br>
+          • <strong>Método 2 (Modo Selado Matemático):</strong> Se ativares <code>SEALED PART: STANDARD</code>, a F620 <strong>bloqueia obrigatoriamente</strong> com o alarme vermelho <code>Do Learning Cycle</code> até correres o ciclo <code>Sd Prt PASS Learn</code>. <em>Em casa do cliente, evita o Método 2 para não perder tempo com alarmes!</em>
+        </div>
+
+        <!-- CALCULADOR DE VOLUME LIVRE & SENSOR PIEZO -->
+        <div style="background:#F8FAFC; border:1px solid var(--slate-200); border-radius:var(--radius-sm); padding:14px;">
+          <h3 style="font-size:13px; font-weight:700; margin-bottom:10px;">Cálculo do Volume Livre da Campânula:</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div class="form-group">
+              <label>Volume Campânula Vazia:</label>
+              <div class="input-wrapper">
+                <input type="number" id="sel_v_bell" class="form-control" value="330" oninput="calcSealedModule()">
+                <span class="input-unit">cm³</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Volume Exterior da Peça:</label>
+              <div class="input-wrapper">
+                <input type="number" id="sel_v_part" class="form-control" value="109" oninput="calcSealedModule()">
+                <span class="input-unit">cm³</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ateq-screen" style="margin:10px 0;">
+            <div class="screen-header-txt">
+              <span>VOLUME LIVRE DA CÂMARA</span>
+              <span id="sel_sensor_badge" style="color:#4ADE80;">SENSOR: ±500 Pa (Ideal)</span>
+            </div>
+            <div class="digital-val" id="res_sel_free_vol">221.0</div>
+            <div class="digital-unit">cm³ de Ar Livre a Pressurizar</div>
+          </div>
+
+          <!-- CAIXA DINÂMICA: O QUE MUDAR NA F620 -->
+          <div class="success-box" style="margin-top:12px; background:#F0FDF4; border-left:4px solid var(--green-600); padding:12px;">
+            <strong style="color:#166534; font-size:13px; display:block; margin-bottom:6px;">⚙️ O Que Inserir no Winateq para este Volume (Método Infalível em Cliente):</strong>
+            <ul style="margin:0 0 0 16px; color:#1E293B; font-size:12px; line-height:1.6;">
+              <li><strong>Campo VOLUME no Winateq:</strong> Digitar <strong id="dyn_rec_vol" style="color:#166534; background:#DCFCE7; padding:1px 6px; border-radius:3px;">221.0 cm³</strong> <em>(Garante leitura precisa em cm³/min*)</em>.</li>
+              <li><strong>Limite Test FAIL (para 0.5 cm³/min):</strong> Limite de rejeição padrão <strong id="dyn_rec_fail" style="color:#1E40AF; background:#DBEAFE; padding:1px 6px; border-radius:3px;">0.500 cm³/mn</strong> (ou 12 Pa em 3.0 s).</li>
+              <li><strong>SEALED PART:</strong> <strong style="color:#166534; background:#DCFCE7; padding:1px 6px; border-radius:3px;">[ ] DESMARCADO</strong> para não bloquear a pedir ciclos de aprendizagem!</li>
+              <li><strong>SPE CYCLE:</strong> <strong style="color:#166534; background:#DCFCE7; padding:1px 6px; border-radius:3px;">none</strong> (ciclo padrão direto).</li>
+              <li><strong>Fixos:</strong> TYPE (LEAK TEST), Set FILL (200 mbar), FILL REG (REGUL 2) e STD CONDITIONS (Sim).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.4: MÓDULO 4 — ENSAIO EM VÁCUO (DEPRESSÃO)
+         ======================================================== -->
+    <section id="mod-vacuo" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">💨 Ensaio em Depressão / Vácuo</h2>
+          <span class="card-badge" style="background:#DCFCE7; color:#166534;">VÁCUO NEGATIVO</span>
+        </div>
+        <p class="card-desc">
+          <strong>Definição:</strong> Em vez de injetar pressão positiva, a F620 (com ejetor Venturi interno ou bomba) retira o ar, criando vácuo na peça ou campânula. É ideal para embalagens plásticas flexíveis, blisters ou peças que rebentariam com pressão interna.
+        </p>
+
+        <div class="winateq-card">
+          <div class="winateq-header">
+            <span>Definições no Winateq 300 (F620)</span>
+            <span style="color:var(--green-600);">PRESSÃO NEGATIVA</span>
+          </div>
+          <table class="winateq-table">
+            <thead>
+              <tr><th>Separador</th><th>Parâmetro</th><th>Valor Recomendado</th><th>Porquê</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>PARAMETERS</strong></td><td>TYPE</td><td><span class="tag-val">LEAK TEST</span></td><td>Medição de quebra de vácuo</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Set FILL</td><td><span class="tag-val">-200 a -700 mbar</span></td><td>Vácuo nominal (valor negativo)</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Min FILL</td><td><span class="tag-val">-800 mbar</span></td><td>Vácuo máximo admissível</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Max FILL</td><td><span class="tag-val">-150 mbar</span></td><td>Limite de evacuação mínima</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Tempos</td><td><span class="tag-val">3s / 3.5s / 4s / 1s</span></td><td>DUMP serve para quebrar o vácuo!</td></tr>
+              <tr><td><strong>PARAMETERS</strong></td><td>Test FAIL</td><td><span class="tag-val">0.300 cm3/mn</span> ou 20 Pa</td><td>Se houver fuga, a pressão sobe</td></tr>
+              <tr><td><strong>FUNCTIONS</strong></td><td>FILL REG</td><td><span class="tag-check">✔ VACUUM / VENTURI</span></td><td>Alimenta o ejetor de vácuo</td></tr>
+              <tr><td><strong>FUNCTIONS</strong></td><td>NO NEGATIVE</td><td><span class="tag-check">✔ [X] Sim</span></td><td>Normaliza o sentido da medição</td></tr>
+              <tr><td><strong>More functions</strong></td><td>SEALED PART</td><td><span class="tag-val">[X] Sim (se campânula)</span></td><td>Conforme o tipo de montagem</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tip-box">
+          <strong>Dica de Vácuo:</strong> Certifica-te de que o vedante da campânula está perfeitamente limpo e sem poeiras. No ensaio de vácuo, se houver uma fuga externa no vedante, o ar entra da atmosfera e falseia o teste da peça.
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.5: MÓDULO 5 — CALIBRAÇÃO CDF 60 (VOLUME REAL)
+         ======================================================== -->
+    <section id="mod-cdf" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🎯 Medição de Volume Real com CDF 60</h2>
+          <span class="card-badge" style="background:#FEF3C7; color:#B45309;">MÉTODO EM T</span>
+        </div>
+        <p class="card-desc">
+          O método oficial ATEQ para descobrir em 1 minuto o volume exato da peça do cliente, ligando o calibrador portátil CDF 60 em derivação "T":
+        </p>
+
+        <div style="background:#F8FAFC; border:1px solid var(--slate-200); border-radius:var(--radius-sm); padding:14px; margin-bottom:14px;">
+          <div class="form-group">
+            <label>1. Volume Inicial Digitado no Winateq (Estimativa):</label>
+            <div class="input-wrapper">
+              <input type="number" id="cdf_v0" class="form-control" value="315" oninput="calcCdfModule()">
+              <span class="input-unit">cm³</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>2. Fuga da Peça Limpa (Sem CDF aberto):</label>
+            <div class="input-wrapper">
+              <input type="number" id="cdf_q1" class="form-control" value="3.21" step="0.01" oninput="calcCdfModule()">
+              <span class="input-unit">cm³/min</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>3. Fuga Total na F620 com Válvula CDF Aberta:</label>
+            <div class="input-wrapper">
+              <input type="number" id="cdf_q2" class="form-control" value="7.74" step="0.01" oninput="calcCdfModule()">
+              <span class="input-unit">cm³/min</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>4. Fuga Real Lida no Visor do CDF 60:</label>
+            <div class="input-wrapper">
+              <input type="number" id="cdf_qreal" class="form-control" value="13.08" step="0.01" oninput="calcCdfModule()">
+              <span class="input-unit">cm³/min</span>
+            </div>
+          </div>
+
+          <div class="ateq-screen">
+            <div class="screen-header-txt">
+              <span>VOLUME REAL METROLÓGICO</span>
+              <span style="color:#4ADE80;">CALCULADO OK</span>
+            </div>
+            <div class="digital-val" id="res_cdf_vol">909.5</div>
+            <div class="digital-unit">cm³ (Volume Real da Peça + Tubo)</div>
+            <div class="screen-details-row">
+              <div>
+                <span>Litros</span>
+                <strong id="res_cdf_litros">0.910 L</strong>
+              </div>
+              <div>
+                <span>Delta F620</span>
+                <strong id="res_cdf_delta">4.53 cm³/min</strong>
+              </div>
+              <div>
+                <span>Fator Correção</span>
+                <strong id="res_cdf_factor">2.887x</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="success-box">
+            <strong>O que fazer a seguir:</strong> No Winateq, vai a <strong>PARAMETERS</strong>, escreve no campo <strong>VOLUME</strong> o valor <strong id="rec_cdf_vol_txt">910 cm³</strong> e clica em Save.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.6: MÓDULO 6 — DICIONÁRIO DE FUNÇÕES WINATEQ
+         ======================================================== -->
+    <section id="mod-dict" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🔍 Dicionário de Funções Winateq & F620</h2>
+          <span class="card-badge" style="background:#F3E8FF; color:#6B21A8;">AUDITORIA DE CAMPO</span>
+        </div>
+        <p class="card-desc">
+          Pesquisa rápida para saber exatamente o que faz qualquer opção do Winateq e o que acontece se estiver errada:
+        </p>
+
+        <input type="text" id="dictSearch" class="dict-search-input" placeholder="🔎 Escreve para pesquisar (ex: FILL REG, STD, SEALED, NO NEGATIVE, Min FILL)..." oninput="searchDict()">
+
+        <div id="dictList">
+          <!-- Gerado dinamicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.7: MÓDULO 7 — RESOLUÇÃO DE ALARMES F620
+         ======================================================== -->
+    <section id="mod-alarms" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🚨 Guia Rápido de Alarmes da F620</h2>
+          <span class="card-badge" style="background:#FEE2E2; color:#991B1B;">TROUBLESHOOTING</span>
+        </div>
+        <p class="card-desc">
+          A máquina está com alarme no ecrã à frente do cliente? Vê aqui a causa e a solução imediata em 30 segundos:
+        </p>
+
+        <div id="alarmsList">
+          <!-- Gerado dinamicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.8: MÓDULO 8 — TEMPOS DE CICLO
+         ======================================================== -->
+    <section id="mod-timing" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">⏱️ Assistente de Tempos de Ciclo (Por Material)</h2>
+          <span class="card-badge" style="background:#FEF3C7; color:#B45309;">CADÊNCIA PNEUMÁTICA</span>
+        </div>
+        <p class="card-desc">
+          Dimensiona os tempos de Fill, Stab, Test e Dump segundo a condutividade térmica e elasticidade do material:
+        </p>
+
+        <div style="background:#F8FAFC; border:1px solid var(--slate-200); border-radius:var(--radius-sm); padding:14px;">
+          <div class="form-group">
+            <label>Material da Peça:</label>
+            <select id="mat_select" class="form-control" onchange="calcTimings()">
+              <option value="alu" selected>Alumínio / Permutador (Dissipação rápida)</option>
+              <option value="steel">Aço / Ferro Fundido (Rígido)</option>
+              <option value="plastic">Plástico Rígido / Polímero</option>
+              <option value="rubber">Borracha / Mangueira Flexível (Deformação)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Volume Estimado da Peça:</label>
+            <div class="input-wrapper">
+              <input type="number" id="v_timing_input" class="form-control" value="910" step="50" oninput="calcTimings()">
+              <span class="input-unit">cm³</span>
+            </div>
+          </div>
+
+          <div class="ateq-screen">
+            <div class="screen-header-txt">
+              <span>TEMPO TOTAL DE CICLO</span>
+              <span id="timing_mat_label" style="color:#A78BFA;">ALUMÍNIO</span>
+            </div>
+            <div class="digital-val" id="res_total_time">14.0</div>
+            <div class="digital-unit">Segundos (Ciclo Completo)</div>
+            <div class="screen-details-row">
+              <div><span>FILL</span><strong id="res_fill_time">3.0 s</strong></div>
+              <div><span>STAB</span><strong id="res_stab_time">5.0 s</strong></div>
+              <div><span>TEST</span><strong id="res_test_time">5.0 s</strong></div>
+              <div><span>DUMP</span><strong id="res_dump_time">1.0 s</strong></div>
+            </div>
+          </div>
+
+          <div class="tip-box" id="timing_tip_box">
+            <strong>Nota Térmica:</strong> O alumínio exige pelo menos <strong>5 segundos de estabilização</strong> para dissipar o calor adiabático da compressão.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.9: MÓDULO 9 — CONVERSOR DE UNIDADES
+         ======================================================== -->
+    <section id="mod-converter" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🔄 Conversor de Unidades Metrológicas</h2>
+          <span class="card-badge" style="background:#E2E8F0; color:#334155;">PRESSÃO & CAUDAL</span>
+        </div>
+
+        <h3 style="font-size:13px; font-weight:800; color:var(--slate-800); margin-bottom:10px;">Pressão de Ensaio:</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">
+          <div class="form-group">
+            <label>bar:</label>
+            <input type="number" id="conv_bar" class="form-control" value="1.000" step="0.01" oninput="convP('bar')">
+          </div>
+          <div class="form-group">
+            <label>mbar (hPa):</label>
+            <input type="number" id="conv_mbar" class="form-control" value="1000" step="10" oninput="convP('mbar')">
+          </div>
+          <div class="form-group">
+            <label>Pascal (Pa):</label>
+            <input type="number" id="conv_pa" class="form-control" value="100000" step="1000" oninput="convP('pa')">
+          </div>
+          <div class="form-group">
+            <label>psi:</label>
+            <input type="number" id="conv_psi" class="form-control" value="14.504" step="0.1" oninput="convP('psi')">
+          </div>
+        </div>
+
+        <h3 style="font-size:13px; font-weight:800; color:var(--slate-800); margin-bottom:10px;">Caudal de Fuga:</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div class="form-group">
+            <label>cm³/min (sccm):</label>
+            <input type="number" id="conv_cm3min" class="form-control" value="5.00" step="0.1" oninput="convQ('cm3min')">
+          </div>
+          <div class="form-group">
+            <label>cm³/h:</label>
+            <input type="number" id="conv_cm3h" class="form-control" value="300.0" step="1" oninput="convQ('cm3h')">
+          </div>
+          <div class="form-group">
+            <label>mm³/s:</label>
+            <input type="number" id="conv_mm3s" class="form-control" value="83.33" step="1" oninput="convQ('mm3s')">
+          </div>
+          <div class="form-group">
+            <label>Pa·m³/s:</label>
+            <input type="number" id="conv_pam3s" class="form-control" value="0.00833" step="0.001" oninput="convQ('pam3s')">
+          </div>
+          <div class="form-group">
+            <label>Litros/min (L/min):</label>
+            <input type="number" id="conv_lmin" class="form-control" value="0.005" step="0.1" oninput="convQ('lmin')">
+          </div>
+          <div class="form-group">
+            <label>Litros/hora (L/h):</label>
+            <input type="number" id="conv_lh" class="form-control" value="0.30" step="1" oninput="convQ('lh')">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.10: MÓDULO 10 — SELETOR CAUDAL D620 & D670
+         ======================================================== -->
+    <section id="mod-d620" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🌊 Configurador de Caudal D620 & D670 (Capilar + Regulador)</h2>
+          <span class="card-badge" style="background:#DBEAFE; color:#1E40AF;">D620 / D670</span>
+        </div>
+        <p class="card-desc">
+          Coloca o caudal pedido pelo cliente (em <strong>L/min</strong> ou <strong>L/h</strong>) e a pressão de teste (em <strong>mbar</strong> ou <strong>bar</strong>). A calculadora converte automaticamente e diz-te que <strong>Gama (Full Scale)</strong>, <strong>Capilar (OL)</strong>, <strong>Saída</strong> e <strong>Regulador</strong> tens de escolher na folha de encomenda ATEQ!
+        </p>
+
+        <div style="background:#F8FAFC; border:1px solid var(--slate-200); border-radius:var(--radius-sm); padding:14px; margin-bottom:14px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div class="form-group">
+              <label>Caudal Máximo em L/min:</label>
+              <div class="input-wrapper">
+                <input type="number" id="d6_lmin" class="form-control" value="30" step="1" oninput="calcD620('lmin')">
+                <span class="input-unit">L/min</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Caudal Equivalente em L/h (×60):</label>
+              <div class="input-wrapper">
+                <input type="number" id="d6_lh" class="form-control" value="1800" step="10" oninput="calcD620('lh')">
+                <span class="input-unit">L/h</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Pressão de Teste (mbar):</label>
+              <div class="input-wrapper">
+                <input type="number" id="d6_mbar" class="form-control" value="300" step="50" oninput="calcD620('mbar')">
+                <span class="input-unit">mbar</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Pressão em bar (÷1000):</label>
+              <div class="input-wrapper">
+                <input type="number" id="d6_bar" class="form-control" value="0.30" step="0.1" oninput="calcD620('bar')">
+                <span class="input-unit">bar</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ateq-screen">
+            <div class="screen-header-txt">
+              <span>CALIBRE OFICIAL D620 / D670 RECOMENDADO</span>
+              <span id="d6_model_badge" style="color:#4ADE80;">GAMA STANDARD</span>
+            </div>
+            <div class="digital-val" id="d6_res_fs">4000 L/h</div>
+            <div class="digital-unit" id="d6_res_sub">Cobre até 66,7 L/min (Precisão: ±2,5% + 4 L/h | Resolução: 0,1 L/h)</div>
+            <div class="screen-details-row">
+              <div><span>CAPILAR (OL)</span><strong id="d6_res_ol">OL4000</strong></div>
+              <div><span>SAÍDA (OUTPUT)</span><strong id="d6_res_out">15 mm ou 20 mm</strong></div>
+              <div><span>CÓDIGO CAPILAR</span><strong id="d6_res_code">C_300213</strong></div>
+            </div>
+          </div>
+
+          <div class="success-box" id="d6_rec_box" style="margin-top:12px;">
+            <!-- Preenchido via JS -->
+          </div>
+        </div>
+
+        <!-- DIFERENÇA ENTRE D620 E D670 -->
+        <div class="winateq-card">
+          <div class="winateq-header">
+            <span>Diferença entre Modelos de Caudal ATEQ (Série 6)</span>
+            <span style="color:var(--ateq-red);">GUIA COMERCIAL & TÉCNICO</span>
+          </div>
+          <table class="winateq-table">
+            <thead>
+              <tr><th>Modelo</th><th>Formato / Caixa</th><th>Gamas de Caudal</th><th>Quando Escolher</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ATEQ D620</strong></td>
+                <td>Compacta (Meio Rack 19")<br><code>250 × 150 × 360 mm</code> (7 kg)</td>
+                <td><code>1 L/h</code> até <code>10.000 L/h</code><br>(9 calibres standard)</td>
+                <td>O modelo mais vendido para bancadas e máquinas automáticas (PROFINET/PLC) até 10.000 L/h (166 L/min).</td>
+              </tr>
+              <tr>
+                <td><strong>ATEQ D670</strong></td>
+                <td>Rack 19" Completo<br><code>540 × 160 × 380 mm</code> (7–10 kg)</td>
+                <td><code>1 L/h</code> até <code>10.000 L/h</code><br>+ <strong>Especiais até <code>70.000 L/h</code></strong></td>
+                <td>Quando o cliente exige bastidor de 19 polegadas, válvulas internas grandes, duplo capilar interno ou caudais gigantes (ex.: 30.000 a 70.000 L/h).</td>
+              </tr>
+              <tr>
+                <td><strong>ATEQ F620 / F670 (Modo D)</strong></td>
+                <td>Meio Rack (F620) / Rack 19" (F670)</td>
+                <td>Estanqueidade + Passagem (Desumerac)</td>
+                <td>Quando o foco principal é microfuga em Pa ou cm³/min e só precisa de um teste simples de obstrução.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CAIXA 2.11: MÓDULO 11 — ATEQ TOOL BOX OFICIAL
+         ======================================================== -->
+    <section id="mod-toolbox" class="module-view">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">🧰 ATEQ Tool Box Oficial (Volume Interno & Boyle-Mariotte)</h2>
+          <span class="card-badge" style="background:#F3E8FF; color:#6B21A8;">NOVA TOOL BOX ATEQ</span>
+        </div>
+        <p class="card-desc">
+          Ferramenta oficial da ATEQ Internacional traduzida em Português para descobrires o <strong>Volume Interno real do bloco pneumático</strong> da máquina (Série 5 e Série 6) e calculares a <strong>Lei de Boyle-Mariotte</strong> ($P_1 \times V_1 = P_2 \times V_2$).
+        </p>
+
+        <!-- PARTE 1: VOLUME INTERNO DA MÁQUINA -->
+        <div style="background:#F8FAFC; border:1px solid var(--slate-200); border-radius:var(--radius-sm); padding:14px; margin-bottom:16px;">
+          <h3 style="font-size:13px; font-weight:800; color:var(--slate-800); margin-bottom:10px;">1. Volume Interno do Aparelho (Bloco Pneumático ATEQ):</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div class="form-group">
+              <label>Série do Captador (Máquina):</label>
+              <select id="tb_series" class="form-control" onchange="calcInternalVol()">
+                <option value="S6" selected>Série 6 (F620, F610, F670, F6 Class, S5000)</option>
+                <option value="S5">Série 5 (F520, F510, F570)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Volume do Captador:</label>
+              <select id="tb_sensor_vol" class="form-control" onchange="calcInternalVol()">
+                <option value="std" selected>Volume Standard (Padrão)</option>
+                <option value="red">Volume Reduzido</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Tipo de Válvula Pneumática:</label>
+              <select id="tb_valve" class="form-control" onchange="calcInternalVol()">
+                <optgroup label="Série 6 (F620 / F6)">
+                  <option value="2.00" selected>F6 4/6 — Válvula Standard (2,00 cm³)</option>
+                  <option value="2.15">F6 6/8 — Válvula Standard (2,15 cm³)</option>
+                  <option value="1.53">F6 2,7/4 — Válvula Standard (1,53 cm³)</option>
+                  <option value="1.25">F6 2,7/4 — Mini-válvula (1,25 cm³)</option>
+                </optgroup>
+                <optgroup label="Série 5 (F520 / F5)">
+                  <option value="2.75">F5 4/6 — Válvula Standard (2,75 cm³)</option>
+                  <option value="2.92">F5 6/8 — Válvula Standard (2,92 cm³)</option>
+                  <option value="1.72">F5 2,7/4 — Mini-válvula (1,72 cm³)</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Engate Rápido Stäubli na Saída:</label>
+              <select id="tb_staubli" class="form-control" onchange="calcInternalVol()">
+                <option value="0" selected>Não (Sem Stäubli — 0,00 cm³)</option>
+                <option value="0.5">Sim (Com Stäubli no Teste — +0,50 cm³)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="ateq-screen">
+            <div class="screen-header-txt">
+              <span>VOLUME INTERNO DA MÁQUINA (LADO TESTE vs. REFERÊNCIA)</span>
+              <span style="color:#38BDF8;">OFICIAL ATEQ</span>
+            </div>
+            <div class="digital-val" id="tb_res_test">6.00 cm³</div>
+            <div class="digital-unit">Volume Interno Lado TESTE (Somar ao volume da peça se esta for muito pequena!)</div>
+            <div class="screen-details-row">
+              <div><span>LADO REFERÊNCIA</span><strong id="tb_res_ref">6.00 cm³</strong></div>
+              <div><span>CAPTADOR</span><strong id="tb_res_sens">4.00 cm³</strong></div>
+              <div><span>VÁLVULA + STÄUBLI</span><strong id="tb_res_valv">2.00 + 0.00 cm³</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PARTE 2: LEI DE BOYLE-MARIOTTE -->
+        <div style="background:#F8FAFC; border:1px solid var(--slate-200); border-radius:var(--radius-sm); padding:14px;">
+          <h3 style="font-size:13px; font-weight:800; color:var(--slate-800); margin-bottom:10px;">2. Lei de Boyle-Mariotte (Transferência de Volume P1 × V1):</h3>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+            <div class="form-group">
+              <label>Fórmula a Usar:</label>
+              <select id="bm_mode" class="form-control" onchange="calcBoyleTool()">
+                <option value="exp" selected>P1 × V1 = P2 × (V1 + V2) — Expansão / Auto Vol / Campânula</option>
+                <option value="std">P1 × V1 = P2 × V2 — Compressão Simples</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Qual o Valor que Queres Descobrir?</label>
+              <select id="bm_solve" class="form-control" onchange="calcBoyleTool()">
+                <option value="V2" selected>Descobrir V2 (Volume da Peça / Campânula)</option>
+                <option value="P2">Descobrir P2 (Pressão Final após abrir válvula)</option>
+                <option value="V1">Descobrir V1 (Volume Interno de Referência)</option>
+                <option value="P1">Descobrir P1 (Pressão Inicial antes de abrir)</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px;">
+            <div class="form-group">
+              <label>P1 (Inicial):</label>
+              <input type="number" id="bm_p1" class="form-control" value="200" step="10" oninput="calcBoyleTool()">
+            </div>
+            <div class="form-group">
+              <label>V1 (cm³):</label>
+              <input type="number" id="bm_v1" class="form-control" value="50" step="5" oninput="calcBoyleTool()">
+            </div>
+            <div class="form-group">
+              <label>P2 (Final):</label>
+              <input type="number" id="bm_p2" class="form-control" value="40" step="5" oninput="calcBoyleTool()">
+            </div>
+            <div class="form-group">
+              <label>V2 (cm³):</label>
+              <input type="number" id="bm_v2" class="form-control" value="200" step="10" oninput="calcBoyleTool()">
+            </div>
+          </div>
+
+          <div class="ateq-screen" style="margin-top:8px;">
+            <div class="screen-header-txt">
+              <span id="bm_out_lbl">RESULTADO CALCULADO (V2)</span>
+              <span style="color:#4ADE80;">LEI DOS GASES</span>
+            </div>
+            <div class="digital-val" id="bm_out_val">200.0</div>
+            <div class="digital-unit" id="bm_out_unit">Unidade coerente com os dados inseridos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE EMAIL -->
+  <div class="modal-overlay" id="reportModal">
+    <div class="modal-content">
+      <div class="card-header">
+        <h3 class="card-title">✉️ Enviar Relatório de Ensaio ATEQ</h3>
+        <button type="button" class="btn-back" onclick="closeReportModal()">✕</button>
+      </div>
+
+      <div class="form-group">
+        <label>Cliente / Projeto:</label>
+        <input type="text" id="rep_client" class="form-control" value="Bancada ST / Cliente Piloto" oninput="updateReportText()">
+      </div>
+
+      <div class="form-group">
+        <label>Peça / Equipamento:</label>
+        <input type="text" id="rep_part" class="form-control" value="Radiador de Alumínio / F620" oninput="updateReportText()">
+      </div>
+
+      <div class="form-group">
+        <label>Email Destino:</label>
+        <input type="email" id="rep_email" class="form-control" placeholder="exemplo: raul.garcia@ateq.com">
+      </div>
+
+      <div class="email-preview" id="reportPreview"></div>
+
+      <div style="display:flex; gap:10px; margin-top:10px;">
+        <button type="button" class="btn-action" style="flex:1;" onclick="sendEmailNative()">
+          ✉️ Abrir Outlook & Enviar
+        </button>
+        <button type="button" class="btn-back" style="flex:1; justify-content:center;" onclick="copyReportText()">
+          📋 Copiar Texto
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <strong>Sistemas ATEQ España, S.A. — Representação em Portugal</strong><br>
+    Rua Eng.º Arantes e Oliveira, 535, 3700-349 São João da Madeira · NIF: 980 745 438<br>
+    Carlos Barbosa (Berto) / Raúl Garcia (922 215 027)
+  </footer>
+
+  <script>
+    // ========================================================
+    // NAVEGAÇÃO ENTRE CAIXA 1 (MENU) E CAIXA 2 (MÓDULOS)
+    // ========================================================
+    const MODULE_NAMES = {
+      'mod-recipes': '📋 Receitas & Checklist F620',
+      'mod-fuga': '🚗 Ensaio de Fuga Direta',
+      'mod-selado': '📦 Componente Selado (Campânula)',
+      'mod-vacuo': '💨 Ensaio em Vácuo / Depressão',
+      'mod-cdf': '🎯 Medir Volume Real (CDF 60)',
+      'mod-dict': '🔍 Dicionário de Funções Winateq',
+      'mod-alarms': '🚨 Resolução de Alarmes F620',
+      'mod-timing': '⏱️ Tempos de Ciclo & Cadência',
+      'mod-converter': '🔄 Conversor de Unidades',
+      'mod-d620': '🌊 Caudal D620 & D670 (Capilar & Regulador)',
+      'mod-toolbox': '🧰 ATEQ Tool Box Oficial'
+    };
+
+    function openModule(modId) {
+      document.getElementById('view-menu').style.display = 'none';
+      document.querySelectorAll('.module-view').forEach(m => m.style.display = 'none');
+      
+      const mod = document.getElementById(modId);
+      if (mod) {
+        mod.style.display = 'block';
+        document.getElementById('topNavBar').style.display = 'flex';
+        document.getElementById('moduleTitleBadge').innerText = MODULE_NAMES[modId] || 'MÓDULO';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function goToMenu() {
+      document.querySelectorAll('.module-view').forEach(m => m.style.display = 'none');
+      document.getElementById('topNavBar').style.display = 'none';
+      document.getElementById('view-menu').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ========================================================
+    // MÓDULO 1: RECEITAS COMPLETAS F620 (7 CASOS INDUSTRIAIS)
+    // ========================================================
+    const RECIPES_DATA = {
+      direct_radiator: {
+        title: "Peça Aberta / Conexão Direta (Radiador, Tubos, Coletores)",
+        type: "LEAK TEST (DIRETO)",
+        params: [
+          { p: "TYPE", v: "LEAK TEST", n: "Ensaio de estanqueidade diferencial padrão" },
+          { p: "COUPL. A", v: "0.0 s", n: "Sem atuador/pinça externa" },
+          { p: "FILL TIME", v: "3.0 s a 4.0 s", n: "Tempo para pressurizar o volume interno" },
+          { p: "STAB TIME", v: "4.0 s a 5.0 s", n: "Alumínio exige 5s para dissipar calor da compressão!" },
+          { p: "TEST TIME", v: "3.0 s a 5.0 s", n: "Medição de queda no sensor diferencial de 500 Pa" },
+          { p: "DUMP TIME", v: "1.0 s", n: "Despressurização rápida para a atmosfera" },
+          { p: "Press. UNIT", v: "bar", n: "Unidade de linha" },
+          { p: "Set FILL", v: "1.00 bar", n: "Pressão nominal recomendada para radiadores" },
+          { p: "Max FILL", v: "1.10 bar", n: "+10% (Limite superior de sobrepressão)" },
+          { p: "Min FILL", v: "0.85 a 0.90 bar", n: "10-15% abaixo (Evita alarme de pressão baixa por oscilação)" },
+          { p: "LeakUnit", v: "Pa/s ou cm3/mn", n: "Pa/s dispensa calcular volumes no cliente" },
+          { p: "VOLUME", v: "910 cm³", n: "Volume interno determinado com CDF 60 + tubagem" },
+          { p: "Test FAIL", v: "40 Pa/s (ou 5 a 10 cm³/min)", n: "Limite de rejeição industrial standard" }
+        ],
+        functions: [
+          { f: "NAME", s: true, v: "RADIADOR", n: "Nome gravado na memória" },
+          { f: "FILL MODE", s: true, v: "STANDARD", n: "Enchimento padrão à pressão do regulador" },
+          { f: "FILL REG", s: true, v: "REGUL 2", n: "Canal do regulador eletrónico de 1 bar na F620" },
+          { f: "STD CONDITIONS", s: true, v: "Sim (Ativado)", n: "Normaliza para 20ºC / 1013 hPa (* sccm)" },
+          { f: "FILTER", s: true, v: "1.0 s", n: "Amortecimento de sinal do captador piezo" },
+          { f: "NO NEGATIVE", s: true, v: "Sim (Ativado)", n: "Elimina falsas leituras negativas por arrefecimento" },
+          { f: "ABSOLUTE", s: true, v: "Sim (Ativado)", n: "Cálculo do módulo da queda de pressão" }
+        ],
+        more: [
+          { o: "SEALED PART", v: "[ ] DESMARCADO", r: "Obrigatório desligado (conexão direta à peça)" },
+          { o: "SPE CYCLE", v: "none", r: "Ciclo normal de teste" }
+        ],
+        alert: "<strong>⚠️ DICA DE OURO ATEQ:</strong> Nunca deixes o <code>Min FILL</code> colado ao alvo (ex: 0.500 bar quando enche a 0.495 bar dá alarme <code>Pressure Low</code>!). Mantém sempre 10% a 15% de folga abaixo do Set FILL."
+      },
+      sealed_campanula: {
+        title: "Componente Selado em Campânula (Help Flash V16, Sensores)",
+        type: "LEAK TEST (CAMPÂNULA DIRETA / SEM ALARMES)",
+        params: [
+          { p: "TYPE", v: "LEAK TEST", n: "Ensaio de estanqueidade direta na câmara" },
+          { p: "FILL TIME", v: "2.5 s", n: "Volume livre reduzido da campânula" },
+          { p: "STAB TIME", v: "3.0 s", n: "Estabilização rápida em volume fechado" },
+          { p: "TEST TIME", v: "3.0 s", n: "Medição de queda diferencial" },
+          { p: "DUMP TIME", v: "1.0 s", n: "Escape atmosférico para abrir tampa" },
+          { p: "Press. UNIT", v: "mbar", n: "Baixa pressão visualizável com precisão" },
+          { p: "Set FILL", v: "200.0 mbar", n: "Pressão nominal padrão para componentes selados" },
+          { p: "Max FILL", v: "220.0 mbar", n: "+20 mbar (+10%)" },
+          { p: "Min FILL", v: "180.0 mbar", n: "-20 mbar (-10%)" },
+          { p: "LeakUnit", v: "cm3/mn ou Pa", n: "Queda volumétrica ou direta" },
+          { p: "VOLUME", v: "221.0 cm³ (ou livre real)", n: "Volume livre de ar medido no CDF 60" },
+          { p: "Test FAIL", v: "0.500 a 1.000 cm3/mn", n: "Limite rigoroso para peças herméticas IP67/IP68" }
+        ],
+        functions: [
+          { f: "NAME", s: true, v: "HELP FLASH ou CAMP_V16", n: "Identificação da câmara e peça" },
+          { f: "FILL MODE", s: true, v: "STANDARD (200 mbar)", n: "Enchimento a baixa pressão" },
+          { f: "FILL REG", s: true, v: "REGUL 2", n: "Canal pneumático correspondente" },
+          { f: "STD CONDITIONS", s: true, v: "Sim (Ativado)", n: "Gera o asterisco * sccm normalizado" },
+          { f: "FILTER", s: true, v: "1.0 s", n: "Filtro piezoelétrico" },
+          { f: "NO NEGATIVE", s: true, v: "Sim (Ativado)", n: "Evita desvios de zero por arrefecimento" }
+        ],
+        more: [
+          { o: "SEALED PART", v: "[ ] DESMARCADO (Recomendado)", r: "EM CLIENTE DEIXAR DESMARCADO! Evita alarme 'Do Learning Cycle' e funciona 100% à primeira!" },
+          { o: "SPE CYCLE", v: "none", r: "Ciclo normal direto (sem bloqueios)" }
+        ],
+        alert: "<strong>⚠️ REGRA DE OURO EM CLIENTE:</strong> Para evitar erros em casa do cliente, mantém <code>SEALED PART</code> <strong>DESMARCADO</strong> e digita o volume livre de ar (ex.: 221 cm³). A F620 testa a campânula diretamente e <strong>NUNCA dá alarmes de aprendizagem</strong> nem de <code>Pressure Low</code>!"
+      },
+      cdf_calib: {
+        title: "Calibração e Medição de Volume com CDF 60 (Em Derivação 'T')",
+        type: "LEAK TEST (CALIBRAÇÃO EM T)",
+        params: [
+          { p: "TYPE", v: "LEAK TEST", n: "Modo direto de estanqueidade" },
+          { p: "FILL TIME", v: "2.0 s a 3.0 s", n: "Conforme o volume da peça" },
+          { p: "STAB TIME", v: "4.0 s a 5.0 s", n: "Garante estabilidade térmica perfeita" },
+          { p: "TEST TIME", v: "3.0 s a 5.0 s", n: "NUNCA colocar 20s para o sensor não saturar!" },
+          { p: "DUMP TIME", v: "1.0 s", n: "Escape final" },
+          { p: "Set FILL", v: "Pressão de Teste da Peça", n: "1.00 bar para radiador / 200 mbar para campânula" },
+          { p: "VOLUME", v: "Volume Inicial Estimado", n: "Ex: 315 cm³ ou 50 cm³" },
+          { p: "Test FAIL", v: "2000 cm3/mn (ou 500)", n: "Limite largo para não chumbar enquanto calibramos" }
+        ],
+        functions: [
+          { f: "FILL REG", s: true, v: "REGUL 2", n: "Canal ativo" },
+          { f: "STD CONDITIONS", s: true, v: "Sim (Ativado)", n: "Compatível com a calibração do CDF 60" },
+          { f: "FILTER", s: true, v: "1.0 s", n: "Amortecimento" }
+        ],
+        more: [
+          { o: "SEALED PART", v: "[ ] DESMARCADO", r: "Manter desmarcado para medição direta" },
+          { o: "SPE CYCLE", v: "none", r: "Ciclo normal de teste" }
+        ],
+        alert: "<strong>⚠️ DICA DE OURO ATEQ:</strong> Se o circuito tiver pouco volume (ex: campânula) e a fuga do CDF for alta, o sensor satura e dá <code>TEST LARGE LEAK</code>! Regula a agulha preta do CDF para um valor suave (2.5 a 4.0 cm³/min)."
+      },
+      deformable: {
+        title: "Peça Deformável / Flexível (Mangueiras de Borracha, Plásticos Finos)",
+        type: "LEAK TEST (ESTABILIZAÇÃO LONGA)",
+        params: [
+          { p: "TYPE", v: "LEAK TEST", n: "Ensaio diferencial" },
+          { p: "FILL TIME", v: "3.0 s a 5.0 s", n: "Enchimento suave" },
+          { p: "STAB TIME", v: "6.0 s a 8.0 s", n: "O material expande sob pressão e demora a assentar!" },
+          { p: "TEST TIME", v: "4.0 s a 5.0 s", n: "Medição de queda real" },
+          { p: "DUMP TIME", v: "2.0 s", n: "Garante retorno elástico seguro" },
+          { p: "Min FILL", v: "-15% do alvo", n: "Margem alargada para acomodação elástica" },
+          { p: "Test FAIL", v: "Margem +50%", n: "Evita falsas rejeições de peças boas" }
+        ],
+        functions: [
+          { f: "FILTER", s: true, v: "1.5 s a 2.0 s", n: "Filtro reforçado para ruído mecânico" },
+          { f: "NO NEGATIVE", s: true, v: "Sim (Ativado)", n: "Essencial para relaxação plástica" }
+        ],
+        more: [
+          { o: "SEALED PART", v: "[ ] Desmarcado", r: "Peça aberta padrão" },
+          { o: "SPE CYCLE", v: "none", r: "Normal" }
+        ],
+        alert: "<strong>⚠️ DICA DE OURO ATEQ:</strong> Peças flexíveis deformam-se com a pressão, criando a ilusão de que há fuga quando é apenas a borracha a esticar. A solução é sempre <strong>aumentar a estabilização (STAB TIME)</strong>!"
+      },
+      large_vol: {
+        title: "Grande Volume (> 5 Litros — Depósitos de Combustível, Caixas EV)",
+        type: "LEAK TEST (ALTO DÉBITO)",
+        params: [
+          { p: "TYPE", v: "LEAK TEST", n: "Grande capacidade" },
+          { p: "FILL TIME", v: "6.0 s a 10.0 s", n: "Ou usar válvula de enchimento rápido" },
+          { p: "STAB TIME", v: "6.0 s a 10.0 s", n: "Massa de ar grande precisa de tempo para acalmar" },
+          { p: "TEST TIME", v: "5.0 s a 8.0 s", n: "Medição de gradiente" },
+          { p: "DUMP TIME", v: "2.0 s a 4.0 s", n: "Descompressão segura de grande volume de ar" }
+        ],
+        functions: [
+          { f: "DUMP LEVEL", s: true, v: "Sim (Ativado)", n: "Segurança: impede soltar pinça com pressão residual" },
+          { f: "STD CONDITIONS", s: true, v: "Sim (Ativado)", n: "Normalização" }
+        ],
+        more: [
+          { o: "SPE CYCLE", v: "none", r: "Normal" }
+        ],
+        alert: "<strong>⚠️ DICA DE OURO ATEQ:</strong> Em volumes grandes (> 5 L), usar tubo de alimentação de 6 mm ou 8 mm e engates rápidos Stäubli de grande secção. Se usar tubinho de 4 mm, a máquina passa o tempo todo só a tentar encher e não cumpre a cadência!"
+      },
+      blockage_flow: {
+        title: "Desobstrução / Teste de Passagem (Tubos de Travão, Injetores, Cânulas)",
+        type: "DESUMERAC / BLOCKAGE",
+        params: [
+          { p: "TYPE", v: "DESUMERAC", n: "Modo contínuo de fluxo/perda de carga por orifício" },
+          { p: "FILL TIME", v: "1.5 s a 2.5 s", n: "Estabelecer o fluxo de ar através da peça" },
+          { p: "TEST TIME", v: "2.0 s a 3.0 s", n: "Janela de medição de pressão diferencial dinâmica" },
+          { p: "DUMP TIME", v: "0.5 s", n: "Alívio" },
+          { p: "Set FILL", v: "0.50 bar a 2.00 bar", n: "Pressão de alimentação de fluxo contínuo" },
+          { p: "Min FILL", v: "Pressão Mínima de Passagem", n: "Se a pressão for menor, o tubo está totalmente roto/livre" },
+          { p: "Max FILL", v: "Pressão Máxima (Bloqueio)", n: "Se a pressão subir até este valor, o tubo está OBSTRUÍDO/ENTUPIDO!" },
+          { p: "Test FAIL", v: "Limite de Perda de Carga", n: "Conforme calibre do orifício calibrado" }
+        ],
+        functions: [
+          { f: "FILL MODE", s: true, v: "CONTINUOUS / STD", n: "Injeção contínua de fluxo" },
+          { f: "FILL REG", s: true, v: "REGUL 1 ou 2", n: "Conforme linha de alimentação" },
+          { f: "FILTER", s: true, v: "1.0 s", n: "Filtro de turbulência de passagem" }
+        ],
+        more: [
+          { o: "SEALED PART", v: "[ ] DESMARCADO", r: "Obrigatório desligado (circuito de escape livre)" },
+          { o: "SPE CYCLE", v: "none", r: "Normal" }
+        ],
+        alert: "<strong>⚠️ DICA DE OURO ATEQ:</strong> No ensaio de desobstrução (DESUMERAC), a lógica inverte: se o tubo estiver ENTUPIDO, a pressão <strong>SOBE</strong> e atinge o <code>Max FILL</code> dando chumbo por obstrução; se estiver LIVRE, o ar escapa e a pressão estabiliza dentro da janela!"
+      },
+      vacuum_test: {
+        title: "Ensaio em Depressão / Vácuo (Embalagens Herméticas, Blisters, Sensores)",
+        type: "LEAK TEST (VÁCUO)",
+        params: [
+          { p: "TYPE", v: "LEAK TEST", n: "Estanqueidade em pressão negativa" },
+          { p: "FILL TIME", v: "2.5 s a 4.0 s", n: "Tempo de evacuação da câmara pelo ejetor Venturi" },
+          { p: "STAB TIME", v: "3.0 s a 4.0 s", n: "Estabilização do vácuo" },
+          { p: "TEST TIME", v: "3.0 s a 5.0 s", n: "Medição de perda de vácuo (pressão sobe em direção a 0)" },
+          { p: "DUMP TIME", v: "1.0 s", n: "Quebra de vácuo atmosférico para abrir tampa" },
+          { p: "Set FILL", v: "-200 mbar a -700 mbar", n: "Nível de vácuo programado (valor negativo)" },
+          { p: "Min FILL", v: "-800 mbar", n: "Limite máximo de vácuo" },
+          { p: "Max FILL", v: "-150 mbar", n: "Limite mínimo de evacuação" },
+          { p: "Test FAIL", v: "0.300 cm3/mn ou 20 Pa", n: "Tolerância de estanqueidade" }
+        ],
+        functions: [
+          { f: "FILL REG", s: true, v: "VACUUM / VENTURI", n: "Alimentação do ejetor pneumático de vácuo" },
+          { f: "NO NEGATIVE", s: true, v: "Sim (Ativado)", n: "Normalização do sentido do sinal" }
+        ],
+        more: [
+          { o: "SEALED PART", v: "[X] STANDARD", r: "Geralmente ensaiado dentro de campânula a vácuo" },
+          { o: "SPE CYCLE", v: "Sd Prt PASS Learn", r: "Aprendizagem da câmara a vácuo" }
+        ],
+        alert: "<strong>⚠️ DICA DE OURO ATEQ:</strong> Em ensaios de vácuo, certificar que a F620 possui o bloco ejetor de vácuo interno (Venturi) ou bomba de vácuo externa ligada ao canal correspondente. Limpar bem a junta de borracha da campânula para garantir estanqueidade periférica."
+      }
+    };
+
+    let activeRecipeKey = "direct_radiator";
+
+    function selectRecipe(key) {
+      activeRecipeKey = key;
+      const data = RECIPES_DATA[key];
+      if (!data) return;
+
+      document.querySelectorAll(".recipe-pill").forEach(b => b.classList.remove("active"));
+      const btnMap = {
+        direct_radiator: "btn_rec_direct",
+        sealed_campanula: "btn_rec_sealed",
+        cdf_calib: "btn_rec_cdf",
+        deformable: "btn_rec_deformable",
+        large_vol: "btn_rec_large",
+        blockage_flow: "btn_rec_blockage",
+        vacuum_test: "btn_rec_vacuum"
+      };
+      if (btnMap[key]) {
+        document.getElementById(btnMap[key]).classList.add("active");
+      }
+
+      document.getElementById("rec_badge_type").innerText = data.type;
+
+      // 1. Tabela de Parâmetros
+      let htmlParams = "";
+      data.params.forEach(item => {
+        htmlParams += `<tr>
+          <td style="font-weight:700; color:var(--slate-800);">${item.p}</td>
+          <td><span class="tag-val">${item.v}</span></td>
+          <td style="color:var(--slate-500); font-size:11px;">${item.n}</td>
+        </tr>`;
+      });
+      document.getElementById("rec_params_tbody").innerHTML = htmlParams;
+
+      // 2. Tabela de Funções
+      let htmlFuncs = "";
+      data.functions.forEach(item => {
+        const tag = item.s ? `<span class="tag-check">✔ [X]</span>` : `<span class="tag-uncheck">- [ ]</span>`;
+        htmlFuncs += `<tr>
+          <td style="font-weight:700; color:var(--slate-800);">${item.f}</td>
+          <td>${tag}</td>
+          <td style="color:var(--slate-700); font-size:11px;"><strong>${item.v}</strong> &middot; ${item.n}</td>
+        </tr>`;
+      });
+      document.getElementById("rec_functions_tbody").innerHTML = htmlFuncs;
+
+      // 3. Tabela More Functions & SPE CYCLE
+      let htmlMore = "";
+      data.more.forEach(item => {
+        htmlMore += `<tr>
+          <td style="font-weight:700; color:var(--slate-800);">${item.o}</td>
+          <td><span class="tag-val">${item.v}</span></td>
+          <td style="color:var(--slate-700); font-size:11px;">${item.r}</td>
+        </tr>`;
+      });
+      document.getElementById("rec_more_tbody").innerHTML = htmlMore;
+
+      // 4. Alerta Crítico
+      document.getElementById("rec_alert_box").innerHTML = data.alert;
+    }
+
+    function copyCurrentRecipe() {
+      const data = RECIPES_DATA[activeRecipeKey];
+      if (!data) return;
+
+      let text = `============================================================\n`;
+      text += `RECEITA OFICIAL DE CONFIGURAÇÃO ATEQ F620 (WINATEQ)\n`;
+      text += `Caso: ${data.title}\n`;
+      text += `Tipo: ${data.type}\n`;
+      text += `============================================================\n\n`;
+
+      text += `1. SEPARADOR PARAMETERS:\n`;
+      data.params.forEach(p => {
+        text += `   - ${p.p.padEnd(12)}: ${p.v} (${p.n})\n`;
+      });
+
+      text += `\n2. SEPARADOR FUNCTIONS:\n`;
+      data.functions.forEach(f => {
+        text += `   - ${f.f.padEnd(14)}: ${f.s ? '[X]' : '[ ]'} ${f.v} (${f.n})\n`;
+      });
+
+      text += `\n3. MORE FUNCTIONS & SPE CYCLE:\n`;
+      data.more.forEach(m => {
+        text += `   - ${m.o.padEnd(14)}: ${m.v} -> ${m.r}\n`;
+      });
+
+      text += `\n------------------------------------------------------------\n`;
+      text += `Sistemas ATEQ Portugal · Carlos Barbosa (Berto)\n`;
+      text += `============================================================`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert("✅ Receita de Funções copiada para a Área de Transferência!\nPodes colar diretamente no WhatsApp, Teams ou Bloco de Notas.");
+      }).catch(err => {
+        alert("Erro ao copiar: " + err);
+      });
+    }
+
+    // ========================================================
+    // CÁLCULOS MÓDULO 2: FUGA DIRETA (cm3/min <-> Pa/s)
+    // ========================================================
+    function calcFugaFromQ() {
+      const v = parseFloat(document.getElementById('fuga_vol').value) || 910;
+      const q = parseFloat(document.getElementById('fuga_q').value) || 13.08;
+      const q_sec = q / 60;
+      const pas = (q_sec / v) * 101325;
+      document.getElementById('res_fuga_pas').innerText = pas.toFixed(1);
+    }
+
+    function calcFugaDirect() {
+      calcFugaFromQ();
+    }
+
+    // ========================================================
+    // CÁLCULOS MÓDULO 3: COMPONENTE SELADO
+    // ========================================================
+    function calcSealedModule() {
+      const v_bell = parseFloat(document.getElementById('sel_v_bell').value) || 330;
+      const v_part = parseFloat(document.getElementById('sel_v_part').value) || 180;
+      const free = Math.max(1, v_bell - v_part);
+      document.getElementById('res_sel_free_vol').innerText = free.toFixed(1);
+
+      const badge = document.getElementById('sel_sensor_badge');
+      if (free < 40) {
+        badge.innerText = 'SENSOR: ±50 Pa ou ±500 Pa';
+        badge.style.color = '#38BDF8';
+      } else if (free <= 450) {
+        badge.innerText = 'SENSOR: ±500 Pa (Ideal)';
+        badge.style.color = '#4ADE80';
+      } else {
+        badge.innerText = 'SENSOR: ±5000 Pa';
+        badge.style.color = '#F87171';
+      }
+
+      // Recomendações dinâmicas para o Winateq
+      const dynVol = document.getElementById('dyn_rec_vol');
+      if (dynVol) dynVol.innerText = free.toFixed(1) + " cm³";
+
+      // Test FAIL em Pa para fuga padrão de 0.5 cm3/min e teste de 3s
+      // dP = ( (Q / 60) / V ) * P_atm * t
+      const q_std = 0.500; // cm3/min
+      const t_test = 3.0; // s
+      const dp_calc = ((q_std / 60) / free) * 101325 * t_test;
+      const dynFail = document.getElementById('dyn_rec_fail');
+      if (dynFail) dynFail.innerText = Math.round(dp_calc) + " Pa";
+    }
+
+    // ========================================================
+    // CÁLCULOS MÓDULO 5: CALIBRAÇÃO CDF 60 EM "T"
+    // ========================================================
+    function calcCdfModule() {
+      const v0 = parseFloat(document.getElementById('cdf_v0').value) || 315;
+      const q1 = parseFloat(document.getElementById('cdf_q1').value) || 0;
+      const q2 = parseFloat(document.getElementById('cdf_q2').value) || 0;
+      const q_cdf = parseFloat(document.getElementById('cdf_qreal').value) || 0;
+
+      const delta = Math.abs(q2 - q1);
+      document.getElementById('res_cdf_delta').innerText = delta.toFixed(2) + " cm³/min";
+
+      if (delta > 0 && q_cdf > 0) {
+        const factor = q_cdf / delta;
+        const v_real = v0 * factor;
+        document.getElementById('res_cdf_vol').innerText = v_real.toFixed(1);
+        document.getElementById('res_cdf_litros').innerText = (v_real / 1000).toFixed(3) + " L";
+        document.getElementById('res_cdf_factor').innerText = factor.toFixed(3) + "x";
+        document.getElementById('rec_cdf_vol_txt').innerText = v_real.toFixed(0) + " cm³";
+      } else {
+        document.getElementById('res_cdf_vol').innerText = "---";
+        document.getElementById('res_cdf_litros').innerText = "---";
+        document.getElementById('res_cdf_factor').innerText = "---";
+      }
+    }
+
+    // ========================================================
+    // MÓDULO 6: BASE DE DADOS DO DICIONÁRIO DE FUNÇÕES
+    // ========================================================
+    const DICT_DATA = [
+      {
+        name: "FILL REG (Canal do Regulador Pneumático)",
+        loc: "FUNCTIONS",
+        rec: "REGUL 2 (Para ensaio 1 bar na F620)",
+        desc: "Seleciona qual o canal pneumático interno que injeta ar na peça. Na F620 eletrónica, a pressão de 1 bar está pilotada pelo REGUL 2.",
+        risk: "Se estiver em REGUL 1 num circuito de 1 bar, a máquina dá logo alarme 'Pressure Low: 0.495 bar'!"
+      },
+      {
+        name: "STD CONDITIONS (Condições Normais sccm)",
+        loc: "FUNCTIONS",
+        rec: "[X] Ativado",
+        desc: "Normaliza o caudal de fuga medido para 20 ºC e 1013.25 hPa. Faz aparecer o asterisco (*) em cm3/mn*.",
+        risk: "Sem isto, as leituras variam de manhã para a tarde conforme a temperatura ambiente da fábrica do cliente."
+      },
+      {
+        name: "SEALED PART (Modo Peça Selada / Campânula)",
+        loc: "More functions...",
+        rec: "[ ] DESMARCADO (Recomendado em Cliente) | [X] STANDARD (Se exigido)",
+        desc: "Ativa o algoritmo de cálculo fechado. NOTA DE BANCADA ATEQ: Em casa do cliente, manter DESMARCADO e inserir o volume livre real (ex: 221 cm³). A F620 testa a campânula diretamente com 100% de fiabilidade.",
+        risk: "Se ativares este modo, a F620 bloqueia com 'ALARM: Do Learning Cycle' até correres 'Sd Prt PASS Learn'! Em cliente, deixa desmarcado para nunca encravar."
+      },
+      {
+        name: "Sd Prt PASS Learn (Aprendizagem de Campânula)",
+        loc: "SPE CYCLE (Painel Direito)",
+        rec: "Usar apenas se SEALED PART estiver ativo",
+        desc: "Ciclo especial que memoriza o volume da campânula fechada com peça boa. Só é necessário se SEALED PART estiver marcado.",
+        risk: "Se não correres este ciclo com SEALED PART ligado, a máquina mostra sempre o ecrã 'ALARM: Do Learning Cycle'."
+      },
+      {
+        name: "NO NEGATIVE (Anulação de Negativos)",
+        loc: "FUNCTIONS",
+        rec: "[X] Ativado",
+        desc: "Zera leituras negativas artificiais causadas pelo arrefecimento térmico após a compressão do ar.",
+        risk: "Se desligado, aparecem valores com sinal '-' (ex: -0.45 cm3/mn), confundindo o cliente."
+      },
+      {
+        name: "FILTER (Amortecimento Piezoelétrico)",
+        loc: "FUNCTIONS",
+        rec: "1.0 s (Padrão) | 1.5 a 2.0 s (Peças Flexíveis)",
+        desc: "Filtro digital que atenua ruídos elétricos e vibrações mecânicas da linha.",
+        risk: "Se desativado, picos transitórios podem chumbar peças boas instantaneamente (falsa rejeição)."
+      },
+      {
+        name: "Min FILL (Limite Mínimo de Enchimento)",
+        loc: "PARAMETERS",
+        rec: "10% a 15% abaixo do alvo (ex: 0.85 bar para 1.00 bar)",
+        desc: "Pressão mínima para a máquina aceitar que a peça pressurizou.",
+        risk: "NUNCA colocar colado ao alvo (ex: 0.500 bar para alvo de 0.500 bar). Se oscilar 5 mbar, dá logo 'Pressure Low'!"
+      },
+      {
+        name: "Max FILL (Limite Superior de Sobrepressão)",
+        loc: "PARAMETERS",
+        rec: "+10% a +15% acima do alvo (ex: 1.10 a 1.15 bar)",
+        desc: "Protege o componente contra excesso de pressão e deteta reguladores encravados.",
+        risk: "Se muito apertado, o pico inicial de enchimento aborta o teste com 'Pressure High'."
+      },
+      {
+        name: "Test FAIL (Limite de Rejeição / Chumbo)",
+        loc: "PARAMETERS",
+        rec: "Conforme norma do cliente (ex: 40 Pa/s ou 5 cm³/min)",
+        desc: "Limite acima do qual a peça chumba com ecrã vermelho NO OK.",
+        risk: "Se estiver a 0.000, qualquer peça boa chumba! Se estiver a 2000, peças com furos enormes passam como boas."
+      },
+      {
+        name: "PIEZO AUTO AZ (Zero Automático)",
+        loc: "CONFIGURATION -> PNEUMATIC",
+        rec: "[X] Ativado de Fábrica",
+        desc: "Equilibra as duas câmaras do captador piezoelétrico no início de cada teste.",
+        risk: "Se for desmarcado, a máquina acumula deriva térmica e todas as medições ficam erradas."
+      },
+      {
+        name: "DUMP LEVEL (Nível Seguro de Descarga)",
+        loc: "FUNCTIONS / CONFIGURATION",
+        rec: "[X] Ativado com Pinças Automáticas",
+        desc: "Só autoriza abrir as pinças pneumáticas do posto depois da pressão na peça descer abaixo de 0.05 bar.",
+        risk: "Segurança de operadores: impede que a pinça abra com a peça sob pressão de ar comprimido."
+      }
+    ];
+
+    function searchDict() {
+      const q = (document.getElementById('dictSearch').value || '').toLowerCase().trim();
+      const container = document.getElementById('dictList');
+      const filtered = DICT_DATA.filter(d => 
+        !q || d.name.toLowerCase().includes(q) || d.loc.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q) || d.rec.toLowerCase().includes(q)
+      );
+
+      let html = '';
+      filtered.forEach(item => {
+        html += `
+        <div class="func-card">
+          <div class="func-header">
+            <span class="func-title">⚙️ ${item.name}</span>
+            <div>
+              <span class="func-loc">📍 ${item.loc}</span>
+              <span class="func-rec">${item.rec}</span>
+            </div>
+          </div>
+          <div class="func-desc"><strong>O que faz:</strong> ${item.desc}</div>
+          <div class="func-danger"><strong>⚠️ Se estiver errado:</strong> ${item.risk}</div>
+        </div>`;
+      });
+      container.innerHTML = html;
+    }
+
+    // ========================================================
+    // MÓDULO 7: BASE DE DADOS DE ALARMES
+    // ========================================================
+    const ALARMS_DATA = [
+      {
+        name: "ALARM: Pressure Low",
+        screen: "ALARM: Pressure Low (ex: 0.495 bar / Alvo: 1.00 bar)",
+        isWarn: false,
+        causes: "Canal do regulador errado em FUNCTIONS -> FILL REG (ex: REGUL 1 em vez de REGUL 2), ou Min FILL colado ao alvo.",
+        fix: "1. No Winateq, vai a FUNCTIONS -> FILL REG e escolhe REGUL 2.<br>2. Em PARAMETERS, garante que Min FILL está 10-15% abaixo do alvo (ex: 0.85 bar para alvo de 1.00 bar)."
+      },
+      {
+        name: "ALARM: Do Learning Cycle",
+        screen: "ALARM: Do Learning Cycle (Em modo SEALED PART)",
+        isWarn: false,
+        causes: "A função SEALED PART está ativada, mas a campânula ainda não foi calibrada com uma peça boa.",
+        fix: "Fecha a campânula com peça boa. No Winateq (painel direito) escolhe em SPE CYCLE a opção 'Sd Prt PASS Learn' e carrega em START."
+      },
+      {
+        name: "ALARM: Large Leak / TEST LARGE LEAK",
+        screen: "TEST LARGE LEAK (Sensor diferencial saturou ±500 Pa)",
+        isWarn: false,
+        causes: "Fuga enorme na peça, o-ring da campânula sujo/danificado, ou válvula do CDF 60 aberta em excesso.",
+        fix: "Na calibração com CDF 60, abre a agulha muito suavemente (2.0 a 3.5 cm³/min). Limpa o o-ring da campânula."
+      },
+      {
+        name: "ALARM: Pressure High",
+        screen: "ALARM: Pressure High (ex: 1.150 bar / Alvo: 1.00 bar)",
+        isWarn: false,
+        causes: "Max FILL muito apertado (+1%) ou pico dinâmico de ar em peças muito pequenas.",
+        fix: "Em PARAMETERS, dá margem de +10% a +15% no Max FILL (ex: 1.15 bar para alvo de 1.00 bar)."
+      },
+      {
+        name: "Volume Medido Dá 0.00 cm³",
+        screen: "VOLUME = 0.00 cm3 (após ciclo Auto Volume)",
+        isWarn: true,
+        causes: "Em CONFIGURATION -> AUTO VOL, os campos PRESSU. VOL e TRANSFER estão a zero.",
+        fix: "Não percas tempo com o ciclo interno no cliente! Usa o Método CDF 60 em 'T' (Opção 5 deste menu) que calcula o volume real em 10 segundos com precisão de 99%."
+      },
+      {
+        name: "Peça Boa Dá Sempre NOK Vermelho",
+        screen: "NO OK: 4.20 cm3/mn* (Com Test FAIL a 0)",
+        isWarn: true,
+        causes: "Test FAIL configurado a 0.000, ou tempo de estabilização (STAB TIME) curto em peças de alumínio.",
+        fix: "1. Define Test FAIL com o limite real do cliente (ex: 40 Pa/s ou 5 cm³/min).<br>2. Aumenta o STAB TIME para 5.0 s para dissipar o calor do ar comprimido."
+      }
+    ];
+
+    function renderAlarmsView() {
+      const container = document.getElementById('alarmsList');
+      let html = '';
+      ALARMS_DATA.forEach(a => {
+        html += `
+        <div class="alarm-card">
+          <div class="alarm-card-header ${a.isWarn ? 'warning' : ''}">
+            <span>${a.isWarn ? '⚠️' : '🛑'} ${a.name}</span>
+          </div>
+          <div class="alarm-card-body">
+            <div class="alarm-screen-txt">${a.screen}</div>
+            <div style="margin-bottom:6px;"><strong>Causa Principal:</strong> ${a.causes}</div>
+            <div class="alarm-fix-box">
+              <strong>⚡ Solução Rápida (30 Segundos):</strong><br>${a.fix}
+            </div>
+          </div>
+        </div>`;
+      });
+      container.innerHTML = html;
+    }
+
+    // ========================================================
+    // MÓDULO 8: TEMPOS DE CICLO PNEUMÁTICOS
+    // ========================================================
+    function calcTimings() {
+      const mat = document.getElementById("mat_select").value;
+      const v = parseFloat(document.getElementById("v_timing_input").value) || 910;
+      let fill = 2.0, stab = 3.0, test = 3.0, dump = 1.0;
+
+      if (v < 50) {
+        fill = 1.5; stab = 2.0; test = 2.0; dump = 0.5;
+      } else if (v < 300) {
+        fill = 2.5; stab = 3.5; test = 3.0; dump = 1.0;
+      } else if (v < 1000) {
+        fill = 3.0; stab = 4.5; test = 4.0; dump = 1.0;
+      } else {
+        fill = 5.0; stab = 6.0; test = 5.0; dump = 2.0;
+      }
+
+      const tip = document.getElementById("timing_tip_box");
+      const matLabel = document.getElementById("timing_mat_label");
+
+      if (mat === "alu") {
+        stab += 1.0;
+        matLabel.innerText = "ALUMÍNIO";
+        tip.innerHTML = "<strong>Alerta Alumínio:</strong> A alta condutividade térmica dissipa o calor rapidamente, gerando queda artificial de pressão. Garante <strong>STAB TIME ≥ 5.0 s</strong>.";
+      } else if (mat === "rubber") {
+        stab += 2.0;
+        test += 1.0;
+        matLabel.innerText = "BORRACHA / FLEXÍVEL";
+        tip.innerHTML = "<strong>Alerta Borracha:</strong> O material elástico expande durante o enchimento (deformação mecânica). Exige tempo de estabilização longo.";
+      } else if (mat === "plastic") {
+        matLabel.innerText = "PLÁSTICO";
+        tip.innerHTML = "<strong>Plástico Rígido:</strong> Estabilização standard de 3 a 4 segundos é suficiente na maioria dos componentes moldados.";
+      } else {
+        matLabel.innerText = "AÇO / FERRO";
+        tip.innerHTML = "<strong>Material Rígido:</strong> Boa estabilidade mecânica. O ciclo pode ser mais agressivo se a cadência da linha exigir.";
+      }
+
+      document.getElementById("res_fill_time").innerText = fill.toFixed(1) + " s";
+      document.getElementById("res_stab_time").innerText = stab.toFixed(1) + " s";
+      document.getElementById("res_test_time").innerText = test.toFixed(1) + " s";
+      document.getElementById("res_dump_time").innerText = dump.toFixed(1) + " s";
+      document.getElementById("res_total_time").innerText = (fill + stab + test + dump).toFixed(1);
+    }
+
+    // ========================================================
+    // MÓDULO 9: CONVERSÕES DE UNIDADES
+    // ========================================================
+    function convP(unit) {
+      let bar = 1.0;
+      if (unit === 'bar') bar = parseFloat(document.getElementById('conv_bar').value) || 0;
+      else if (unit === 'mbar') bar = (parseFloat(document.getElementById('conv_mbar').value) || 0) / 1000;
+      else if (unit === 'pa') bar = (parseFloat(document.getElementById('conv_pa').value) || 0) / 100000;
+      else if (unit === 'psi') bar = (parseFloat(document.getElementById('conv_psi').value) || 0) / 14.5038;
+
+      if (unit !== 'bar') document.getElementById('conv_bar').value = bar.toFixed(4);
+      if (unit !== 'mbar') document.getElementById('conv_mbar').value = (bar * 1000).toFixed(1);
+      if (unit !== 'pa') document.getElementById('conv_pa').value = (bar * 100000).toFixed(0);
+      if (unit !== 'psi') document.getElementById('conv_psi').value = (bar * 14.5038).toFixed(3);
+    }
+
+    function convQ(unit) {
+      let cm3min = 5.0;
+      if (unit === 'cm3min') cm3min = parseFloat(document.getElementById('conv_cm3min').value) || 0;
+      else if (unit === 'cm3h') cm3min = (parseFloat(document.getElementById('conv_cm3h').value) || 0) / 60;
+      else if (unit === 'mm3s') cm3min = ((parseFloat(document.getElementById('conv_mm3s').value) || 0) * 60) / 1000;
+      else if (unit === 'pam3s') cm3min = (parseFloat(document.getElementById('conv_pam3s').value) || 0) * 600;
+      else if (unit === 'lmin') cm3min = (parseFloat(document.getElementById('conv_lmin').value) || 0) * 1000;
+      else if (unit === 'lh') cm3min = ((parseFloat(document.getElementById('conv_lh').value) || 0) * 1000) / 60;
+
+      if (unit !== 'cm3min') document.getElementById('conv_cm3min').value = cm3min.toFixed(2);
+      if (unit !== 'cm3h') document.getElementById('conv_cm3h').value = (cm3min * 60).toFixed(1);
+      if (unit !== 'mm3s') document.getElementById('conv_mm3s').value = ((cm3min * 1000) / 60).toFixed(2);
+      if (unit !== 'pam3s') document.getElementById('conv_pam3s').value = (cm3min / 600).toFixed(5);
+      if (unit !== 'lmin' && document.getElementById('conv_lmin')) document.getElementById('conv_lmin').value = (cm3min / 1000).toFixed(4);
+      if (unit !== 'lh' && document.getElementById('conv_lh')) document.getElementById('conv_lh').value = ((cm3min * 60) / 1000).toFixed(2);
+    }
+
+    // ========================================================
+    // MÓDULO 10: CONFIGURADOR D620 & D670 (CAUDAL + CAPILAR + REGULADOR)
+    // ========================================================
+    function calcD620(source) {
+      let lh = 1800;
+      if (source === 'lmin') {
+        const lmin = parseFloat(document.getElementById('d6_lmin').value) || 0;
+        lh = lmin * 60;
+        document.getElementById('d6_lh').value = lh.toFixed(1);
+      } else if (source === 'lh') {
+        lh = parseFloat(document.getElementById('d6_lh').value) || 0;
+        document.getElementById('d6_lmin').value = (lh / 60).toFixed(2);
+      } else {
+        lh = parseFloat(document.getElementById('d6_lh').value) || 0;
+      }
+
+      let pbar = 0.30;
+      if (source === 'mbar') {
+        const mbar = parseFloat(document.getElementById('d6_mbar').value) || 0;
+        pbar = mbar / 1000;
+        document.getElementById('d6_bar').value = pbar.toFixed(3);
+      } else if (source === 'bar') {
+        pbar = parseFloat(document.getElementById('d6_bar').value) || 0;
+        document.getElementById('d6_mbar').value = (pbar * 1000).toFixed(0);
+      } else {
+        pbar = (parseFloat(document.getElementById('d6_mbar').value) || 0) / 1000;
+      }
+
+      // Escolher Full Scale Standard ATEQ D620 / D670: 1, 5, 30, 80, 150, 500, 1500, 4000, 10000
+      let fs = 4000, acc = "±(2,5% L + 4 L/h)", res = "0,1 L/h", out = "15 mm ou 20 mm (ou 26 mm)", code = "C_300213", badge = "D620 / D670 STANDARD";
+      if (lh <= 1) { fs = 1; acc = "±(2,5% L + 0,001 L/h)"; res = "0,0001 L/h"; out = "4/6 mm"; code = "C_300212"; }
+      else if (lh <= 5) { fs = 5; acc = "±(2,5% L + 0,005 L/h)"; res = "0,0001 L/h"; out = "4/6 mm"; code = "C_300212"; }
+      else if (lh <= 30) { fs = 30; acc = "±(2,5% L + 0,03 L/h)"; res = "0,001 L/h"; out = "4/6 mm"; code = "C_300212"; }
+      else if (lh <= 80) { fs = 80; acc = "±(2,5% L + 0,08 L/h)"; res = "0,001 L/h"; out = "4/6 mm"; code = "C_300212"; }
+      else if (lh <= 150) { fs = 150; acc = "±(2,5% L + 0,15 L/h)"; res = "0,01 L/h"; out = "6/8 ou 8/10 mm"; code = "C_300212"; }
+      else if (lh <= 500) { fs = 500; acc = "±(2,5% L + 0,5 L/h)"; res = "0,01 L/h"; out = "6/8 ou 8/10 mm"; code = "C_300212"; }
+      else if (lh <= 1500) { fs = 1500; acc = "±(2,5% L + 1,5 L/h)"; res = "0,1 L/h"; out = "6/8 ou 8/10 mm"; code = "C_300212"; }
+      else if (lh <= 4000) { fs = 4000; acc = "±(2,5% L + 4 L/h)"; res = "0,1 L/h"; out = "15 mm ou 20 mm (ou 26 mm)"; code = "C_300213"; }
+      else if (lh <= 10000) { fs = 10000; acc = "±(2,5% L + 10 L/h)"; res = "1 L/h"; out = "26 mm"; code = "C_300214"; }
+      else { fs = 70000; acc = "Desenvolvimento Especial D670"; res = "1 L/h"; out = "26 mm / Especial"; code = "Special Dev."; badge = "APENAS D670 ESPECIAL"; }
+
+      // Determinar Capilar OL segundo a folha Capillary Choice
+      let ol = "OL" + fs;
+      if (fs === 4000) {
+        if (pbar < -0.75) ol = "OL68000 (Ext.)";
+        else if (pbar < -0.5) ol = "OL20000 (Ext.)";
+        else if (pbar < -0.05) ol = "OL10000";
+        else if (pbar <= 2.0) ol = "OL4000 (-0,05 < P < 2 bar)";
+        else if (pbar <= 7.0) ol = "OL1500 (2 < P < 7 bar)";
+        else ol = "OL500 (P > 7 bar)";
+      } else if (fs === 1500) {
+        if (pbar >= -0.05 && pbar <= 2.0) ol = "OL1500 (-0,05 < P < 2 bar)";
+        else if (pbar > 2.0 && pbar <= 9.0) ol = "OL500 (2 < P < 9 bar)";
+      } else if (fs === 10000) {
+        if (pbar >= -0.05 && pbar <= 2.0) ol = "OL10000 (-0,05 < P < 2 bar)";
+        else if (pbar > 2.0 && pbar <= 6.0) ol = "OL4000 (2 < P < 6 bar)";
+      }
+
+      // Determinar Regulador na tabela Regulator Charts
+      let regElec = "Elec: HOERBIGER FS 2 bar (Gama 0,1 a 1,5 bar) — Coluna L";
+      let regMeca = "Meca: STD (0,1 a 2 bar) — Coluna F";
+      let extMon = "SIM (*) — Ativar 'External pressure monitoring = Yes' na linha 19!";
+
+      if (pbar < 0) {
+        regElec = "Vácuo Eletrónico / Especial";
+        regMeca = "Meca: IRV20 (-20 a -980 mbar) — Coluna C (Até 80 L/h)";
+      } else if (pbar <= 0.010) {
+        regElec = "Elec: HOERBIGER FS 500 mbar (Gama 50–1000 Pa / 0,5–10 mbar) — Coluna J";
+        regMeca = "Meca: External BP2 (8 a 60 mbar) — Coluna D";
+      } else if (pbar <= 0.300) {
+        regElec = "Coluna L: HOERBIGER FS 2 bar (0,1–1,5 bar) [Ideal c/ folga] OU Coluna K: HOERBIGER FS 500 mbar (10–300 mbar)";
+        regMeca = "Coluna F: Meca STD (0,1 a 2 bar) [Saída 15 ou 20 mm]";
+      } else if (pbar <= 1.5) {
+        regElec = "Coluna L: HOERBIGER FS 2 bar (Gama 0,1 a 1,5 bar) — Sensor 5 bar (*)";
+        regMeca = "Coluna F: Meca STD (0,1 a 2 bar)";
+      } else if (pbar <= 5.0) {
+        regElec = "Coluna M: HOERBIGER FS 5 bar (Gama 0,3 a 5 bar) — Sensor 5 bar";
+        regMeca = "Coluna G: Meca STD (0,4 a 4 bar) ou Coluna H (0,8 a 8 bar)";
+        extMon = "Não obrigatório acima de 1,5 bar (verificar linha 19)";
+      } else {
+        regElec = "Coluna N: HOERBIGER FS 10 bar (Gama 1 a 10 bar) — Sensor 20 bar";
+        regMeca = "Coluna I: Meca NEUMATICS (1 a 10 bar)";
+        extMon = "Não obrigatório";
+      }
+
+      document.getElementById('d6_model_badge').innerText = badge;
+      document.getElementById('d6_res_fs').innerText = fs + " L/h";
+      document.getElementById('d6_res_sub').innerText = `Equivale a ${(lh/60).toFixed(1)} L/min (${lh.toFixed(0)} L/h) | Escala até ${(fs/60).toFixed(1)} L/min | Precisão: ${acc}`;
+      document.getElementById('d6_res_ol').innerText = ol;
+      document.getElementById('d6_res_out').innerText = out;
+      document.getElementById('d6_res_code').innerText = code;
+
+      document.getElementById('d6_rec_box').innerHTML = `
+        <strong style="color:#166534; font-size:13px; display:block; margin-bottom:6px;">📋 O Que Selecionar na Folha Excel/Calc (Aba D620 Hard) para Apresentar ao Raúl:</strong>
+        <ul style="margin:0 0 0 16px; color:#1E293B; font-size:12px; line-height:1.6;">
+          <li><strong>Linha 11 — Flow FS (Capillary Choice):</strong> Selecionar <strong>${fs} l/h (${ol})</strong> [Código: <code>${code}</code>]</li>
+          <li><strong>Linha 15 — Output size (Diâmetro Saída):</strong> Selecionar <strong>${out}</strong></li>
+          <li><strong>Linha 17 — Regulators (Eletrónico Recomendado):</strong> <strong>${regElec}</strong> [Código: <code>C_300140</code>]</li>
+          <li><strong>Linha 17 — Alternativa Regulador Mecânico:</strong> ${regMeca}</li>
+          <li><strong>Linha 19 — External pressure monitoring:</strong> <strong>${extMon}</strong></li>
+          <li><strong>Linha 33 & 53 — Automação PLC / PROFINET:</strong> Marcar <code>I/O Board = Yes (C_300603)</code> e <code>Fieldbus = Profinet COMX51 (C_300608)</code>.</li>
+        </ul>
+      `;
+    }
+
+    // ========================================================
+    // MÓDULO 11: ATEQ TOOL BOX OFICIAL (VOLUME INTERNO & BOYLE)
+    // ========================================================
+    function calcInternalVol() {
+      const series = document.getElementById('tb_series').value;
+      const reduced = document.getElementById('tb_sensor_vol').value === 'red';
+      const valve = parseFloat(document.getElementById('tb_valve').value) || 2.00;
+      const staubli = parseFloat(document.getElementById('tb_staubli').value) || 0;
+
+      const big = valve >= 2.0;
+      let s = 4.00;
+      if (series === 'S5') {
+        s = reduced ? (big ? 2.97 : 0.40) : (big ? 4.97 : 2.40);
+      } else {
+        s = reduced ? (big ? 2.00 : 0.03) : (big ? 4.00 : 2.03);
+      }
+
+      const refVol = s + valve;
+      const testVol = refVol + staubli;
+
+      document.getElementById('tb_res_test').innerText = testVol.toFixed(2) + " cm³";
+      document.getElementById('tb_res_ref').innerText = refVol.toFixed(2) + " cm³";
+      document.getElementById('tb_res_sens').innerText = s.toFixed(2) + " cm³";
+      document.getElementById('tb_res_valv').innerText = `${valve.toFixed(2)} + ${staubli.toFixed(2)} cm³`;
+    }
+
+    function calcBoyleTool() {
+      const mode = document.getElementById('bm_mode').value;
+      const solve = document.getElementById('bm_solve').value;
+      const p1 = parseFloat(document.getElementById('bm_p1').value) || 0;
+      const v1 = parseFloat(document.getElementById('bm_v1').value) || 0;
+      const p2 = parseFloat(document.getElementById('bm_p2').value) || 0;
+      const v2 = parseFloat(document.getElementById('bm_v2').value) || 0;
+
+      ['P1','V1','P2','V2'].forEach(k => {
+        const el = document.getElementById('bm_' + k.toLowerCase());
+        if (el) el.style.background = (k === solve) ? '#FEF3C7' : 'white';
+      });
+
+      let r = 0;
+      if (mode === 'std') {
+        if (solve === 'P1') r = v1 !== 0 ? (p2 * v2) / v1 : 0;
+        if (solve === 'V1') r = p1 !== 0 ? (p2 * v2) / p1 : 0;
+        if (solve === 'P2') r = v2 !== 0 ? (p1 * v1) / v2 : 0;
+        if (solve === 'V2') r = p2 !== 0 ? (p1 * v1) / p2 : 0;
+      } else {
+        if (solve === 'P1') r = v1 !== 0 ? (p2 * (v1 + v2)) / v1 : 0;
+        if (solve === 'V1') r = (p1 - p2) !== 0 ? (p2 * v2) / (p1 - p2) : 0;
+        if (solve === 'P2') r = (v1 + v2) !== 0 ? (p1 * v1) / (v1 + v2) : 0;
+        if (solve === 'V2') r = p2 !== 0 ? ((p1 / p2) - 1) * v1 : 0;
+      }
+
+      document.getElementById('bm_out_lbl').innerText = `RESULTADO CALCULADO (${solve})`;
+      document.getElementById('bm_out_val').innerText = isFinite(r) ? r.toFixed(2) : "Erro";
+      document.getElementById('bm_out_unit').innerText = solve.startsWith('V') ? "cm³ (Volume Calculado)" : "mbar / bar (Pressão Calculada)";
+    }
+
+    // ========================================================
+    // MODAL DE RELATÓRIO OFICIAL / EMAIL
+    // ========================================================
+    function openReportModal() {
+      updateReportText();
+      document.getElementById('reportModal').style.display = 'flex';
+    }
+
+    function closeReportModal() {
+      document.getElementById('reportModal').style.display = 'none';
+    }
+
+    function updateReportText() {
+      const client = document.getElementById('rep_client').value || "Cliente Piloto";
+      const part = document.getElementById('rep_part').value || "Radiador / Peça de Teste";
+      const vol = document.getElementById('res_cdf_vol').innerText || "910.0";
+      const fail_pas = document.getElementById('res_fuga_pas').innerText || "24.3";
+      const dateStr = new Date().toLocaleDateString('pt-PT');
+
+      const txt = 
+`============================================================
+RELATÓRIO DE METROLOGIA & ENSAIO DE ESTANQUEIDADE
+SISTEMAS ATEQ PORTUGAL (São João da Madeira)
+Data: ${dateStr}
+Cliente / Unidade: ${client}
+Componente: ${part}
+============================================================
+
+1. VOLUME & CALIBRAÇÃO COM CDF 60:
+   - Volume Real Determinado: ${vol} cm³
+   - Método: Fuga Padrão / CDF 60 em derivação "T"
+
+2. PARÂMETROS RECOMENDADOS NA F620 (Winateq 300):
+   - Tipo de Ensaio: LEAK TEST (Direto)
+   - Canal Regulador: REGUL 2 (Circuito Eletrónico Proporcional)
+   - Pressão de Ensaio: 1.00 bar (Min: 0.85 bar / Max: 1.10 bar)
+   - Condições: STD CONDITIONS Ativado (sccm a 20ºC / 1013 hPa)
+   - Tempos: Fill 3.0s | Stab 4.5s | Test 4.0s | Dump 1.0s
+
+3. CRITÉRIO DE REJEIÇÃO / AUDITORIA:
+   - Unidade de Medição: Pa/s
+   - Limite de Rejeição (Test FAIL): ${fail_pas} Pa/s
+
+------------------------------------------------------------
+Técnico Especialista: Carlos Barbosa (Berto)
+Direção Técnica & Comercial: Raúl Garcia (+351 922 215 027)
+Sistemas ATEQ España, S.A. - Representação em Portugal
+============================================================`;
+
+      document.getElementById('reportPreview').innerText = txt;
+    }
+
+    function sendEmailNative() {
+      const client = document.getElementById('rep_client').value || "Cliente";
+      const part = document.getElementById('rep_part').value || "Peça";
+      const targetEmail = document.getElementById('rep_email').value || "";
+      const subject = encodeURIComponent(`[ATEQ Portugal] Relatório de Calibração Metrológica - ${client} (${part})`);
+      const body = encodeURIComponent(document.getElementById('reportPreview').innerText);
+
+      window.location.href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
+    }
+
+    function copyReportText() {
+      const txt = document.getElementById('reportPreview').innerText;
+      navigator.clipboard.writeText(txt).then(() => {
+        alert("✅ Relatório copiado para a Área de Transferência!\nPodes colar diretamente no WhatsApp, Teams ou Bloco de Notas.");
+      }).catch(err => {
+        alert("Erro ao copiar: " + err);
+      });
+    }
+
+    // INICIALIZAÇÃO
+    window.addEventListener('DOMContentLoaded', () => {
+      selectRecipe('direct_radiator');
+      calcFugaDirect();
+      calcSealedModule();
+      calcCdfModule();
+      calcTimings();
+      searchDict();
+      renderAlarmsView();
+      calcD620('lmin');
+      calcInternalVol();
+      calcBoyleTool();
+    });
+  </script>
+  <script>
+    // Registo do Service Worker para modo offline PWA
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("./sw.js")
+          .then(function(reg) { console.log("ATEQ Service Worker ativo! Modo offline pronto.", reg); })
+          .catch(function(err) { console.log("Erro ao registar Service Worker:", err); });
+      });
+    }
+  </script>
+</body>
+</html>

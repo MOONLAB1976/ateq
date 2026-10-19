@@ -1,0 +1,24 @@
+{
+  "name": "ATEQ Portugal · Calculadora Metrológica",
+  "short_name": "ATEQ Calc",
+  "description": "Calculadora Metrológica Oficial da Sistemas ATEQ Portugal. Ensaios de estanqueidade, cálculo de volumes com CDF 60 e parametrização Série 6.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#E30613",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
