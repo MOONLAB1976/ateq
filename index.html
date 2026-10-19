@@ -761,18 +761,207 @@
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    /* =========================================
+       ECRÃ DE BLOQUEIO (PIN SECURITY: 1617)
+       ========================================= */
+    #lockScreen {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at center, #1E293B 0%, #0F172A 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      padding: 20px;
+    }
+    .lock-card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px 24px;
+      max-width: 380px;
+      width: 100%;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      animation: fadeIn 0.25s ease;
+    }
+    .brand-badge {
+      display: inline-block;
+      background: var(--ateq-red);
+      color: white;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .lock-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 4px;
+    }
+    .lock-sub {
+      font-size: 12px;
+      color: var(--slate-500);
+      margin-bottom: 18px;
+    }
+    .pin-display {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .pin-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid var(--slate-300);
+      background: var(--slate-100);
+      transition: all 0.15s ease;
+    }
+    .pin-dot.filled {
+      background: var(--ateq-blue);
+      border-color: var(--ateq-blue);
+      transform: scale(1.15);
+    }
+    .pin-dot.error {
+      background: var(--ateq-red);
+      border-color: var(--ateq-red);
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .key-btn {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+      padding: 14px 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--slate-800);
+      cursor: pointer;
+      transition: all 0.12s;
+      user-select: none;
+    }
+    .key-btn:hover {
+      background: var(--blue-50);
+      border-color: var(--blue-600);
+      color: var(--ateq-blue);
+    }
+    .key-btn:active {
+      transform: scale(0.96);
+    }
+    .key-btn.action {
+      font-size: 12px;
+      background: var(--slate-100);
+      color: var(--slate-600);
+    }
+    #pinErrorMsg {
+      color: var(--ateq-red);
+      font-size: 12px;
+      font-weight: 700;
+      min-height: 18px;
+      margin-top: 6px;
+    }
   </style>
-  <!-- PWA & Mobile Web App Meta Tags para iPhone e Android -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#E30613">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="ATEQ Calc">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel='manifest' href='manifest.json'>
+  <meta name='theme-color' content='#004B87'>
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <meta name='apple-mobile-web-app-status-bar-style' content='black-translucent'>
+  <meta name='apple-mobile-web-app-title' content='ATEQ Calc'>
+  <link rel='apple-touch-icon' href='apple-touch-icon.png'>
 </head>
 <body>
+
+  <!-- ECRÃ DE SEGURANÇA POR PIN (PIN: 1617) -->
+  <div id="lockScreen">
+    <div class="lock-card">
+      <div class="brand-badge">ACESSO RESTRITO ATEQ</div>
+      <div class="lock-title">Sistemas ATEQ Portugal</div>
+      <div class="lock-sub">Introduza o PIN técnico de 4 dígitos para aceder à Calculadora &amp; Engenharia</div>
+      <div class="pin-display">
+        <div class="pin-dot" id="dot0"></div>
+        <div class="pin-dot" id="dot1"></div>
+        <div class="pin-dot" id="dot2"></div>
+        <div class="pin-dot" id="dot3"></div>
+      </div>
+      <div class="keypad">
+        <button type="button" class="key-btn" onclick="pressPin('1')">1</button>
+        <button type="button" class="key-btn" onclick="pressPin('2')">2</button>
+        <button type="button" class="key-btn" onclick="pressPin('3')">3</button>
+        <button type="button" class="key-btn" onclick="pressPin('4')">4</button>
+        <button type="button" class="key-btn" onclick="pressPin('5')">5</button>
+        <button type="button" class="key-btn" onclick="pressPin('6')">6</button>
+        <button type="button" class="key-btn" onclick="pressPin('7')">7</button>
+        <button type="button" class="key-btn" onclick="pressPin('8')">8</button>
+        <button type="button" class="key-btn" onclick="pressPin('9')">9</button>
+        <button type="button" class="key-btn action" onclick="clearPin()">LIMPAR</button>
+        <button type="button" class="key-btn" onclick="pressPin('0')">0</button>
+        <button type="button" class="key-btn action" onclick="delPin()">⌫</button>
+      </div>
+      <div id="pinErrorMsg"></div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      var currentPin = "";
+      var SECRET_PIN = "1617";
+      function updateDots(isErr) {
+        for (var i = 0; i < 4; i++) {
+          var d = document.getElementById("dot" + i);
+          if (!d) continue;
+          d.className = "pin-dot" + (i < currentPin.length ? " filled" : "") + (isErr ? " error" : "");
+        }
+      }
+      window.pressPin = function(digit) {
+        if (currentPin.length >= 4) return;
+        currentPin += digit;
+        document.getElementById("pinErrorMsg").innerText = "";
+        updateDots(false);
+        if (currentPin.length === 4) {
+          if (currentPin === SECRET_PIN) {
+            setTimeout(function(){
+              var ls = document.getElementById("lockScreen");
+              if (ls) ls.style.display = "none";
+            }, 120);
+          } else {
+            updateDots(true);
+            document.getElementById("pinErrorMsg").innerText = "❌ PIN Incorreto — Acesso Reservado ATEQ";
+            setTimeout(function(){
+              currentPin = "";
+              updateDots(false);
+            }, 650);
+          }
+        }
+      };
+      window.clearPin = function() {
+        currentPin = "";
+        document.getElementById("pinErrorMsg").innerText = "";
+        updateDots(false);
+      };
+      window.delPin = function() {
+        currentPin = currentPin.slice(0, -1);
+        updateDots(false);
+      };
+      document.addEventListener("keydown", function(e) {
+        var ls = document.getElementById("lockScreen");
+        if (!ls || ls.style.display === "none") return;
+        if (e.key >= "0" && e.key <= "9") {
+          window.pressPin(e.key);
+        } else if (e.key === "Backspace") {
+          window.delPin();
+        } else if (e.key === "Escape") {
+          window.clearPin();
+        }
+      });
+    })();
+  </script>
 
   <!-- CABEÇALHO -->
   <header>
@@ -1180,38 +1369,100 @@
     <section id="mod-vacuo" class="module-view">
       <div class="card">
         <div class="card-header">
-          <h2 class="card-title">💨 Ensaio em Depressão / Vácuo</h2>
-          <span class="card-badge" style="background:#DCFCE7; color:#166534;">VÁCUO NEGATIVO</span>
+          <h2 class="card-title">💨 Ensaio em Depressão / Vácuo (Lista Completa Winateq 300)</h2>
+          <span class="card-badge" style="background:#DCFCE7; color:#166534;">VÁCUO / SACOS TRILAMINADOS</span>
         </div>
         <p class="card-desc">
-          <strong>Definição:</strong> Em vez de injetar pressão positiva, a F620 (com ejetor Venturi interno ou bomba) retira o ar, criando vácuo na peça ou campânula. É ideal para embalagens plásticas flexíveis, blisters ou peças que rebentariam com pressão interna.
+          <strong>Definição:</strong> Em vez de injetar pressão positiva, a F620 (com bomba de vácuo Becker/Busch ou ejetor Venturi) retira o ar da campânula. Aqui tens a <strong>lista completa linha a linha</strong> de todos os separadores do Winateq 300 (igual à que configurámos na máquina) para pôr o programa a trabalhar sem falhar nada:
         </p>
 
+        <!-- 1. SEPARADOR PARAMETERS COMPLETO -->
         <div class="winateq-card">
           <div class="winateq-header">
-            <span>Definições no Winateq 300 (F620)</span>
-            <span style="color:var(--green-600);">PRESSÃO NEGATIVA</span>
+            <span>1. SEPARADOR PARAMETERS (Lista Completa — Todas as 15 Linhas)</span>
+            <span style="color:var(--green-600); font-weight:700;">PRESSÃO NEGATIVA</span>
           </div>
           <table class="winateq-table">
             <thead>
-              <tr><th>Separador</th><th>Parâmetro</th><th>Valor Recomendado</th><th>Porquê</th></tr>
+              <tr><th>Linha no Winateq</th><th>Valor a Programar</th><th>Função Técnica &amp; Porquê</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>PARAMETERS</strong></td><td>TYPE</td><td><span class="tag-val">LEAK TEST</span></td><td>Medição de quebra de vácuo</td></tr>
-              <tr><td><strong>PARAMETERS</strong></td><td>Set FILL</td><td><span class="tag-val">-200 a -700 mbar</span></td><td>Vácuo nominal (valor negativo)</td></tr>
-              <tr><td><strong>PARAMETERS</strong></td><td>Min FILL</td><td><span class="tag-val">-800 mbar</span></td><td>Vácuo máximo admissível</td></tr>
-              <tr><td><strong>PARAMETERS</strong></td><td>Max FILL</td><td><span class="tag-val">-150 mbar</span></td><td>Limite de evacuação mínima</td></tr>
-              <tr><td><strong>PARAMETERS</strong></td><td>Tempos</td><td><span class="tag-val">3s / 3.5s / 4s / 1s</span></td><td>DUMP serve para quebrar o vácuo!</td></tr>
-              <tr><td><strong>PARAMETERS</strong></td><td>Test FAIL</td><td><span class="tag-val">0.300 cm3/mn</span> ou 20 Pa</td><td>Se houver fuga, a pressão sobe</td></tr>
-              <tr><td><strong>FUNCTIONS</strong></td><td>FILL REG</td><td><span class="tag-check">✔ VACUUM / VENTURI</span></td><td>Alimenta o ejetor de vácuo</td></tr>
-              <tr><td><strong>FUNCTIONS</strong></td><td>NO NEGATIVE</td><td><span class="tag-check">✔ [X] Sim</span></td><td>Normaliza o sentido da medição</td></tr>
-              <tr><td><strong>More functions</strong></td><td>SEALED PART</td><td><span class="tag-val">[X] Sim (se campânula)</span></td><td>Conforme o tipo de montagem</td></tr>
+              <tr><td><strong>1. TYPE</strong></td><td><span class="tag-val">LEAK TEST</span></td><td>Ensaio de estanqueidade diferencial (medição de quebra de vácuo)</td></tr>
+              <tr><td><strong>2. COUPL. A</strong></td><td><span class="tag-val">0.0 s</span></td><td>Tempo de acoplamento de pinça pneumática (0.0 s se fecho manual da tampa)</td></tr>
+              <tr><td><strong>3. FILL TIME</strong></td><td><span class="tag-val">3.0 s a 5.0 s</span></td><td>Tempo de evacuação (aspiração do ar livre da campânula pela bomba/Venturi)</td></tr>
+              <tr><td><strong>4. STAB TIME</strong></td><td><span class="tag-val">6.0 s a 8.0 s</span></td><td><strong>Crítico em sacos/plástico:</strong> tempo para o filme encostar à grelha e estabilizar!</td></tr>
+              <tr><td><strong>5. TEST TIME</strong></td><td><span class="tag-val">4.0 s a 5.0 s</span></td><td>Janela de medição no captador diferencial (500 Pa ou 50 Pa)</td></tr>
+              <tr><td><strong>6. DUMP TIME</strong></td><td><span class="tag-val">1.0 s a 2.0 s</span></td><td><strong>Obrigatório em vácuo:</strong> deixa entrar ar atmosférico para conseguir abrir a tampa!</td></tr>
+              <tr><td><strong>7. Press. UNIT</strong></td><td><span class="tag-val">mbar</span> (ou <code>bar</code>)</td><td>Unidade de leitura do vácuo da linha</td></tr>
+              <tr><td><strong>8. Set FILL</strong></td><td><span class="tag-val">-500 a -800 mbar</span></td><td>Alvo de vácuo nominal (sempre com sinal negativo <code>-</code>)</td></tr>
+              <tr><td><strong>9. Max FILL</strong></td><td><span class="tag-val">-400 mbar</span></td><td>Limite superior (menos vácuo que isto dá alarme de vácuo insuficiente)</td></tr>
+              <tr><td><strong>10. Min FILL</strong></td><td><span class="tag-val">-900 mbar</span></td><td>Limite inferior (vácuo máximo admissível na câmara)</td></tr>
+              <tr><td><strong>11. LeakUnit</strong></td><td><span class="tag-val">Pa</span>, <span class="tag-val">Pa/s</span> ou <span class="tag-val">cm3/mn</span></td><td>Unidade de fuga no ecrã (<code>cm3/mn*</code> com STD CONDITIONS ativo)</td></tr>
+              <tr><td><strong>12. REJECT CALC.</strong></td><td><span class="tag-val">Pa</span> ou <span class="tag-val">Pa/s</span></td><td>Cálculo de rejeição por diferencial total ou por segundo</td></tr>
+              <tr><td><strong>13. Volume UNIT</strong></td><td><span class="tag-val">cm3</span></td><td>Unidade do volume livre de ar da campânula</td></tr>
+              <tr><td><strong>14. VOLUME</strong></td><td><span class="tag-val">Volume Livre Real (ex: 400 cm³)</span></td><td>$V_{\text{campânula}} - V_{\text{saco}} - V_{\text{blocos HDPE}}$ (calibrado com CDF 60 em "T")</td></tr>
+              <tr><td><strong>15. Test FAIL</strong></td><td><span class="tag-val">20 Pa</span> (ou <span class="tag-val">0.500 cm3/mn</span>)</td><td>Limite de chumbo (se o saco tiver fuga, sai ar do saco e a pressão sobe!)</td></tr>
+              <tr><td><strong>16. Ref. FAIL</strong></td><td><span class="tag-val">0.000 cm3/mn</span></td><td>Limite no lado de referência (manter sempre a 0)</td></tr>
             </tbody>
           </table>
         </div>
 
-        <div class="tip-box">
-          <strong>Dica de Vácuo:</strong> Certifica-te de que o vedante da campânula está perfeitamente limpo e sem poeiras. No ensaio de vácuo, se houver uma fuga externa no vedante, o ar entra da atmosfera e falseia o teste da peça.
+        <!-- 2. SEPARADOR FUNCTIONS COMPLETO -->
+        <div class="winateq-card" style="margin-top:12px;">
+          <div class="winateq-header">
+            <span>2. SEPARADOR FUNCTIONS (Todas as 7 Caixas que Marcámos na Máquina)</span>
+            <span style="color:var(--green-600); font-weight:700;">CHECKLIST [X] COMPLETA</span>
+          </div>
+          <table class="winateq-table">
+            <thead>
+              <tr><th>Função na Aba FUNCTIONS</th><th>Estado a Marcar</th><th>Sub-opção / Regra Técnica</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>1. NAME</strong></td><td><span class="tag-check">✔ [X] Ativado</span></td><td>Escrever nome do programa (ex: <code>SACO_10G</code> ou <code>SACO_1KG</code>)</td></tr>
+              <tr><td><strong>2. FILL MODE</strong></td><td><span class="tag-check">✔ [X] Ativado</span></td><td>Modo: <strong><code>STANDARD</code></strong> &bull; <code>Set FILL</code>: valor negativo (ex: <code>-700 mbar</code>)</td></tr>
+              <tr><td><strong>3. FILL REG</strong></td><td><span class="tag-check">✔ REGUL 1 (Vácuo)</span></td><td>Selecionar o canal ligado à Bomba de Vácuo / Ejetor Venturi (normalmente <code>REGUL 1</code>)</td></tr>
+              <tr><td><strong>4. STD CONDITIONS</strong></td><td><span class="tag-check">✔ [X] Ativado</span></td><td>Normaliza a leitura para 20 °C e 1013 hPa (faz aparecer o asterisco <code>cm3/mn*</code>)</td></tr>
+              <tr><td><strong>5. FILTER</strong></td><td><span class="tag-check">✔ [X] Ativado (1.5 s a 2.0 s)</span></td><td>Amortece a vibração mecânica do filme plástico/trilaminado encostado à grelha</td></tr>
+              <tr><td><strong>6. NO NEGATIVE</strong></td><td><span class="tag-check">✔ [X] Ativado</span></td><td>Impede leituras negativas falsas por relaxação elástica ou arrefecimento do vácuo</td></tr>
+              <tr><td><strong>7. ABSOLUTE</strong></td><td><span class="tag-check">✔ [X] Ativado</span></td><td>Apresenta sempre o módulo positivo da variação de pressão</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 3. SEPARADOR MORE FUNCTIONS & SPE CYCLE -->
+        <div class="winateq-card" style="margin-top:12px;">
+          <div class="winateq-header">
+            <span>3. SEPARADOR MORE FUNCTIONS... &amp; PAINEL SPE CYCLE (2 Modos Possíveis)</span>
+            <span style="color:var(--blue-600); font-weight:700;">MODO DIRETO vs. SELADO</span>
+          </div>
+          <table class="winateq-table">
+            <thead>
+              <tr><th>Opção</th><th>Modo 1: Direto (Mais Simples — Sem Alarmes)</th><th>Modo 2: Componente Selado (Ficha 613e — Apanha Saco Já Aberto)</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>SEALED PART</strong><br><em>(em More functions...)</em></td>
+                <td><span class="tag-check" style="background:#DCFCE7; color:#166534;">[ ] DESMARCADO</span><br><small>Testa diretamente o volume livre da câmara (nunca pede aprendizagem!)</small></td>
+                <td><span class="tag-val">[X] STANDARD</span><br><small>Faz pré-vácuo num volume interno ($V_1$) e transfere para a câmara ($V_2$) para detetar grande fuga por volume</small></td>
+              </tr>
+              <tr>
+                <td><strong>SPE CYCLE</strong><br><em>(no canto superior direito)</em></td>
+                <td><span class="tag-val">none</span><br><small>Pronto a testar à primeira!</small></td>
+                <td>1.º Correr <strong><code>Sd Prt PASS Learn</code></strong> com saco mestre estanque;<br>2.º Voltar a pôr em <strong><code>none</code></strong> e clicar em <strong>Save</strong>!</td>
+              </tr>
+              <tr>
+                <td><strong>AUTO VOL / TRANSFER</strong><br><em>(Menu CONFIGURATION)</em></td>
+                <td>Manter desligado (<code>0.0 s</code>)</td>
+                <td>Se usar Modo 2: <code>TRANSFER = 0.5 s</code>, <code>DUMP TIME = 0.5 s</code> e definir <code>PRESSU. VOL</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tip-box" style="margin-top:12px;">
+          <strong>💡 Dica de Ouro para Sacos Trilaminados (10 g a 1 kg):</strong><br>
+          &bull; Usa a <strong>Grelha Metálica Perfurada</strong> dentro da câmara para o saco não inchar nem tapar o furo de aspiração da tampa (efeito ventosa).<br>
+          &bull; Para os sacos pequenos de <strong>10 g (206&times;140 mm)</strong>, coloca os <strong>Blocos Redutores de HDPE/Teflon</strong> dentro da câmara (ou usa uma câmara pequena dedicada) e grava um programa separado (ex: <code>Pr:01 SACO_10G</code> e <code>Pr:02 SACO_1KG</code>) com o <code>VOLUME</code> livre respetivo!
         </div>
       </div>
     </section>
@@ -1905,28 +2156,41 @@
         alert: "<strong>⚠️ DICA DE OURO ATEQ:</strong> No ensaio de desobstrução (DESUMERAC), a lógica inverte: se o tubo estiver ENTUPIDO, a pressão <strong>SOBE</strong> e atinge o <code>Max FILL</code> dando chumbo por obstrução; se estiver LIVRE, o ar escapa e a pressão estabiliza dentro da janela!"
       },
       vacuum_test: {
-        title: "Ensaio em Depressão / Vácuo (Embalagens Herméticas, Blisters, Sensores)",
-        type: "LEAK TEST (VÁCUO)",
+        title: "Ensaio em Depressão / Vácuo (Sacos Trilaminados, Embalagens Herméticas, Blisters)",
+        type: "LEAK TEST (VÁCUO / CÂMARA)",
         params: [
-          { p: "TYPE", v: "LEAK TEST", n: "Estanqueidade em pressão negativa" },
-          { p: "FILL TIME", v: "2.5 s a 4.0 s", n: "Tempo de evacuação da câmara pelo ejetor Venturi" },
-          { p: "STAB TIME", v: "3.0 s a 4.0 s", n: "Estabilização do vácuo" },
-          { p: "TEST TIME", v: "3.0 s a 5.0 s", n: "Medição de perda de vácuo (pressão sobe em direção a 0)" },
-          { p: "DUMP TIME", v: "1.0 s", n: "Quebra de vácuo atmosférico para abrir tampa" },
-          { p: "Set FILL", v: "-200 mbar a -700 mbar", n: "Nível de vácuo programado (valor negativo)" },
-          { p: "Min FILL", v: "-800 mbar", n: "Limite máximo de vácuo" },
-          { p: "Max FILL", v: "-150 mbar", n: "Limite mínimo de evacuação" },
-          { p: "Test FAIL", v: "0.300 cm3/mn ou 20 Pa", n: "Tolerância de estanqueidade" }
+          { p: "TYPE", v: "LEAK TEST", n: "Estanqueidade em pressão negativa (quebra de vácuo)" },
+          { p: "COUPL. A", v: "0.0 s", n: "Sem pinça pneumática (0.0 s se fecho manual da tampa)" },
+          { p: "FILL TIME", v: "3.0 s a 5.0 s", n: "Tempo de evacuação da câmara pela bomba Becker/Venturi" },
+          { p: "STAB TIME", v: "6.0 s a 8.0 s", n: "Sacos flexíveis exigem 6 a 8s para assentar na grelha metálica!" },
+          { p: "TEST TIME", v: "4.0 s a 5.0 s", n: "Medição de perda de vácuo no sensor diferencial (500 Pa)" },
+          { p: "DUMP TIME", v: "1.0 s a 2.0 s", n: "Obrigatório: entrada de ar atmosférico para conseguir abrir a tampa!" },
+          { p: "Press. UNIT", v: "mbar (ou bar)", n: "Unidade de leitura do vácuo" },
+          { p: "Set FILL", v: "-500 a -800 mbar", n: "Nível de vácuo programado (sempre valor negativo com sinal -)" },
+          { p: "Max FILL", v: "-400 mbar", n: "Limite mínimo de evacuação (se tiver menos vácuo dá alarme)" },
+          { p: "Min FILL", v: "-900 mbar", n: "Limite máximo de vácuo admissível" },
+          { p: "LeakUnit", v: "Pa, Pa/s ou cm3/mn", n: "Unidade de fuga apresentada no visor" },
+          { p: "REJECT CALC.", v: "Pa ou Pa/s", n: "Algoritmo de rejeição por diferencial de pressão" },
+          { p: "Volume UNIT", v: "cm3", n: "Unidade do volume livre de ar da campânula" },
+          { p: "VOLUME", v: "Volume Livre Real (ex: 400 cm³)", n: "V_campânula - V_saco - V_blocos (medido com CDF 60 em T)" },
+          { p: "Test FAIL", v: "20 Pa (ou 0.500 cm3/mn)", n: "Limite de rejeição (se houver fuga, sai ar do saco e a pressão sobe)" },
+          { p: "Ref. FAIL", v: "0.000 cm3/mn", n: "Manter sempre a 0 no lado de referência" }
         ],
         functions: [
-          { f: "FILL REG", s: true, v: "VACUUM / VENTURI", n: "Alimentação do ejetor pneumático de vácuo" },
-          { f: "NO NEGATIVE", s: true, v: "Sim (Ativado)", n: "Normalização do sentido do sinal" }
+          { f: "NAME", s: true, v: "SACO_10G ou SACO_1KG", n: "Nome gravado na memória do programa" },
+          { f: "FILL MODE", s: true, v: "STANDARD (-700 mbar)", n: "Evacuação padrão até ao nível de vácuo" },
+          { f: "FILL REG", s: true, v: "REGUL 1 (Vácuo / Venturi)", n: "Canal associado à bomba de vácuo ou ejetor interno" },
+          { f: "STD CONDITIONS", s: true, v: "Sim (Ativado)", n: "Normaliza para 20ºC e 1013 hPa (gera o asterisco * em cm3/mn*)" },
+          { f: "FILTER", s: true, v: "1.5 s a 2.0 s", n: "Filtro reforçado para amortecer o contacto do filme na grelha" },
+          { f: "NO NEGATIVE", s: true, v: "Sim (Ativado)", n: "Elimina leituras negativas falsas por relaxação elástica do saco" },
+          { f: "ABSOLUTE", s: true, v: "Sim (Ativado)", n: "Apresenta o valor absoluto positivo da variação de pressão" }
         ],
         more: [
-          { o: "SEALED PART", v: "[X] STANDARD", r: "Geralmente ensaiado dentro de campânula a vácuo" },
-          { o: "SPE CYCLE", v: "Sd Prt PASS Learn", r: "Aprendizagem da câmara a vácuo" }
+          { o: "SEALED PART (Modo Direto)", v: "[ ] DESMARCADO (Recomendado)", r: "Testa diretamente o volume livre da câmara sem pedir ciclos de aprendizagem!" },
+          { o: "SEALED PART (Modo 613e)", v: "[X] STANDARD (Opcional)", r: "Só se quiser pré-vácuo por transferência de volume (exige correr 'Sd Prt PASS Learn')" },
+          { o: "SPE CYCLE", v: "none", r: "Deixar sempre em 'none' para produção normal sem bloqueios!" }
         ],
-        alert: "<strong>⚠️ DICA DE OURO ATEQ:</strong> Em ensaios de vácuo, certificar que a F620 possui o bloco ejetor de vácuo interno (Venturi) ou bomba de vácuo externa ligada ao canal correspondente. Limpar bem a junta de borracha da campânula para garantir estanqueidade periférica."
+        alert: "<strong>⚠️ DICA DE OURO ATEQ (VÁCUO & SACOS):</strong> Usa sempre a <strong>Grelha Metálica Perfurada</strong> dentro da câmara para o saco não tapar o furo da tampa (efeito ventosa) e coloca um <strong>Filtro de 5 µm</strong> na linha de teste. Nos sacos pequenos de 10 g (206×140 mm), usa blocos redutores de HDPE para reduzir o volume livre!"
       }
     };
 
@@ -2604,15 +2868,6 @@ Sistemas ATEQ España, S.A. - Representação em Portugal
       calcBoyleTool();
     });
   </script>
-  <script>
-    // Registo do Service Worker para modo offline PWA
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function() {
-        navigator.serviceWorker.register("./sw.js")
-          .then(function(reg) { console.log("ATEQ Service Worker ativo! Modo offline pronto.", reg); })
-          .catch(function(err) { console.log("Erro ao registar Service Worker:", err); });
-      });
-    }
-  </script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('./sw.js');});}</script>
 </body>
 </html>
