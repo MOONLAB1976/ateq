@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ATEQ França">
+<meta name="theme-color" content="#072545">
+<title>ATEQ Portugal · Planner Missão Técnica França</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --az-prim: #0B3C6F;
+  --az-light: #1C5AA0;
+  --az-sub: #072545;
+  --bg: #F4F7FA;
+  --card: #FFFFFF;
+  --txt: #16202A;
+  --txt-muted: #5A6A7A;
+  --linha: #D3DBE3;
+  --verde: #17794A;
+  --verde-bg: #E8F5E9;
+  --amarelo: #FFF8E1;
+  --amarelo-borda: #FFA000;
+  --verm: #B3261E;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0E1620;
+    --card: #16212C;
+    --txt: #E7EEF4;
+    --txt-muted: #9DB0C0;
+    --linha: #2A3A49;
+    --verde-bg: #12301F;
+    --amarelo: #262215;
+    --amarelo-borda: #D8A600;
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "IBM Plex Sans", -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--txt);
+  font-size: 16px;
+  line-height: 1.45;
+  padding-bottom: 60px;
+  -webkit-tap-highlight-color: transparent;
+}
+header {
+  background: linear-gradient(135deg, var(--az-sub) 0%, var(--az-prim) 100%);
+  color: #fff;
+  padding: 24px 20px 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+.brand h1 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.brand p {
+  font-size: 13.5px;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+.prog-wrap {
+  margin-top: 14px;
+}
+.prog-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.prog-bar {
+  height: 8px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  background: #00E676;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.wrap {
+  max-width: 680px;
+  margin: 18px auto 0;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Cartões de Seção */
+.section-card {
+  background: var(--card);
+  border: 1.5px solid var(--linha);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.sec-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #E3F2FD;
+  color: #0D47A1;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+.sec-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--az-prim);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.sec-desc {
+  font-size: 14px;
+  color: var(--txt-muted);
+  margin-bottom: 14px;
+}
+
+/* Caixa de Diagnóstico */
+.diag-box {
+  background: var(--amarelo);
+  border-left: 4px solid var(--amarelo-borda);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 14px;
+  font-size: 13.5px;
+  margin-bottom: 14px;
+  line-height: 1.45;
+}
+.diag-box strong { color: #B26A00; }
+.diag-fr {
+  background: rgba(255,255,255,0.7);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-top: 8px;
+  font-style: italic;
+  font-size: 13px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Lista de Tarefas / Checkbox */
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.todo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--bg);
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+.todo-item:active {
+  transform: scale(0.99);
+}
+.todo-item.done {
+  background: var(--verde-bg);
+  border-color: var(--verde);
+}
+.todo-item.done .todo-text {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.custom-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--linha);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all 0.2s;
+}
+.todo-item.done .custom-check {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: #fff;
+}
+.todo-text {
+  font-size: 14.5px;
+  font-weight: 500;
+  flex-grow: 1;
+}
+.todo-sub {
+  font-size: 12.5px;
+  color: var(--txt-muted);
+  margin-top: 3px;
+  font-weight: 400;
+}
+
+/* Interlocutores */
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #E8F0FE;
+  color: #1A73E8;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 6px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <h1>ATEQ FRANÇA · PLANNER DE MISSÃO</h1>
+      <p>Carlos Barbosa · Sede Les Clayes-sous-Bois</p>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-text">
+        <span>Progresso das Missões</span>
+        <span id="progCount">0 / 0 Concluídas</span>
+      </div>
+      <div class="prog-bar">
+        <div class="prog-fill" id="progFill"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- MÓDULO 1: AS 2 MÁQUINAS ENVIADAS -->
+  <div class="section-card">
+    <span class="sec-badge">Oficina SAV · Bruno Petraman</span>
+    <h2 class="sec-title">📦 1. As 2 Máquinas Despachadas no SAV</h2>
+    <p class="sec-desc">Acompanhar a reparação de bancada na fábrica para trazer as máquinas ou agilizar o envio para os clientes em Portugal.</p>
+
+    <!-- Atena -->
+    <div class="diag-box">
+      <strong>MÁQUINA 1: ATEQ F6CLASS 500Pa (Cliente: ATENA)</strong><br>
+      • S/N: <code>A376-1328</code> | Cód: <code>FEM0606</code> | Posto 3<br>
+      • Diagnóstico: Bloqueio nos 0% no ecrã de inicialização ("Updating databases"). Corrupção da Flash/EEPROM ou falha de handshake na placa CPU A376.
+      <div class="diag-fr">
+        <strong>Para falar em Francês ao Bruno:</strong><br>
+        «Blocage persistant à 0% au démarrage sur "Updating databases". Corruption mémoire Flash carte CPU A376. Besoin de reprogrammation usine JTAG ou échange carte mère.»
+      </div>
+    </div>
+
+    <!-- Ribermold -->
+    <div class="diag-box">
+      <strong>MÁQUINA 2: ATEQ SÉRIE 6 (Cliente: RIBERMOLD)</strong><br>
+      • S/N: <code>283-8041</code> | ID: <code>310A1283-804124M</code> (Selo ISQ CPRE1956/26)<br>
+      • Diagnóstico: Quebras de pressão / défice do booster no posto inferior. Necessita calibração de fábrica acreditada e revisão das válvulas piezelétricas.
+      <div class="diag-fr">
+        <strong>Para falar em Francês ao Bruno:</strong><br>
+        «Instabilité de pression et étalonnage officiel en laboratoire accrédité COFRAC avec certificat ATEQ France.»
+      </div>
+    </div>
+
+    <div class="todo-list">
+      <div class="todo-item" onclick="toggleTask('m1_1')">
+        <div class="custom-check" id="chk_m1_1">✓</div>
+        <div class="todo-text">Acompanhar reprogramação JTAG da F6CLASS (Atena A376-1328)
+          <div class="todo-sub">Ver como se faz a limpeza da EEPROM e gravação do firmware limpo.</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTask('m1_2')">
+        <div class="custom-check" id="chk_m1_2">✓</div>
+        <div class="todo-text">Validar calibração de 500 Pa da Atena na bancada SAV
+          <div class="todo-sub">Garantir relatório de ensaio emitido e pronto a expedir.</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTask('m1_3')">
+        <div class="custom-check" id="chk_m1_3">✓</div>
+        <div class="todo-text">Acompanhar calibração e revisão da máquina Ribermold (283-8041)
+          <div class="todo-sub">Verificar estanqueidade do manifold e obter Certificado de Calibração oficial.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MÓDULO 2: PEÇAS & RUPTURA DO FLUXO OFICINA -->
+  <div class="section-card">
+    <span class="sec-badge">Gestão Técnica · Bruno Petraman & Logística</span>
+    <h2 class="sec-title">🛠️ 2. Peças Sobresselentes & Procedimentos ST</h2>
+    <p class="sec-desc">Acabar com os pedidos informais sem registo e obter catálogo oficial com referências (Part Numbers) para a oficina de Portugal.</p>
+
+    <div class="todo-list">
+      <div class="todo-item" onclick="toggleTask('m2_1')">
+        <div class="custom-check" id="chk_m2_1">✓</div>
+        <div class="todo-text">Obter Lista Oficial de Peças (BOM / Spare Parts) Série 5, 6 e 7
+          <div class="todo-sub">Part numbers de válvulas piezoelétricas, captadores, diafragmas e cabos M12.</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTask('m2_2')">
+        <div class="custom-check" id="chk_m2_2">✓</div>
+        <div class="todo-text">Definir Fluxo de Encomendas ST com Carlos Barbosa em cópia
+          <div class="todo-sub">Garantir que a oficina sabe o que foi pedido, faturado e prazos de entrega da fábrica.</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTask('m2_3')">
+        <div class="custom-check" id="chk_m2_3">✓</div>
+        <div class="todo-text">Requisitar Stock Mínimo de Bancada para São João da Madeira
+          <div class="todo-sub">Kit de juntas/o-rings, válvulas piezo de substituição rápida e conectores 4/6/8mm.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MÓDULO 3: CALIBRADOR CDP 6000 -->
+  <div class="section-card">
+    <span class="sec-badge">Laboratório Metrológico · Encomenda Portugal</span>
+    <h2 class="sec-title">⚖️ 3. Trazer o Calibrador CDP 6000</h2>
+    <p class="sec-desc">Instrumento prioritário para a bancada e calibrações de campo da ATEQ Portugal (Ficha Técnica V003).</p>
+
+    <div class="todo-list">
+      <div class="todo-item" onclick="toggleTask('m3_1')">
+        <div class="custom-check" id="chk_m3_1">✓</div>
+        <div class="todo-text">Inspecionar montagem física e acessórios do CDP 6000
+          <div class="todo-sub">Conectores rápidos Stäubli, carregador, cabo USB e mala de transporte rígida.</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTask('m3_2')">
+        <div class="custom-check" id="chk_m3_2">✓</div>
+        <div class="todo-text">Validar o Certificado de Calibração de Fábrica
+          <div class="todo-sub">Garantir rastreabilidade acreditada e etiqueta metrológica válida por 1 ano.</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTask('m3_3')">
+        <div class="custom-check" id="chk_m3_3">✓</div>
+        <div class="todo-text">Trazer o CDP 6000 na bagagem de mão para Portugal
+          <div class="todo-sub">Instrumento calibrado pronto a operar na bancada de São João da Madeira!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MÓDULO 4: FORMAÇÃO TÉCNICA EM FÁBRICA -->
+  <div class="section-card">
+    <span class="sec-badge">Formação & Software · Jeremie Hernandez</span>
+    <h2 class="sec-title">🎓 4. Formação Técnica Avançada & Softwares</h2>
+    <p class="sec-desc">Dominar a nova Série 7 e os softwares de comunicação para suporte aos grandes clientes industriais.</p>
+
+    <div class="todo-list">
+      <div class="todo-item" onclick="toggleTask('m4_1')">
+        <div class="custom-check" id="chk_m4_1">✓</div>
+        <div class="todo-text">Treino Prático na Nova Série 7 (F720 / CDF7000)
+          <div class="todo-sub">Configuração do ecrã tátil, módulos pneumáticos rápidos e nova eletrónica.</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTask('m4_2')">
+        <div class="custom-check" id="chk_m4_2">✓</div>
+        <div class="todo-text">Sessão Prática WINATEQ 300 e DNC Solution (Jeremie Hernandez)
+          <div class="todo-sub">Integração com autómatos industriais (PROFINET / Modbus TCP) para Bosch e Continental.</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTask('m4_3')">
+        <div class="custom-check" id="chk_m4_3">✓</div>
+        <div class="todo-text">Laboratório de Fugas Padrão (Master Leaks / Leak Jets)
+          <div class="todo-sub">Aprender procedimentos de limpeza de orifícios de rubi e deteção de deriva metrológica.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MÓDULO 5: TI & ACESSOS GLOBAIS -->
+  <div class="section-card">
+    <span class="sec-badge">Informática & Sistemas · Frédéric Veauvy</span>
+    <h2 class="sec-title">💻 5. Desbloqueio Presencial de Acessos</h2>
+    <p class="sec-desc">Levar o portátil de trabalho e resolver de vez as permissões e passwords na sede.</p>
+
+    <div class="todo-list">
+      <div class="todo-item" onclick="toggleTask('m5_1')">
+        <div class="custom-check" id="chk_m5_1">✓</div>
+        <div class="todo-text">Ativação da Conta na Plataforma DAM (dam.ateq.com)
+          <div class="todo-sub">Acesso total aos +350 relatórios de ensaio, imagens 4K e manuais de formação.</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTask('m5_2')">
+        <div class="custom-check" id="chk_m5_2">✓</div>
+        <div class="todo-text">Desbloqueio do Repositório de Fichas Técnicas Antigas
+          <div class="todo-sub">Permissões de rede/SharePoint para aceder ao histórico técnico completo.</div>
+        </div>
+      </div>
+      <div class="todo-item" onclick="toggleTask('m5_3')">
+        <div class="custom-check" id="chk_m5_3">✓</div>
+        <div class="todo-text">Configuração de VPN e FortiToken Móvel no Portátil
+          <div class="todo-sub">Testar ligação remota segura antes de regressar a Portugal.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const tasks = [
+  'm1_1', 'm1_2', 'm1_3',
+  'm2_1', 'm2_2', 'm2_3',
+  'm3_1', 'm3_2', 'm3_3',
+  'm4_1', 'm4_2', 'm4_3',
+  'm5_1', 'm5_2', 'm5_3'
+];
+
+function loadState() {
+  let done = 0;
+  tasks.forEach(id => {
+    const isDone = localStorage.getItem('ateq_task_' + id) === 'true';
+    const el = document.getElementById('chk_' + id).parentElement;
+    if (isDone) {
+      el.classList.add('done');
+      done++;
+    } else {
+      el.classList.remove('done');
+    }
+  });
+  updateProgress(done);
+}
+
+function toggleTask(id) {
+  const current = localStorage.getItem('ateq_task_' + id) === 'true';
+  localStorage.setItem('ateq_task_' + id, (!current).toString());
+  loadState();
+}
+
+function updateProgress(doneCount) {
+  const total = tasks.length;
+  const pct = Math.round((doneCount / total) * 100);
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('progCount').textContent = doneCount + ' / ' + total + ' (' + pct + '%)';
+}
+
+window.addEventListener('DOMContentLoaded', loadState);
+</script>
+</body>
+</html>
