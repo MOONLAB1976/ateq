@@ -709,6 +709,21 @@ footer {
 
 <script>
 
+// Registo de Service Worker para funcionamento 100% Offline no iPhone (PWA)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+if ('caches' in window) {
+  window.addEventListener('load', () => {
+    caches.open('ateq-treino-cache-v1').then(cache => {
+      cache.add(window.location.href).catch(() => {});
+    });
+  });
+}
+
+
 // --- BASE DE DADOS CRIPTOGRAFADA COM AES-256-GCM ---
 // No GitHub e no código fonte visível NÃO HÁ nenhum texto de perguntas ou respostas.
 // Apenas este bloco de ruído criptográfico:

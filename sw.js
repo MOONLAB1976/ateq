@@ -1,42 +1,39 @@
-const CACHE_NAME = 'ateq-calc-v9';
-const ASSETS_TO_CACHE = [
+// ATEQ Portugal - Service Worker Offline (Cache PWA)
+const CACHE_NAME = 'ateq-treino-cache-v1';
+const URLS_TO_CACHE = [
+  './treino.html',
   './',
-  './index.html',
-  './manifest.json',
-  './icon-192.png',
-  './icon-512.png',
-  './apple-touch-icon.png'
+  'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap'
 ];
 
-// Instalação do Service Worker e gravação em cache dos ficheiros offline
-self.addEventListener('install', (event) => {
+self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(URLS_TO_CACHE);
     }).then(() => self.skipWaiting())
   );
 });
 
-// Ativação e limpeza de caches antigas
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then((keys) => {
+    caches.keys().then(keys => {
       return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-        })
+        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
       );
     }).then(() => self.clients.claim())
   );
 });
 
-// Interceção de pedidos de rede: serve sempre da cache local (funciona 100% offline!)
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      return fetch(event.request).catch(() => {
+        // Se estiver offline e pedir a pagina, devolve o treino.html em cache
+        return caches.match('./treino.html');
+      });
     })
   );
 });

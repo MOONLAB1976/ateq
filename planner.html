@@ -2,14 +2,16 @@
 <html lang="pt-PT">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="ATEQ França">
+<meta name="apple-mobile-web-app-title" content="ATEQ Planner">
 <meta name="theme-color" content="#072545">
-<title>ATEQ Portugal · Planner Missão Técnica França</title>
+<title>ATEQ França · Planner de Missão Técnico (Protegido)</title>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B3C6F'/%3E%3Cpath d='M30 50 L45 65 L70 35' stroke='%2300E676' stroke-width='10' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --az-prim: #0B3C6F;
@@ -57,24 +59,15 @@ header {
   top: 0;
   z-index: 100;
 }
-.header-inner {
-  max-width: 680px;
-  margin: 0 auto;
-}
+.header-inner { max-width: 680px; margin: 0 auto; }
 .brand h1 {
   font-family: "Barlow Condensed", sans-serif;
   font-size: 1.9rem;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
-.brand p {
-  font-size: 13.5px;
-  opacity: 0.9;
-  margin-top: 2px;
-}
-.prog-wrap {
-  margin-top: 14px;
-}
+.brand p { font-size: 13.5px; opacity: 0.9; margin-top: 2px; }
+.prog-wrap { margin-top: 14px; }
 .prog-text {
   display: flex;
   justify-content: space-between;
@@ -104,7 +97,119 @@ header {
   gap: 16px;
 }
 
-/* Cartões de Seção */
+/* ECRÃ DE PIN */
+#screenPin {
+  display: block;
+  text-align: center;
+  padding: 30px 16px;
+  max-width: 380px;
+  margin: 20px auto 0;
+}
+.pin-card {
+  background: var(--card);
+  border: 1.5px solid var(--linha);
+  border-radius: 16px;
+  padding: 30px 24px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.pin-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(11, 60, 111, 0.1);
+  color: var(--az-prim);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 16px;
+}
+.pin-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--az-prim);
+  margin-bottom: 6px;
+}
+.pin-sub {
+  font-size: 14px;
+  color: var(--txt-muted);
+  margin-bottom: 24px;
+}
+.pin-dots {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.pin-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--az-light);
+  background: transparent;
+  transition: all 0.2s ease;
+}
+.pin-dot.filled {
+  background: var(--az-prim);
+  transform: scale(1.15);
+}
+.pin-error {
+  color: var(--verm);
+  font-size: 13.5px;
+  font-weight: 600;
+  min-height: 20px;
+  margin-bottom: 16px;
+}
+.pin-pad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 280px;
+  margin: 0 auto 20px;
+}
+.pad-btn {
+  height: 56px;
+  background: var(--bg);
+  border: 1.5px solid var(--linha);
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--txt);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.pad-btn:active {
+  background: var(--az-light);
+  color: #fff;
+  transform: scale(0.92);
+}
+.pad-btn.action {
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--txt-muted);
+}
+.pin-remember {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--txt-muted);
+  cursor: pointer;
+}
+
+/* ECRÃ DO PLANNER */
+#screenContent {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
 .section-card {
   background: var(--card);
   border: 1.5px solid var(--linha);
@@ -136,8 +241,6 @@ header {
   color: var(--txt-muted);
   margin-bottom: 14px;
 }
-
-/* Caixa de Diagnóstico */
 .diag-box {
   background: var(--amarelo);
   border-left: 4px solid var(--amarelo-borda);
@@ -157,8 +260,6 @@ header {
   font-size: 13px;
   border: 1px solid rgba(0,0,0,0.08);
 }
-
-/* Lista de Tarefas / Checkbox */
 .todo-list {
   display: flex;
   flex-direction: column;
@@ -176,9 +277,7 @@ header {
   transition: all 0.2s;
   user-select: none;
 }
-.todo-item:active {
-  transform: scale(0.99);
-}
+.todo-item:active { transform: scale(0.99); }
 .todo-item.done {
   background: var(--verde-bg);
   border-color: var(--verde);
@@ -216,32 +315,40 @@ header {
   margin-top: 3px;
   font-weight: 400;
 }
-
-/* Interlocutores */
-.contact-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #E8F0FE;
-  color: #1A73E8;
+.btn-lock {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
   padding: 4px 10px;
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
-  text-decoration: none;
-  margin-top: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+.shake { animation: shake 0.4s ease; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="header-inner">
-    <div class="brand">
-      <h1>ATEQ FRANÇA · PLANNER DE MISSÃO</h1>
-      <p>Carlos Barbosa · Sede Les Clayes-sous-Bois</p>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+      <div class="brand">
+        <h1>ATEQ FRANÇA · PLANNER</h1>
+        <p>Carlos Barbosa · Les Clayes-sous-Bois</p>
+      </div>
+      <button id="btnLock" class="btn-lock" onclick="lockPlanner()" style="display:none;">🔒 Bloquear</button>
     </div>
-    <div class="prog-wrap">
+    <div class="prog-wrap" id="progBarWrap" style="display:none;">
       <div class="prog-text">
         <span>Progresso das Missões</span>
         <span id="progCount">0 / 0 Concluídas</span>
@@ -255,208 +362,282 @@ header {
 
 <div class="wrap">
 
-  <!-- MÓDULO 1: AS 2 MÁQUINAS ENVIADAS -->
-  <div class="section-card">
-    <span class="sec-badge">Oficina SAV · Bruno Petraman</span>
-    <h2 class="sec-title">📦 1. As 2 Máquinas Despachadas no SAV</h2>
-    <p class="sec-desc">Acompanhar a reparação de bancada na fábrica para trazer as máquinas ou agilizar o envio para os clientes em Portugal.</p>
+  <!-- ECRÃ DE BLOQUEIO POR PIN -->
+  <div id="screenPin">
+    <div class="pin-card" id="pinCard">
+      <div class="pin-icon">🔐</div>
+      <h2 class="pin-title">ACESSO RESTRITO</h2>
+      <p class="pin-sub">Introduza o PIN de 4 dígitos para desencriptar o Planner de Missão:</p>
+      
+      <div class="pin-dots">
+        <div class="pin-dot" id="dot0"></div>
+        <div class="pin-dot" id="dot1"></div>
+        <div class="pin-dot" id="dot2"></div>
+        <div class="pin-dot" id="dot3"></div>
+      </div>
 
-    <!-- Atena -->
-    <div class="diag-box">
-      <strong>MÁQUINA 1: ATEQ F6CLASS 500Pa (Cliente: ATENA)</strong><br>
-      • S/N: <code>A376-1328</code> | Cód: <code>FEM0606</code> | Posto 3<br>
-      • Diagnóstico: Bloqueio nos 0% no ecrã de inicialização ("Updating databases"). Corrupção da Flash/EEPROM ou falha de handshake na placa CPU A376.
-      <div class="diag-fr">
-        <strong>Para falar em Francês ao Bruno:</strong><br>
-        «Blocage persistant à 0% au démarrage sur "Updating databases". Corruption mémoire Flash carte CPU A376. Besoin de reprogrammation usine JTAG ou échange carte mère.»
-      </div>
-    </div>
+      <div class="pin-error" id="pinError"></div>
 
-    <!-- Ribermold -->
-    <div class="diag-box">
-      <strong>MÁQUINA 2: ATEQ SÉRIE 6 (Cliente: RIBERMOLD)</strong><br>
-      • S/N: <code>283-8041</code> | ID: <code>310A1283-804124M</code> (Selo ISQ CPRE1956/26)<br>
-      • Diagnóstico: Quebras de pressão / défice do booster no posto inferior. Necessita calibração de fábrica acreditada e revisão das válvulas piezelétricas.
-      <div class="diag-fr">
-        <strong>Para falar em Francês ao Bruno:</strong><br>
-        «Instabilité de pression et étalonnage officiel en laboratoire accrédité COFRAC avec certificat ATEQ France.»
+      <div class="pin-pad">
+        <button type="button" class="pad-btn" onclick="pressKey('1')">1</button>
+        <button type="button" class="pad-btn" onclick="pressKey('2')">2</button>
+        <button type="button" class="pad-btn" onclick="pressKey('3')">3</button>
+        <button type="button" class="pad-btn" onclick="pressKey('4')">4</button>
+        <button type="button" class="pad-btn" onclick="pressKey('5')">5</button>
+        <button type="button" class="pad-btn" onclick="pressKey('6')">6</button>
+        <button type="button" class="pad-btn" onclick="pressKey('7')">7</button>
+        <button type="button" class="pad-btn" onclick="pressKey('8')">8</button>
+        <button type="button" class="pad-btn" onclick="pressKey('9')">9</button>
+        <button type="button" class="pad-btn action" onclick="clearPin()">Limpar</button>
+        <button type="button" class="pad-btn" onclick="pressKey('0')">0</button>
+        <button type="button" class="pad-btn action" onclick="backspacePin()">⌫</button>
       </div>
-    </div>
 
-    <div class="todo-list">
-      <div class="todo-item" onclick="toggleTask('m1_1')">
-        <div class="custom-check" id="chk_m1_1">✓</div>
-        <div class="todo-text">Acompanhar reprogramação JTAG da F6CLASS (Atena A376-1328)
-          <div class="todo-sub">Ver como se faz a limpeza da EEPROM e gravação do firmware limpo.</div>
-        </div>
-      </div>
-      <div class="todo-item" onclick="toggleTask('m1_2')">
-        <div class="custom-check" id="chk_m1_2">✓</div>
-        <div class="todo-text">Validar calibração de 500 Pa da Atena na bancada SAV
-          <div class="todo-sub">Garantir relatório de ensaio emitido e pronto a expedir.</div>
-        </div>
-      </div>
-      <div class="todo-item" onclick="toggleTask('m1_3')">
-        <div class="custom-check" id="chk_m1_3">✓</div>
-        <div class="todo-text">Acompanhar calibração e revisão da máquina Ribermold (283-8041)
-          <div class="todo-sub">Verificar estanqueidade do manifold e obter Certificado de Calibração oficial.</div>
-        </div>
-      </div>
+      <label class="pin-remember">
+        <input type="checkbox" id="chkRemember" checked> Lembrar neste telemóvel
+      </label>
     </div>
   </div>
 
-  <!-- MÓDULO 2: PEÇAS & RUPTURA DO FLUXO OFICINA -->
-  <div class="section-card">
-    <span class="sec-badge">Gestão Técnica · Bruno Petraman & Logística</span>
-    <h2 class="sec-title">🛠️ 2. Peças Sobresselentes & Procedimentos ST</h2>
-    <p class="sec-desc">Acabar com os pedidos informais sem registo e obter catálogo oficial com referências (Part Numbers) para a oficina de Portugal.</p>
-
-    <div class="todo-list">
-      <div class="todo-item" onclick="toggleTask('m2_1')">
-        <div class="custom-check" id="chk_m2_1">✓</div>
-        <div class="todo-text">Obter Lista Oficial de Peças (BOM / Spare Parts) Série 5, 6 e 7
-          <div class="todo-sub">Part numbers de válvulas piezoelétricas, captadores, diafragmas e cabos M12.</div>
-        </div>
-      </div>
-      <div class="todo-item" onclick="toggleTask('m2_2')">
-        <div class="custom-check" id="chk_m2_2">✓</div>
-        <div class="todo-text">Definir Fluxo de Encomendas ST com Carlos Barbosa em cópia
-          <div class="todo-sub">Garantir que a oficina sabe o que foi pedido, faturado e prazos de entrega da fábrica.</div>
-        </div>
-      </div>
-      <div class="todo-item" onclick="toggleTask('m2_3')">
-        <div class="custom-check" id="chk_m2_3">✓</div>
-        <div class="todo-text">Requisitar Stock Mínimo de Bancada para São João da Madeira
-          <div class="todo-sub">Kit de juntas/o-rings, válvulas piezo de substituição rápida e conectores 4/6/8mm.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MÓDULO 3: CALIBRADOR CDP 6000 -->
-  <div class="section-card">
-    <span class="sec-badge">Laboratório Metrológico · Encomenda Portugal</span>
-    <h2 class="sec-title">⚖️ 3. Trazer o Calibrador CDP 6000</h2>
-    <p class="sec-desc">Instrumento prioritário para a bancada e calibrações de campo da ATEQ Portugal (Ficha Técnica V003).</p>
-
-    <div class="todo-list">
-      <div class="todo-item" onclick="toggleTask('m3_1')">
-        <div class="custom-check" id="chk_m3_1">✓</div>
-        <div class="todo-text">Inspecionar montagem física e acessórios do CDP 6000
-          <div class="todo-sub">Conectores rápidos Stäubli, carregador, cabo USB e mala de transporte rígida.</div>
-        </div>
-      </div>
-      <div class="todo-item" onclick="toggleTask('m3_2')">
-        <div class="custom-check" id="chk_m3_2">✓</div>
-        <div class="todo-text">Validar o Certificado de Calibração de Fábrica
-          <div class="todo-sub">Garantir rastreabilidade acreditada e etiqueta metrológica válida por 1 ano.</div>
-        </div>
-      </div>
-      <div class="todo-item" onclick="toggleTask('m3_3')">
-        <div class="custom-check" id="chk_m3_3">✓</div>
-        <div class="todo-text">Trazer o CDP 6000 na bagagem de mão para Portugal
-          <div class="todo-sub">Instrumento calibrado pronto a operar na bancada de São João da Madeira!</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MÓDULO 4: FORMAÇÃO TÉCNICA EM FÁBRICA -->
-  <div class="section-card">
-    <span class="sec-badge">Formação & Software · Jeremie Hernandez</span>
-    <h2 class="sec-title">🎓 4. Formação Técnica Avançada & Softwares</h2>
-    <p class="sec-desc">Dominar a nova Série 7 e os softwares de comunicação para suporte aos grandes clientes industriais.</p>
-
-    <div class="todo-list">
-      <div class="todo-item" onclick="toggleTask('m4_1')">
-        <div class="custom-check" id="chk_m4_1">✓</div>
-        <div class="todo-text">Treino Prático na Nova Série 7 (F720 / CDF7000)
-          <div class="todo-sub">Configuração do ecrã tátil, módulos pneumáticos rápidos e nova eletrónica.</div>
-        </div>
-      </div>
-      <div class="todo-item" onclick="toggleTask('m4_2')">
-        <div class="custom-check" id="chk_m4_2">✓</div>
-        <div class="todo-text">Sessão Prática WINATEQ 300 e DNC Solution (Jeremie Hernandez)
-          <div class="todo-sub">Integração com autómatos industriais (PROFINET / Modbus TCP) para Bosch e Continental.</div>
-        </div>
-      </div>
-      <div class="todo-item" onclick="toggleTask('m4_3')">
-        <div class="custom-check" id="chk_m4_3">✓</div>
-        <div class="todo-text">Laboratório de Fugas Padrão (Master Leaks / Leak Jets)
-          <div class="todo-sub">Aprender procedimentos de limpeza de orifícios de rubi e deteção de deriva metrológica.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MÓDULO 5: TI & ACESSOS GLOBAIS -->
-  <div class="section-card">
-    <span class="sec-badge">Informática & Sistemas · Frédéric Veauvy</span>
-    <h2 class="sec-title">💻 5. Desbloqueio Presencial de Acessos</h2>
-    <p class="sec-desc">Levar o portátil de trabalho e resolver de vez as permissões e passwords na sede.</p>
-
-    <div class="todo-list">
-      <div class="todo-item" onclick="toggleTask('m5_1')">
-        <div class="custom-check" id="chk_m5_1">✓</div>
-        <div class="todo-text">Ativação da Conta na Plataforma DAM (dam.ateq.com)
-          <div class="todo-sub">Acesso total aos +350 relatórios de ensaio, imagens 4K e manuais de formação.</div>
-        </div>
-      </div>
-      <div class="todo-item" onclick="toggleTask('m5_2')">
-        <div class="custom-check" id="chk_m5_2">✓</div>
-        <div class="todo-text">Desbloqueio do Repositório de Fichas Técnicas Antigas
-          <div class="todo-sub">Permissões de rede/SharePoint para aceder ao histórico técnico completo.</div>
-        </div>
-      </div>
-      <div class="todo-item" onclick="toggleTask('m5_3')">
-        <div class="custom-check" id="chk_m5_3">✓</div>
-        <div class="todo-text">Configuração de VPN e FortiToken Móvel no Portátil
-          <div class="todo-sub">Testar ligação remota segura antes de regressar a Portugal.</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- CONTEÚDO DO PLANNER (DESENCRIPTADO NA RAM) -->
+  <div id="screenContent"></div>
 
 </div>
 
 <script>
-const tasks = [
-  'm1_1', 'm1_2', 'm1_3',
-  'm2_1', 'm2_2', 'm2_3',
-  'm3_1', 'm3_2', 'm3_3',
-  'm4_1', 'm4_2', 'm4_3',
-  'm5_1', 'm5_2', 'm5_3'
-];
+// PAYLOAD CRIPTOGRAFADO COM AES-256-GCM
+const CIPHER_DATA = {
+  "salt": "029ead4ded6cc427b7f350febc750496",
+  "iv": "bb94960ddd5dd51b88aef91f",
+  "cipher": "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"
+};
+let PLANNER_SECTIONS = null;
+let inputPin = "";
+let totalTasksList = [];
 
-function loadState() {
-  let done = 0;
-  tasks.forEach(id => {
-    const isDone = localStorage.getItem('ateq_task_' + id) === 'true';
-    const el = document.getElementById('chk_' + id).parentElement;
-    if (isDone) {
-      el.classList.add('done');
-      done++;
-    } else {
-      el.classList.remove('done');
+function hexToBytes(hex) {
+  const bytes = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < bytes.length; i++) {
+    bytes[i] = parseInt(hex.substr(i * 2, 2), 16);
+  }
+  return bytes;
+}
+
+function b64ToBytes(b64) {
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) {
+    bytes[i] = bin.charCodeAt(i);
+  }
+  return bytes;
+}
+
+async function tryDecrypt(pinStr) {
+  try {
+    const enc = new TextEncoder();
+    const salt = hexToBytes(CIPHER_DATA.salt);
+    const iv = hexToBytes(CIPHER_DATA.iv);
+    const ciphertext = b64ToBytes(CIPHER_DATA.cipher);
+
+    const pinKey = await crypto.subtle.importKey(
+      "raw",
+      enc.encode(pinStr),
+      { name: "PBKDF2" },
+      false,
+      ["deriveKey"]
+    );
+
+    const aesKey = await crypto.subtle.deriveKey(
+      {
+        name: "PBKDF2",
+        salt: salt,
+        iterations: 100000,
+        hash: "SHA-256"
+      },
+      pinKey,
+      { name: "AES-GCM", length: 256 },
+      false,
+      ["decrypt"]
+    );
+
+    const decrypted = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: iv },
+      aesKey,
+      ciphertext
+    );
+
+    const dec = new TextDecoder();
+    return JSON.parse(dec.decode(decrypted));
+  } catch(e) {
+    return null;
+  }
+}
+
+function updateDots() {
+  for (let i = 0; i < 4; i++) {
+    const dot = document.getElementById("dot" + i);
+    if (dot) {
+      if (i < inputPin.length) dot.classList.add("filled");
+      else dot.classList.remove("filled");
+    }
+  }
+}
+
+function pressKey(n) {
+  if (inputPin.length < 4) {
+    inputPin += n;
+    updateDots();
+    document.getElementById("pinError").textContent = "";
+    if (inputPin.length === 4) {
+      document.getElementById("pinError").textContent = "A desencriptar...";
+      setTimeout(verifyPin, 100);
+    }
+  }
+}
+
+function clearPin() {
+  inputPin = "";
+  updateDots();
+  document.getElementById("pinError").textContent = "";
+}
+
+function backspacePin() {
+  if (inputPin.length > 0) {
+    inputPin = inputPin.slice(0, -1);
+    updateDots();
+    document.getElementById("pinError").textContent = "";
+  }
+}
+
+async function verifyPin() {
+  const decrypted = await tryDecrypt(inputPin);
+  if (decrypted && Array.isArray(decrypted)) {
+    PLANNER_SECTIONS = decrypted;
+    if (document.getElementById("chkRemember").checked) {
+      try { localStorage.setItem("ateq_planner_pin", inputPin); } catch(e){}
+    }
+    unlockUI();
+  } else {
+    const card = document.getElementById("pinCard");
+    card.classList.add("shake");
+    document.getElementById("pinError").textContent = "PIN Incorreto. Chave inválida.";
+    setTimeout(() => {
+      card.classList.remove("shake");
+      clearPin();
+    }, 450);
+  }
+}
+
+function unlockUI() {
+  document.getElementById("screenPin").style.display = "none";
+  document.getElementById("screenContent").style.display = "flex";
+  document.getElementById("progBarWrap").style.display = "block";
+  document.getElementById("btnLock").style.display = "inline-flex";
+  renderSections();
+}
+
+function lockPlanner() {
+  try { localStorage.removeItem("ateq_planner_pin"); } catch(e){}
+  PLANNER_SECTIONS = null;
+  clearPin();
+  document.getElementById("screenContent").style.display = "none";
+  document.getElementById("progBarWrap").style.display = "none";
+  document.getElementById("btnLock").style.display = "none";
+  document.getElementById("screenPin").style.display = "block";
+}
+
+function renderSections() {
+  const container = document.getElementById("screenContent");
+  container.innerHTML = "";
+  totalTasksList = [];
+
+  PLANNER_SECTIONS.forEach(sec => {
+    const card = document.createElement("div");
+    card.className = "section-card";
+
+    let diagsHtml = "";
+    if (sec.diags && sec.diags.length > 0) {
+      sec.diags.forEach(d => {
+        diagsHtml += `
+          <div class="diag-box">
+            <strong>${d.title}</strong><br>
+            ${d.info}
+            <div class="diag-fr">
+              <strong>Para falar em Francês ao Bruno:</strong><br>
+              ${d.fr}
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    let todosHtml = "";
+    sec.todos.forEach(t => {
+      totalTasksList.push(t.id);
+      todosHtml += `
+        <div class="todo-item" id="item_${t.id}" onclick="toggleTodo('${t.id}')">
+          <div class="custom-check" id="chk_${t.id}">✓</div>
+          <div class="todo-text">${t.text}
+            <div class="todo-sub">${t.sub}</div>
+          </div>
+        </div>
+      `;
+    });
+
+    card.innerHTML = `
+      <span class="sec-badge">${sec.badge}</span>
+      <h2 class="sec-title">${sec.title}</h2>
+      <p class="sec-desc">${sec.desc}</p>
+      ${diagsHtml}
+      <div class="todo-list">${todosHtml}</div>
+    `;
+
+    container.appendChild(card);
+  });
+
+  loadTodosState();
+}
+
+function toggleTodo(id) {
+  const current = localStorage.getItem("ateq_task_" + id) === "true";
+  localStorage.setItem("ateq_task_" + id, (!current).toString());
+  loadTodosState();
+}
+
+function loadTodosState() {
+  let doneCount = 0;
+  totalTasksList.forEach(id => {
+    const isDone = localStorage.getItem("ateq_task_" + id) === "true";
+    const item = document.getElementById("item_" + id);
+    if (item) {
+      if (isDone) {
+        item.classList.add("done");
+        doneCount++;
+      } else {
+        item.classList.remove("done");
+      }
     }
   });
-  updateProgress(done);
+
+  const total = totalTasksList.length;
+  const pct = total > 0 ? Math.round((doneCount / total) * 100) : 0;
+  document.getElementById("progFill").style.width = pct + "%";
+  document.getElementById("progCount").textContent = doneCount + " / " + total + " (" + pct + "%)";
 }
 
-function toggleTask(id) {
-  const current = localStorage.getItem('ateq_task_' + id) === 'true';
-  localStorage.setItem('ateq_task_' + id, (!current).toString());
-  loadState();
-}
-
-function updateProgress(doneCount) {
-  const total = tasks.length;
-  const pct = Math.round((doneCount / total) * 100);
-  document.getElementById('progFill').style.width = pct + '%';
-  document.getElementById('progCount').textContent = doneCount + ' / ' + total + ' (' + pct + '%)';
-}
-
-window.addEventListener('DOMContentLoaded', loadState);
+// Verificação Automática ao Carregar
+window.addEventListener("DOMContentLoaded", async function() {
+  try {
+    const savedPin = localStorage.getItem("ateq_planner_pin");
+    if (savedPin && savedPin.length === 4) {
+      const decrypted = await tryDecrypt(savedPin);
+      if (decrypted && Array.isArray(decrypted)) {
+        PLANNER_SECTIONS = decrypted;
+        unlockUI();
+      }
+    }
+  } catch(e){}
+});
 </script>
 </body>
 </html>
