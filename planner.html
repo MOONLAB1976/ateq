@@ -638,6 +638,13 @@ window.addEventListener("DOMContentLoaded", async function() {
     }
   } catch(e){}
 });
+
+// Registo do Service Worker para suporte 100% Offline (PWA)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js').catch(function() {});
+  });
+}
 </script>
 </body>
 </html>
