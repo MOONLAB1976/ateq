@@ -5,6 +5,7 @@ const CACHE_NAME = 'ateq-pwa-cache-v3';
 const URLS_TO_CACHE = [
   './',
   './planner.html',
+  './unidades.html',
   './img/01_corte_camara_inserto_delrin.jpg',
   './img/02_mordente_linear_selagem.jpg',
   './img/03_familia_3_camaras_insertos.jpg',
