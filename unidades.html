@@ -1,796 +1,981 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ATEQ Unidades & F620">
+<meta name="theme-color" content="#0B3C6F">
+<title>ATEQ · Guia Técnico de Unidades & Configurações F620</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script>
 if (!sessionStorage.getItem('ateq_logged') && !localStorage.getItem('ateq_master_pass')) {
   window.location.replace('./');
 }
 </script>
-<meta charset="UTF-8">
-<title>ATEQ F620 - Guia Definitivo e Completo de Todas as Unidades de Medida</title>
 <style>
-  @page {
-    size: A4 portrait;
-    margin: 0;
-  }
-  * {
-    box-sizing: border-box;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Arial, -apple-system, sans-serif;
-    color: #1e293b;
-    background-color: #ffffff;
-    font-size: 9.5pt;
-    line-height: 1.35;
-  }
-  .page {
-    width: 210mm;
-    height: 297mm;
-    max-height: 297mm;
-    overflow: hidden;
-    padding: 9mm 12mm 7mm 12mm;
-    margin: 0 auto;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    page-break-after: always;
-  }
-  .page:last-child {
-    page-break-after: avoid;
-  }
+:root {
+  --az-prim: #0B3C6F;
+  --az-light: #1C5AA0;
+  --az-dark: #072545;
+  --bg-page: #F4F7FA;
+  --card-bg: #FFFFFF;
+  --txt: #16202A;
+  --txt-muted: #516170;
+  --linha: #D3DBE3;
+  --verm: #E30613;
+  --verde: #16A34A;
+  --amarelo: #D97706;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-page);
+  color: var(--txt);
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+header {
+  background: var(--az-dark);
+  color: #ffffff;
+  padding: 18px 20px 14px;
+  border-bottom: 3px solid var(--verm);
+}
+.header-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.header-title-box h1 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.header-title-box span {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.75);
+}
 
-  /* Header */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2.5px solid #003366;
-    padding-bottom: 5px;
-    margin-bottom: 7px;
-  }
-  .logo-area {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .logo-box {
-    background: #003366;
-    color: #ffffff;
-    font-weight: 900;
-    font-size: 17pt;
-    letter-spacing: 2px;
-    padding: 3px 10px;
-    border-radius: 4px;
-  }
-  .brand-sub {
-    font-size: 8pt;
-    color: #475569;
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 1.25;
-  }
-  .title-area {
-    text-align: right;
-  }
-  .doc-title {
-    font-size: 14pt;
-    font-weight: 800;
-    color: #003366;
-    margin: 0;
-    white-space: nowrap;
-  }
-  .doc-meta {
-    font-size: 8pt;
-    color: #64748b;
-    margin-top: 2px;
-  }
+/* Nav Tabs */
+.tabs-nav {
+  background: #ffffff;
+  border-bottom: 1.5px solid var(--linha);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs-nav::-webkit-scrollbar { display: none; }
+.tabs-nav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+}
+.tab-btn {
+  flex: 1;
+  min-width: 140px;
+  padding: 14px 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--txt-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.tab-btn.active {
+  color: var(--az-prim);
+  border-bottom-color: var(--az-prim);
+  background: rgba(11, 60, 111, 0.04);
+}
 
-  /* Content Cards */
-  .card-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex: 1;
-  }
-  .card {
-    border: 1.5px solid #cbd5e1;
-    border-radius: 6px;
-    padding: 8px 12px;
-    background: #ffffff;
-  }
-  .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1.5px solid #f1f5f9;
-    padding-bottom: 4px;
-    margin-bottom: 5px;
-  }
-  .card-title {
-    font-size: 11pt;
-    font-weight: 800;
-    color: #003366;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .badge {
-    color: #fff;
-    font-size: 7.5pt;
-    font-weight: 800;
-    padding: 2px 7px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .badge-blue { background: #0284c7; }
-  .badge-teal { background: #0f766e; }
-  .badge-amber { background: #d97706; }
-  .badge-purple { background: #6366f1; }
-  .badge-red { background: #dc2626; }
+.main-wrap {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
 
-  /* Conversion visual boxes */
-  .conv-strip {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 5px;
-    padding: 5px 8px;
-    margin: 4px 0;
-    font-size: 8.5pt;
-  }
-  .conv-node {
-    text-align: center;
-    background: #ffffff;
-    border: 1.5px solid #94a3b8;
-    border-radius: 4px;
-    padding: 3px 6px;
-    min-width: 75px;
-  }
-  .conv-node strong {
-    display: block;
-    font-size: 9.5pt;
-    color: #003366;
-  }
-  .conv-arrow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #0284c7;
-    font-weight: 700;
-    font-size: 7.5pt;
-  }
+.tab-pane {
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+.tab-pane.active {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-  /* Table styling */
-  table.tbl {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 8.5pt;
-    margin: 3px 0;
-  }
-  table.tbl th {
-    background: #003366;
-    color: #ffffff;
-    padding: 4px 6px;
-    text-align: left;
-    font-weight: 700;
-    border: 1px solid #003366;
-  }
-  table.tbl td {
-    padding: 3px 6px;
-    border: 1px solid #cbd5e1;
-    color: #1e293b;
-  }
-  table.tbl tr:nth-child(even) td {
-    background: #f8fafc;
-  }
+/* Card Styles */
+.panel-card {
+  background: var(--card-bg);
+  border: 1.5px solid var(--linha);
+  border-radius: 16px;
+  padding: 22px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.panel-card h2 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--az-prim);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.panel-card p.subtitle {
+  font-size: 13.5px;
+  color: var(--txt-muted);
+  margin-bottom: 18px;
+  line-height: 1.4;
+}
 
-  /* Highlight callouts */
-  .callout {
-    background: #eff6ff;
-    border-left: 3.5px solid #0284c7;
-    padding: 5px 9px;
-    border-radius: 0 4px 4px 0;
-    margin: 4px 0;
-    font-size: 8pt;
-    line-height: 1.35;
-  }
-  .callout strong {
-    color: #003366;
-  }
-  .callout-gold {
-    background: #fffbeb;
-    border-left: 3.5px solid #d97706;
-  }
-  .callout-gold strong {
-    color: #92400e;
-  }
-  .callout-green {
-    background: #f0fdf4;
-    border-left: 3.5px solid #16a34a;
-  }
+/* Form Styles */
+.converter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 640px) {
+  .converter-grid { grid-template-columns: 1fr; }
+}
+.field-box label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--txt);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.input-num {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1.5px solid var(--linha);
+  border-radius: 12px;
+  background: #F8FAFC;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--az-prim);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-num:focus {
+  border-color: var(--az-light);
+  background: #ffffff;
+}
+.select-unit {
+  width: 100%;
+  height: 48px;
+  padding: 0 12px;
+  border: 1.5px solid var(--linha);
+  border-radius: 12px;
+  background: #F8FAFC;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--txt);
+  outline: none;
+}
 
-  /* Formula display box */
-  .formula-box {
-    background: #f8fafc;
-    border: 2px solid #003366;
-    border-radius: 6px;
-    padding: 6px 10px;
-    text-align: center;
-    margin: 4px 0;
-  }
-  .formula-box .eq {
-    font-size: 12pt;
-    font-weight: 900;
-    color: #003366;
-    letter-spacing: 0.5px;
-  }
-  .formula-box .sub {
-    font-size: 7.5pt;
-    color: #64748b;
-    margin-top: 1px;
-  }
+/* Results Grid */
+.results-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.res-card {
+  background: #F8FAFC;
+  border: 1px solid var(--linha);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.res-card:hover {
+  background: #ffffff;
+  border-color: var(--az-light);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+.res-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.res-unit-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--txt-muted);
+  text-transform: uppercase;
+}
+.res-copy-hint {
+  font-size: 11px;
+  color: var(--az-light);
+  font-weight: 600;
+}
+.res-value {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--az-prim);
+  word-break: break-all;
+}
 
-  /* Footer */
-  .footer-bar {
-    display: flex;
-    justify-content: space-between;
-    font-size: 7.5pt;
-    color: #94a3b8;
-    border-top: 1px solid #e2e8f0;
-    padding-top: 3px;
-    margin-top: 4px;
-  }
+/* Search bar */
+.search-bar-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+.search-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 16px 0 40px;
+  border: 1.5px solid var(--linha);
+  border-radius: 12px;
+  background: #ffffff;
+  font-size: 14.5px;
+  outline: none;
+}
+.search-input:focus {
+  border-color: var(--az-light);
+}
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  font-size: 16px;
+  color: var(--txt-muted);
+}
+.pills-filter {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.filter-pill {
+  padding: 6px 14px;
+  background: #ffffff;
+  border: 1px solid var(--linha);
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--txt-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.filter-pill.active {
+  background: var(--az-prim);
+  color: #ffffff;
+  border-color: var(--az-prim);
+}
+
+/* Parameters List */
+.item-card {
+  background: #ffffff;
+  border: 1.5px solid var(--linha);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+.item-card:hover {
+  border-color: var(--az-light);
+}
+.item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.item-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--az-prim);
+}
+.item-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #EBF3FA;
+  color: var(--az-prim);
+  text-transform: uppercase;
+}
+.item-desc {
+  font-size: 13.5px;
+  color: var(--txt);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.item-tip {
+  font-size: 12.5px;
+  color: var(--txt-muted);
+  background: #F8FAFC;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--az-light);
+}
+
+/* Toast */
+#toastCopy {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1E293B;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 13.5px;
+  font-weight: 600;
+  z-index: 9999;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
 </style>
 </head>
 <body>
 
-<!-- ========================================================================= -->
-<!-- PÁGINA 1: TODAS AS UNIDADES DE PRESSÃO & QUEDA DE PRESSÃO                 -->
-<!-- ========================================================================= -->
-<div class="page">
-  <div>
-    <div class="header">
-      <div class="logo-area">
-        <div class="logo-box">ATEQ</div>
-        <div class="brand-sub">Manual de Referência Metrológica<br>Formação Técnica F620 • Raúl Garcia</div>
+<header>
+  <div class="header-inner">
+    <div class="header-title-box">
+      <h1>Guia de Unidades & Parâmetros F620</h1>
+      <span>Sistemas ATEQ Portugal · Ferramenta Técnica de Bolso</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs-nav">
+  <div class="tabs-nav-inner">
+    <button type="button" class="tab-btn active" onclick="switchTab('tabConverter')">🔄 Conversor Direto</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tabUnidades')">📖 Tabela de Unidades</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tabF620')">⚙️ Funções & Menus F620</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tabFormulas')">🧮 Fórmulas de Campo</button>
+  </div>
+</nav>
+
+<div class="main-wrap">
+
+  <!-- ABA 1: CONVERSOR INTERATIVO INSTANTÂNEO -->
+  <div id="tabConverter" class="tab-pane active">
+    
+    <!-- 1. Conversor de Pressão -->
+    <div class="panel-card">
+      <h2>1. Conversor de Pressão</h2>
+      <p class="subtitle">Escreve o valor e a unidade de origem para converter em tempo real:</p>
+
+      <div class="converter-grid">
+        <div class="field-box">
+          <label>Valor de Pressão</label>
+          <input type="number" id="pressVal" class="input-num" value="1.00" step="any" oninput="calcPressure()">
+        </div>
+        <div class="field-box">
+          <label>Unidade de Entrada</label>
+          <select id="pressUnit" class="select-unit" onchange="calcPressure()">
+            <option value="bar">Bar (bar)</option>
+            <option value="mbar">Milibar (mbar / hPa)</option>
+            <option value="Pa">Pascal (Pa)</option>
+            <option value="kPa">Quilopascal (kPa)</option>
+            <option value="MPa">Megapascal (MPa)</option>
+            <option value="psi">PSI (lbf/in²)</option>
+            <option value="Torr">Torr / mmHg</option>
+          </select>
+        </div>
       </div>
-      <div class="title-area">
-        <h1 class="doc-title">GUIA COMPLETO DE TODAS AS UNIDADES ATEQ</h1>
-        <div class="doc-meta">Documento de Consulta Oficial • Formando: <strong>Berto</strong> • Folha 1 de 4</div>
+
+      <div class="results-cards" id="pressResults">
+        <!-- Injetado via JS -->
+      </div>
+    </div>
+
+    <!-- 2. Conversor de Caudal & Fuga -->
+    <div class="panel-card">
+      <h2>2. Conversor de Fuga & Caudal</h2>
+      <p class="subtitle">Conversão direta entre unidades de estanqueidade volumétrica e industrial:</p>
+
+      <div class="converter-grid">
+        <div class="field-box">
+          <label>Valor de Fuga / Caudal</label>
+          <input type="number" id="flowVal" class="input-num" value="2.00" step="any" oninput="calcFlow()">
+        </div>
+        <div class="field-box">
+          <label>Unidade de Entrada</label>
+          <select id="flowUnit" class="select-unit" onchange="calcFlow()">
+            <option value="cm3_min">cm³/min (sccm / ml/min)</option>
+            <option value="cm3_h">cm³/h (fugas lentas / IP67)</option>
+            <option value="cm3_s">cm³/s (ciclo ultrarrápido)</option>
+            <option value="l_min">L/min (caudalímetro D620/G620)</option>
+            <option value="l_h">L/h (caudal industrial)</option>
+            <option value="mm3_s">mm³/s (norma farmacêutica)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="results-cards" id="flowResults">
+        <!-- Injetado via JS -->
+      </div>
+    </div>
+
+    <!-- 3. Relação Fuga ↔ Queda de Pressão (ΔP) com Volume Real -->
+    <div class="panel-card">
+      <h2>3. Relação ΔP (Pa/s) ↔ Fuga (cm³/min)</h2>
+      <p class="subtitle">Calcula a equivalência exata usando a constante universal dos gases ATEQ (0,0006):</p>
+
+      <div class="converter-grid">
+        <div class="field-box">
+          <label>Volume Livre da Peça (cm³ ou ml)</label>
+          <input type="number" id="relVol" class="input-num" value="150" step="any" oninput="calcRelation()">
+        </div>
+        <div class="field-box">
+          <label>Tempo de Teste (segundos)</label>
+          <input type="number" id="relTime" class="input-num" value="3.0" step="any" oninput="calcRelation()">
+        </div>
+      </div>
+
+      <div class="converter-grid">
+        <div class="field-box">
+          <label>Se a Fuga for (cm³/min)</label>
+          <input type="number" id="relFugaIn" class="input-num" value="1.00" step="any" oninput="calcFromFuga()">
+        </div>
+        <div class="field-box">
+          <label>Queda Resultante ΔP (Pa/s)</label>
+          <input type="number" id="relPasOut" class="input-num" value="" readonly style="background:#EBF3FA;">
+        </div>
+      </div>
+
+      <div style="font-size:12.5px;color:var(--txt-muted);line-height:1.4;">
+        💡 <strong>Fórmula de Bolso ATEQ:</strong> ΔP (Pa/s) = Fuga (cm³/min) ÷ [ 0,0006 × Volume (cm³) ]
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ABA 2: TABELA MESTRA DE UNIDADES ATEQ -->
+  <div id="tabUnidades" class="tab-pane">
+    <div class="panel-card">
+      <h2>Tabela Mestra de Unidades Oficiais ATEQ</h2>
+      <p class="subtitle">Guia metrológico das unidades utilizadas em equipamentos de pressão e fuga:</p>
+
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchUnidInput" class="search-input" placeholder="Pesquisar unidade (ex: bar, Pa, sccm, mbar, Torr)..." oninput="filterUnidades()">
+      </div>
+
+      <div class="pills-filter">
+        <button class="filter-pill active" onclick="setUnidCat('Todas', this)">Todas</button>
+        <button class="filter-pill" onclick="setUnidCat('Pressão', this)">Pressão</button>
+        <button class="filter-pill" onclick="setUnidCat('Fuga', this)">Fuga & Caudal</button>
+        <button class="filter-pill" onclick="setUnidCat('Vácuo', this)">Vácuo</button>
+      </div>
+
+      <div id="unidadesList">
+        <!-- Injetado via JS -->
       </div>
     </div>
   </div>
 
-  <div class="card-container">
-    <!-- BLOCO 1: TODAS AS UNIDADES DE PRESSÃO -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title"><span class="badge badge-blue">1. PRESSÃO</span> Pressão de Enchimento (Menu F620: <code>Unid. Pressão</code>)</div>
-        <span style="font-size:8pt; color:#64748b; font-weight:600;">bar • mbar • Pa • kPa • MPa • psi • Torr • mmH₂O</span>
-      </div>
-      
-      <div class="conv-strip">
-        <div class="conv-node"><strong>0,1 MPa</strong>Megapascal</div>
-        <div class="conv-arrow">=</div>
-        <div class="conv-node"><strong>1 bar</strong>Pressão Base</div>
-        <div class="conv-arrow">&times; 1.000 &rarr;</div>
-        <div class="conv-node"><strong>1.000 mbar</strong>100 kPa</div>
-        <div class="conv-arrow">&times; 100 &rarr;</div>
-        <div class="conv-node"><strong>100.000 Pa</strong>Pascal (SI)</div>
+  <!-- ABA 3: FUNÇÕES & MENUS F620 -->
+  <div id="tabF620" class="tab-pane">
+    <div class="panel-card">
+      <h2>Guia de Funções & Menus do F620</h2>
+      <p class="subtitle">Parametrização prática de bancada, menus WinAteq 300 e funções pneumáticas:</p>
+
+      <div class="search-bar-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchF620Input" class="search-input" placeholder="Pesquisar parâmetro (ex: AUTO VOL, FILL, REG, ZERO, DUMP)..." oninput="filterF620()">
       </div>
 
-      <table class="tbl">
-        <tr>
-          <th>Unidade</th>
-          <th>Símbolo</th>
-          <th>Equivalência Direta</th>
-          <th>Onde aparece nos manuais e clientes ATEQ?</th>
-        </tr>
-        <tr>
-          <td><strong>Bar</strong></td>
-          <td>bar (barg)</td>
-          <td>1 bar = 100 kPa = 1.000 mbar</td>
-          <td><strong>Unidade de trabalho padrão</strong> na Europa. Quase todos os clientes falam em bar.</td>
-        </tr>
-        <tr>
-          <td><strong>Milibar</strong></td>
-          <td>mbar (ou hPa)</td>
-          <td>1 mbar = 100 Pa = 0,001 bar</td>
-          <td><strong>Baixas pressões:</strong> tubos médicos, caixas plásticas, depósitos (50 a 500 mbar).</td>
-        </tr>
-        <tr>
-          <td><strong>Pascal</strong></td>
-          <td>Pa</td>
-          <td>1 Pa = 0,01 mbar = 1 N/m&sup2;</td>
-          <td>Unidade do Sistema Internacional (SI).</td>
-        </tr>
-        <tr>
-          <td><strong>Quilopascal</strong></td>
-          <td>kPa</td>
-          <td><strong>100 kPa = 1 bar</strong> (1 kPa = 10 mbar)</td>
-          <td><strong>Indústria Automóvel:</strong> especificações da Bosch, Continental, Denso.</td>
-        </tr>
-        <tr>
-          <td><strong>Megapascal</strong></td>
-          <td>MPa</td>
-          <td><strong>0,1 MPa = 1 bar</strong> (1 MPa = 10 bar)</td>
-          <td><strong>Gamas F620 / F6Class:</strong> 0,6 MPa (6 bar), 1,2 MPa (12 bar), 2,0 MPa (20 bar).</td>
-        </tr>
-        <tr>
-          <td><strong>PSI</strong></td>
-          <td>psi (lbf/in&sup2;)</td>
-          <td>1 bar &approx; <strong>14,5 psi</strong> (1 psi &approx; 69 mbar)</td>
-          <td><strong>Setor Aeronáutico</strong>, clientes americanos e sensores de pneus TPMS.</td>
-        </tr>
-        <tr>
-          <td><strong>Torr / mmHg</strong></td>
-          <td>Torr</td>
-          <td>1 Torr = 1 mmHg &approx; 1,333 mbar</td>
-          <td><strong>Aplicações de Vácuo:</strong> Bombas de vácuo Becker VT 4.4 e VT 4.8.</td>
-        </tr>
-        <tr>
-          <td><strong>mm Col. Água</strong></td>
-          <td>mmH₂O (mmCE)</td>
-          <td>1 mmH₂O &approx; 9,81 Pa &approx; 0,1 mbar</td>
-          <td>Queimadores a gás, esquentadores, contadores de gás domésticos.</td>
-        </tr>
-      </table>
-
-      <div class="callout">
-        <strong>💡 Regras de Conversão Rápida para o F620:</strong><br>
-        • De <strong>bar para mbar:</strong> multiplica por 1.000 &nbsp;|&nbsp; De <strong>bar para Pa:</strong> multiplica por 100.000<br>
-        • De <strong>kPa para bar:</strong> divide por 100 (ex: 250 kPa &divide; 100 = <strong>2,5 bar</strong>)<br>
-        • De <strong>MPa para bar:</strong> multiplica por 10 (ex: 0,8 MPa &times; 10 = <strong>8,0 bar</strong>)
+      <div class="pills-filter">
+        <button class="filter-pill active" onclick="setF620Cat('Todos', this)">Todos</button>
+        <button class="filter-pill" onclick="setF620Cat('Pneumática & Volume', this)">Pneumática & AUTO VOL</button>
+        <button class="filter-pill" onclick="setF620Cat('Reguladores', this)">Reguladores</button>
+        <button class="filter-pill" onclick="setF620Cat('Tempos & Ciclo', this)">Tempos & Ciclo</button>
+        <button class="filter-pill" onclick="setF620Cat('Funções Avançadas', this)">Funções Especiais</button>
       </div>
-    </div>
 
-    <!-- BLOCO 2: QUEDA DE PRESSÃO (ΔP) -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title"><span class="badge badge-red">2. QUEDA DE PRESSÃO</span> O que o Sensor Diferencial Piezoelétrico Mede</div>
-        <span style="font-size:8pt; color:#64748b; font-weight:600;">Pa • Pa/s • hPa</span>
-      </div>
-      <p style="margin:2px 0 4px 0;">O F620 mede a <strong>diferença de pressão (&Delta;P)</strong> que cai durante o tempo de teste. O sensor mede sempre em Pascais!</p>
-
-      <table class="tbl">
-        <tr>
-          <th>Grandeza no F620</th>
-          <th>Unidade</th>
-          <th>O que significa na prática?</th>
-        </tr>
-        <tr>
-          <td><strong>Queda Acumulada</strong></td>
-          <td><strong>Pa</strong> (Pascal)</td>
-          <td>A perda total de pressão registada no fim do tempo de TEST (ex: caiu 45 Pa).</td>
-        </tr>
-        <tr>
-          <td><strong>Taxa de Queda</strong></td>
-          <td><strong>Pa/s</strong> (Pascal/segundo)</td>
-          <td><strong>A unidade nativa da ATEQ:</strong> velocidade a que a pressão cai por segundo.</td>
-        </tr>
-        <tr>
-          <td><strong>Hectopascal</strong></td>
-          <td><strong>hPa</strong> (= 100 Pa)</td>
-          <td>1 hPa = 1 mbar. Surge em relatórios de fugas padrão e calibrações ENAC.</td>
-        </tr>
-      </table>
-
-      <div class="callout callout-gold">
-        <strong>⚠️ As 3 Escalas do Sensor F620 (Verificar no arranque do ecrã):</strong><br>
-        • <strong>50 Pa (0,5 mbar):</strong> Resolução de 0,1 Pa &rarr; Micro-fugas de alta precisão (peças médicas, baterias seladas).<br>
-        • <strong>500 Pa (5 mbar):</strong> Resolução de 1 Pa &rarr; <strong>Padrão industrial (90% dos casos)</strong>.<br>
-        • <strong>5.000 Pa (50 mbar):</strong> Resolução de 10 Pa &rarr; Grandes volumes ou peças plásticas flexíveis.
+      <div id="f620List">
+        <!-- Injetado via JS -->
       </div>
     </div>
   </div>
 
-  <div class="footer-bar">
-    <span>ATEQ Portugal • Guia Metrológico Completo</span>
-    <span>Série F620 • Página 1 de 4: Todas as Unidades de Pressão & Queda</span>
+  <!-- ABA 4: FÓRMULAS & REGRAS DE CAMPO -->
+  <div id="tabFormulas" class="tab-pane">
+    
+    <div class="panel-card">
+      <h2>Regras de Bolso para o Técnico ATEQ</h2>
+      <p class="subtitle">As equações e procedimentos indispensáveis na oficina e em clientes:</p>
+
+      <div class="item-card">
+        <div class="item-header">
+          <span class="item-title">1. Conversão Rápida de Pressão de Cabeça</span>
+          <span class="item-badge">Regra de Ouro</span>
+        </div>
+        <div class="item-desc">
+          • <strong>De bar para mbar:</strong> Multiplica por 1.000 (ex: 0,5 bar = 500 mbar)<br>
+          • <strong>De bar para Pa:</strong> Multiplica por 100.000 (ex: 0,01 bar = 1.000 Pa)<br>
+          • <strong>De kPa para bar:</strong> Divide por 100 (ex: 250 kPa ÷ 100 = 2,5 bar)<br>
+          • <strong>De MPa para bar:</strong> Multiplica por 10 (ex: 0,6 MPa = 6 bar | 1,6 MPa = 16 bar)
+        </div>
+      </div>
+
+      <div class="item-card">
+        <div class="item-header">
+          <span class="item-title">2. A Relação Fundamental Fuga ↔ Queda de Pressão</span>
+          <span class="item-badge">Fórmula Física</span>
+        </div>
+        <div class="item-desc">
+          <strong>ΔP (Pa/s) = Fuga (cm³/min) ÷ [ 0,0006 × Volume (cm³) ]</strong><br>
+          <strong>Fuga (cm³/min) = 0,0006 × Volume (cm³) × ΔP (Pa/s)</strong><br><br>
+          <em>O valor <strong>0,0006</strong> é a constante universal dos gases ATEQ derivada de: (1 min / 60 s) × (100.000 Pa / 1.000 cm³).</em>
+        </div>
+        <div class="item-tip">
+          Exemplo: Peça de 100 cm³ com fuga limite de 1,2 cm³/min → ΔP = 1,2 ÷ (0,0006 × 100) = <strong>20 Pa/s</strong>.
+        </div>
+      </div>
+
+      <div class="item-card">
+        <div class="item-header">
+          <span class="item-title">3. Medição de Volume com Calibrador CDF 60</span>
+          <span class="item-badge">Calibração</span>
+        </div>
+        <div class="item-desc">
+          Determinação matemática do volume real da peça ligando o CDF 60 em derivação "T":<br>
+          <strong>Volume Real (cm³) = Fuga Nominal CDF 60 ÷ [ 0,0006 × (ΔP_com_CDF - ΔP_sem_CDF) ]</strong>
+        </div>
+        <div class="item-tip">
+          Procedimento: 1. Fazer teste normal na peça (ler ΔP1) | 2. Abrir torneira do CDF 60 (ler ΔP2) | 3. Aplicar a fórmula.
+        </div>
+      </div>
+
+      <div class="item-card">
+        <div class="item-header">
+          <span class="item-title">4. Sequência de 4 Passos Obrigatória na Bancada (Reset F620)</span>
+          <span class="item-badge">Procedimento SAV</span>
+        </div>
+        <div class="item-desc">
+          1. <strong>Menu SERVICE > RESET PARA:</strong> Repõe os parâmetros limpos de fábrica.<br>
+          2. <strong>Menu USB > Save Parameters:</strong> Grava imediatamente a cópia de segurança na pen USB.<br>
+          3. <strong>Configuração:</strong> Ativar LANGUAGE (Português), AUTO VOL e ELEC. REG. conforme a aplicação.<br>
+          4. <strong>Menu USB > Save Parameters:</strong> Grava o ficheiro de backup final com número de série da máquina.
+        </div>
+      </div>
+
+    </div>
+
   </div>
+
 </div>
 
-<!-- ========================================================================= -->
-<!-- PÁGINA 2: TODAS AS UNIDADES DE VOLUME & FUGA / CAUDAL                     -->
-<!-- ========================================================================= -->
-<div class="page">
-  <div>
-    <div class="header">
-      <div class="logo-area">
-        <div class="logo-box">ATEQ</div>
-        <div class="brand-sub">Manual de Referência Metrológica<br>Formação Técnica F620 • Raúl Garcia</div>
-      </div>
-      <div class="title-area">
-        <h1 class="doc-title">GUIA COMPLETO DE TODAS AS UNIDADES ATEQ</h1>
-        <div class="doc-meta">Documento de Consulta Oficial • Formando: <strong>Berto</strong> • Folha 2 de 4</div>
-      </div>
-    </div>
-  </div>
+<div id="toastCopy">Valor copiado para a área de transferência!</div>
 
-  <div class="card-container">
-    <!-- BLOCO 3: TODAS AS UNIDADES DE VOLUME -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title"><span class="badge badge-teal">3. VOLUME</span> Capacidade do Circuito (Menu F620: <code>Unid. Volume</code>)</div>
-        <span style="font-size:8pt; color:#64748b; font-weight:600;">cm³ • cc • mL • mm³ • L • dm³ • m³</span>
-      </div>
+<script>
+// Dados das Unidades ATEQ
+const UNIDADES_DATA = [
+  {
+    cat: "Pressão",
+    nome: "Bar",
+    simb: "bar",
+    equiv: "1 bar = 100.000 Pa = 1.000 mbar = 14,5038 psi",
+    onde: "Unidade padrão do F620 e da indústria europeia (enchimento geral).",
+    dica: "A pressão de linha de fábrica deve estar pelo menos 1 bar acima da pressão máxima de teste."
+  },
+  {
+    cat: "Pressão",
+    nome: "Milibar",
+    simb: "mbar / hPa",
+    equiv: "1 mbar = 100 Pa = 0,001 bar",
+    onde: "Embalagens médicas, tubagens de vácuo, ensaios em campânula.",
+    dica: "Equivalente numérico exato a 1 hPa (hectopascal)."
+  },
+  {
+    cat: "Pressão",
+    nome: "Pascal",
+    simb: "Pa",
+    equiv: "1 Pa = 0,01 mbar = 0,00001 bar = 1 N/m²",
+    onde: "Unidade do Sistema Internacional (SI) e medição de sensores piezorresistivos.",
+    dica: "Usado na queda de pressão instantânea (ex: 25 Pa)."
+  },
+  {
+    cat: "Pressão",
+    nome: "Quilopascal",
+    simb: "kPa",
+    equiv: "1 kPa = 1.000 Pa = 10 mbar = 0,01 bar",
+    onde: "Especificações de clientes automóveis (Continental, Bosch, Renault).",
+    dica: "Dividir o valor em kPa por 100 para introduzir em bar no F620 (ex: 200 kPa = 2,0 bar)."
+  },
+  {
+    cat: "Pressão",
+    nome: "Megapascal",
+    simb: "MPa",
+    equiv: "1 MPa = 1.000.000 Pa = 10 bar",
+    onde: "Classificação de gamas de pressão de fábrica dos captadores (0,6 MPa = 6 bar).",
+    dica: "Multiplicar sempre por 10 para obter o valor em bar."
+  },
+  {
+    cat: "Pressão",
+    nome: "Pounds per Square Inch",
+    simb: "psi",
+    equiv: "1 psi = 68,9476 mbar = 0,0689 bar | 1 bar ≈ 14,5 psi",
+    onde: "Mercado americano (Ford, General Motors) e testes aeroespaciais.",
+    dica: "Multiplicar bar por 14,5 para uma aproximação rápida de cabeça."
+  },
+  {
+    cat: "Fuga",
+    nome: "Pascal por Segundo (Queda de Pressão)",
+    simb: "Pa/s",
+    equiv: "Queda de pressão no sensor diferencial durante o tempo de teste.",
+    onde: "A unidade mestra de rejeição nos aparelhos ATEQ F620 e F6Class.",
+    dica: "É independente da temperatura desde que o tempo de estabilização seja bem dimensionado."
+  },
+  {
+    cat: "Fuga",
+    nome: "Centímetro Cúbico por Minuto (sccm)",
+    simb: "cm³/min / sccm",
+    equiv: "1 cm³/min = 1 ml/min = 60 cm³/h = 0,001 L/min",
+    onde: "Unidade padrão de calibração de fugas padrão e indústria automóvel.",
+    dica: "sccm (Standard cm³/min) refere-se a 20ºC e 1013 hPa."
+  },
+  {
+    cat: "Fuga",
+    nome: "Centímetro Cúbico por Hora",
+    simb: "cm³/h",
+    equiv: "1 cm³/h = (1/60) cm³/min ≈ 0,0167 cm³/min",
+    onde: "Peças estandardizadas de proteção IP67, faróis e componentes eletrónicos selados.",
+    dica: "Dividir o valor de cm³/h por 60 para obter a tolerância em cm³/min no calibrador."
+  },
+  {
+    cat: "Caudal",
+    nome: "Litro por Minuto",
+    simb: "L/min",
+    equiv: "1 L/min = 1.000 cm³/min = 60 L/h",
+    onde: "Instrumentos de caudal mássico contínuo D620 e G620.",
+    dica: "Usado para verificar desobstrução de tubos de escape, cateteres e queimadores a gás."
+  },
+  {
+    cat: "Vácuo",
+    nome: "Torr / Milímetro de Mercúrio",
+    simb: "Torr / mmHg",
+    equiv: "1 Torr = 1 mmHg = 1,33322 mbar",
+    onde: "Vácuo industrial e espectrometria de hélio (MS40GT).",
+    dica: "760 Torr corresponde à pressão atmosférica normal."
+  }
+];
 
-      <div class="conv-strip">
-        <div class="conv-node"><strong>1 Litro</strong>1 dm³</div>
-        <div class="conv-arrow">&times; 1.000 &rarr;</div>
-        <div class="conv-node"><strong>1.000 cm³</strong>1.000 cc</div>
-        <div class="conv-arrow">= exatamente</div>
-        <div class="conv-node"><strong>1.000 mL</strong>Mililitros</div>
-        <div class="conv-arrow">&times; 1.000 &rarr;</div>
-        <div class="conv-node"><strong>1.000.000 mm³</strong>Milímetros cúbicos</div>
-      </div>
+// Dados dos Parâmetros F620
+const F620_DATA = [
+  {
+    cat: "Pneumática & Volume",
+    nome: "AUTO VOL (Ciclo de Volume Automático)",
+    tipo: "CONFIGURATION > PNEUMATIC",
+    desc: "Ativa a rotina do F620 para determinar matematicamente o volume livre da peça antes do ensaio, calculando a expansão interna pela lei de Boyle-Mariotte.",
+    dica: "Obrigatório ativar se quiseres que o F620 apresente os resultados diretamente em cm³/min a partir de Pa/s sem tabela manual."
+  },
+  {
+    cat: "Pneumática & Volume",
+    nome: "SAVE VOLUME",
+    tipo: "CONFIGURATION > PNEUMATIC",
+    desc: "Quando ativado, grava permanentemente na memória do programa o volume determinado durante o ciclo de Auto-Volume.",
+    dica: "Se estiver desmarcado, cada vez que a máquina reiniciar terás de refazer o cálculo de volume."
+  },
+  {
+    cat: "Pneumática & Volume",
+    nome: "PRESSU. VOL (Volume de Pressurização)",
+    tipo: "CONFIGURATION > PNEUMATIC",
+    desc: "Capacidade cúbica do reservatório interno do F620 utilizado para transferir ar para a peça. Valor calibrado de fábrica.",
+    dica: "CUIDADO: Se este valor estiver a 0.00 cm³, o F620 não consegue calcular o volume da peça!"
+  },
+  {
+    cat: "Reguladores",
+    nome: "ELEC. REG. (Regulador Eletrónico Proporcional)",
+    tipo: "CONFIGURATION > REGULATORS",
+    desc: "Permite à CPU do F620 ajustar automaticamente a pressão de ensaio programa a programa através de uma eletroválvula proporcional com controlo PID.",
+    dica: "Definir em 'All' para controlo automático de todos os canais de regulação."
+  },
+  {
+    cat: "Tempos & Ciclo",
+    nome: "FILL TIME (Tempo de Enchimento)",
+    tipo: "PROGRAM > PARAMETERS",
+    desc: "Tempo durante o qual as válvulas de entrada permanecem abertas para pressurizar o interior da peça até à pressão de teste desejada.",
+    dica: "Regra prática: Peças pequenas (<50 cm³): 1.5 a 3.0s | Peças médias (100-500 cm³): 3.0 a 6.0s | Peças plásticas: dar tempo extra."
+  },
+  {
+    cat: "Tempos & Ciclo",
+    nome: "STABILIZATION (Tempo de Estabilização)",
+    tipo: "PROGRAM > PARAMETERS",
+    desc: "Tempo de repouso após o fecho da alimentação para permitir dissipação do efeito adiabático (aquecimento térmico pelo ar comprimido).",
+    dica: "Peças metálicas (alumínio): estabilizam depressa | Peças plásticas ou de borracha: requerem tempos de estabilização longos (4 a 8s)."
+  },
+  {
+    cat: "Tempos & Ciclo",
+    nome: "DUMP TIME (Tempo de Descarga)",
+    tipo: "PROGRAM > PARAMETERS",
+    desc: "Tempo durante o qual a válvula de escape permanece aberta para despressurizar a peça para a atmosfera em segurança antes de abrir o conector.",
+    dica: "Mínimo 1.0s. Se desconectares a peça com pressão residual podes danificar a vedação do conector pneumático."
+  },
+  {
+    cat: "Funções Avançadas",
+    nome: "PIEZO AUTO AZ (Auto-Zero do Sensor)",
+    tipo: "PROGRAM > FUNCTIONS",
+    desc: "Efetua uma leitura de zero eletrónico no sensor piezoelétrico e no captador diferencial no início de cada ciclo, compensando variações térmicas.",
+    dica: "Manter sempre ATIVADO para evitar derivas de medição entre o turno da manhã e da tarde."
+  },
+  {
+    cat: "Funções Avançadas",
+    nome: "STD CONDITIONS (Condições Normais sccm)",
+    tipo: "PROGRAM > FUNCTIONS",
+    desc: "Normaliza o caudal de fuga lido para as condições de referência metrológica oficiais: 20ºC de temperatura e 1.013 hPa de pressão atmosférica.",
+    dica: "Exigido em auditorias ISO 9001 e normas do setor automóvel."
+  },
+  {
+    cat: "Funções Avançadas",
+    nome: "FILTER (Filtro Digital de Sinal)",
+    tipo: "PROGRAM > FUNCTIONS",
+    desc: "Aplica uma média móvel digital às leituras do sensor diferencial para amortecer vibrações mecânicas da linha de produção.",
+    dica: "Usar filtro nível 1 ou 2 se a linha tiver transportadores vibratórios ou prensas adjacentes."
+  },
+  {
+    cat: "Funções Avançadas",
+    nome: "BLOW OFF (Sopro de Limpeza)",
+    tipo: "PROGRAM > FUNCTIONS",
+    desc: "Injeta um pulso de ar comprimido reverso no final do teste para expelir poeiras, óleo de maquinação ou resíduos do conector.",
+    dica: "Muito útil em peças maquinadas ou fundição injetada de alumínio."
+  }
+];
 
-      <table class="tbl">
-        <tr>
-          <th>Unidade</th>
-          <th>Símbolo</th>
-          <th>Equivalência para o F620</th>
-          <th>Aplicação Prática</th>
-        </tr>
-        <tr>
-          <td><strong>Centímetro Cúbico</strong></td>
-          <td>cm³ (ou cc)</td>
-          <td><strong>1 cm³</strong> (unidade base ATEQ)</td>
-          <td>Unidade padrão que o F620 pede no parâmetro <code>Volume Teste</code>.</td>
-        </tr>
-        <tr>
-          <td><strong>Mililitro</strong></td>
-          <td>mL (ou ml)</td>
-          <td><strong>1 mL = 1 cm³</strong> (rigorosamente igual)</td>
-          <td>Medicina, farmacêutica, seringas, tubagens de infusão.</td>
-        </tr>
-        <tr>
-          <td><strong>Litro</strong></td>
-          <td>L (ou l)</td>
-          <td><strong>1 L = 1.000 cm³</strong></td>
-          <td>Depósitos de combustível, caixas de bateria EV, motores, cárteres.</td>
-        </tr>
-        <tr>
-          <td><strong>Decímetro Cúbico</strong></td>
-          <td>dm³</td>
-          <td><strong>1 dm³ = 1 Litro = 1.000 cm³</strong></td>
-          <td>Desenhos técnicos de engenharia mecânica alemã/francesa.</td>
-        </tr>
-        <tr>
-          <td><strong>Milímetro Cúbico</strong></td>
-          <td>mm³</td>
-          <td>1 mm³ = 0,001 cm³ (1 cm³ = 1.000 mm³)</td>
-          <td>Micro-sensores eletrónicos, válvulas piezoelétricas, relógios.</td>
-        </tr>
-        <tr>
-          <td><strong>Metro Cúbico</strong></td>
-          <td>m³</td>
-          <td>1 m³ = 1.000 L = 1.000.000 cm³</td>
-          <td>Consumo geral de ar comprimido da fábrica ou salas limpas.</td>
-        </tr>
-      </table>
+// 1. CÁLCULOS DO CONVERSOR
+function calcPressure() {
+  const val = parseFloat(document.getElementById("pressVal").value) || 0;
+  const unit = document.getElementById("pressUnit").value;
 
-      <div class="callout callout-gold">
-        <strong>📌 Regra do Raúl Garcia (Volume Interno do Equipamento):</strong><br>
-        Nos cálculos teóricos de bancada, deves adicionar sempre <strong>15 cm³</strong> ao volume da peça:  
-        <div style="text-align:center; font-size:9.5pt; font-weight:800; color:#003366; margin:2px 0;">
-          V<sub>total</sub> = V<sub>peça</sub> + 15 cm³
+  // Normalizar para bar
+  let bar = 0;
+  if (unit === "bar") bar = val;
+  else if (unit === "mbar") bar = val / 1000;
+  else if (unit === "Pa") bar = val / 100000;
+  else if (unit === "kPa") bar = val / 100;
+  else if (unit === "MPa") bar = val * 10;
+  else if (unit === "psi") bar = val / 14.50377;
+  else if (unit === "Torr") bar = val / 750.062;
+
+  const res = [
+    { name: "Bar (bar)", val: bar.toFixed(4) },
+    { name: "Milibar (mbar)", val: (bar * 1000).toFixed(2) },
+    { name: "Pascal (Pa)", val: Math.round(bar * 100000) },
+    { name: "Quilopascal (kPa)", val: (bar * 100).toFixed(2) },
+    { name: "Megapascal (MPa)", val: (bar / 10).toFixed(4) },
+    { name: "PSI (lbf/in²)", val: (bar * 14.50377).toFixed(3) },
+    { name: "Torr / mmHg", val: (bar * 750.062).toFixed(2) }
+  ];
+
+  let html = "";
+  res.forEach(r => {
+    html += `
+      <div class="res-card" onclick="copyVal('${r.val}', '${r.name}')">
+        <div class="res-card-top">
+          <span class="res-unit-name">${r.name}</span>
+          <span class="res-copy-hint">Copiar 📋</span>
         </div>
-        Estes 15 cm³ correspondem à tubagem interna e ao bloco de válvulas pneumáticas do F620!
+        <div class="res-value">${r.val}</div>
       </div>
-    </div>
+    `;
+  });
+  document.getElementById("pressResults").innerHTML = html;
+}
 
-    <!-- BLOCO 4: TODAS AS UNIDADES DE FUGA / CAUDAL -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title"><span class="badge badge-amber">4. FUGA & CAUDAL</span> O Limite do Cliente (Menu F620: <code>Unidade Fuga</code>)</div>
-        <span style="font-size:8pt; color:#64748b; font-weight:600;">cm³/min • sccm • cm³/h • mm³/s • L/min • L/h • mbar·L/s • atm·cc/s</span>
-      </div>
+function calcFlow() {
+  const val = parseFloat(document.getElementById("flowVal").value) || 0;
+  const unit = document.getElementById("flowUnit").value;
 
-      <table class="tbl">
-        <tr>
-          <th>Unidade de Fuga</th>
-          <th>Símbolo</th>
-          <th>Como passar para cm³/min?</th>
-          <th>Setor / Contexto na ATEQ</th>
-        </tr>
-        <tr>
-          <td><strong>Centímetro cúbico/min</strong></td>
-          <td>cm³/min (cm³/mn, cc/min)</td>
-          <td><strong>Unidade Base ATEQ</strong> (não convertes nada!)</td>
-          <td>Aparelhos Série F (F620, F6Class, F520). Indústria em geral.</td>
-        </tr>
-        <tr>
-          <td><strong>sccm (Standard cc/min)</strong></td>
-          <td>sccm</td>
-          <td><strong>1 sccm = 1 cm³/min</strong> (exatamente igual)</td>
-          <td>Semicondutores, baterias EV, eletrónica (à pressão/temp standard).</td>
-        </tr>
-        <tr>
-          <td><strong>Centímetro cúbico/hora</strong></td>
-          <td>cm³/h (cc/h)</td>
-          <td><strong>Divide por 60</strong> (ex: 120 cm³/h &divide; 60 = 2 cm³/min)</td>
-          <td><strong>Indústria Automóvel:</strong> Renault, Stellantis, VW, Bontaz.</td>
-        </tr>
-        <tr>
-          <td><strong>Milímetro cúbico/seg</strong></td>
-          <td>mm³/s</td>
-          <td><strong>Multiplica por 0,06</strong> (ex: 50 mm³/s &times; 0,06 = 3 cm³/min)</td>
-          <td>Relojoaria, conectores estanques IP68, micro-fugas.</td>
-        </tr>
-        <tr>
-          <td><strong>Litros por minuto</strong></td>
-          <td>L/min (l/min, slm)</td>
-          <td><strong>Multiplica por 1.000</strong> (ex: 2 L/min = 2.000 cm³/min)</td>
-          <td><strong>Caudalometria:</strong> Aparelhos Série D (D620, DClass, calibrador CDF).</td>
-        </tr>
-        <tr>
-          <td><strong>Litros por hora</strong></td>
-          <td>L/h (l/h)</td>
-          <td><strong>Multiplica por 16,67</strong> (ou &times; 1.000 &divide; 60)</td>
-          <td>Filtros industriais, bombas de combustível, caudal contínuo.</td>
-        </tr>
-        <tr>
-          <td><strong>mbar · Litro / segundo</strong></td>
-          <td>mbar·L/s</td>
-          <td><strong>Multiplica por 60</strong> (1 mbar·L/s &approx; 59,2 cm³/min)</td>
-          <td><strong>Gama H:</strong> Deteção de fugas por gás traçador Hélio / Azoto e vácuo.</td>
-        </tr>
-        <tr>
-          <td><strong>atm · cc / segundo</strong></td>
-          <td>atm·cc/s</td>
-          <td><strong>Multiplica por 60</strong> (1 atm·cc/s &approx; 60 sccm)</td>
-          <td>Refrigeração, ar condicionado, compressores herméticos.</td>
-        </tr>
-      </table>
+  // Normalizar para cm3/min
+  let cm3_min = 0;
+  if (unit === "cm3_min") cm3_min = val;
+  else if (unit === "cm3_h") cm3_min = val / 60;
+  else if (unit === "cm3_s") cm3_min = val * 60;
+  else if (unit === "l_min") cm3_min = val * 1000;
+  else if (unit === "l_h") cm3_min = (val * 1000) / 60;
+  else if (unit === "mm3_s") cm3_min = (val / 1000) * 60;
 
-      <div class="callout">
-        <strong>💡 Tabela de Bolso Automóvel (cm³/h &harr; cm³/min):</strong><br>
-        30 cm³/h = <strong>0,5 cm³/min</strong> &nbsp;|&nbsp; 60 cm³/h = <strong>1,0 cm³/min</strong> &nbsp;|&nbsp; 120 cm³/h = <strong>2,0 cm³/min</strong> &nbsp;|&nbsp; 300 cm³/h = <strong>5,0 cm³/min</strong>
-      </div>
-    </div>
-  </div>
+  const res = [
+    { name: "cm³/min (sccm)", val: cm3_min.toFixed(3) },
+    { name: "cm³/h", val: (cm3_min * 60).toFixed(2) },
+    { name: "cm³/s", val: (cm3_min / 60).toFixed(4) },
+    { name: "L/min", val: (cm3_min / 1000).toFixed(4) },
+    { name: "L/h", val: ((cm3_min * 60) / 1000).toFixed(3) },
+    { name: "mm³/s", val: ((cm3_min * 1000) / 60).toFixed(2) }
+  ];
 
-  <div class="footer-bar">
-    <span>ATEQ Portugal • Guia Metrológico Completo</span>
-    <span>Série F620 • Página 2 de 4: Todas as Unidades de Volume & Fuga</span>
-  </div>
-</div>
-
-<!-- ========================================================================= -->
-<!-- PÁGINA 3: A FÓRMULA OFICIAL & TABELA MESTRA DE CONVERSÃO                  -->
-<!-- ========================================================================= -->
-<div class="page">
-  <div>
-    <div class="header">
-      <div class="logo-area">
-        <div class="logo-box">ATEQ</div>
-        <div class="brand-sub">Manual de Referência Metrológica<br>Formação Técnica F620 • Raúl Garcia</div>
-      </div>
-      <div class="title-area">
-        <h1 class="doc-title">GUIA COMPLETO DE TODAS AS UNIDADES ATEQ</h1>
-        <div class="doc-meta">Documento de Consulta Oficial • Formando: <strong>Berto</strong> • Folha 3 de 4</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card-container">
-    <!-- BLOCO 5: A FÓRMULA OFICIAL DA ATEQ -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title"><span class="badge badge-purple">5. A FÓRMULA</span> A Relação Fundamental Fuga &harr; Queda (&Delta;P)</div>
-        <span style="font-size:8pt; color:#64748b; font-weight:600;">Manual F620 Pág. 31 / Notas do Raúl</span>
-      </div>
-
-      <div class="formula-box">
-        <div class="eq">Fuga (cm³/min) = 0,0006 &times; Volume (cm³) &times; &Delta;P (Pa/s)</div>
-        <div class="sub">Fórmula Inversa: &nbsp; &Delta;P (Pa/s) = Fuga / (0,0006 &times; Volume)</div>
-      </div>
-
-      <div class="callout callout-green" style="font-size:8.5pt; line-height:1.4;">
-        <strong>De onde nasce o número 0,0006? (A explicação do Raúl Garcia):</strong><br>
-        • Nas notas do Raúl, a fórmula aparece escrita como: <strong>F = 6 &times; 10⁻⁴ &times; V &times; &Delta;P</strong>. Ora, 6 &times; 10⁻⁴ é exatamente <strong>0,0006</strong>!<br>
-        • A física explica: O tempo de teste é em <strong>segundos</strong>, mas a fuga é expressa em <strong>minutos</strong> (60 s). A pressão atmosférica padrão de referência é <strong>100.000 Pa</strong> (1 bar).<br>
-        <div style="text-align:center; font-size:10.5pt; font-weight:900; color:#003366; margin:3px 0;">
-          Fator = 60 segundos / 100.000 Pa = 0,0006 !
+  let html = "";
+  res.forEach(r => {
+    html += `
+      <div class="res-card" onclick="copyVal('${r.val}', '${r.name}')">
+        <div class="res-card-top">
+          <span class="res-unit-name">${r.name}</span>
+          <span class="res-copy-hint">Copiar 📋</span>
         </div>
-        É uma constante física universal do ar à temperatura ambiente!
+        <div class="res-value">${r.val}</div>
       </div>
-    </div>
+    `;
+  });
+  document.getElementById("flowResults").innerHTML = html;
+}
 
-    <!-- BLOCO 6: TABELA MESTRA DE TODAS AS CONVERSÕES -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title"><span class="badge badge-blue">6. TABELA MESTRA</span> O que Inserir na Calculadora para Converter?</div>
-        <span style="font-size:8pt; color:#64748b; font-weight:600;">A Cábula Oficial do Técnico de Campo</span>
-      </div>
+function calcRelation() {
+  calcFromFuga();
+}
 
-      <table class="tbl" style="font-size:8.5pt;">
-        <tr>
-          <th>Grandeza</th>
-          <th>Se o Cliente te der...</th>
-          <th>O F620 precisa de...</th>
-          <th>O que fazes na Calculadora?</th>
-        </tr>
-        <tr>
-          <td rowspan="5"><strong>Pressão</strong></td>
-          <td>bar</td>
-          <td>mbar</td>
-          <td><strong>Multiplica por 1.000</strong> (ex: 4 bar &times; 1000 = 4.000 mbar)</td>
-        </tr>
-        <tr>
-          <td>bar</td>
-          <td>Pa</td>
-          <td><strong>Multiplica por 100.000</strong> (ex: 2 bar &times; 100.000 = 200.000 Pa)</td>
-        </tr>
-        <tr>
-          <td>mbar</td>
-          <td>Pa</td>
-          <td><strong>Multiplica por 100</strong> (ex: 35 mbar &times; 100 = 3.500 Pa)</td>
-        </tr>
-        <tr>
-          <td>kPa</td>
-          <td>bar</td>
-          <td><strong>Divide por 100</strong> (ex: 600 kPa &divide; 100 = 6,0 bar)</td>
-        </tr>
-        <tr>
-          <td>MPa</td>
-          <td>bar</td>
-          <td><strong>Multiplica por 10</strong> (ex: 1,6 MPa &times; 10 = 16,0 bar)</td>
-        </tr>
-        <tr>
-          <td rowspan="3"><strong>Volume</strong></td>
-          <td>Litros (L)</td>
-          <td>cm³</td>
-          <td><strong>Multiplica por 1.000</strong> (ex: 1,5 L &times; 1000 = 1.500 cm³)</td>
-        </tr>
-        <tr>
-          <td>Mililitros (mL)</td>
-          <td>cm³</td>
-          <td><strong>Não convertes nada!</strong> 1 mL = 1 cm³ (ex: 250 mL = 250 cm³)</td>
-        </tr>
-        <tr>
-          <td>mm³</td>
-          <td>cm³</td>
-          <td><strong>Divide por 1.000</strong> (ex: 5.000 mm³ &divide; 1000 = 5 cm³)</td>
-        </tr>
-        <tr>
-          <td rowspan="4"><strong>Fuga</strong></td>
-          <td>cm³/h (cc/h)</td>
-          <td>cm³/min</td>
-          <td><strong>Divide por 60</strong> (ex: 180 cm³/h &divide; 60 = 3 cm³/min)</td>
-        </tr>
-        <tr>
-          <td>sccm</td>
-          <td>cm³/min</td>
-          <td><strong>Não convertes nada!</strong> 1 sccm = 1 cm³/min</td>
-        </tr>
-        <tr>
-          <td>L/min</td>
-          <td>cm³/min</td>
-          <td><strong>Multiplica por 1.000</strong> (ex: 0,04 L/min &times; 1000 = 40 cm³/min)</td>
-        </tr>
-        <tr>
-          <td>mm³/s</td>
-          <td>cm³/min</td>
-          <td><strong>Multiplica por 0,06</strong> (ex: 100 mm³/s &times; 0,06 = 6 cm³/min)</td>
-        </tr>
-      </table>
-    </div>
-  </div>
+function calcFromFuga() {
+  const vol = parseFloat(document.getElementById("relVol").value) || 1;
+  const fuga = parseFloat(document.getElementById("relFugaIn").value) || 0;
+  // deltaP = Q / (0.0006 * V)
+  const pas = fuga / (0.0006 * vol);
+  document.getElementById("relPasOut").value = pas.toFixed(1) + " Pa/s";
+}
 
-  <div class="footer-bar">
-    <span>ATEQ Portugal • Guia Metrológico Completo</span>
-    <span>Série F620 • Página 3 de 4: Origem da Fórmula & Tabela Mestra</span>
-  </div>
-</div>
+function copyVal(val, label) {
+  navigator.clipboard.writeText(val).then(() => {
+    const t = document.getElementById("toastCopy");
+    t.innerText = `Copiado: ${val} (${label})`;
+    t.style.display = "block";
+    setTimeout(() => { t.style.display = "none"; }, 2000);
+  }).catch(() => {});
+}
 
-<!-- ========================================================================= -->
-<!-- PÁGINA 4: GRANDEZAS ELÉTRICAS/PNEUMÁTICAS & CASOS REAIS                   -->
-<!-- ========================================================================= -->
-<div class="page">
-  <div>
-    <div class="header">
-      <div class="logo-area">
-        <div class="logo-box">ATEQ</div>
-        <div class="brand-sub">Manual de Referência Metrológica<br>Formação Técnica F620 • Raúl Garcia</div>
-      </div>
-      <div class="title-area">
-        <h1 class="doc-title">GUIA COMPLETO DE TODAS AS UNIDADES ATEQ</h1>
-        <div class="doc-meta">Documento de Consulta Oficial • Formando: <strong>Berto</strong> • Folha 4 de 4</div>
-      </div>
-    </div>
-  </div>
+// 2. NAVEGAÇÃO DE ABAS
+function switchTab(tabId) {
+  document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
 
-  <div class="card-container">
-    <!-- BLOCO 7: OUTRAS GRANDEZAS DE MANUTENÇÃO E ACESSÓRIOS -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title"><span class="badge badge-purple">7. OFICINA & MANUTENÇÃO</span> Outras Unidades Encontradas nas Pastas ATEQ</div>
-        <span style="font-size:8pt; color:#64748b; font-weight:600;">Eletricidade • Tubagens • Filtração • Automação</span>
-      </div>
+  const target = document.getElementById(tabId);
+  if (target) target.classList.add("active");
 
-      <table class="tbl" style="font-size:8pt;">
-        <tr>
-          <th>Grandeza</th>
-          <th>Valores / Unidades</th>
-          <th>Onde encontras e para que serve?</th>
-        </tr>
-        <tr>
-          <td><strong>Tubagem de Teste</strong></td>
-          <td><strong>4/6 mm</strong> &bull; <strong>6/8 mm</strong> &bull; 2.5/4 mm</td>
-          <td>Diâmetro interior/exterior das mangueiras de calibração e teste Stäubli.</td>
-        </tr>
-        <tr>
-          <td><strong>Alimentação Elétrica</strong></td>
-          <td><strong>24 VDC</strong> (corrente contínua)</td>
-          <td>Tensão de comando do F620, módulos de E/S, PLC e placas de relés.</td>
-        </tr>
-        <tr>
-          <td><strong>Sinal de Regulação</strong></td>
-          <td><strong>0 a 10 V</strong> (ou 4 a 20 mA)</td>
-          <td>Sinal analógico que controla o regulador de pressão eletrónico <strong>SMC ITV2090</strong>.</td>
-        </tr>
-        <tr>
-          <td><strong>Grau de Filtração</strong></td>
-          <td><strong>0,01 µm</strong> (mícrons)</td>
-          <td>Filtro de entrada coalescente ATEQ para reter óleo e humidade da rede de ar.</td>
-        </tr>
-        <tr>
-          <td><strong>Ciclos de Válvula</strong></td>
-          <td><strong>100k ciclos</strong> (100.000)</td>
-          <td>Menu <code>SERVICE &gt; VALVE COUNTER</code>: limite antes da manutenção de válvulas.</td>
-        </tr>
-        <tr>
-          <td><strong>Temperatura / Pressão Ref.</strong></td>
-          <td><strong>20 °C</strong> e <strong>1013 hPa</strong></td>
-          <td>Condições padrão normalizadas para calibração de fugas padrão (Master Leaks).</td>
-        </tr>
-      </table>
-    </div>
+  const clickedBtn = Array.from(document.querySelectorAll(".tab-btn")).find(b => b.getAttribute("onclick").includes(tabId));
+  if (clickedBtn) clickedBtn.classList.add("active");
+}
 
-    <!-- BLOCO 8: 3 CASOS PRÁTICOS RESOLVIDOS -->
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title"><span class="badge badge-teal">8. PRÁTICA REAL</span> 3 Exemplos Resolvidos com as Unidades Corretas</div>
-        <span style="font-size:8pt; color:#64748b; font-weight:600;">Como configurar no ecrã</span>
-      </div>
+// 3. TABELA DE UNIDADES
+let currentUnidCat = "Todas";
+function setUnidCat(cat, btn) {
+  currentUnidCat = cat;
+  btn.parentElement.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
+  btn.classList.add("active");
+  filterUnidades();
+}
 
-      <div style="font-size:8pt; line-height:1.35;">
-        <div style="margin-bottom:5px; background:#f8fafc; padding:5px 8px; border-radius:4px; border-left:3px solid #003366;">
-          <strong>Exemplo 1 (Automóvel — Farol LED):</strong> Volume = 1,2 Litros | Pressão = 150 mbar | Fuga máx = 180 cm³/h.<br>
-          &bull; <em>No F620:</em> <strong>Volume</strong> = 1,2 &times; 1000 = <strong>1.200 cm³</strong> &nbsp;|&nbsp; <strong>Pressão</strong> = 150 mbar = <strong>0,15 bar</strong> &nbsp;|&nbsp; <strong>Fuga</strong> = 180 &divide; 60 = <strong>3 cm³/min</strong>.<br>
-          &bull; <em>Cálculo &Delta;P:</em> &Delta;P = 3 / (0,0006 &times; 1200) = 3 / 0,72 = <strong>4,17 Pa/s</strong>.
+function filterUnidades() {
+  const query = (document.getElementById("searchUnidInput").value || "").toLowerCase().trim();
+  const filtered = UNIDADES_DATA.filter(u => {
+    const matchCat = (currentUnidCat === "Todas" || u.cat === currentUnidCat);
+    const matchTxt = !query || u.nome.toLowerCase().includes(query) || u.simb.toLowerCase().includes(query) || u.equiv.toLowerCase().includes(query) || u.onde.toLowerCase().includes(query);
+    return matchCat && matchTxt;
+  });
+
+  let html = "";
+  if (filtered.length === 0) {
+    html = `<div style="text-align:center;padding:30px;color:var(--txt-muted);">Nenhuma unidade encontrada para "${query}".</div>`;
+  } else {
+    filtered.forEach(u => {
+      html += `
+        <div class="item-card">
+          <div class="item-header">
+            <span class="item-title">${u.nome} (${u.simb})</span>
+            <span class="item-badge">${u.cat}</span>
+          </div>
+          <div class="item-desc">
+            <strong>Equivalência:</strong> ${u.equiv}<br>
+            <strong>Aplicação ATEQ:</strong> ${u.onde}
+          </div>
+          <div class="item-tip">
+            💡 <strong>Dica Metrológica:</strong> ${u.dica}
+          </div>
         </div>
+      `;
+    });
+  }
+  document.getElementById("unidadesList").innerHTML = html;
+}
 
-        <div style="margin-bottom:5px; background:#f8fafc; padding:5px 8px; border-radius:4px; border-left:3px solid #0d9488;">
-          <strong>Exemplo 2 (Médico — Cateter):</strong> Volume = 15 mL | Pressão = 2 bar | Fuga máx = 0,3 sccm.<br>
-          &bull; <em>No F620:</em> <strong>Volume</strong> = 15 mL = <strong>15 cm³</strong> &nbsp;|&nbsp; <strong>Fuga</strong> = 0,3 sccm = <strong>0,3 cm³/min</strong> (1 sccm = 1 cm³/min).<br>
-          &bull; <em>Cálculo &Delta;P:</em> &Delta;P = 0,3 / (0,0006 &times; 15) = 0,3 / 0,009 = <strong>33,3 Pa/s</strong>.
+// 4. TABELA DE FUNÇÕES F620
+let currentF620Cat = "Todos";
+function setF620Cat(cat, btn) {
+  currentF620Cat = cat;
+  btn.parentElement.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
+  btn.classList.add("active");
+  filterF620();
+}
+
+function filterF620() {
+  const query = (document.getElementById("searchF620Input").value || "").toLowerCase().trim();
+  const filtered = F620_DATA.filter(f => {
+    const matchCat = (currentF620Cat === "Todos" || f.cat === currentF620Cat);
+    const matchTxt = !query || f.nome.toLowerCase().includes(query) || f.tipo.toLowerCase().includes(query) || f.desc.toLowerCase().includes(query) || f.dica.toLowerCase().includes(query);
+    return matchCat && matchTxt;
+  });
+
+  let html = "";
+  if (filtered.length === 0) {
+    html = `<div style="text-align:center;padding:30px;color:var(--txt-muted);">Nenhum parâmetro encontrado para "${query}".</div>`;
+  } else {
+    filtered.forEach(f => {
+      html += `
+        <div class="item-card">
+          <div class="item-header">
+            <span class="item-title">${f.nome}</span>
+            <span class="item-badge">${f.cat}</span>
+          </div>
+          <div class="item-desc">
+            <span style="font-size:12px;color:var(--txt-muted);font-weight:600;display:block;margin-bottom:4px;">MENU: ${f.tipo}</span>
+            ${f.desc}
+          </div>
+          <div class="item-tip">
+            🔧 <strong>Aplicação de Oficina:</strong> ${f.dica}
+          </div>
         </div>
+      `;
+    });
+  }
+  document.getElementById("f620List").innerHTML = html;
+}
 
-        <div style="background:#f8fafc; padding:5px 8px; border-radius:4px; border-left:3px solid #d97706;">
-          <strong>Exemplo 3 (Bateria Carro Elétrico):</strong> Volume = 85 Litros | Pressão = 50 mbar | Fuga máx = 15 cm³/min.<br>
-          &bull; <em>No F620:</em> <strong>Volume</strong> = 85 &times; 1000 = <strong>85.000 cm³</strong> &nbsp;|&nbsp; &Delta;P = 15 / (0,0006 &times; 85000) = <strong>0,294 Pa/s</strong>.<br>
-          &bull; <em>Conclusão Técnica:</em> Queda minúscula (0,3 Pa/s); requer sensor de <strong>50 Pa</strong> e tempo de teste longo!
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer-bar">
-    <span>ATEQ Portugal • Guia Metrológico Completo</span>
-    <span>Série F620 • Página 4 de 4: Oficina, Manutenção & Casos Reais</span>
-  </div>
-</div>
-
+// INICIALIZAÇÃO
+window.addEventListener("DOMContentLoaded", () => {
+  calcPressure();
+  calcFlow();
+  calcRelation();
+  filterUnidades();
+  filterF620();
+});
+</script>
 </body>
 </html>
