@@ -680,6 +680,7 @@ async function submitPortalPass() {
       } catch(e){}
     }
 
+    sessionStorage.setItem("ateq_logged", "true");
     document.getElementById("screenPin").style.display = "none";
     document.getElementById("screenHub").style.display = "flex";
   } else {
@@ -707,6 +708,7 @@ function openTool(url, title) {
     localStorage.setItem("ateq_calc_saved_pass", currentPass);
   } catch(e){}
 
+  sessionStorage.setItem("ateq_logged", "true");
   document.getElementById("viewerTitle").innerText = title;
   const frame = document.getElementById("appFrame");
   frame.src = url;
@@ -744,7 +746,8 @@ window.addEventListener("DOMContentLoaded", async () => {
     if (saved) {
       const valid = await verifyPass(saved);
       if (valid) {
-        document.getElementById("screenPin").style.display = "none";
+        sessionStorage.setItem("ateq_logged", "true");
+    document.getElementById("screenPin").style.display = "none";
         document.getElementById("screenHub").style.display = "flex";
       }
     }

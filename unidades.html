@@ -1,275 +1,796 @@
-<!doctype html>
-<html lang="pt-PT">
+<!DOCTYPE html>
+<html lang="pt">
 <head>
-<meta charset="utf-8">
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="ATEQ Unidades">
-<meta name="theme-color" content="#072545">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<title>ATEQ · Guia Prático de Unidades Metrológicas</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script>
+if (!sessionStorage.getItem('ateq_logged') && !localStorage.getItem('ateq_master_pass')) {
+  window.location.replace('./');
+}
+</script>
+<meta charset="UTF-8">
+<title>ATEQ F620 - Guia Definitivo e Completo de Todas as Unidades de Medida</title>
 <style>
-:root {
-  --az-prim: #0B3C6F;
-  --az-light: #1C5AA0;
-  --az-sub: #072545;
-  --bg: #F4F7FA;
-  --card: #FFFFFF;
-  --txt: #16202A;
-  --txt-muted: #516170;
-  --linha: #D3DBE3;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: "IBM Plex Sans", sans-serif;
-  background: var(--bg);
-  color: var(--txt);
-  min-height: 100vh;
-}
-#screenPin {
-  max-width: 360px;
-  margin: 50px auto;
-  padding: 30px 20px;
-  background: #fff;
-  border-radius: 16px;
-  border: 1px solid var(--linha);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  text-align: center;
-}
-.pin-icon { font-size: 40px; margin-bottom: 12px; }
-.pin-title { font-size: 22px; font-weight: 700; color: var(--az-prim); }
-.pin-desc { font-size: 13px; color: var(--txt-muted); margin-top: 4px; margin-bottom: 24px; }
-.pin-dots { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; }
-.pin-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--az-prim); background: transparent; transition: all 0.2s; }
-.pin-dot.filled { background: var(--az-prim); transform: scale(1.15); }
-.pin-pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 260px; margin: 0 auto 20px; }
-.pad-btn { height: 56px; background: var(--bg); border: 1px solid var(--linha); border-radius: 12px; font-size: 22px; font-weight: 700; color: var(--txt); cursor: pointer; display: flex; align-items: center; justify-content: center; }
-.pad-btn:active { background: var(--az-light); color: #fff; transform: scale(0.94); }
-.pad-btn.action { font-size: 13px; font-weight: 600; color: var(--txt-muted); }
-#frameContent { display: none; width: 100%; min-height: 100vh; border: none; }
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, -apple-system, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    font-size: 9.5pt;
+    line-height: 1.35;
+  }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    max-height: 297mm;
+    overflow: hidden;
+    padding: 9mm 12mm 7mm 12mm;
+    margin: 0 auto;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    page-break-after: always;
+  }
+  .page:last-child {
+    page-break-after: avoid;
+  }
 
-/* ECRÃ DE PALAVRA-PASSE ALFANUMÉRICA */
-#screenPin {
-  max-width: 380px;
-  margin: 40px auto;
-  padding: 32px 24px;
-  background: var(--card, #ffffff);
-  border-radius: 20px;
-  border: 1px solid var(--linha, #D3DBE3);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  text-align: center;
-}
-.pin-icon { font-size: 42px; margin-bottom: 12px; }
-.pin-title {
-  font-family: var(--font-display, sans-serif);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--az-prim, #0B3C6F);
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
-}
-.pin-desc {
-  font-size: 13.5px;
-  color: var(--txt-muted, #516170);
-  line-height: 1.4;
-  margin-bottom: 22px;
-}
-.pass-input-wrap {
-  display: flex;
-  align-items: center;
-  background: var(--bg, #F4F7FA);
-  border: 1.5px solid var(--linha, #D3DBE3);
-  border-radius: 12px;
-  padding: 2px 8px;
-  margin-bottom: 14px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.pass-input-wrap:focus-within {
-  border-color: var(--az-light, #1C5AA0);
-  box-shadow: 0 0 0 3px rgba(28, 90, 160, 0.15);
-  background: #ffffff;
-}
-.pass-input {
-  flex: 1;
-  height: 48px;
-  border: none;
-  background: transparent;
-  font-size: 16px;
-  font-family: inherit;
-  color: var(--txt, #16202A);
-  padding: 0 8px;
-  outline: none;
-}
-.btn-eye {
-  background: transparent;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 8px;
-  color: var(--txt-muted, #516170);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.btn-unlock {
-  width: 100%;
-  height: 50px;
-  background: var(--az-prim, #0B3C6F);
-  color: #ffffff;
-  border: none;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: all 0.2s;
-}
-.btn-unlock:hover {
-  background: var(--az-light, #1C5AA0);
-}
-.btn-unlock:active {
-  transform: scale(0.98);
-}
-.pin-error {
-  min-height: 22px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #B3261E;
-  margin-top: 10px;
-  margin-bottom: 8px;
-}
-.pin-remember {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--txt-muted, #516170);
-  margin-top: 10px;
-  cursor: pointer;
-}
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2.5px solid #003366;
+    padding-bottom: 5px;
+    margin-bottom: 7px;
+  }
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .logo-box {
+    background: #003366;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 17pt;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+  .brand-sub {
+    font-size: 8pt;
+    color: #475569;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.25;
+  }
+  .title-area {
+    text-align: right;
+  }
+  .doc-title {
+    font-size: 14pt;
+    font-weight: 800;
+    color: #003366;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .doc-meta {
+    font-size: 8pt;
+    color: #64748b;
+    margin-top: 2px;
+  }
 
+  /* Content Cards */
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .card {
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: #ffffff;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid #f1f5f9;
+    padding-bottom: 4px;
+    margin-bottom: 5px;
+  }
+  .card-title {
+    font-size: 11pt;
+    font-weight: 800;
+    color: #003366;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge {
+    color: #fff;
+    font-size: 7.5pt;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .badge-blue { background: #0284c7; }
+  .badge-teal { background: #0f766e; }
+  .badge-amber { background: #d97706; }
+  .badge-purple { background: #6366f1; }
+  .badge-red { background: #dc2626; }
+
+  /* Conversion visual boxes */
+  .conv-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    padding: 5px 8px;
+    margin: 4px 0;
+    font-size: 8.5pt;
+  }
+  .conv-node {
+    text-align: center;
+    background: #ffffff;
+    border: 1.5px solid #94a3b8;
+    border-radius: 4px;
+    padding: 3px 6px;
+    min-width: 75px;
+  }
+  .conv-node strong {
+    display: block;
+    font-size: 9.5pt;
+    color: #003366;
+  }
+  .conv-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #0284c7;
+    font-weight: 700;
+    font-size: 7.5pt;
+  }
+
+  /* Table styling */
+  table.tbl {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin: 3px 0;
+  }
+  table.tbl th {
+    background: #003366;
+    color: #ffffff;
+    padding: 4px 6px;
+    text-align: left;
+    font-weight: 700;
+    border: 1px solid #003366;
+  }
+  table.tbl td {
+    padding: 3px 6px;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+  }
+  table.tbl tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+
+  /* Highlight callouts */
+  .callout {
+    background: #eff6ff;
+    border-left: 3.5px solid #0284c7;
+    padding: 5px 9px;
+    border-radius: 0 4px 4px 0;
+    margin: 4px 0;
+    font-size: 8pt;
+    line-height: 1.35;
+  }
+  .callout strong {
+    color: #003366;
+  }
+  .callout-gold {
+    background: #fffbeb;
+    border-left: 3.5px solid #d97706;
+  }
+  .callout-gold strong {
+    color: #92400e;
+  }
+  .callout-green {
+    background: #f0fdf4;
+    border-left: 3.5px solid #16a34a;
+  }
+
+  /* Formula display box */
+  .formula-box {
+    background: #f8fafc;
+    border: 2px solid #003366;
+    border-radius: 6px;
+    padding: 6px 10px;
+    text-align: center;
+    margin: 4px 0;
+  }
+  .formula-box .eq {
+    font-size: 12pt;
+    font-weight: 900;
+    color: #003366;
+    letter-spacing: 0.5px;
+  }
+  .formula-box .sub {
+    font-size: 7.5pt;
+    color: #64748b;
+    margin-top: 1px;
+  }
+
+  /* Footer */
+  .footer-bar {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 3px;
+    margin-top: 4px;
+  }
 </style>
 </head>
 <body>
 
-<div id="screenPin">
-  <div class="pin-icon">📐</div>
-  <h2 class="pin-title">GUIA DE UNIDADES ATEQ</h2>
-  <p class="pin-desc">Introduza a palavra-passe ATEQ para consultar:</p>
-
-  <div class="pass-input-wrap">
-    <input type="password" id="inputPass" class="pass-input" placeholder="Introduza a palavra-passe" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter') submitPassword()">
-    <button type="button" class="btn-eye" id="btnEye" onclick="togglePassEye()">👁️</button>
+<!-- ========================================================================= -->
+<!-- PÁGINA 1: TODAS AS UNIDADES DE PRESSÃO & QUEDA DE PRESSÃO                 -->
+<!-- ========================================================================= -->
+<div class="page">
+  <div>
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-box">ATEQ</div>
+        <div class="brand-sub">Manual de Referência Metrológica<br>Formação Técnica F620 • Raúl Garcia</div>
+      </div>
+      <div class="title-area">
+        <h1 class="doc-title">GUIA COMPLETO DE TODAS AS UNIDADES ATEQ</h1>
+        <div class="doc-meta">Documento de Consulta Oficial • Formando: <strong>Berto</strong> • Folha 1 de 4</div>
+      </div>
+    </div>
   </div>
 
-  <button type="button" class="btn-unlock" onclick="submitPassword()">DESBLOQUEAR</button>
-  <div class="pin-error" id="pinErrorMsg"></div>
+  <div class="card-container">
+    <!-- BLOCO 1: TODAS AS UNIDADES DE PRESSÃO -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="badge badge-blue">1. PRESSÃO</span> Pressão de Enchimento (Menu F620: <code>Unid. Pressão</code>)</div>
+        <span style="font-size:8pt; color:#64748b; font-weight:600;">bar • mbar • Pa • kPa • MPa • psi • Torr • mmH₂O</span>
+      </div>
+      
+      <div class="conv-strip">
+        <div class="conv-node"><strong>0,1 MPa</strong>Megapascal</div>
+        <div class="conv-arrow">=</div>
+        <div class="conv-node"><strong>1 bar</strong>Pressão Base</div>
+        <div class="conv-arrow">&times; 1.000 &rarr;</div>
+        <div class="conv-node"><strong>1.000 mbar</strong>100 kPa</div>
+        <div class="conv-arrow">&times; 100 &rarr;</div>
+        <div class="conv-node"><strong>100.000 Pa</strong>Pascal (SI)</div>
+      </div>
 
-  <label class="pin-remember">
-    <input type="checkbox" id="chkRemember" checked>
-    <span>Manter sessão ativa neste telemóvel</span>
-  </label>
+      <table class="tbl">
+        <tr>
+          <th>Unidade</th>
+          <th>Símbolo</th>
+          <th>Equivalência Direta</th>
+          <th>Onde aparece nos manuais e clientes ATEQ?</th>
+        </tr>
+        <tr>
+          <td><strong>Bar</strong></td>
+          <td>bar (barg)</td>
+          <td>1 bar = 100 kPa = 1.000 mbar</td>
+          <td><strong>Unidade de trabalho padrão</strong> na Europa. Quase todos os clientes falam em bar.</td>
+        </tr>
+        <tr>
+          <td><strong>Milibar</strong></td>
+          <td>mbar (ou hPa)</td>
+          <td>1 mbar = 100 Pa = 0,001 bar</td>
+          <td><strong>Baixas pressões:</strong> tubos médicos, caixas plásticas, depósitos (50 a 500 mbar).</td>
+        </tr>
+        <tr>
+          <td><strong>Pascal</strong></td>
+          <td>Pa</td>
+          <td>1 Pa = 0,01 mbar = 1 N/m&sup2;</td>
+          <td>Unidade do Sistema Internacional (SI).</td>
+        </tr>
+        <tr>
+          <td><strong>Quilopascal</strong></td>
+          <td>kPa</td>
+          <td><strong>100 kPa = 1 bar</strong> (1 kPa = 10 mbar)</td>
+          <td><strong>Indústria Automóvel:</strong> especificações da Bosch, Continental, Denso.</td>
+        </tr>
+        <tr>
+          <td><strong>Megapascal</strong></td>
+          <td>MPa</td>
+          <td><strong>0,1 MPa = 1 bar</strong> (1 MPa = 10 bar)</td>
+          <td><strong>Gamas F620 / F6Class:</strong> 0,6 MPa (6 bar), 1,2 MPa (12 bar), 2,0 MPa (20 bar).</td>
+        </tr>
+        <tr>
+          <td><strong>PSI</strong></td>
+          <td>psi (lbf/in&sup2;)</td>
+          <td>1 bar &approx; <strong>14,5 psi</strong> (1 psi &approx; 69 mbar)</td>
+          <td><strong>Setor Aeronáutico</strong>, clientes americanos e sensores de pneus TPMS.</td>
+        </tr>
+        <tr>
+          <td><strong>Torr / mmHg</strong></td>
+          <td>Torr</td>
+          <td>1 Torr = 1 mmHg &approx; 1,333 mbar</td>
+          <td><strong>Aplicações de Vácuo:</strong> Bombas de vácuo Becker VT 4.4 e VT 4.8.</td>
+        </tr>
+        <tr>
+          <td><strong>mm Col. Água</strong></td>
+          <td>mmH₂O (mmCE)</td>
+          <td>1 mmH₂O &approx; 9,81 Pa &approx; 0,1 mbar</td>
+          <td>Queimadores a gás, esquentadores, contadores de gás domésticos.</td>
+        </tr>
+      </table>
+
+      <div class="callout">
+        <strong>💡 Regras de Conversão Rápida para o F620:</strong><br>
+        • De <strong>bar para mbar:</strong> multiplica por 1.000 &nbsp;|&nbsp; De <strong>bar para Pa:</strong> multiplica por 100.000<br>
+        • De <strong>kPa para bar:</strong> divide por 100 (ex: 250 kPa &divide; 100 = <strong>2,5 bar</strong>)<br>
+        • De <strong>MPa para bar:</strong> multiplica por 10 (ex: 0,8 MPa &times; 10 = <strong>8,0 bar</strong>)
+      </div>
+    </div>
+
+    <!-- BLOCO 2: QUEDA DE PRESSÃO (ΔP) -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="badge badge-red">2. QUEDA DE PRESSÃO</span> O que o Sensor Diferencial Piezoelétrico Mede</div>
+        <span style="font-size:8pt; color:#64748b; font-weight:600;">Pa • Pa/s • hPa</span>
+      </div>
+      <p style="margin:2px 0 4px 0;">O F620 mede a <strong>diferença de pressão (&Delta;P)</strong> que cai durante o tempo de teste. O sensor mede sempre em Pascais!</p>
+
+      <table class="tbl">
+        <tr>
+          <th>Grandeza no F620</th>
+          <th>Unidade</th>
+          <th>O que significa na prática?</th>
+        </tr>
+        <tr>
+          <td><strong>Queda Acumulada</strong></td>
+          <td><strong>Pa</strong> (Pascal)</td>
+          <td>A perda total de pressão registada no fim do tempo de TEST (ex: caiu 45 Pa).</td>
+        </tr>
+        <tr>
+          <td><strong>Taxa de Queda</strong></td>
+          <td><strong>Pa/s</strong> (Pascal/segundo)</td>
+          <td><strong>A unidade nativa da ATEQ:</strong> velocidade a que a pressão cai por segundo.</td>
+        </tr>
+        <tr>
+          <td><strong>Hectopascal</strong></td>
+          <td><strong>hPa</strong> (= 100 Pa)</td>
+          <td>1 hPa = 1 mbar. Surge em relatórios de fugas padrão e calibrações ENAC.</td>
+        </tr>
+      </table>
+
+      <div class="callout callout-gold">
+        <strong>⚠️ As 3 Escalas do Sensor F620 (Verificar no arranque do ecrã):</strong><br>
+        • <strong>50 Pa (0,5 mbar):</strong> Resolução de 0,1 Pa &rarr; Micro-fugas de alta precisão (peças médicas, baterias seladas).<br>
+        • <strong>500 Pa (5 mbar):</strong> Resolução de 1 Pa &rarr; <strong>Padrão industrial (90% dos casos)</strong>.<br>
+        • <strong>5.000 Pa (50 mbar):</strong> Resolução de 10 Pa &rarr; Grandes volumes ou peças plásticas flexíveis.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>ATEQ Portugal • Guia Metrológico Completo</span>
+    <span>Série F620 • Página 1 de 4: Todas as Unidades de Pressão & Queda</span>
+  </div>
 </div>
 
-<iframe id="frameContent"></iframe>
+<!-- ========================================================================= -->
+<!-- PÁGINA 2: TODAS AS UNIDADES DE VOLUME & FUGA / CAUDAL                     -->
+<!-- ========================================================================= -->
+<div class="page">
+  <div>
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-box">ATEQ</div>
+        <div class="brand-sub">Manual de Referência Metrológica<br>Formação Técnica F620 • Raúl Garcia</div>
+      </div>
+      <div class="title-area">
+        <h1 class="doc-title">GUIA COMPLETO DE TODAS AS UNIDADES ATEQ</h1>
+        <div class="doc-meta">Documento de Consulta Oficial • Formando: <strong>Berto</strong> • Folha 2 de 4</div>
+      </div>
+    </div>
+  </div>
 
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
-  });
-}
+  <div class="card-container">
+    <!-- BLOCO 3: TODAS AS UNIDADES DE VOLUME -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="badge badge-teal">3. VOLUME</span> Capacidade do Circuito (Menu F620: <code>Unid. Volume</code>)</div>
+        <span style="font-size:8pt; color:#64748b; font-weight:600;">cm³ • cc • mL • mm³ • L • dm³ • m³</span>
+      </div>
 
-const CIPHER_DATA = {
-  "salt": "d38c2db05d90e992c7680fe652f7285e",
-  "iv": "ee2b10cd17ab1736b0712dcc",
-  "cipher": "lA3M+2nKGCl+XYB7Erdhi18cTl/Z6Lfl/rwBVsw6gFYcHq/8fBhDuXORWzw54E5Wb77yiLzIubymAdTBiDI7hFzoVKrLJTsSNs+gMVGy1pY8/30UoV4DUmhbSiaNytO0dtfRbKt/2AWT+zJZ0itAELp9BZhkYQJgkkfuDycNvatdhpSGF+pCzo56Dq/+KbBQvpLxQTmMgbrB+oopt38AWRt1pEoOwlKhhyEb8kd+NgsCoBGRb5NFKzdLBICf2BGChKsAM5Fi/9kMwcjCWeebEo1MRNOXzHJo8OIoPImYUgLurhNifrDtAT7z1GlyhFK5+BzAT5oQRWDHqlL+CLj4a9KOy+AIBY6/U3xExagdTEUy8ZXDS4sdcYNAWiA7ueIfpwnDp7HiweKasy0fXi9UBb/jWxchn+2JOUl9vNtHRDo/wTOGM6/apTuDUAmrhZap6NKQEV8BHXtmqKEGijojwDbhq7ulwUe4FP83osMYRASgU3e/D6Rq8I6+BZ7dPlcGsuoTsRNcdtL1ybwwRB1zmp2UzEWgF2ToMQKm05IlEilqSQlukn3+rUJQlTLCaPGrpyyGd96Y0CHD4/DNoJuLM7EkYypHpWzL0VPg919x4ATx0dBBTfgkBJZaP8/LhtZDoEoUDaFX1CeQeRxOdXZ7ly/G0Enc9wXEJC8YBCQIeSniY2JZ3mDrwhFqasVgsjX5e9Y73HEOqnLN1Cv6R9DSHnhU/B0KSsnT6hKs4KCnVufa7PX1AUQVvDdL7h8CJl7p2aPZkVP3ZwQJi5jYt1Uduyg8DEZ/wK+Uuvop+aXIp+mxaqNi96aTsohGD4YFsDyTYf46RYzKqyqObZWoHexHyNrgrcsgcbux6VfIvFJpk2chOnOYB12kI6bSoZ4pbrjlOb+SzZYXHCy/wC5TjipDENmPGkRFmCpQKWmj46gRItnvWk8BL4PVzC7hBVqi9/e61oT2TauzSglb3mnRoz6UoSzEEsxC4hqvgGabRr08rUyf/K8QFYbo3NUYLWwsDORWI7GmkY0orU6wsOJcodEymkUmePt53MyfIjKb+ff6YeZ+9TmNkxt/qL/Xn5otS8AvCIuC704OwRBi2IAt2teoIxoT6kkwtIQT/YRSB4MSyg1p/74ATvIjTxWxr09M3TDN14EhQsRGoGMB6aWmoDXHRCgQAZYmmrbcbIG7DarOy6Ba3p9O+qAFRfmXrtDztzFzcmLejX2lBfhL1y33uFVSXcjmsrIqpnBqU2Zlcl8L9cL3cFmNbNThWohannaPQkAEE3gpVglLOGNtp/vjEky6UnZuVJphO/Ck2yFyyN53V8y/BOk1pjIRvLayovk9gaaOhKV1eP2iDssgKqe/gP/troUL0Ggrx52jeOBHzUsB/ZOuP8720PWJtsYzTWcif4+1lCcViE7Kk+mazLBikCBeVmJkzY9Ifr70PiIs0eljSXCkVl/tTbHuzqFwakjEffKsC6ni4sZcpczfrMZX+JanHJM+uXvpPdvcHNdPlHiOV71Ysmqhyd92AGNb4ZSJm3MQvAPB0tfy79zeZBKPbdPDv18lzy7X3PeugmX6a9XyJyJhot42+PC1ezxxIO8d4VHCPtLEi6B8GCkZDVv0/SXp0gduvOIwX/qMPCvc3uZoLu59AX+CkX4HBQLyoCFlag2h7FC+PO7ULMl7kwwjdP9ikKzuiF+AA8BJv8Ybxp5w2NGwjkoc3cr8HK9RJ4Ii/z/jqW/EBg8VGKbZKKWB+BvfkQllbc+OnBCfN47eYd6bNhcwoCrLzPrGTPibYoeeZSrOXwdcEQiSd8zSYQ6XZYg7zxW8AYpq0NeTCBX7Z4/At/qqViXfm1C+u38WWQYmevzsWcJKAitRlIgVw9pQvqMH7zv4BgjWXrpDlYFreV43l6N4oTmMrOeQnV+3WSOf5BOfT47wvlLh8XNWPjFj620fJ5d7Idr2YJCo/pSdASLn3sxc4y1bD3cA8PX6jy1QPdc7xOfL32h3ss6jvwuOkf+tWu8iURe5zdI/u4U0UKh1ee8rZdhnlXc86I5LuRGMegh3eediAe3NOFCpijHDur9dZsZip6+iGo/lFigK+fcfFtDqMXhvHQgLHiQd3fvR8Ya4C3Qt1IRx5JJtQETWaWEUs9IRDZcsGtheZ2Cf4ihev6ASFN6QUjxILAz2MkqDD9NpxP1xfVFtZD6RtwjNiikebe0jyuhAoOTYfzQdlLnHxVMoxPGnlSRTy2GkjGsLP9Y/zhGt8OhNYISiEENdWAAXBTzv/pqICOco2VndLXPHA/IGScUbuvrAE7uPIcSohrAsTlTFiSgKyo6Q4Bb/fljQmKZ4Lhvzhy6BSDGAOpLpHQfvcJ3OtfyLYnnU/VUzohjiwyKtspALuG1T3dma78LuvEw2bsm21ikhoMBYc7+x+ncrzXHeb6kxC6vUbQHNO8Y9kQiCmOT3hg5KBJ6JW1hrIGYG3TrNF05ixQ8JVkVgDsVyxBaiOkwavFDeW1EJGv/Bst20W5WQxJWdraeoR8vw09S612/85N2aD0fNGUlChLnR38Nv33f7WzDTOBpJD04D/g2KdQaIEI0OWd9n/AHxlBEqXqI5A+tW5j9h9Yxosj45buD31fMoQ16+Ztj+gVwFUodVXYOdykC3KccYFvz9JhLcaPo8c2XZY2KxXYmnkZpJ74IRFHSpv2IIubLzLqS15b2Z46VngCxmvmtrHA8S/GVDa0R8PzFes4rZ8utJ4Sv6N8f0dIPaPSA/XyzjHw53Mp+aSYwPpfhnKbPrTcL+DUk5E89zm9uG7ZZda2tHQiHQpnlwKixBZ+kaTceqlcEvGbVGzr26fQVFkHt3AVX/KZnt38FHzftsPVxi+xTYroWSvqC7WHfRIwjjbWQJeu2D1CtiKM+sA3+CxLq7edR+bhU7HW45/fMl+mRoZ79rz2YXkzAz4vAkkFnNgKGy83IOxtG6Vklc4Swm6jcfoAWt97FKtlj3jQ3nEcAtE68VgY38cFko9UJh90G69jpxwDgMbENQUtUPDG3DHn0CbUaZsRLhUnIm4SLz5fcy+WYvTAikiKhUokbVKac8TqekdGWr3EtHnU0pqqwrML0a1VvLmGm66HSxR5a/q2weg7kU5wThWG7UFnwf077EW4wFfavp79W9kg4aT96yByXHnXRxXsvJylRmChbu/OGd+sU5CilNq+DFe5/uW493p2tU32HDSzLnvulOOg0hP35B1LoQbONrZ8oIANCKWagMV6Nn3xCWQuqvqR/f4lGNUD+UMMLnfotgdqKtyi2XMy/Ktl6SkRczfaLOMHXDlzIZOPQa12wFPdZc18PizlLQdP74ViNm5ghoFNAY5BhNIKZD9ye8VNHLSx847JhzYMvFwKwYlXw5XODZ2+oRGZ7UvoAl2W9jt4Pk8/mDdwspcvyRpYgrtE0EyyzxnMghZoqeSkF/jCp7ssdEh//wKigPuAvkxISpNWBqzQ1iLqYABoLYmt81sp+euitNGODr5nZ3zQYSVv2WA23ydH6xpXreWRss7groDCzaheeEyZc7k7w0ADx4pASzXkNOtKa8sPK5KBmZgazjSF5hNQ6Lq0S0tz9UCcY8NJNO71TuWj9i5fB1rIbL/7ck9xU6Fa86WDPG7yzJ3s3JkN5yBf2eEaEpVceFeHbIMMenQShZhLTWAHg94UNnMacqx+m4JL6Jbb1r52GEJCjjcbnBwZEt0mF0ATAEg3xafLobgzc7i0wSj1md3taM5AG+YHm8rLF563TIxzbjgqjAHjXa9oODXO76q2nB7xVaPIGHf8nEIqEkQ4pH5MFJSOfa7GfjqIdKdyVMqVUIJBv1WZOrkKoKlwuWzEPryps9oUzelNR0WKa/J7Z/4KGKoolBdmlLiIsT1jm6LDxIE9fo7O+yV2I48KSVMiZyCd4tszB4UjW9LqWvp9wxfCCfzaXPzej3qcSoEjyFwXUaCHhdsVVTF6Ieu+ZewzzzG9cnixQ11Fgm3s26aimZMY5g35H22G2iN9YfcP9T09uJXXEkJkjnIpnTOEubN14HK2YB7hC1mJ0oA/bFLGnndB/7Mxum7Nl1OEYgcQfmfIDNF8TBJayY+0ayTHgoxP2CGfOWFwjDFavsErmMWk9PM17B97mI9CfjxeVjRWnpB+cOaWGW+ceZyqY+LCu8gC/G5VXYhWPm5IBMvc1J95owjeXcjNnCZG06uEXMwSTOrJXUz4VETA2cqR0ag3WQfaqaXY/hrZmrzX8V3DUMjWLnAqZCWkqdKKuGXeEJ0Gs9l4XaoFgaBxE6UgGa3S0RGctJdsATgui/5inITpjKldnlSc+IiACALfX8j3lDiHcGE7b6QxdzTgL8hSjPN0Y9uQxsRs6Du/3d6SoBaF3vuiNp0bXndcbysslVAR7wzMmr6pfMpiSNnEbk6b60yxLn4nXlgHsn9+XmRChjHGCUMpGORUNcUbusMpNdZZXbyMlG/KIcCwbEUoCyHoGz1+C1JaSnkv7Uf6Amz/tI7p9aafqONb7wVo6mxDEoycIzgeYRLKmg5aMD6Qqby2IFtTmMLyTbPMWmBXuQPDExih5QFYeeVeEfM/KSztL4cu7U1zJj11iJdKfRKDRanbu7hqO06tJghi+V6mzLNpcgu44PQUJpkAbxOprfWgMzWSDIaGCa/l9WF+8QZTekOvxuv8OlIQDFzb/IDjAfDO7CRs3PWAKbU08oosBBxqSol79MTzZB4npIAaI+0r85jBEu1cAqnpK4KtDM7kci/QGpDxQIWIUwrh0gipzzZY3KoqjdRVcx986szg+ubMild5cYwk4FFCxMUNE4uGav1KrNuPfiv25GyUtfk3qiuh09vxla3fBtQQDPLeXu0lsHYnddVwpYD+2CQwASfJ5CCL1/XJ8Z/Z97BlPlf+A7nH4sbyQcQzTEytAyuVwx5oQm0cmBBOO42GfQgFLSh8i3twAoW3XraBsFyTu9dmmXyBDSAoe9FMa3AkwmdXVe2Sj3y5IGNCO7j0ZyO3k2bpAHQ2bZGlBWmjvGrtuK+T1KtQmbWettaHQ6Gi/wQtdlDiWTGjG2hiNY+Y8kxJTIVAADQ+l90lDK0b+3vibUzs8EowG9qPGiYE+XQH/9qcOv6K0KzcR1uS6VbbhMpVjtu7aql5fWC+EF3oer3DqMxwgzKRrWAuHa947sUHOTyUM8WvHs5KHJU6JWNyFwPH0AScwWk/DNYcgZcXLRrOYzm7jorK7nWA81qQNlcWDJt03ny51Y8zPA7gor42rbi1SThynnTYjADTZ/UgFVnclUKg0RQDAxTNi/a95hl3OZV1e5BcBoVFHheQlJlZAAlF/BYZUyTwuE8mZ2dZYPs9ljG/iFQ09D6nO5T7dTkaXVSmffGfUYzZdVX2NBxCBv18pZ0DMFeRVn3vDb1JYgEfI7V2V1SrqFj3Wb8S9U7939TgY2JSa+ch076nt9E6Dc7R/X3cIJ7ow63Cdd5YcCgS81v6ywM+tnMN0YAI/AMLSfvO6IvYchbDf3pEGPEDCxK14LcyWTnxtAs0yq9xZWibmtNUgZG8Ih4Pc+KR3JNH7S7c/jlEFUlf+8jyWDL0xw6Yyg8CHBxdoa/vSsHUNlZc7Vt9SMJqp0Xpq1i3wMRmgmbD1yQa85Dm8faclcYE8wnDk7inCfV5p4pGVbn1/hfNP5VQITquiQoEWMkFkhyixaet6PRMdzFUJC/jGNezTJCmRdYJrtBytRRUanJBfHCPZRCFDYCpLvWsnVPjOCOR/A3GWuke3FLeQ3Ky0fFz6KQSGyJS22r2wkUudgJrMwQmfI0JDXOh4Oj91TPIsQ0s47BUbxitGS5NkLE4dFcS6KmnqMsSO5kAZUkX0zZmyr+hPBsWoiPZlLAnN4cHG1QFXjHllOeHYE4fsTutFPkjewCR8q90OpPwIHffV5nfxns+e/Rxj26DdZ+2wL1asrAcmQH+OBJSezZ00wUlqaWaC4ad/zfI65hs/oFg11Udzv6w98+cQUasbO8WL8kjvxnBg87Z6IEiCalgYow7dE9IG26cyoaj2wO40g9b913XgGB3u2rFSrYSmcHsrPmW9UCGJuSXfLJIlqrFep9l1NirFrP8Rp4a+JN4tJptEeUHjvBGVP7HaKy8zy2l1Zath9gY6jS6QSE2P5B1ZPmK28M6X2anDAaTa8Gxj3QUUVFhcz+9iyXxZpJJKObYmP596KelOEq/zsGi6XW7+V/7W3WMdX/1BX1JRSnU9pyWizGLoBb7I3KCUBfIjR1Vz8bmsFnJ4Dl+CRsKPymaUO96xTwickH55t3a0Ewg92tNHNPgu+x1TT4tUe7a2AH+hzbvkCqJ71y3LWbfnT2OkB5pKH7FcaXkz/wR+EINA6i8gyZ9YY0GU/TktJf1x4/IZAmNMgh+Ec6iCY+/Y8dM066DwfcQ8TLjwWrJEnAFgDkVpfrPE9HyllBe40pX7rx6xpiW288pIl/nsfZU0EACLTqDNX7ceVl/N/uNXrIM0ToIVTR8ffkP67ZLpy+TtHOLFYDD4PPZUYcU3CEOxEnvol+xHcfr4oo8/wiKHRU4zEMfkxQnSwQ2tuQ7GDPLdbqzi8EWfPa7kwYz7lvDsdZp0aY5bRIi7Cr4dS0VTk1x4KhIDN3UsvU5eDyd/6B0ETZesaWvZTHQbz9O4esBXe39V4yG1M96lQzZ6Yi0vjyje0/tzY6l9ed8CZ9vxUDrWfgFZPNQ97mv9HUIDDUmK2xtnzZ1+tjzva8ELWQgkxIpFXFoUXZS+tkyfX/iZpCbmGgNhjW+9dI8N6owALelLjo94pAjiCYynVjHHdNHe/3uFNxPaJ6B4H1DAg/qK1DsdEoK799cH2pPbLE4Zs6Z8M2/7Ac21W/2eew0SBh5D+Y6/zq3D8HHqlsvr7AQNGCDHGnzOu5IrQ+9ye14VEKrd32oXsyRYDIN640Zl5T0NABiIMH0ZVX2Ou0Q6XZRCWv4gla8C6vwDpmXz30sn1QuJ/u8WRGHIINar/nNsX3SY2+dous5aNRqQntFB4krxSXzfkvfT7slRKzipWg6alDv39FunfdkjRTrvl3H0z2IaUzL+UEGs33ti5byWq4Bjx133h0KM0CSNfPzESqSop51GFr3HVfqiVFe3uGoRKzyPYk4/IXqaq/EGdoBtwCl9vXGhOwn17G7udeecc0Zmt7q2rDNVYwi7TaKXzjs5jHxoc38414V6kDDwuviC3AebXG78PsbbDhyuE2SDDZw/Bk2fgG9JLDMTA7G21FkdKSfalP9EO1j9GLwiCRwgxJ6sNrnVNA49h8w0YDyRMdOXqWMT2MpQEeNawii+yB3U6VjvAXhsg2vqfhfBzq570PXK7sWEn3sIfnDB2h9zgcQAijWrxsnYqT2UWLqUzEEAwc8GKU1MdoW+B2kDnIox1guacm1ecqB9KsZEgj7LFOT8Os4c3VO5sb69aBwdXq9VA1YQrnHMRC1BoqsvWJoaHBURzhNAcnnrouC6WTMucsEJKt3Ux+J9NLOxfzpOkp1Tq2BZxr4tbVjZPKnn2Zq7qx37khGp6670sz6mf2ph4vwkwp078d+OiLPifTmOh52VfHjZ0Ld+kS/IsyxjQAGWpD1xl9s9202dJ5Swva6x+Ke8t5K/GAm6A7yW9CEN/elTkz6TJzrB4tTFCc3JlMOVjyx/Dgz6V1PQ67048UjyewEB7lTEqzKCLHN6Ou6i/cpMjlIAAfLztExg1/SAemu7YgC6megTMZHk4m1NZ7auqm0/ECuuDztnesYNZQ1KiAPJZgw7JaZLSAcmf1wE3aFYt2SCHLcw8klrUE8jS6zNjZTVCaZHYi0ShoR3a799xKiSo57M+Gew5slTEYC8PtshUgqeH4YvqACTOGFxzPw1+GuvsdgwPjScqdMkQkwBngzyg0ilymWP7KA4Vt/bgHNUUKRaeFJfge62/5e2LcmYpombESh/HKlgzq2OvV7e+Aie9ArvR4RF6BJwY9STdojWd6t/l4Jo1ZhXayWMB55hHvv3lWVtJhJl0Z3unb58V9wxmMHbEM0lH6DyMNVVkFxvLdZZGCQkFHKkylb8s8MjOZf4PsVbqr1pBEKvD+SH5wDLfVr6wjMF1/ajCJuZCzlOOn0yFRwv+IC7b8M8O6ZNdpVosCULSBDR53IOnjjKyCe0s+EnzvtB//kqI+Oyux+zipoFe0fU9JgyxnuizZBjkhSdQ1m7FJpWmTdGj2xlgS1KHg1dmmAc09mf3qmEV+jNynpW8D+xlibqXVmSOhJ5wbEX+4i94UtoPWax/7VUi39VCfymtXmFuhctHAeCkt9Bh/M3hJnTgDrsNu2N1JERjRoShKTqWOPuRPAEXFWByLJ2niTE2yQ981ecublk+yBaPNXNgOD26nnEuyn0YR+oALQorIEQ5XMqr105a9GRJZFTckfLDTm7302hTGwCTH0Qw6IOgfc5Z2Ji/b9EmrggGMI+vH/ZzzqhtHdJoEUwRtScK0Fm+p5wTm/mds+LzKoaJhnU/JssYnOzzNB25xuOe1UETaBJl1Ir3wqgMogSHo94EOUUcFIIZXdwvr2GaVk6K0bDbXqYAJZsXA25MIYLyDHpMZ5dRqdaY7XQqWbfrtCWu/ggH3fQJlqlIzF7tVGWsD3orPm9rNugbVYrXf2m76MQ9bJUlyodmmNBjZrZFFlxM07AExpy8jD1cVJhdhoAOAlvUabAzwNZsw03sUh5Z/LcykqsbKl0L8tpmx/LSBEo7tvvsLyW9V/XuQbGjRHzuP2AEYDGqEVFZZQSfQ9yVOJOS7C7CHXgL79Fr3oTcok63+zxHUs0K2Nnn4pYslnqwlazYoMasFyVxHDUvNtklNWxUhffuxGoH/kSi+t5vl4JziUzgLamieU2aY656sT1gtoStzFUfkmThySN6A3WxBOnYMJEx5Kp3S7DMcuMnPVMcKZXJwbtcViZTpvFZSgZGvlr5SLcKRHZ3XzLBrjeGSissZYPriFKBVMBO6T/IkYdMlWJNAmUmhufMKyHxRR35BMsVuDkD2PaZrREnqcRK/2ci6Db1o5oRzlsgsgHqeeVBHXNV6E6pmbW55K3QKdcQMlH1GNPeQwcm6UOJGbULa90Pczm3OEsDKpEraR8voOZMEb5ksOlbeuM/8P2rTBm2amDUyLX3vb+OvZE4A4wKGC22L64A9RaDmcPPVtlT9BKwTRyGWgafh0INMRHx7RhRM75nB0p3Y8ittDevC1syiqdap8IqItSy4uD07pRd6IobD5PeCvxkshSAvO4n78eCnov48fdzHRyRyRmWwicG52Eb3tRZF002pFcynIXZUIwJaDbEXs/2GvjrtePuJB3p2Lg4xuB6Kq7pUe8RqTfkqS9ytEvPoqlwiNIFwW3pVjbXLZNzGvDKyAklLR15b+CGuDbsSR1In4hsiJjuSQifv45tMOb9jqMZEtlGfa/4AmyGfEL2Os0akDbIbBP7jnc/PeD0IQ1Xh9Tdm5uvkGC78pZdiXTACGyufXo1vPceyxCN9JMexO6RCV/tLG8obCp4rb/nyvn0LxDvu6lJ8k5bhpiKM7lFSxXxs7W58qOCxCqxmy6jom4nckSGTsWYViALJQVENs1oU29FV5imGheYtaUULr2QX41Nrjb7z4Pb2uO09H5md99JTlGHcGVNF08aRMvpfqtpovnWO6KthS22jHDmcMWjB3wSO8LGJgCizB9IptEO3l8psFCql8JbfVUtTySZveCE+igyIhhk3wVm9Wxg34x7WL2oA70pKbVwvlMX5kOGjuZia3GrVCMjDIZN6yLqlwHDhSsUZ8RgTGXueLkDEH8tXlIPxjijjESfu+B98F9z1HKccdFolxFSEg3HFkmR9qi0pkZ99dU4MBKBGpuooTcL8Y/hrzdNXHzi3iSuiqEMW4S5//RSezgjUGnb7fIEdVpZQAr+v85KVcXk86SUngC/TPtTFcmG3JwmMSFi/qhRyhCB+5U/W8+CGEErDyFgLpZMA3e0vXlCxyRUF75jgc8Ya82vC0u/FIxR323GrFBQOS9gPgCbTIknYV+7VVomu3tykAy2QTFh65eQV37zJ2CjS/e2z0rRP4JKzggCq87ABGo5Kh7yIF8VulzEqhbvgxEF7ZEHS6LAqcDD+E+xtb1UZcnnECvNViBI4jU7mwU9NzJYU63Z4zcRECPI7sI6GdFM0Xw74cpX275LHPjIIEnJg+68/ZnIkVcE0hwJv+fre6P5wBVKJsQdvc/Xr8Q3x4gyHUQm/EVihsOvdxtqL/dMKMkshc9XdbMzIc///6yjTobYJcbVyaepjS3JFRuMiY3ovRF8YlBULbygVwfyxWe+joZbv/1Oa8zOfy6K9gxWdCJDoxCIMgl/y1goB07XSptlYC8hGMEHyy012LFgbaCotKocUNiA0yNdfVuPFJ+svTHvTx56n8RjF17WgEJNbWwjSipwxMlAZJxmiNk5Dvkwk9AoOc/hxq47GoUuWtXkPJ/Pom/KIbWhcc+IMhO4XlNKBFWZek4MqyKEBDiO8aRYliDJbClNZiJbACuk4s6mA1rjFHcU7JFg2xK0nOANR0d6UI4XFkMng4zUwlJsgXTq0imyD/fzTAJrU6T3I6qNNsMRbzzKO+X/1T8OALduh1tgfHu4F2HTpYy2lGGuK1yXAo3lA51ruiB1y8D7r1czr8iMaZxm18U3RF9C8sU6dWU6Z6FXStMUujzOTqVpoYKAa5YzYG68GxEafqzglArknz8RTh0doVCO7TdwlWIpGInru30ZazAADXvja5IZGiwCITOgXBsBXhGbsEXe7S1yhkKuPvQl64mNhnPwi4Eks8LlZXbhAIWmhd8aJhI2QWdQNgR2y3dUU7e6T/zaScvTeRsu608+qv6X4y2qoXT86ar5pt4xM6jDzfntp1v9SFk/tZ40t1zoq32NYLDUD/LrxfOA4ETSKjKVeGGFDrlDHmFQNBUq/XC73bjMY2rKOWZxpMPAXrg4dM10m+VPP18kfqBc6ypbCNoz47UI2HHpPmGE3C6iDM8vXwICfHqRTwF0BIu75/UjiTdwJIMirhyuHOZvAMN9n/aFPbL0+pULNzt7xXdGeh4WdTc8JZxelxAXtTqdLiiK6K1RIG7TNcSj30mSLD1TnU7OyRbq2fZpSoYd1FBxHrRSIeEYN+kpU3zZhYBJgJOP+p3eV0HJYoHrXfR6S7dOYwY7aWoBXziYx8u+wFx2EFWseXNJS+Lpn2TSMdbm6LBg6jFZxlGYCcUGpSl9hWHhQu77VsYPI3qgGlmvvpgIm9k3yB91sB0GH3NUVOvUDWct+Icg8iRpd+2LIqd0HAa5pFZ9VWdSrMIhS0q01uO1wKW6jaD2Zfd0GPO2CR+1atuK96FuFFNwoY136h1h+2sEMxapu9rEmzrd25nF543oZdbCPaFsAXkSQ48ln8nsC+761wkRjYA3nJc1PONlPNXNUMIsOJHiyr7WssNXNpWQt6614R7G+IuVciErEenQChOZb1OsyGZHoXxDvRZBekfC0Q7K408wN0J/Lg9IVf+RpijbGBFpih41xsokZ3w3NkknYgSzZJoUkdMKbG4vGUFhjtFHl0Dhfo9wCwb7a/tzt91tc6p9CYVn7iGMMtnCRSJOr0XLKbDBrpNtp5+hQ+cvVCjOh6/1RoE3WHvwwIUNgcVZCXFJumO5iHSYCM1WoesqeiwffAZxKi/Npr4iYV3DPqOEJmE59PzoIaTLKx073kzKQDa5wK/VrB2CKRZ52PI+Gp9aG9rkpZ5a0LdkEPJdKhV7/XJw7Ifrp+nF1QRPLljbftMlYjZoOMPliR1MCI5BVmkDWQEryMHI4zZrJ4amPzCv88cdwWBW6Weyd4GC6A+5z9QdtN1G6iRSMGiKkQxlT1PXAlwE5/6nBKBo2/Ltft3DWYXfYmxO/cxODcIhaUwFYLphXfJ5BJLBbXWFddhzw9U+r95T/11pnGIgc7D0RP30z1axjo3dvomlA1J6sCSUy32ejeDlpfuTh7tLipGZYT86I7NoHdltWPr5E3T9wt8vsLGDUiDluOG3PmcGmUC8RKXbhqxEwGG3WXRo7XqgCXcwCe1qwWLjVRNoA+Mq0xpY9CnJ+xWrwvgl0+Y8cW5UjsgPQjfu3etvwG3e5L7JOpjKM1xl/lXr7wv8nviNdHhwBiP8usBg5dW/8VRetoWRACDmcidGDzHOShi8I1w6y/yN+DcmBBMjkyXJeKyogBvkrJerhOKnodFMgXP9JHZ079T05i49PLHm1kT7kI77kRa6/tvCp4SQd5KYySg+yUr3a45rug7chW9SlDwoTYrp59wN5lY7eBmyjur2JrKBXibKoiCb/uqYAnst3gKV96/t51vx286YsHdkDD30V1JiYaWdYpK0mlKR91i+wzao5nVd0Obt80+IY55koQLKOdsamZVyIzOrXxEjPINpCzsO0gBkaojPG+bqc8EsgpJGEh+gsDFjI7/ec7+Ip01P/hPDElTCgXG9LXZ/jALKjzrhbtEG2BIMvYs2b28NhlGgbq7sVT2tO/MwWixWyUlFIHSMWFtxrnZxGaSf3byzf34vZ+EiF28CypLWkOGvzcqLVJpuvnQMQgIcVhxxsWhtewq1ItpxnnKKMaf39YdAxvJIknNlmryvqZRe+zZgopwm1HwUnBgEi047JBaZfPjm13gMbM0CFOVrfe9DBRfBfFk4nuOC5d6OXItqK3+U0kddR74VP8svb6Tq4Faep6MsW0cXUl4WTSPo+D/BgGQ+DTn+EIO+CBE8BtuI/E9VCbxLwFHeCPKhcyozNSxckU11vNFjv9kJNJydgY+ceBEGbZaFKpvLHj4A9ky8wBIHcMfNoAYg2L29Lm/qkeAH4X/3pgl2XKG4CREfR9MmBAUcaxsDXtzirEca4YX28g1ciMmI88lzTYsngqShjfBNisSjlpazTQsd5cjZKUJT9OFeGRFTDRO9a7EmYwUddm2liLl/5idXgVf7kt0Oqnjueaa8LPqgNBuuSdAlAm9GFBqIi9JOoPSLeeKwyJNLmNMR/ZtBjInOiDCSiiYq4D3yCvoCmhqphDnXukufeEJRXTLfNr499hpN523DM83Rfy+UhC+aR7/g6VZpFIjOfN8ssXNXUu3IGMzUo/GUwCkKoedBuHMQSN12a6woamEqfw4ijeoxMdDo2uFM70puvR1ru/dkU2rtGti7Yj0PwPMUrVMT7LfMSnB+cJ/WW7/g6Qinw2At/U2qTk4ZIXkAjUTr6A0iziWDGzR4ZG63eLQAx2DDdK27m3TH5ib/Y7He5YSq3YH9JwW+rwYQuY6maLYruUqhd314Ae77GSnx8nts95d/3yYFK47BINc/k0iLBNJn+hMm5BkFHA51G7cnkXHsKesT9+l5fmykRnTIWZtiAljjxfXaHXRWZOt9xpx0DGE5Ji/3iiDa7SrE9lDQt5xddqPe1vhTRH0R/6BaUl3URq0i3/4Ioz1F7N0/yZlOmqYFTQkGaIWVIrgC/Y0B/AMv0u0NpB/SURltTZdFV8kslN3ldxW/AuomCrIoOUxT1vSNQwGcHlp9Ox57UCvyxnLAWohmHKROyV0ngmcTFDB7c6VRX53VWw3nPXaIfPA3cdfmAYR+68J8f9BLGcWBiczCuk/JNbHLLzoRtRVAdQtRhr02/6oG/UGY7qjbrHkl/ol8LbUxCvysu6APvEju4tLVQRVQ8IDf7HtJb734YNRwLglWhhPetcWV44tEky1z7Y4D5uk3Ik2J31SYrMzKUq+1JEC/Zr33ve4zn+BLqVEGEPtMR3jHX9r10IZv6nFG3DzAjABPjBGGgRwyXBddkLtdJyBclJP9Lh+4JD6WUznhEUrgMEzF+1Vryc4qHXnFE6+yTo6n/n64vUFPUFFSywc9yPiYV+5gH+L6gSfPS5A9r5SkGLhesZDDjCspUsG1LoTldnGr+MYMiR7uwJrAsi5yv65RjkQs31tpQ+JlADldnhpbyWvYiXhRxiTthiSRST3F8Kg/W2jH6ea3SLvI15jEbCjzbJaLWqEkdSJQtw3ovyyzib09dB6ErN/3YjCtB96s7n5zXOcJ9D8umCoZRBLgJvVLEMWlWF0raCp/xT0hsZmTKOxC+sk8Cvcp1aDKwlbfb7g05RY39eLH7INhDWhMlAYER2ezYfNYUF+G/0egX+rb6NUfB+9bJKENlBR8Z8Ged1ebXbeGIbUy/74L/OioGftMPIXFGkIkvFhk5UZQIwP7/QS+RChVB5RMwr38ZskPz3kQxjiXjS2IT1lcEV+ClodybzojjLsts8rAF3jwouFhW54/1c9hD275AqsOYIXH4OkzLx2ml1wTB0WeWNZE87EeJiTRBMrGjkmxPuStH4Okwv3koJa1+mlTzp+RO3CmBvTc9s4x1VbVa8+jqDYh/X5+Me2KZ1rSQPGwhURxYQiO654IbU/dWYpsWHJAIUEHdb8cMphb0OIZjZh4ahCBrU+IeCAEX6wC/m+m+Yt50Jc0u6N53BYzoP6nKeUP10qrM5fC7fZ1pRg73h5lB07AH8KMkQk4l+/McnPw7tTGYx4/b2GyMcGUAvWX4hXNVHWrgTA8nepeFBPxcc4dMjzvf9ZBvzFfaRDLFx9EvhVCVCB30r4aAQRmSJMIyI7yXuGgUVOPdt5vdO8vuCOalepuaO01Vh6jqoYCICbth5Ptm2Kf6SINrDMN7x4cWbMECDJzFPJ543mlcY20U45CcuBEWuwNejInxeSwNxRM2rYG329Oq5ubDbo4/PiHvTB+gmk7ku78JcgxV4oTYhKnhCqttfsBJcTkF9z7dKOMyOV+ATEjmnPjfg5IpFAoP0v5U8Mh3Lzh5hrD2xzDGoxPdURJm47y3Kr8JSEfieVQyE3MLgDdk70TDXzhBBlKyoN3gr5j2UzYaV9tFrMYFXpVhGdUwWRz5K2S+0T/+arpRBQjOl0vAXs2G424bnvymHYni9TwB+dF7sHDA2KjGjisv/beexAsTAI25RBbCdGq30E5Fb/9ci/epMDLF4b6mVG/uaLIaDQ0FXjcya/53MuTIpclbOulHm6OIhBjtjS3bKMJcRfX2a63Ml2KeKtoyQZER11Zdv3wpH6kYdgqMzmqeans0ykMinZd3SOR9Iu/Y48Yo6l3hGdWmcXbzDcHjWVsJlPWhxPfddek8fj3Fpnl1UrCT80et6mdUOIFLxZUXUYSQRtHzcrSDSTTNe5NRupOhn+OmNHH2NExtiW+sOGvgwn7+LHa0LqxfRBmkhTp5UiSK5fBWJdaqQInORtRwJWnf42KYLdtuL63/XQs0e4t/sKpqTMRILeeAFsih1dow3K04GeUodrml/knFPRXpCHEqnAGMFbE2k/poAU+RvPn5aEKfIFqFAA/CIlTsqJsCQ5mUvitEbCwGv78FujMedCyGdb7LsnuLaKLMmln3C2PiyfehgzBCCKkWzAlyK9UbfJGZlSMvYxhqwdBxBVBtcfhSmEJYH/DSouKc1P/cWZRJJ92Rfbcw4QNgjO0vDh0gdF+RF7jWW+O1eGN4zXQtX2cAKHBApHDlm7XTOUkApxXMb+Y4/ULWx4JGoxTNu1SqlCFo8RDBxmDh7dx7TjFWRYa4PQOoXE1ydlZreJRLfse7SAqYLB8UbwA2LpUADnEpko+sV+DkXSkxAr2V6YGqa5KcI4uqjlfST9orwb2E5LE0dWy7p+9IYduJ9J7sxHCVMHjdyxpUc+hhVTndndDzjB0vDCvjvGy8B2A8M3xzsD+i6wagEXvdWGtPuCM46KpckaHJ1bNt7OogQJshE6jneMK1OrzNVfVzZ8BAL0OyO11CVmI54auhpJkakcn7IZ5ii6vlQx2QMcKERsYmKi1PyKKX67heuO+lfGLxRFfO48hkr3M8BWqqTrZ6nZnNpXuYGP9ArJwpmXoadFIQSAeY1X4iYtNxkpkQJFzYR5kms2UbMNpzxeiFKiojaGm5wdK/GwuO0qvfD4ZaKbfgwrKIcDu+Lo2sSoTldFAS0Bxe1g2kjtXLDJhMjthDUfqT5Ox3+qBPTkrjPQgXl9z2osg1/Ae60quTdaIQ2TYspezFza8mU5uY9BN5RlMzxrdXXHiQ0RoCLaQNZu5Sr/RGVxBX2eoDqE6OE3zhugVvMC5EZgB4pl7Mh8CxFttdTcl4dz/gQQaraR8Ehy0Hl9ufqcVUmlryW2k+KGGHbGk4NvqM/RtEwpMDjgS14PclP8N9xiEwndp0nyKYHxXLWNLDBH+BZ7Lkn6nowEHcFGMupIecCcW4Y4iY/PPeCPjiVakT2i0u13EDPBNfGoe/v9JAZI7oPgtikGbnIk2A3aVrfeGa9W8gmV67oV9dKb7eka+ABk76zKpEbB1xraccUYV54tG2iwVW6AsQmw8DLZKBwg6jc2GGf5WTQ8mZiYkMxWTK41YaDKfPpxcfTQfSNgLdFPzs7mCJshi1iOhYJEAyCifxFMSI0pqTYWYoRhXAa2SxpxWg8fW1+58sxP8208oCVhkX20BZatu/qRs7X1Q0WlqdiOj/w9AaqHueYKvLLaUwlZ8MJ9IBpsXJZHwZIGfanjTMM7HcivXPx5OQXhGE2y7gVOH0n/R9MsdP4iDsPj2k5/8f9hlY8629E5jtdZBXsHdhztHFcmyCUwWLGdYEmxC/LEor2feqtyJU4Wau2cT7Fj075AJsfWFxC4F7yMSLuDw2P4KVWgjd79y+W9wKE6mDz8xgJVr3ULeQoay6PhjtUoqFok23BuzoK+pLciegypbH6ktr0sVzIN/FefPOH1pKQxJy6wG0TDgdYIg0vlxnINYdubTp1jljXFo0rchlvPQueoUOMkBsDaJesDVIMxkj7E0Ez69/01g9U0dFHeXQtmOMQtAQ5L9XmKg5iGxexyoPD5UiR0W5u3rooOK0gWPukjusZSEwISekHhRgEOEILI5C6p33XD/+caTugNl7sAvIgXykHC0a/trfsQgonC3w4xCLh2q1CxDqFtpUKshDTrUAlOQyzvnsN1ii/daHeSR1dFcx3peCVkYRN1bLpxGCwoTiJSLqotoaUJ5KihrPTwNJlOPx1Ek6ffHe3Y4e3KHrmdr/92Fvr3kM13ZMHXWCKuL1PYL+uo67VNuo7vlzhYxo8gjBQqMkzEfN6nr4mho/NCscIOO72tHmdr1zj2UVtkCo2p4f+4/JJk2MncIdo7lyF1+rgonSzHtq2c+9jYMLTOMKkqRDcwpFwPfpegBa/aRhQXLzGyn0HQAfv/I/6Mj3WDXU09rFU4G4OLuuKYMINVJJ7m3VxEEP3IJwtwPUC68HdCYYIsVewSQjGVuBBiYh6D6ZjtdFPdqXriLo7iiVbLECn8tyD5qvkiVAXkcVuKVJtsqM0Pup72VDGY3cwtgLAyz0V9ZyFnuqvkCbLZB7ls0KQ+daSUDTnSB5/P4kt+WACO72CmST0/g/wpZPCoUHfow2u+Djca9M1oQf2k93cXpixliLGjTIGrK/TK0zm+cHCRWBj2Yo3Q0a+Hbzl7OBlC2z2lWTOt5HSqnzrqZp4+gb6A0uK85q6A0CYxA0AiS7vGti6HIpRHeaBrHzHeM24LI7mC9nAB5dmPXryu0tH7GO8Yg+AVq/jh4I0xlK2fUYLnw54M+nKEpbaAUlqSlW8DFwJ+TYGBhFR4wkDZvDgforX2Ki3JotAWJP4JuHObpcQwmXdeWPTom2ZTH5XyEXBNgf55MHdfMyeI7Ddx/beBr7BF66eaJkKbWZqKvIc1Hjwdl30BMlRyZsZkV7B0rd/K44XE8YUWN9nssuq04HC3aOJTVQ/u56tEbw7et1YdXuA+K/HwKqHaGC5WIlLGExOWST0GCd6OW6VCGI7Z3/365vkAaDy2o9cL/lDWM3P257nA4y8fIfEdg8j5/iUjJLBDHadCJJlUPOj+bnSPobb7AcgFNlgPuiSpP68zzw8/mlhmeI+ek+2B5VAsxWcmrm8J2qRYYSXSqjeaykDNIn1rwlD1PMVAcTdoVzrAKQsNU8z2cRqHCzYF6V+3LtpSg9+HXFz9vCfu01bYO4BmsMgfKnQIdAKbqJNrF/CQTsrrZbJ5yJEKvtWzlNWt0LSWQkXpUiomfIW5i1d3zIrt9ShGMotFgb40ez6j3ZQB9q4Ty1Ysb2k4Do3DCooeyeLvcRNsrtoroVVWPVme7OwqEtfZhc3t6hBowEOPGH7FEsnypGp/mdfNFPJnEWymEtHF0EoDGRkhr94L8golUc4woVrjYcWrX8FSmGzIWfjsN67QyHmUkwDUGFKXKBPEUjo234ZUTlCbtAB9qMLJinBGdMzf6I3xm4gXTdlgqXhFe8o4+1gmIAkT3n1YjZcpjn53aPo28J/PVyvEiNEjXZODgPrjJ6Dsw+GETvpNF168IMSN3rixsSamubQ32bt+wM3yM6gln7bE5JH8g52RQfBE2z052/cEvY7k+8EuvnBYDKD45oHulUN0QqJb2ysOys083QdMm9RMWofEB+wnPN8zVRurV2ykTe805QK2wFjp94QcrZSW+fzwRcq1kYnI0gle5zbMedh/PdatVjkafmbYKDL7c1SAAtlYYf/DlFX4ysAzp9TNVQA81AvFnj7ucY2U/wBy2ZXqgHqfAj2op4xB9/bLQcp7wL7DbzBWYSNbEMgldgWTySLT058Bvr+QY7T25St5qDsrrMIdZwDRSmDx9Ufr07fR/l7UDHWwV7KHZaq/nyb51YkE5dWPjK+GbaGYRRDFqY5Mj3j1qmytAspmlYZGTDAF82nUB9iPOfZXPwtPtTeLTfv5G8MtmQ2SJUt+UONSr28SUw6FqcxVyATjjfsHe4wpcSjPnShmAMiYHi3uvCi/qQG1mVXyv/YgvoWZKGceDL432704v9r8xyBdfzbY83I5GCWrWQrZeA6MuJdExN8MDn0eMFyMqtQMNzmF2Nyj8U59YFozMrYdpcEc+BX8sG9c8Twb6BhIGhNZ5qVtYa14Dzj2fvK9eE5XOSJXWaRjI0n3KUaU/QN6nYiYu3lFqEKSuf7Q85GGnUEWN9IAjQClnp0llwYLZVBB796doc/NMAQr8NU3U6QxblHEXYBIB8wGiCS7tNLATJxJHDgJJfXsOWVp5iR9dcmX1fez9hWqfy4YE/SGBRBklCpWCyNOdNkPJsSMPDzEsLz9KBkrtgahWmyuQad5i+AXua+sly1GOXr6bx2xe4pQtAApSW2Js1xF+RQ+NKOK0XSLQASF+kiirhp58KfYWCnuLq1oMIzmuwf8W/d2c/M945uL+LtMSZZbDzCsKd1VBo7ljMwWEEe74UU4qHG6u+VwwANnogdjPGW57PnPT9DuJuery8G0bcLRA0sTFT9qrYln1V/JuW4wjnsV+4nB+ZepuZEQhD4eqBdUrb1t+fGBIywmn64C5EYgfG/OcEr79t3owbYagZAne5dR3y7ETSX/0Xuz8lB5G15Qrq3R3CQFYMNn6mlObA7bO0xq43FNL5DGKuDEYR9AzMeXU9yAoFUuXXevDPo1BCv2rzwq9MdHvSTSRn6q2hIjgc+y9wR/Hiq7yPHVt9k7ojAkiJVTugWjTTOLKljCviMvAdJ81W7dWXXlAHRqoh0/s/YuM15JllZ116kHK3aKuf/uv0J+g83KXFbJLSAWfCB2N2EBmFPVa6mgD8Mrrf6esFSIuRrvcVXjuPWmV1CLmRM31p2psY1jMwi2rhTON1dyRlA5Fn3rkZ4ft8Qfnz6pn7IQQDyd+c3JjA3+LyQC5cu07b3BQzFgFqdpd8vOXkrBMXSxZSBnV4iB8eG2ORnSUhkvAHSqCKiAVD8/cr9LVn9lyThAwOeB4feYte4Qhh/zU4HSFtgY2/Mh+uY0giEdLl1NWfwWYVR+Tt1ziFOaBqKnuHS6ErReFz9Fu+zWRc7kqiqPSnqkfPghQei7FwNWgPG5k5BLYY7JxIofV36RB0Pm163QdK9zh4bg1zNKB5rScD84/aLo7pEgDyXzZ9DQnvhcfMYQv3vk3s9xT30+5Zfm+RSOYLHJ+XQwoM9e5/s15nnPyy11BBOLbEtUuf2nnNpczFIGdNJ+xZ0TZJ2KFVmvA4Hq1MYTTDFt8XS+egAl7HGjlgLfaVTJYL6mkpuOOHcDWMdHRxRZpNFIHdLMUUliR9EPcB7GWQPfDQJG8qKMBNXW9/ERKyqQImeLTH0qOCd9LG2QSadHBB1QqdyEPV/sz8UhXq6sMd6ASdNW0B8WFxNd0Rm/ae7vDplplUALBJXwAr7hrD+IRCz8JrJqxKC/qYOIKgcvFcu2JdmUyPkqLPyXTzRn8IPTLK/1wYPNzdBGbX+a0S3gWGANDiWMHkw0hQAPrq5Bzzsw1OQs/TCQ0vZTKZYonaKloSM5kiWh2PtYpZ0RGi7eBYknJWQrluom9mAjg41sPR0n6E76rArQzr7/TT5iNie9fpn2i1rfk77yfo1bfuaHWli6SyovZgpJJAtgqEeiO26WZU/W+yNQfYai6aXSCUvprdK6AdJWIu1yuNXUaXjl23IpcMqr5YtYLnuAUwHjV+bzOElihgWmvwK/OLUuujDFlrJNAUiCflnA7JkXMuxmGWanthI+/vsd6Hc+aDv1CDwwscHchEniaXb+VsSdgkeuRA6+wGfniAwGF28BH5lJZBjFQmQwDld3dUz63ig6/jFZdc2jKzIqwa15SIugmditzRXVQbwWXyPPwXRL+62Lf2bq7c8iihKwPyRzr+WkC53Dq8vWXX43w4OQZXE8SIPZ+FOPkYMDlJ5kNt21hjVOtBWe7mMQPwOXkY6O0UMtuvsKrfCI+TiSz82zsJKejI5qprwdTX9HD4D5JtohaXfEI0U6G/MXDpdIQW/1NvtiUXU+Hkpi46ARxO/YlXlNfgdtPo9frx7Im1p2hTR/sLPWl6/SQYzXu+GxS/dA2MHEHZeGke6bKUA9xFpub5ZRJaO/+h4HD7PHrSxzUaGJgADClke3efQTLsC7iXI7U19upRuetW5weOTGoq7Qq1C6mIaxk398IuwXMulKfTk0xlcLVYTpbZeEGOtNxJrqP2Nfith0XVG+Xsry8uO1anETWfFUR6x56rZ96pTZCLDvwCXZc2VIZSNd+0rak8aLfLWplX/Je49juOIp+s57F0i5PagT6d5nPjjRnZwOwQDwm5sWeNgteUK2e24UZF0P8p1fuV0tzr+dcTzraILEp9eGLcfwCHJdnltmFOr7WLH1zEq6IEC2P4+VdsiWVKrhRV3323IHbYqnSXnvGP+5ZuRdh2bN/Sa7rTKu6blzhf8wgcVB1EsKDNPEnVecM94uFuYPiTfkkSzwp5VqPx/FYJjlQSczIbwrjUEPx1lFKhRGOMZFRHVSCFUgR+wfW4eRwvVc/nx/jcd9aSFwzyf+U96Mo0/5KA3q64+qB4Ver9E3PQEwfOxmpnmWgrfFAz0fez3U77W7uwI2bSzKV1ljtkMRXn2fhezR6rUARJtlD0/jz5k8b5m4hkNfO0lOoT8g7CQ4rNOgTF4CbN4zHPfTY8ZU88nTIkMIa765PkAD8rSWSZSt364vQtxMiDC5MLbde7riToRsR5mTeZHSa03tATTyKX63ql7q6LqhDGZs93shh/ozd5wW5ryRvLfvdXWVVaIwWnI7zcBJPAd5asjswBsdVJ1tCNBnbpWRTJhY4bc8uxjWVx6gG+qdmkRpzINvI6R+VmTeYstXHYOEnUtjRwZu40mVJqNB4s+5IxYoA+TZE4/BukB/OAyTe3b/t2wWEf1TtibxhPXEA4qA8okn1ad2Er95nLbgs9BqPEjhezhoF/vMRRw0xan/G837pV43heoNC/2ZcQJT78vYWMpVi//aw7VEacL7iZF5xeJ+2FZ5ciMvCVepI8p7JHbgphdhQIW+EwhxmEun2CnmGNoxprN6yvZSANloeWFBt5gkpzVbLKhBCXv0YlM6CTSMlq1ykVOiUfFwuz1ZPRLkw01aSsAyM+fbcL11i1jLPP7gRRdKN3NEejIWtZUdkF1sNLp/DV0EOipmISJLPv/YLSLNlizZrLGw3j6IboMOOsH+zvf1BYpAlKJTA1Bv4exI5x7sVKomwYyBU2MUAATWQkt6HY0NFBjI62FxZ/j9zDuPHF8STCHMFMc0y7+a4vZMxrar2TznPLYFWfBUsTbWLCWOSlwFOycPkYTfB/4e5lWOlzk+y6E9Y+t8o2FHGqttjbF0ymthKMSNbse8ee80rM/tbAJa/qHe52mFdjh0aF3L99vmphd0lxpKEPqOw7kHoiSqVtabLT41eHX73Izf4RwQ0UuJ7fscfYpKAdQ2PbQslUytxwcipjkVTfhGjt4TzkIM13h+AxtWYlSMz9yO5f+jkXJsUmY3YV2E9tpS1r29A1CxWVM58jJRlbBhmdxMjStMqolhfnz0k7lSU4HHK9HE7H7sibXVI6ozU6Cr8DP1n0xoi3vNbHn46CJmgV4mAzYEifS+C8PAVHnehLBI1RysTwzUwhB/B4eU7bRK1eiufnHuT2FMZEDTqT7Rrad1xW5RWMmF8KNDq/yrxxK1873Dw4TKRzWzOjzJ+GRJYXU77lRrydUNh+bC2zfEv82gqD3kEs3ddPQZkLQ+jcBeqeNuSDl1rqYzrkkF5ee+OxUzAWYbgWgANB1K92Z9em97f7KFtMiF6M8Vpp3gnklk4S031szBhKDbXPUfcvD9tehnC8/mo4UFbgXhFftHsbT3iYUgZTJssEUPnxHUEDs8/pxFkJL5sbe1z2u7mgqXJdpLo//ysGcK+fDOSvPzdq+x5GQ//fhlxP8fqKYBfUE548WbqKeVevQ0qwiTwxHXalVwGOog3O7FXWaJ3HOA3p3bGkmGZcaRJ3yTs7hrlg0OQ75l/NbC2+e71LXEklg4A5+D0dxtA6UFJr7KyKI/TSuiikkNHsX76i44ruPJkCNv+5QhXuYZuWl5xSU9QGplCl3fY8RS4L8dVduF8LcbgR0MJotBQ8LNolSj6V2Spw5Ax9CMEbNqBy/q1xXFD66I1yvyCuC5Ze2jBk86/CiSg1/NDVD/2tKh2GnEDEgKxZGEX7fKIi3nu5+7hukau5lb4qPTaZSw40XQWJp1lpHdguzaunf6fVJFpk369gOUqEgXCdSpWy5hX/DDKPbM1Azechc5afi6UAq6E2liE4iWIXMQ57O2a4CFzJlx7UGF5fNOA8bBa4PWrxUKdGmacBObTvS0d5cMEt/wSdUukopFwGafvVzb0hjAQ/u+xiSkiB/5gwy00Oj0RgAJfe/hjFbyxhH96WAv6kBmVwGFxZ0hkulILZW7pt3kepBz6ME6IsqJ+N6KGfpsYxv7JcwTZGrlwSXbnHbdKKa6UoiEecAcV0xbTCS2JHW9i/N1UZ840gOa14RhdcysWfw1k+BTK78W8h+kqI5JpeJFfdFKCTzlucErAK4TW/KpMXlV8fQZgUrwvL14Mp8nMW8kztEV36ESShfabfMYb6845QluYGyHX0XWcNqaMtebOjPPAy+s14tP06l7wMj7rGbMqPgtfJH75b08XM0HXXppd624JavTgI5NNJLSA89rwwdcNZr8Al5pCHO66hwQvxh426nJAzOy6cDI17Uty3oHAcONUQ7Qh6/DZ5DiqWG6L0jtoyH0LhyGh+2YpTQf85DM57U5yl7eKSDpDFsHm8+iQsTgR00/K/AYNUE7+87sQDxl9kYNdWH5tYFqS+GrosV/6wLKtylDK/KawEo54eBGDpdbryZQpLbekxcSaV/idsa3/zZAXrl16jmG5ErZODG8XgB9Xkh3mhTYp3FkxifvPEUO3nVz6XJ7gBO03Si/oR/QI89ggMcm+SxBX1MMfz6ZdcDxmL/0fkp3Ldhd4sCRXDiyve+Q6lnTyYF2gYPhO9mJSBBFtjBa7C8CIL25xtwqRhhjiOrO2g4ONg9002DTVAT8Bdw9MPA8NG4+LQuALdVqsxkFrRnM4/CvxbULiB2fnOaKX75GS9PyNNv6lk7+8LIjhI4H1CF5HS32Co/ckIKiUmUa/volLjnlwlkCF7HIa4E3+h7mpwhADa1Qrlh6YsnJvOpVNBtNFZ1i+rsUb9icM6RJxN9dUi5LYPbpIWsGpA+LpVm4J7HoLa5Z4kWo0YHzsxYui4MDpWpZgyDYA0HQ0qZ1GvT5D/UAkB+0N94bNlTrm6GUU8XxGa2uCcAzihXBgJAf0OWLTqMvM08zrBC+RdWXI/ik6KpBlPydgNzOCTz3lzkUT8nVKp17SP2zV0muBNcFj9BU2tMzABmzC6LkcVbykZAIhebUVTI7FT/UlCSU/1gZPPod0yRLwQt++ogvnF+gqUYlBiTwZICeLqhnVzXXkYzUSE1ahfDOCwKMs3LrALt9BC9wk4kjelpSIe8CPcIGRxm1buUgOpLsOdQzQRDPbEo/gFo3Mzmq4XDHGjE0SUw40T6u48rOYRjnwciMaA4MBmvQ2EAokNHwBI3TG8QfY+hkpk8Y9nVr2SI08CJ051dgAedzH+9wiCtruzY/Nz+mZ60aGaglSpSHneihbwjPwZxK850G/rdSqRH6XO47vBa/oAvf5oy+OIyStkVaWj4y/MGPadIQDl2sBG2HYtPP9vYzjHgibv6n9TO03e6mV+/6lSsElgJNdTicrqEIDQy6IqgWjvoW9z2cnwz3yVcbegudt0jHWvrcl5fuPrOHRbe/SZASrgUF1FtWTL5kilINU+w72T1w1Xv/F7idiqe+oVzWmVfm2Q8QXmqWkfAbw9nRDFTfkvn9b/pJC78nWP1niJB/TVJUO0mED1xAOT3aaJgUwKSKXrtHMVLzLe9zpkjiBWUgPfqynwV78MdKNmBvaXkhZQ8W6+5csY/MF3dBUOYf+IfHM4XHUjzct/XBNAz3R5sjgSrRiJWVaLtjzlgfIELmBvKbwl8l6f9VJOTz76IFEhbLiXv9XT7dODmD/e/KxzNK0Qy4uwjXbrw0n4MM8a6GiI1QU5kayoCCnkRuqlpsqT/sesw4MZdaS6zXKv9Qe+rXG9z3JjwF/TeP0UZNRbWfTQ27Fr3Ayv4IhluBvdMs1yws6EJpRtcsLEXhiqaPeC3I9Moyz8r/3JBr5Xt9IO4ZyXXaWwWn2WZk8K/rrWg0wQpAH7oaBJ56sWy4Sv9o8OFf0QQ0hnbxbpxSl5MyIvfi7ZjisFzQwjs9Bfpw91HsnQ24MJclN8iUD18F6Yj3GkiWw+wRqa5830iLkjibFvey0VEY2XQSdOAlXvWpo4S4xWVZ4O+wwiGK6SFptye3NVZCnteecZ7GfPA3QfP4HfzWIVObJXtlzsj4Ttog7pILSCbaXa1XKdLe7JAM928PIEHpxyfmEXjUlK+izlD2FQhTnBQPU4lShGc/l8WQDKPoR77Bi80OK+InwR1Amw5KOE8PpsT8K9vbEXSqZOvBLwM9FlHoZQar2cJ0pL2J51E9UwNIW4egxxqI5MgkxqAwUz3hk4eMyIBSBPvBd4D2U8yDGOetpDs8D5WkC7u01WLQlFGW1znxy7AHMBHFIoIasS4gEGXu74BfmdsoPzaH/mWVzbThF4zkU3LkcYDb615Nk1McST7oD67w6n5Y7+omv/AsLHjOTVoy1hCuz/6zfWyCaVmmYOcYSlVLG7sT/kpWqK7JFKnlnhvl83FyD+HyyGwsp8RWu0DZrPr6DaDKoL5q5teulbnM7tuiqhFiZGRK8eY1VZJoj1lRJKKzno5Wllfb55W6Z15OfC3LT/5rdxG8PInHHhIvBqO5r4iuOBy5QPXWw3tI+JZi9oRoPzZCbHKyOjcSvuxh1CxkigMO+qbYF9iIAl8pPx5v0gNlANQZ/pXhNjdrbtypr2CNuGwt7F9T9ZysDTidk5NA5ik43U96sNq7gq8Zt9A3C1GxHmO0qaVY6rVKME7EJUjn6LAHvpLHHypsKLdsQwy57PMEkY+VyU1c8VEUlP4JNcBjRrNpA7v30gUpBVvEamYAOrIDUMmVxl+uf0Vc/5sfTQCvqc5Ur6TnvhcDsyh2p5fLJCS1acTTDkRal4k6BL0vLEd38VTGqGEdME46XbCv6y+uuHvKWuQiwuQj1UnVuCYA3h9Jjiv2HAXwx6VbsxRpYMQH1yDzyXphpgoXYrzJys+p1sg46Hk+/68Idllj2qSTpaN1c8Vqi1CZqK+J65LJCPidRWfQtGfV6BLV+Z4nQQ5lcDLnyB30piOQ9HsiwUASYWx0Y3eizyBNPK/G3ey0F9AD9dRXxaTwG+AmI3LdKd2sjaoQvQtSxnSuze+MXtFXi4+siSnJRqVtxSudJI4br0G3EUZqCF2sh6TFC3aISRaQRKuw1BhiUV/FmM7VAcIXQ0oBvWjHa1ceSGFg0iDZaMoMh91R0OQ83bFcgBGBojCB4zB9mIYh+HK78M6Z1oY4aO0tlKYPMpJxScNyt2cLodKeQIjfyEnMrm8FeUYAPpDZUfFL0Dda4FgNzEPb9dQHTtotpYgEM5uUvb4R7JvKrpsWe6ApowCQuES02sNODMmlwIEPg9wBZKSkX6trWDza1iKG+pG0rPX6qsycYJSf+2QrVvFtoD81liNpVQu1OGbTzXZRov1xo2C/yklZSSz5T9cDJl2oq+z2d2DdbO+oi1HW6mutNFLTCG+iFspC6x9d872NdYU/QVDNTEQsSpiq1T0TgqwfBWgZxp1la3ysBJO6O3Gf5vzlUx0fgZtXXKGKSHN5BN4h6Jqh2IUs/hJDMxYnyALYgU4bhSNComNG4vz7VzbRzZCxc5ufsLwSpjjWS1vpHQfmNXdcjcFh52ZJSFwXe1g5+AurvZ2MwHHbmNgYug9TlHU+dv7gaJUZOALnMtAJEWYJ89sCbQNBpl8W/+7BZ7uDrQ/R8Se2Op9wjmmNPeCoic2ZNejnn2FOrLlKdr0LJ9TPpdLIr3UuNdSYzetcHDNW/r/CcnSDzDMAoLHZeRX8SrN3xwWFWTemKzLskTnn4DML2mP1ZJuZOsYH+v+Pk/clx7fkH+vN4sQC4ykIN2F8FM/hNf2GSczWgrrM+I1zmGtYDNbz1qUOcaVK/GGfNLAfstBLiP1iVGelLa8abZ1lbdMpIdX9ABiDI/98B3LCcTEC/t8AsRWQDEviCnqPrj86djTww+7TvEDmrVZq4O6lX66atq6v/p6k0YdVaNzHEN49ujmeAATnI9xQj/rOxtY/vFje2DhHMxSAHGvl0aS5XBs4fjXOrIHLV/DRYoQECyCUlzPIs4KM7aB4T0FCPezt5Hd3EiwG8WQydkfOrE3H8ZiDcMR+pY1tBlozLwJxAnAFJDak2Hk1YEaBmkp2/F4UlbgDoNbQaWS4+6+zvgQgKjOvgNcXKvJX4KGAtvKMqf9hufjoFEiCh3BOyaW2wXW8fIGUrsRWlUnS2e71dJDYvsdnRibPwxeJH02Oq7kLJOR3jHJl/fFJqDLj2xT7pwxqLnUHN7Y7NBzT9rmure1kUuAlM/5anJwMIbdiFYH0xJGP4HkBaie3e9VIsW8zq+uqTcGcQR36Z8cR44z98J9sY3QpF1kncvbD3Ns8u+Kki4x+dKs8TMQ0XhO7XFR3lc5dYEBN9DitlHHw5gwyCmlt7cigprZgJuquEK0zqoxXSzpzbxqFaEGja1EZLyTPrdiZ50xVfpjbqpJvqlmg/l9+G7uTmhI61bx6W+kOB6OMek2QGqZyvQxJ7C1NSjc4GBMDNFRaH1NtfYav13ZatBmy6W6xbHxy4DNFhv7a62F2zg3uT4BJCC7aeJQvgN2lkWod3mwWMQuechPE9i5Qk3kp8KyDgGDalSPWJLPOxhvxiWmeJTRku3ROtkD4y5lbRqV2m+yM8rLBML9rIU/hettQPBMub0iGexwJ2KmSQTutlr9JtoZId9B/shr6un1BZFMXRMuU98tbLl00myl5c0eQDHwgi5+yzPxdo5iM64eqJKsYZsLdrWh/DWLdyYSDbs8hXhtC4u61pzqs9ClBEdL6zOUWzp27N38R9hqDl4dOTxAOI5NhSiEfAONUuWjbSEiEdDuOyt8iTrPNRWQbIQQEMXAn3VCwIV3o2kNSYB2YcVldGbClvrvQuOyz4JEz1l2USkNtSxMFaV8oRrGkkXPIedBiDiJHL9atEx0BXOXFSA/wg1lydqBx+Cbh8Jwxo916iNeGXoHMXcMZGCJKLFCYGr8FvNKFP8fsfbU+tOCgWqb+Zgk816Kz7lIc/AwgS6X+dl3Y3gPG8ssXVI4khdbqUSfwH79e23VU+1iLKh+sl4XgRcTZsVzUdW2pimwHc25092RY4/Nq+iqFDIpDDydGmnFFePdGgSWWp+rI8XXfR9M9M/+0vJyFeHrcFz5nO0uEQEtH0cmBiJ/3BHJIP6nzqYd/9SJyiIGpNuV3X8C2IWv9wyFUbwN9JK1iXdzQpVnbCG/WAXrSdD7OO+arHomZuR7hOxsC75oHxL6q6m12fy323qYwCm/gVOUzBwmLuns47jv7Ah0Z8ryS5PK3zhfXxtd9xO0iwoh2oDatUfvdTPrCXHRTjGaeJGvPnkYxOMzprwFN/imbv/hbxhfRJktEJSKpzZJhM4sbdM0mf0aH5brvmk7W16Fi1XeNdBxHSnMeZLVFuIow0o5eSi2hLR+sJJOGEGU8EaHRmPye9Wl/DV63lyoOR5aiwNZmGHv8F1c27bwwbIZ/fvKcAEo6pS01k3eQ2P9WXCVtZyKqXjfyRj6+gVGeWcg24ZV9zaN9Q5U3zZ8GoqWAP7lfpcgRQoLlwv1v0K7/fbTeiG3686IGrJgvkHHuS4NnfPA2WPs26B8vqWWsGges+ut+U8B6TbjFujVyv3Sd2Hlur60T8JB0jHHDrlBUz34OY1MwtlK/s5ph5RqOa3rnPIK9tiTGp6WM2UrWPlyBHkmDbnK2yuGigPsQucEmEBPGuxvhs3g+Wx3zVdRjjWuUlflCBtw1tLYS0rW1Vr98DASoPVvuaABM80VPfOjUTBu+fTWsjkVvRXTcQaULrmPAx9Ti2Pl/g0Dr6yj6j5nghcuX4EfawPtxn9zo9gWwbnOwBA9pYseqFKdHytVQkV04NhDhtM3T/GYfH0Ga4BAOz0TNsAlsnAV8/EGP2yqnw8QsP15uGJuo1iEA+03hfJQEueKGoGeRWPKZqSAoJ+bwgywdt58NEkpUfTbccjWbv5kkKoFjb2Voe+uc+LANTAek2mQ4fCe5/QPmCy6qw/l7vGIvqp6/qNm+X8mLio1+QUklq2xhWXh+vLHYerK0ltAo9pDsiZOMBPdRjruwEKkBrD/yazrb8B9KeSnI0R6FH8thPVjvX8wp2o5tYmju9LwfGSEyG6uikA//4t2YI2kjZbzMECAkThSbQ+k4s9i4T8FlpI0wUR/TRcLefcsqdhKWKTYHlu34N5tUpeisXzRrbCYDwQaj1ANEtrvLhZe8uxijHCHEgBzvnqJUT2hea7SjczkDeuN8HFJMIEMXXw1wad9ZNjmNbkWin7b4Pd4/G9AVbgc6G76AkYRIlPryqrMrmCNG6DrCSn0yBImGK/offP20QYQUzhe7xYHcoTVQMaDM02kIp3ozo1Y2IDFgBBOIt0UWeHHkmJyqcyoGz4pKMElqn+kPO1mHSmCTAc+gpbVt8p+AsfeqMxoWg5VwsUFx5yVP42egJ+u5QFxG3S/LdqL3EsTfh2Inn1qULfzuWmI5pcdTxH/IJGfX6jmg5sFt+iYNv1a0IqtQ9lifER77jlFDkyKWCfPwOMwsY0BMyuno3VDivfE8YbAqD4cJpSjv8dN8/fq0ljDXn+XbPlbdfGvVKuDWewpGBXAar0mf3Jhlz4DhjODwDpj7Px/hPolyYlvsJDo8BAMJg9X/eDeViQP4q6SqDxr9j5ZkMHgUDnMXfxopPlyyC7E7slV2uKAunHv7Myu21yvJ9JAfMFFMSekHT3jqEZPnfsrhoEabS6ma0HYZ2TqNs9SQ76n9aZOuUHtIC0AouOAH9TQy/SHeHIVLDjLCBMbqnItKISWCd4tdAe75caCkUXYP8b1mXDvkTj29zHTF5vHd6c9iBVvEeeXA13A8peMi5+pzmH6QvrCp0YRSMe3KWJO3iiJnqrZffM/0CvZwO0Mle3QcuUVibedQvhNa45EOXnaPo1YpdBNcUMZENY+cpuE4Ayk59pLHBaBtGbSZtLKQUzgnvq88SfllS5geH1TTwDjuQ4M386j5RDH4285TMKyxDk/e35StQRToBXz54/KcplXqJl6MEyOED9tR1CHHFW6rbEU1hAp4MmQwU7OB5V53DCHqYijO0YsK7WsunQPQNC+mLBXXPuuuClt3zFCzurOk1G2ESkttXVFZwRI1PqG9lGVlCau0VskExD9ZTJCKuMVCq8Fcv80N3hyMfpFKsLDFpc4Sr0nvRjMIxqABs38mnbns2fvUKzP5qWqvbMaRGOveG1LQRWF2CU8vQj2ATVs3hbEjzQOtCCcRWqQZMXAf44lZA8eR76nIWLc50Sr461wTuUF/pzwCW5TiGvpKARyIU5+SCcpyjP2PDqDLq9iGFeN3rJOa0yeR7GUqvVtApVmtU4X5fosAWhCHYTBfqU3XC9B58u8mYqr4DPKQgafvdm4GLzcUK94NQ8brYosKNjU+7vH/4VgdYjZdrKxrHxvpALfR3gXc4HUysjyZfGg/W1yeV0EyncVxB1mkcBUR0tWi79wqOFOd5tId/E9fA9Pe+n4sTMLg7TQzgwQDWKakySWcSu9YNe43DLktEqiIV+8VfQgYTM0JKXzwfceRhz0Iq89sqeP8/DIMs1YuBaH8SzmXPtWKVUT6KzKzmaF5GjE4pYxdSgnkt9M9hk0sTUSCADqRbh317zkgQZXz0nxaHWTN9OewYJ46Oot4gQKry5sDd2R0FLcuB3CkE01tRxPcl8/emh5CKi6Sx0UxqiTdrpdfrcvVDuhs31p4WplDpL0fBdERvZUiJEhY0en7SG9gDOUWgAs1POMjyq7hz+loYftNAdCTiQpkTYq1TfgHQy6qmkdTVAkq/0Wjwcdlg9dksnGU2Ea0222P2qweOnxKrbnwjWmSz/+sp8A//TnalkMU4JCqw3eUICBBt0IBLJpWwQOdhOL+8O4pAItnpFScAoWRmY7xZNM/5Xsu55XtZaOVMLGKtBsXiGanhaohhvW8/SiOCXJdw7BKpKePJJyXHgPr4s0Fh+/xX4KJezWhdToxDBqF1LQwCSk6LbR3ks4yk6HsHFolPMdxMRmAvCemkn55xcUnRNXWWpZ6hyb47IG9y1KO44X7bnS2uSHkrzbodF2MlaZn4R46qJCRyHjWl4MCar7iwirfOhws4cEhHEPhn+SNf/YKJaG6SMWLRHncpmv0Lr2EI/AYsxpB9noKKW0poMFDFsxTVlLsyZVhkFS3RWAw7w9NNcPn3cA8hSuYPuHmhzRAKWQUDzndm/zklK5PHOvbs+yyOGtYME6nwzZplcWsHZvDDTy76GMPOH/wjiTEnAxI/jDd0BFzkel4xCbW0Yv1dK8wUc6k5tMR/Bq6vNDmscySPXSwKzST7xSU2Sw3Ws99815PlwCoM9jlRUG4Ii50MAP3pYbf0cDmAKWWDoavr3mK3wlThV3J+NCPzIxmKbV9M3U1eIXu+yXGtTpQAVsz4ZTxGsjcxi0O+l1jqYSx/zR0rzVUTFVDyBG5yqai3I9XOCHpjfnutpOsfoHiuZc2OZrakETrWPUT5fttCCWewM+G9Naf5daQ8Pz6ut/Voc9vVo90YsgBCVR7n8LEIPvAUgYYOR8/9VLjF5r7MNeO+1nu50o54d/8qk3iuVGA/DChMF4nRaaQTdBo1d7FyLi0En+i6rC7uew9xYCfmHoV+BfHPr9y8b1PKAzRKqOe4A7KFHPFQyJ+19YkVF3H4Su9pZckFLdu6r3TWtu1unDVSEUAIWi5jGYgfVWuQXsQiHmPmwdsfunfb+QaCBsrNZ6vllugDjhDRUd8oDGk2OhLEdcg40mxdygeT70YFAM6bhq+l6Zo6NxKnJl5ZWycmN7gLztF3iCCADDgGdED3FPD42Pt9O+a3p84JLLip1wlqy/6pLHHCUAIIqftToKpUN6vAUjM5ZZNW7W9CkQUoMm1ywhohMzAO9Xnp5aVueeLcLZ2MzWYFACAj8F4tzjVylcRSH4qbVS1GXd2xsdETFKA3vmGK2O4RdPz3bH1Qz2F+BYtbVwgfhiCPuKPPb/9jKT/K+/Q5npaHyK+VOXWQtURzmoN3BamZuUlYggLVZ03jC8N8RS60phY4G5LolNh6Tn19Cipr138u+SCuFx9T7VbgQ+yCieMMjS50p2kINigStFU6Hqm3zdwH/VksVwxC3MS9d8z8ak13DZ1UmguAChJM8aaOvK0AJtPAEns9hpP0Sb58Wrr2pVOoMVZJ8l74uAFIyVZdFCjnRZxYM2C2ESI3MCziMgXl/ALp94dpsizdp8gLSRr7h8v+oLeCW/0rHLADMZJNFnTLrLO0yaXOsyU2Dfes66MaXHRUjPhot3WI1LISp6ak+kgycU0qHFx1dl2OsHWVWdb519P8yt/wJqIlDMoMDvSidC2Wt+LSHLtHESZuZ31FZyEYZxWwzu83Vdufh0KulxcSVZHln6doSThhWoY5AJCEilPX1+cFLVNBaCIx87JAmP+bNNz6DZiNQBXcha/DXfP0fELnbxCcObwmry1cyoW7JYrURRIl3jHSW0UZGFflf6RjPMlKu9R5OfqLOZx881yM40E00Ks1njzYfBsLsqEM0pfl5/B2+zaUYX2JvTBgRqfGIzer/MTjT94JvFL7AiYb0i9vNq99YVUPqhhOOw1BDB+v6zxeUNSfkWjQfS/JN1Dc440MK2GoX9fUCRWCHAXTDhaPi2GZK1ZnFS7K1iLkn36xiLsD97Kuz6aPZ5yxMkl1Uu+ySEoh7SGdgH6h4518F5Te5LKTaWs72C5VvC5odgei3STu8zR7PSDaeMPKlg4j8iOzmXgfJ4TweHywqD4CSvEgeVWBs8F9FdvNiv/E4dEsK9OWY6q9RPx0c2fKDzPts3mHjHUuziOnfMZsqaVukg7TkHZTzA0FUWxpkQJ2rmxIl75zZ0OCp773WlRqrmjRSW//nNqZd8ffM5MoJh2PRbVTn7USlV0yChoy5VneBkwOHToQRr8ypS6L30e2m9R+o15pMNpqFeKVtgSPF/ixmdZpwr0zs8F7E7yjhC0MbzWr5/fnGyrn7CPdnpZ8pCIJLsGXW0LvpYifqei+S7AIRdD5KLe/oOiLJhXmheHx5bOthqG0I6ZJZoU220DlnXYnL7wEAXlbHdjE3dc6aZ96lxtz8F5KSTX/dShDKAzhooXhsedMFYrUlNa2cwebWTJ45QC47AF83FiDB5UHUtLylTXsis2ztNVRkZ+VLdVdhxxPJkCghMXSWTWl83/5Mt8wrneonSsPL+k2VVMiyFhS9gfdBqpliaUc2WfwVfk7wR57+KlNPy4o3mEiLx0HJfSQ9JTOwvrPCGlMZnry6f3VgiCmWfTxeUrkuWn6TVyXzKL7w2aR6xNk8dYPzvRVk7XGb1cPpBSxC6pbCYPM9nMuWpxsM+5ToS41QseoK7osxjCyZxbwXuoxYRuWzB47p7YJVeyQbRowtW58hdK4LtWGGQpMg02zJ7YXeSJDdvDLBYlHOl4DLE9928IDvvurVWJSi7lHlIYihalUKOAlGKc6WlCg/M4/DBjX4m/frrjTRiVh+txOkLu3+nWMFslTIhHZThkaUGPQ3smSTacyaC3LteKSrAoOoE4haEoagnSPPYVNCGLsVXPCn6un5LEZfJjVIst5fH2PfC1KJbGsjV/V9iht+sd1UsZUwTfznbNmidYG9Yawe6jQdFMDRAmratGJajXR3PMH8UzdVMf9S12gqkxER4ccuuxur0w7u4xZdTI160+Km4X8sivXXj+uTimV0KgdJZAzXrCxj+ZW7TmQb8WceURuSQnqHW9J4NTOiP/36jDt9+8i2jUS+qQaBtfQR5FKY3KtjVnVgxDTQ1bj1ksUBsjoRHdqBFN4zA8P9x3bf3cyOanmUdibcQ2pt9JLv2GQhOLf3odqYELwLmk9uKC16KkKco8FGnbYvh60IQNcTTMk09UNJvW6m1nXFh88GBnNUndqyMdsfbpdNd4THGB4Qoe92coHaM1OYMU2NlL3j9PoLzNmmjq2whyU4Q3Tf97HgpwN8KlBsN3Iv/k/z4B2avsSWKHp4GXHZ0m/PxU7XPvEoZ479Fxr2unDrPJ8xERmSsiaxQl5/SRvu5mKMTW8NoGXYXO/wXXfypO8Ph979aGjJyVvK6uUcKw6/g86mfMHjBJPiUf8dPdV329502di8h0fjY0GjNux8uq5yU8i72UU52wGj4MIFQHkBTcuPIRg8xBW+1VwEVWhv64D+SyPRh9EHb3aQdA5drcTKlliLf4Urg4QIowK0LWHSfEFsBgLvP7ODAkT4bR1BaXJMXjTrMeF6mSl8gaE7L3ZGRDt7aocAjyjnFPYVHS8skjhrCVzX1DvIi6dA4t1KJEB9n0YNCV7wKh+bl1nvGEX3bskKBabDJi2e+GEaOCVGJSaqAiEY021knGn/92fCcTjW4MthAa2JHb56WRF7dUEeVtRjk1oEey3eLe3yMSGjqpF7+3YOe5OGfwE3aOWZQJg5DQsNfJs3H2HC4FUWRHxjPSDFXFvPMG3+W+bi93QbktGK3fFVhBOjPRvTSMi8TAAPea7vAe8It0dmfsnhXW/RRFGPkqn3+zpJztLuk2hOlkFlp9vHwFg99f7vvBKs5nV3zYSIqZ3otGAggfyZDm2nmHoI3/Lae4NXD6pyG/n1+SXpQLEYBN/CfEAN8hmDhIZ8H/WL4lFqDhzeNCReKCjFrLSsobDE3P3uzhlPIE03mYqg1nKzUWojzW3rc4NkG/vxrYhbRYlBnxKWEKt/mzorzz6RK+xWa6Z+Rp4YcMyfTSVyKtQx7XniiAzbTQOM85jNaQgcBXTMp+kuSJF4KFZnZ4iUg23b0rvUgDYjauX/6V39GaZdEh33kRDk2wMRQk7YfY7c79qjUSUNuziuhW/P9WKq27wCjz9GAeNFZBMEpgSfTnCL31DH4mwKR0WXjp1DI7SDkhx60ACPGbQ/fAMoj5P4pinvGoF3uBeRiOv388xo85ZYmaf/2W1gxtXDR2IY2hSmHhnhamvYWVX4coqoD4i7WArDPW0Ut9W0MsOLzH5geg916h7S5eGemRr7kcBClP3iQx3n5WYC+9SjVm1NU2OCLR7C9UDFA7WtqaAZ83ds+HjH43YmNNWLhmsziCGf3UvxbmWEdLQPQlP2li9KmBIIyzuHoAwJAfFM5YYjHnUYBKUoRXg6rr9H7Z5i/B9n3xJdg+MGwcYX3fk/1KmKs6AhnBAUcdAwmvRjUMzOYeNTly3YEwlP7hOPuH0V3FX5vQWowWxUDa0o5uFHj4JmaRpMP8fiN5LVI69IEDYZsElDB6SKhILR2I6tZ+Inn+UPCfAl8IwvGrcQEba0UJpDvWgbfrbhfX39e1+5kcVVs4pV/m8k3CaI3i5cGYuoluokOs3E6vfmgQKZAiulpVCv0dOtufd7KC8e8syntaYADICDugKqjM9JcWqsC7KJquEB/fXirXJnDbCEDICOPwBfQil44SjsVwNvEgYrrAJgZvH4U/raNv1VpQgR0ncqosGqEV7Rp7Z0x9agMZAUD8HGRZVar1ObyQM5OAIrEEkmTs3/KZ+ULWYXIkHvVPYZmFDZxa28BOW/QzVuOWgVjMyorvz9gig96HRyZDLdShMbjcHv9nmQHbsbT1pQdxCHCC42DmdL+4YkTc+ceJVlsUzpA0o7dXEEp2q49HXtyd/CXMrQuoazLxARuEcCXGVQGvRRhx+F08++wJJu8n4rwP7NONRzu7CjKlHnpvlRIsfB3aery0/2/3MuFdSBi0hF+UCKQODeBlOFXMDqHcQ+mD8HUXLzYwsuq6PdFFO8It2YVLJTMj2GLJKtexou8JgjIxi0rcXjEU3/oUNVbrgZZeJOt2hJQjB+sTmPHdgjVIVhgvGUnkqfkxtkgXnRCaOtKgrdd0woHjtzTc903z5ERu0Nxop8IQe0B/UcUMabWysZLLwLAaraND8uOexCWNtZbrBBg9gXDsBwqw/VPDI3lMPzVz+sbtKg2Be3LBrzc/vUepAQgcEdFW50RgxXrimLSVGGMUP72pAc/EcVIEi8Fx23ZpVg3+566hVvBnixkbvdBS1tcY37ge5FKrC164Lr778p+x5SIgUna1Nxmp1AMEDJ/HexrpEGAUmmIywnFCq9/ZnT+h5LQisRDiUD65kWrzdXtNbOixkqqCW1DJMp7nR83CVUml0tn/j+lF5TQ1waypHP6digM+AhOTCf5kCtsnYI/+ESCqG6tvVdCliGm+BskQCEg34N1uL3W3E30loDzwaJShqbuVc5u3VPHGtoOhcjEnTccFPIWrqlVNbnSGgxDN0t/+KXrX2F9lkZcGGwk97nyP4VSFrVmQpdLAe9S8MGUFBwbjvmA8FbO7vJDIAKVcJo5u/mtA+skX0nUJ8X9i7pIURRgVhKBExM4rVj0avUtTzYXTcc1s0/JOzrnhseP+WyAAJW4NOEBV75BhgZj1ILI3DHujnjb04YQpDYZlxnIuzV5/4zbZbfN/EdNMsYy0OG1ssT14Znr74AWq8MmRitHLCUOn6ngNN8tukdcd7jNtVHiuuMaEChCpZaEReE+VqtSUePrB4XzuHZHVzzldsQyyIA+70TSPwxQ+XPeKIbXmdwlGRp/SGK8hFYg7tDmA1wQSXSFpUZIsewEk2f5uxJbvkqxzHs02++FYMRF8bVtgyIJPWSLWMDaN2PIXgCPYHsn4DqNEfJ0tnccAl84T596nk/xwk3djkO62Xo7jsiaxclLpy7rpjRMbLIUqFkbJ1IVUVCjfmj74/BbhpR0KRApkYGVEAncbbygmZMXNPZ5Zj5+DozM9ON/5dRTuLHTnkP/za5hAZd3LGDu8ac1YZollBRmBB+nvcLFAh3WgARK7ltMX6WQC2wpPfF1/tNn2qajpHsowj6zSjvSUWZ9kyPHkNkUw9oGso+DjQ/cIy9Hvb/FR3SkSHtz8d5kzQ1OGLPOwPyEi8i03RlnvIaKL2sNdmpq0ws3HABlE6L15qzhJ35NdaP035JTiuWmsAOuU2bmyN76sUd1PbwDLdrFdR1TbRcdBu65yxF4aGV/naymDW0xjYq6kFco7OYBkZ9G4NUHUolyP03Q0M72cs8H6A3APJvQTzhmou62JHI5sUskYzTXQaeA43UXLzTGarKtC3Iyu4wL1RdIwOZvtxjXkrU8PJosmb0KFXgr3aVxANb/eYwQBQZZS+xzpHeIe5M5NKVD1JzKVLyS9YvZvp5b4FckVlPrNpcPgoZFw1OQcpCACvU3Kq2xnxyMbomV3lTKEgscD0YG4lAXqy7+0MNkyx67j9r9/GS9gz5N90Sqf77TgoTSWpGHLq/G4C6tSp3aCvUU7+997b3eQLm7XqcukL4fo3RJduV3SDBFIhZ64Lr38ZIoer5h0C760oi8PI+AZtGrHGCkcvI7qFsj3Jz1X+BBORe9AdxqA2N5N5aLhQVZ0O2Fs4nuCSBBFh8davx6e9yxrn5E65BPCN4CSjv3J8qvnWTj8tIf5idgmyvNZhrfimgiietcUMdFIItGwuK5tqKEwSy6TTH3LdALY37qX5QaAha0pU67P2FMhTqDlQVltwuHGTBe9wUi4G9Q8W2/iv6SHA7CqQTaCvi2mVFmKorjEvTQLOx5//qycWJ2NywQAAiOiX0WuwwXwTn7Ft2hBDIauj8scA+/2Sc1fCBejQ3ZMAVigqBkl64JEiusWJK9p/60I4QntbKNbLNPbkWgJmkylOT9UjrPJx3YaMlVsfbGGCh//rr643hdPqTzQOZM737/JtZGz21rmAJ01ZswQVr3FgE462Kht6IPpqViIBcXmUjxDRVSObpfgncOvH+hyxG6ibZDy0ylvdpkYbDqmmB+G9kgMUjhzhj50CM4j/sM0Fgj4mNT0crfb8ljQFVrsQl3/0EEnzAdkVbo0Q+h1cbgYs8CRv2JhM+ojofABmBwKnarO1HkIlxPFJ6RO6CQhfg02dCJKuJ0L1JrDpLN73RREQ+urTDAHqQ/TaMVrOVZI3Sk65ardynwzM9HWBwe4evmaS5ADe/OR7IVWs3FFqzvS8QxAW+Zkd4Gslzi+8L5r1DMBFg0HhitVB5iK3/h0jZyT1r6fGNIvR4rQt9tknahYsTjs1skOrNRdl2fCpHsdpTw7DSxJB1z/KOTu/b89DmiA0L4e14WFyVZl6YbPZ8eVgUImtlM3j4y8jokFZ/68NsJnO1qoZY139UIMnp/6mOwQBTilzeMeI6Dum0EIs5Ys4J1LdA3bvEncvxllKZteYKzDQ4NpGp3aXEJmcKLr+Qld3oJQNOGJOlQ755o9MAucBcQ8V6rROjF2E5AnGyKOuB0MpjREZUbZlWd3MnAI4HT5YPq+XzJvOA5L0f+J8qx9HFN2fCUe7qqWMdhABgfMJzqyklChqGNmevVt2eD8XSdyPNV+ix4sqdJXfS5ra0uKnkn1J+Lloixb/4SEMfl3Br5N0CbcLsan+1ju5AU6xnYxT+5Q65U4GoDZUG2hPvT69UV/5N5oTPmuQMzuheedl42VF1QETN+TCRU0fGc1o86gk5Ig3z5gLKUvVczaNtE4DPPfPpMI6QfECmI+nkU/cbmgCmZyHlx6goa6Sl70iR+Zztv5+N9zlSDd8Z5+4zReLahqfBJjPK66ZfEoigrmmEcDzo3TcRgJhTOzcu5dQMCvNBuCE2XFNASG+St7DP0bn1LWy7+yPys4JouxcU+yop4o6CDqpkIz/Fagtv3FtRu6G7mgu+pfSSvwoIXwzR2l6Ju9AD8yaTLxm3MJej1qirwzIm5ScCxdgm8UxEcso27dm2UdPcKoDPIZcXB8h+N995hK5Dk4UhaJ6bcd+tTMe2J+M5JhzrI4wIo24hh4PcZlyjCg39gUEyzNS8PfqJgtTt9ry2LJSX0UDPVWmlmklC3w5yrIObK42Lq6pb7OOr0Hom+eV8C2mccgrvUbFzY6ij6hWXDGR4kVOTO5oUeDkFttTv1m3ZSiI6ltjHGm5pZ03+MgVRJ+JNlAXfrG1tX/q3iuusoMoRdFm0yIJKmQYCyUPzTUATnWPlC60EEQekvmzIlVs1k3zorfRtT57SI0SQvvPLVKwgYglypUldMxdpUNjtuURXUdFLvXg+DeNGzQnfl+gwbl8VSPy+zMmfmiPu1iS+/7ZcyV4EyjURp3da+SxQgeKvXwd2n1qVThnbA4i8IwLzLf/ASSHxeXhhEVBoH87dUxH+0Yk4ecd17WwtLH7bv6cpiUR9D+rtYsc2TnffTmZcYGyRE0vwGk7m6xo1CZntVoIfM6gcv23Q3x9f69dz6W/QiLnNIoRGUn+Pk1YiWsa6DDEnJ6VxXA7jFJM1XVaQWRw+RwnczKCE4dtKh0DoMvIAunos9O11AQ7NFPeLEhvHIjXAPnbh6dV/RVLNHwLTdVCRKcPWZqKj5CNsz49SC9aTk1VLbprJXQIPGZbwAaP3jygJ8Gkxlrkr4C1FgEMq+8a/qmYICRZBgGBkfcp4yFRZv/ERFJ1d9Uf48O1kLYFhKnNWbyQLnn4TQpYLAjbnC3nPsJWJ7sMsjsdABUjqVvnM9w2b4ooyXUPJb6w8dAeTMbNOTvrbPDM+t3gcIocaMPBd2pPB1OsieXgxS47wUB2ayWozcUgiIqWb8ReCw05TFsGTXzjexjAzC0rVfVrT8wce0B1WINEG1LGg5HH9X3Nq4UIpT5dkw4mJ4Cl4vnAsaftMW5THgK3XPtGGgVxxgRI2GqKNDtWX8txaAJWvtpPrclEPRn7Ap4Kx11XCYOaYFA21JswJYzXj0i7Mk8zozNB4GLuFUxNO4E4M9RnENnp3hqAw878yI6hj/vqlP9mKeCi3ngYArw5LTui48jd6Lhc509+4aUsKWdjgw2YTDv/FUvRMCzyhKCTGCJPaFO6rT3a9LuxvJQlQF7QemETyzl6A5xFDhV5PtS8dQqpavual4kL80EsExxabIfL/0QVg+sVw3r/rvuiWeL8irKBYv+6vZjkug=="
-};
+      <div class="conv-strip">
+        <div class="conv-node"><strong>1 Litro</strong>1 dm³</div>
+        <div class="conv-arrow">&times; 1.000 &rarr;</div>
+        <div class="conv-node"><strong>1.000 cm³</strong>1.000 cc</div>
+        <div class="conv-arrow">= exatamente</div>
+        <div class="conv-node"><strong>1.000 mL</strong>Mililitros</div>
+        <div class="conv-arrow">&times; 1.000 &rarr;</div>
+        <div class="conv-node"><strong>1.000.000 mm³</strong>Milímetros cúbicos</div>
+      </div>
 
-function togglePassEye() {
-  const inp = document.getElementById("inputPass");
-  const eye = document.getElementById("btnEye");
-  if (inp.type === "password") {
-    inp.type = "text";
-    eye.innerText = "🔒";
-  } else {
-    inp.type = "password";
-    eye.innerText = "👁️";
-  }
-}
+      <table class="tbl">
+        <tr>
+          <th>Unidade</th>
+          <th>Símbolo</th>
+          <th>Equivalência para o F620</th>
+          <th>Aplicação Prática</th>
+        </tr>
+        <tr>
+          <td><strong>Centímetro Cúbico</strong></td>
+          <td>cm³ (ou cc)</td>
+          <td><strong>1 cm³</strong> (unidade base ATEQ)</td>
+          <td>Unidade padrão que o F620 pede no parâmetro <code>Volume Teste</code>.</td>
+        </tr>
+        <tr>
+          <td><strong>Mililitro</strong></td>
+          <td>mL (ou ml)</td>
+          <td><strong>1 mL = 1 cm³</strong> (rigorosamente igual)</td>
+          <td>Medicina, farmacêutica, seringas, tubagens de infusão.</td>
+        </tr>
+        <tr>
+          <td><strong>Litro</strong></td>
+          <td>L (ou l)</td>
+          <td><strong>1 L = 1.000 cm³</strong></td>
+          <td>Depósitos de combustível, caixas de bateria EV, motores, cárteres.</td>
+        </tr>
+        <tr>
+          <td><strong>Decímetro Cúbico</strong></td>
+          <td>dm³</td>
+          <td><strong>1 dm³ = 1 Litro = 1.000 cm³</strong></td>
+          <td>Desenhos técnicos de engenharia mecânica alemã/francesa.</td>
+        </tr>
+        <tr>
+          <td><strong>Milímetro Cúbico</strong></td>
+          <td>mm³</td>
+          <td>1 mm³ = 0,001 cm³ (1 cm³ = 1.000 mm³)</td>
+          <td>Micro-sensores eletrónicos, válvulas piezoelétricas, relógios.</td>
+        </tr>
+        <tr>
+          <td><strong>Metro Cúbico</strong></td>
+          <td>m³</td>
+          <td>1 m³ = 1.000 L = 1.000.000 cm³</td>
+          <td>Consumo geral de ar comprimido da fábrica ou salas limpas.</td>
+        </tr>
+      </table>
 
-function submitPassword() {
-  const inp = document.getElementById("inputPass");
-  const val = inp.value.trim().toLowerCase();
-  if (!val) {
-    document.getElementById("pinErrorMsg").innerText = "Introduza a palavra-passe.";
-    return;
-  }
-  unlockUnidades(val);
-}
+      <div class="callout callout-gold">
+        <strong>📌 Regra do Raúl Garcia (Volume Interno do Equipamento):</strong><br>
+        Nos cálculos teóricos de bancada, deves adicionar sempre <strong>15 cm³</strong> ao volume da peça:  
+        <div style="text-align:center; font-size:9.5pt; font-weight:800; color:#003366; margin:2px 0;">
+          V<sub>total</sub> = V<sub>peça</sub> + 15 cm³
+        </div>
+        Estes 15 cm³ correspondem à tubagem interna e ao bloco de válvulas pneumáticas do F620!
+      </div>
+    </div>
 
-async function unlockUnidades(passStr) {
-  try {
-    const normPass = passStr.trim().toLowerCase();
-    const enc = new TextEncoder();
-    const salt = hexToBytes(CIPHER_DATA.salt);
-    const iv = hexToBytes(CIPHER_DATA.iv);
-    const ciphertext = b64ToBytes(CIPHER_DATA.cipher);
+    <!-- BLOCO 4: TODAS AS UNIDADES DE FUGA / CAUDAL -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="badge badge-amber">4. FUGA & CAUDAL</span> O Limite do Cliente (Menu F620: <code>Unidade Fuga</code>)</div>
+        <span style="font-size:8pt; color:#64748b; font-weight:600;">cm³/min • sccm • cm³/h • mm³/s • L/min • L/h • mbar·L/s • atm·cc/s</span>
+      </div>
 
-    const pinKey = await crypto.subtle.importKey(
-      "raw", enc.encode(normPass), { name: "PBKDF2" }, false, ["deriveKey"]
-    );
-    const aesKey = await crypto.subtle.deriveKey(
-      { name: "PBKDF2", salt: salt, iterations: 100000, hash: "SHA-256" },
-      pinKey, { name: "AES-GCM", length: 256 }, false, ["decrypt"]
-    );
+      <table class="tbl">
+        <tr>
+          <th>Unidade de Fuga</th>
+          <th>Símbolo</th>
+          <th>Como passar para cm³/min?</th>
+          <th>Setor / Contexto na ATEQ</th>
+        </tr>
+        <tr>
+          <td><strong>Centímetro cúbico/min</strong></td>
+          <td>cm³/min (cm³/mn, cc/min)</td>
+          <td><strong>Unidade Base ATEQ</strong> (não convertes nada!)</td>
+          <td>Aparelhos Série F (F620, F6Class, F520). Indústria em geral.</td>
+        </tr>
+        <tr>
+          <td><strong>sccm (Standard cc/min)</strong></td>
+          <td>sccm</td>
+          <td><strong>1 sccm = 1 cm³/min</strong> (exatamente igual)</td>
+          <td>Semicondutores, baterias EV, eletrónica (à pressão/temp standard).</td>
+        </tr>
+        <tr>
+          <td><strong>Centímetro cúbico/hora</strong></td>
+          <td>cm³/h (cc/h)</td>
+          <td><strong>Divide por 60</strong> (ex: 120 cm³/h &divide; 60 = 2 cm³/min)</td>
+          <td><strong>Indústria Automóvel:</strong> Renault, Stellantis, VW, Bontaz.</td>
+        </tr>
+        <tr>
+          <td><strong>Milímetro cúbico/seg</strong></td>
+          <td>mm³/s</td>
+          <td><strong>Multiplica por 0,06</strong> (ex: 50 mm³/s &times; 0,06 = 3 cm³/min)</td>
+          <td>Relojoaria, conectores estanques IP68, micro-fugas.</td>
+        </tr>
+        <tr>
+          <td><strong>Litros por minuto</strong></td>
+          <td>L/min (l/min, slm)</td>
+          <td><strong>Multiplica por 1.000</strong> (ex: 2 L/min = 2.000 cm³/min)</td>
+          <td><strong>Caudalometria:</strong> Aparelhos Série D (D620, DClass, calibrador CDF).</td>
+        </tr>
+        <tr>
+          <td><strong>Litros por hora</strong></td>
+          <td>L/h (l/h)</td>
+          <td><strong>Multiplica por 16,67</strong> (ou &times; 1.000 &divide; 60)</td>
+          <td>Filtros industriais, bombas de combustível, caudal contínuo.</td>
+        </tr>
+        <tr>
+          <td><strong>mbar · Litro / segundo</strong></td>
+          <td>mbar·L/s</td>
+          <td><strong>Multiplica por 60</strong> (1 mbar·L/s &approx; 59,2 cm³/min)</td>
+          <td><strong>Gama H:</strong> Deteção de fugas por gás traçador Hélio / Azoto e vácuo.</td>
+        </tr>
+        <tr>
+          <td><strong>atm · cc / segundo</strong></td>
+          <td>atm·cc/s</td>
+          <td><strong>Multiplica por 60</strong> (1 atm·cc/s &approx; 60 sccm)</td>
+          <td>Refrigeração, ar condicionado, compressores herméticos.</td>
+        </tr>
+      </table>
 
-    const decrypted = await crypto.subtle.decrypt(
-      { name: "AES-GCM", iv: iv }, aesKey, ciphertext
-    );
+      <div class="callout">
+        <strong>💡 Tabela de Bolso Automóvel (cm³/h &harr; cm³/min):</strong><br>
+        30 cm³/h = <strong>0,5 cm³/min</strong> &nbsp;|&nbsp; 60 cm³/h = <strong>1,0 cm³/min</strong> &nbsp;|&nbsp; 120 cm³/h = <strong>2,0 cm³/min</strong> &nbsp;|&nbsp; 300 cm³/h = <strong>5,0 cm³/min</strong>
+      </div>
+    </div>
+  </div>
 
-    const decStr = new TextDecoder().decode(decrypted);
+  <div class="footer-bar">
+    <span>ATEQ Portugal • Guia Metrológico Completo</span>
+    <span>Série F620 • Página 2 de 4: Todas as Unidades de Volume & Fuga</span>
+  </div>
+</div>
 
-    try {
-      const chk = document.getElementById("chkRemember");
-      if (!chk || chk.checked) {
-        localStorage.setItem("ateq_unidades_saved_pass", normPass);
-      }
-    } catch(e){}
+<!-- ========================================================================= -->
+<!-- PÁGINA 3: A FÓRMULA OFICIAL & TABELA MESTRA DE CONVERSÃO                  -->
+<!-- ========================================================================= -->
+<div class="page">
+  <div>
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-box">ATEQ</div>
+        <div class="brand-sub">Manual de Referência Metrológica<br>Formação Técnica F620 • Raúl Garcia</div>
+      </div>
+      <div class="title-area">
+        <h1 class="doc-title">GUIA COMPLETO DE TODAS AS UNIDADES ATEQ</h1>
+        <div class="doc-meta">Documento de Consulta Oficial • Formando: <strong>Berto</strong> • Folha 3 de 4</div>
+      </div>
+    </div>
+  </div>
 
-    // Substitui o documento atual pelo conteudo desencriptado
-    document.open();
-    document.write(decStr);
-    document.close();
-  } catch (e) {
-    console.error(e);
-    const card = document.getElementById("screenPin");
-    if (card) {
-      card.classList.add("shake");
-      setTimeout(() => card.classList.remove("shake"), 500);
-    }
-    const errEl = document.getElementById("pinErrorMsg");
-    if (errEl) errEl.innerText = "Palavra-passe incorreta!";
-  }
-}
+  <div class="card-container">
+    <!-- BLOCO 5: A FÓRMULA OFICIAL DA ATEQ -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="badge badge-purple">5. A FÓRMULA</span> A Relação Fundamental Fuga &harr; Queda (&Delta;P)</div>
+        <span style="font-size:8pt; color:#64748b; font-weight:600;">Manual F620 Pág. 31 / Notas do Raúl</span>
+      </div>
 
-window.addEventListener("DOMContentLoaded", () => {
-  try {
-    const saved = localStorage.getItem("ateq_unidades_saved_pass") || localStorage.getItem("ateq_master_pass");
-    if (saved) {
-      unlockUnidades(saved);
-    }
-  } catch(e){}
-});
-</script>
+      <div class="formula-box">
+        <div class="eq">Fuga (cm³/min) = 0,0006 &times; Volume (cm³) &times; &Delta;P (Pa/s)</div>
+        <div class="sub">Fórmula Inversa: &nbsp; &Delta;P (Pa/s) = Fuga / (0,0006 &times; Volume)</div>
+      </div>
+
+      <div class="callout callout-green" style="font-size:8.5pt; line-height:1.4;">
+        <strong>De onde nasce o número 0,0006? (A explicação do Raúl Garcia):</strong><br>
+        • Nas notas do Raúl, a fórmula aparece escrita como: <strong>F = 6 &times; 10⁻⁴ &times; V &times; &Delta;P</strong>. Ora, 6 &times; 10⁻⁴ é exatamente <strong>0,0006</strong>!<br>
+        • A física explica: O tempo de teste é em <strong>segundos</strong>, mas a fuga é expressa em <strong>minutos</strong> (60 s). A pressão atmosférica padrão de referência é <strong>100.000 Pa</strong> (1 bar).<br>
+        <div style="text-align:center; font-size:10.5pt; font-weight:900; color:#003366; margin:3px 0;">
+          Fator = 60 segundos / 100.000 Pa = 0,0006 !
+        </div>
+        É uma constante física universal do ar à temperatura ambiente!
+      </div>
+    </div>
+
+    <!-- BLOCO 6: TABELA MESTRA DE TODAS AS CONVERSÕES -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="badge badge-blue">6. TABELA MESTRA</span> O que Inserir na Calculadora para Converter?</div>
+        <span style="font-size:8pt; color:#64748b; font-weight:600;">A Cábula Oficial do Técnico de Campo</span>
+      </div>
+
+      <table class="tbl" style="font-size:8.5pt;">
+        <tr>
+          <th>Grandeza</th>
+          <th>Se o Cliente te der...</th>
+          <th>O F620 precisa de...</th>
+          <th>O que fazes na Calculadora?</th>
+        </tr>
+        <tr>
+          <td rowspan="5"><strong>Pressão</strong></td>
+          <td>bar</td>
+          <td>mbar</td>
+          <td><strong>Multiplica por 1.000</strong> (ex: 4 bar &times; 1000 = 4.000 mbar)</td>
+        </tr>
+        <tr>
+          <td>bar</td>
+          <td>Pa</td>
+          <td><strong>Multiplica por 100.000</strong> (ex: 2 bar &times; 100.000 = 200.000 Pa)</td>
+        </tr>
+        <tr>
+          <td>mbar</td>
+          <td>Pa</td>
+          <td><strong>Multiplica por 100</strong> (ex: 35 mbar &times; 100 = 3.500 Pa)</td>
+        </tr>
+        <tr>
+          <td>kPa</td>
+          <td>bar</td>
+          <td><strong>Divide por 100</strong> (ex: 600 kPa &divide; 100 = 6,0 bar)</td>
+        </tr>
+        <tr>
+          <td>MPa</td>
+          <td>bar</td>
+          <td><strong>Multiplica por 10</strong> (ex: 1,6 MPa &times; 10 = 16,0 bar)</td>
+        </tr>
+        <tr>
+          <td rowspan="3"><strong>Volume</strong></td>
+          <td>Litros (L)</td>
+          <td>cm³</td>
+          <td><strong>Multiplica por 1.000</strong> (ex: 1,5 L &times; 1000 = 1.500 cm³)</td>
+        </tr>
+        <tr>
+          <td>Mililitros (mL)</td>
+          <td>cm³</td>
+          <td><strong>Não convertes nada!</strong> 1 mL = 1 cm³ (ex: 250 mL = 250 cm³)</td>
+        </tr>
+        <tr>
+          <td>mm³</td>
+          <td>cm³</td>
+          <td><strong>Divide por 1.000</strong> (ex: 5.000 mm³ &divide; 1000 = 5 cm³)</td>
+        </tr>
+        <tr>
+          <td rowspan="4"><strong>Fuga</strong></td>
+          <td>cm³/h (cc/h)</td>
+          <td>cm³/min</td>
+          <td><strong>Divide por 60</strong> (ex: 180 cm³/h &divide; 60 = 3 cm³/min)</td>
+        </tr>
+        <tr>
+          <td>sccm</td>
+          <td>cm³/min</td>
+          <td><strong>Não convertes nada!</strong> 1 sccm = 1 cm³/min</td>
+        </tr>
+        <tr>
+          <td>L/min</td>
+          <td>cm³/min</td>
+          <td><strong>Multiplica por 1.000</strong> (ex: 0,04 L/min &times; 1000 = 40 cm³/min)</td>
+        </tr>
+        <tr>
+          <td>mm³/s</td>
+          <td>cm³/min</td>
+          <td><strong>Multiplica por 0,06</strong> (ex: 100 mm³/s &times; 0,06 = 6 cm³/min)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>ATEQ Portugal • Guia Metrológico Completo</span>
+    <span>Série F620 • Página 3 de 4: Origem da Fórmula & Tabela Mestra</span>
+  </div>
+</div>
+
+<!-- ========================================================================= -->
+<!-- PÁGINA 4: GRANDEZAS ELÉTRICAS/PNEUMÁTICAS & CASOS REAIS                   -->
+<!-- ========================================================================= -->
+<div class="page">
+  <div>
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-box">ATEQ</div>
+        <div class="brand-sub">Manual de Referência Metrológica<br>Formação Técnica F620 • Raúl Garcia</div>
+      </div>
+      <div class="title-area">
+        <h1 class="doc-title">GUIA COMPLETO DE TODAS AS UNIDADES ATEQ</h1>
+        <div class="doc-meta">Documento de Consulta Oficial • Formando: <strong>Berto</strong> • Folha 4 de 4</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-container">
+    <!-- BLOCO 7: OUTRAS GRANDEZAS DE MANUTENÇÃO E ACESSÓRIOS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="badge badge-purple">7. OFICINA & MANUTENÇÃO</span> Outras Unidades Encontradas nas Pastas ATEQ</div>
+        <span style="font-size:8pt; color:#64748b; font-weight:600;">Eletricidade • Tubagens • Filtração • Automação</span>
+      </div>
+
+      <table class="tbl" style="font-size:8pt;">
+        <tr>
+          <th>Grandeza</th>
+          <th>Valores / Unidades</th>
+          <th>Onde encontras e para que serve?</th>
+        </tr>
+        <tr>
+          <td><strong>Tubagem de Teste</strong></td>
+          <td><strong>4/6 mm</strong> &bull; <strong>6/8 mm</strong> &bull; 2.5/4 mm</td>
+          <td>Diâmetro interior/exterior das mangueiras de calibração e teste Stäubli.</td>
+        </tr>
+        <tr>
+          <td><strong>Alimentação Elétrica</strong></td>
+          <td><strong>24 VDC</strong> (corrente contínua)</td>
+          <td>Tensão de comando do F620, módulos de E/S, PLC e placas de relés.</td>
+        </tr>
+        <tr>
+          <td><strong>Sinal de Regulação</strong></td>
+          <td><strong>0 a 10 V</strong> (ou 4 a 20 mA)</td>
+          <td>Sinal analógico que controla o regulador de pressão eletrónico <strong>SMC ITV2090</strong>.</td>
+        </tr>
+        <tr>
+          <td><strong>Grau de Filtração</strong></td>
+          <td><strong>0,01 µm</strong> (mícrons)</td>
+          <td>Filtro de entrada coalescente ATEQ para reter óleo e humidade da rede de ar.</td>
+        </tr>
+        <tr>
+          <td><strong>Ciclos de Válvula</strong></td>
+          <td><strong>100k ciclos</strong> (100.000)</td>
+          <td>Menu <code>SERVICE &gt; VALVE COUNTER</code>: limite antes da manutenção de válvulas.</td>
+        </tr>
+        <tr>
+          <td><strong>Temperatura / Pressão Ref.</strong></td>
+          <td><strong>20 °C</strong> e <strong>1013 hPa</strong></td>
+          <td>Condições padrão normalizadas para calibração de fugas padrão (Master Leaks).</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- BLOCO 8: 3 CASOS PRÁTICOS RESOLVIDOS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span class="badge badge-teal">8. PRÁTICA REAL</span> 3 Exemplos Resolvidos com as Unidades Corretas</div>
+        <span style="font-size:8pt; color:#64748b; font-weight:600;">Como configurar no ecrã</span>
+      </div>
+
+      <div style="font-size:8pt; line-height:1.35;">
+        <div style="margin-bottom:5px; background:#f8fafc; padding:5px 8px; border-radius:4px; border-left:3px solid #003366;">
+          <strong>Exemplo 1 (Automóvel — Farol LED):</strong> Volume = 1,2 Litros | Pressão = 150 mbar | Fuga máx = 180 cm³/h.<br>
+          &bull; <em>No F620:</em> <strong>Volume</strong> = 1,2 &times; 1000 = <strong>1.200 cm³</strong> &nbsp;|&nbsp; <strong>Pressão</strong> = 150 mbar = <strong>0,15 bar</strong> &nbsp;|&nbsp; <strong>Fuga</strong> = 180 &divide; 60 = <strong>3 cm³/min</strong>.<br>
+          &bull; <em>Cálculo &Delta;P:</em> &Delta;P = 3 / (0,0006 &times; 1200) = 3 / 0,72 = <strong>4,17 Pa/s</strong>.
+        </div>
+
+        <div style="margin-bottom:5px; background:#f8fafc; padding:5px 8px; border-radius:4px; border-left:3px solid #0d9488;">
+          <strong>Exemplo 2 (Médico — Cateter):</strong> Volume = 15 mL | Pressão = 2 bar | Fuga máx = 0,3 sccm.<br>
+          &bull; <em>No F620:</em> <strong>Volume</strong> = 15 mL = <strong>15 cm³</strong> &nbsp;|&nbsp; <strong>Fuga</strong> = 0,3 sccm = <strong>0,3 cm³/min</strong> (1 sccm = 1 cm³/min).<br>
+          &bull; <em>Cálculo &Delta;P:</em> &Delta;P = 0,3 / (0,0006 &times; 15) = 0,3 / 0,009 = <strong>33,3 Pa/s</strong>.
+        </div>
+
+        <div style="background:#f8fafc; padding:5px 8px; border-radius:4px; border-left:3px solid #d97706;">
+          <strong>Exemplo 3 (Bateria Carro Elétrico):</strong> Volume = 85 Litros | Pressão = 50 mbar | Fuga máx = 15 cm³/min.<br>
+          &bull; <em>No F620:</em> <strong>Volume</strong> = 85 &times; 1000 = <strong>85.000 cm³</strong> &nbsp;|&nbsp; &Delta;P = 15 / (0,0006 &times; 85000) = <strong>0,294 Pa/s</strong>.<br>
+          &bull; <em>Conclusão Técnica:</em> Queda minúscula (0,3 Pa/s); requer sensor de <strong>50 Pa</strong> e tempo de teste longo!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span>ATEQ Portugal • Guia Metrológico Completo</span>
+    <span>Série F620 • Página 4 de 4: Oficina, Manutenção & Casos Reais</span>
+  </div>
+</div>
+
 </body>
 </html>
