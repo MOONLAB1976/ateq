@@ -1,11 +1,12 @@
 // ATEQ Portugal - Service Worker Offline Completo (PWA)
 // Versão do Cache v2: Suporte total a Treino, Planner e Calculadora ATEQ
-const CACHE_NAME = 'ateq-pwa-cache-v3';
+const CACHE_NAME = 'ateq-pwa-cache-v4';
 
 const URLS_TO_CACHE = [
   './',
   './planner.html',
   './unidades.html',
+  './eletronica.html',
   './img/01_corte_camara_inserto_delrin.jpg',
   './img/02_mordente_linear_selagem.jpg',
   './img/03_familia_3_camaras_insertos.jpg',

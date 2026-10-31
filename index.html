@@ -328,6 +328,7 @@ body {
 .icon-quiz { background: rgba(22, 163, 74, 0.1); color: var(--verde); }
 .icon-plan { background: rgba(227, 6, 19, 0.1); color: var(--verm); }
 .icon-unit { background: rgba(147, 51, 234, 0.1); color: #9333EA; }
+.icon-pcb { background: rgba(16, 185, 129, 0.1); color: #059669; }
 
 .module-badge {
   font-size: 11.5px;
@@ -341,6 +342,7 @@ body {
 .badge-quiz { background: #DCFCE7; color: #15803D; }
 .badge-plan { background: #FEE2E2; color: #B91C1C; }
 .badge-unit { background: #F3E8FF; color: #7E22CE; }
+.badge-pcb { background: #ECFDF5; color: #047857; }
 
 .module-title {
   font-family: "Barlow Condensed", sans-serif;
@@ -547,6 +549,17 @@ body {
         <h3 class="module-title">Guia de Unidades & Parâmetros F620</h3>
         <p class="module-desc">Conversor interativo instantâneo de pressão e fuga, dicionário técnico de menus WinAteq 300, regras de cálculo e fórmulas de campo.</p>
         <button type="button" class="btn-open-module">Abrir Guia & Conversor ➔</button>
+      </div>
+
+      <!-- 4. Eletrónica & Placas ATEQ -->
+      <div class="module-card" onclick="openTool('eletronica.html', 'Eletrónica & Placas ATEQ')">
+        <div class="module-header">
+          <div class="module-icon-wrap icon-pcb">🔬</div>
+          <span class="module-badge badge-pcb">Fotos Reais & PCBs</span>
+        </div>
+        <h3 class="module-title">Eletrónica & Placas ATEQ</h3>
+        <p class="module-desc">Fotos reais das placas F520/F620, identificação interativa de componentes (CPU, relés, varistores, cristais), serigrafia, multímetro e casos de bancada.</p>
+        <button type="button" class="btn-open-module">Abrir Laboratório de Placas ➔</button>
       </div>
     </div>
   </main>
