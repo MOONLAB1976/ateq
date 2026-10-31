@@ -339,7 +339,7 @@ function lockCalc() {
 
 window.addEventListener("DOMContentLoaded", () => {
   try {
-    const saved = localStorage.getItem("ateq_calc_saved_pass");
+    const saved = localStorage.getItem("ateq_calc_saved_pass") || localStorage.getItem("ateq_master_pass");
     if (saved) {
       unlockCalcWithPassword(saved);
     }

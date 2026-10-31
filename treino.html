@@ -957,7 +957,7 @@ function lockApp() {
 // Auto-desbloqueio se palavra-passe guardada
 window.addEventListener("DOMContentLoaded", async function() {
   try {
-    const saved = localStorage.getItem("ateq_saved_pin");
+    const saved = localStorage.getItem("ateq_saved_pin") || localStorage.getItem("ateq_master_pass");
     if (saved) {
       const decryptedDb = await tryDecryptWithPin(saved.trim().toLowerCase());
       if (decryptedDb && Array.isArray(decryptedDb)) {

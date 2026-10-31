@@ -784,14 +784,9 @@ function lockSession() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const saved = localStorage.getItem("ateq_saved_password");
+  const saved = localStorage.getItem("ateq_saved_password") || localStorage.getItem("ateq_master_pass");
   if (saved) {
     unlockWithPassword(saved);
-  }
-, () => {
-  const savedPin = localStorage.getItem("ateq_planner_saved_pin");
-  if (savedPin) {
-    unlockWithPin(savedPin);
   }
 });
 </script>

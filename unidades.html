@@ -239,30 +239,37 @@ async function unlockUnidades(passStr) {
 
     const decStr = new TextDecoder().decode(decrypted);
 
-    if (document.getElementById("chkRemember").checked) {
-      localStorage.setItem("ateq_unidades_saved_pass", normPass);
-    }
+    try {
+      const chk = document.getElementById("chkRemember");
+      if (!chk || chk.checked) {
+        localStorage.setItem("ateq_unidades_saved_pass", normPass);
+      }
+    } catch(e){}
 
-    document.getElementById("screenPin").style.display = "none";
-    const iframe = document.getElementById("frameContent");
-    iframe.style.display = "block";
-    iframe.contentWindow.document.open();
-    iframe.contentWindow.document.write(decStr);
-    iframe.contentWindow.document.close();
+    // Substitui o documento atual pelo conteudo desencriptado
+    document.open();
+    document.write(decStr);
+    document.close();
   } catch (e) {
     console.error(e);
-    document.getElementById("pinErrorMsg").innerText = "Palavra-passe incorreta!";
+    const card = document.getElementById("screenPin");
+    if (card) {
+      card.classList.add("shake");
+      setTimeout(() => card.classList.remove("shake"), 500);
+    }
+    const errEl = document.getElementById("pinErrorMsg");
+    if (errEl) errEl.innerText = "Palavra-passe incorreta!";
   }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const saved = localStorage.getItem("ateq_unidades_saved_pass");
-  if (saved) unlockUnidades(saved);
+  try {
+    const saved = localStorage.getItem("ateq_unidades_saved_pass") || localStorage.getItem("ateq_master_pass");
+    if (saved) {
+      unlockUnidades(saved);
+    }
+  } catch(e){}
 });
-
-// Check saved pin
-const saved = localStorage.getItem("ateq_planner_saved_pin");
-if (saved) unlockWithPin(saved);
 </script>
 </body>
 </html>
