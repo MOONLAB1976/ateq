@@ -676,43 +676,27 @@ footer {
 <div class="wrap">
   <!-- ECRÃ 0: DESENCRIPTAÇÃO POR PIN AES-256 -->
   <div id="screenPin" class="screen active">
-    <div class="pin-card" id="pinCard">
-      <div class="pin-icon">🔐</div>
-      <h2 class="pin-title">CONTEÚDO PROTEGIDO</h2>
-      <p class="pin-sub">Os dados estão <strong>encriptados militarmente (AES-256)</strong>.<br>Introduza o PIN de 4 dígitos para desencriptar o treino:</p>
-      
-      <div class="pin-dots">
-        <div class="pin-dot" id="dot0"></div>
-        <div class="pin-dot" id="dot1"></div>
-        <div class="pin-dot" id="dot2"></div>
-        <div class="pin-dot" id="dot3"></div>
-      </div>
+  <div class="pin-card" id="pinCard">
+    <div class="pin-icon">🔐</div>
+    <h2 class="pin-title">ACESSO RESTRITO</h2>
+    <p class="pin-sub">Os dados da Academia estão <strong>encriptados militarmente (AES-256)</strong>.<br>Introduza a palavra-passe ATEQ para desbloquear:</p>
 
-      <div class="pin-error" id="pinError"></div>
-
-      <!-- Teclado Tátil Móvel -->
-      <div class="pin-pad">
-        <button type="button" class="pad-btn" onclick="pressKey('1')">1</button>
-        <button type="button" class="pad-btn" onclick="pressKey('2')">2</button>
-        <button type="button" class="pad-btn" onclick="pressKey('3')">3</button>
-        <button type="button" class="pad-btn" onclick="pressKey('4')">4</button>
-        <button type="button" class="pad-btn" onclick="pressKey('5')">5</button>
-        <button type="button" class="pad-btn" onclick="pressKey('6')">6</button>
-        <button type="button" class="pad-btn" onclick="pressKey('7')">7</button>
-        <button type="button" class="pad-btn" onclick="pressKey('8')">8</button>
-        <button type="button" class="pad-btn" onclick="pressKey('9')">9</button>
-        <button type="button" class="pad-btn action" onclick="clearPin()">Limpar</button>
-        <button type="button" class="pad-btn" onclick="pressKey('0')">0</button>
-        <button type="button" class="pad-btn action" onclick="backspacePin()">⌫</button>
-      </div>
-
-      <label class="pin-remember">
-        <input type="checkbox" id="chkRemember" checked> Lembrar neste telemóvel
-      </label>
+    <div class="pass-input-wrap">
+      <input type="password" id="inputPass" class="pass-input" placeholder="Palavra-passe (ateq1617)" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" onkeydown="if(event.key==='Enter') submitPassword()">
+      <button type="button" class="btn-eye" id="btnEye" onclick="togglePassEye()">👁️</button>
     </div>
-  </div>
 
-  <!-- ECRÃ 1: MENU PRINCIPAL (HUB) -->
+    <button type="button" class="btn-unlock" onclick="submitPassword()">DESBLOQUEAR ACADEMIA</button>
+    <div class="pin-error" id="pinError"></div>
+
+    <label class="pin-remember">
+      <input type="checkbox" id="chkRemember" checked>
+      <span>Lembrar neste telemóvel</span>
+    </label>
+  </div>
+</div>
+
+<!-- ECRÃ 1: MENU PRINCIPAL (HUB) -->
   <div id="screenHub" class="screen">
     <div class="hub-grid">
       <!-- Modulo 1 -->
@@ -905,49 +889,37 @@ async function tryDecryptWithPin(pinStr) {
   }
 }
 
-function updateDots() {
-  for (let i = 0; i < 4; i++) {
-    const dot = document.getElementById("dot" + i);
-    if (dot) {
-      if (i < inputPin.length) dot.classList.add("filled");
-      else dot.classList.remove("filled");
-    }
+function togglePassEye() {
+  const inp = document.getElementById("inputPass");
+  const eye = document.getElementById("btnEye");
+  if (!inp) return;
+  if (inp.type === "password") {
+    inp.type = "text";
+    eye.textContent = "🙈";
+  } else {
+    inp.type = "password";
+    eye.textContent = "👁️";
   }
 }
 
-function pressKey(num) {
-  if (inputPin.length < 4) {
-    inputPin += num;
-    updateDots();
-    document.getElementById("pinError").textContent = "";
-    if (inputPin.length === 4) {
-      document.getElementById("pinError").textContent = "A desencriptar banco de dados...";
-      setTimeout(verifyAndDecrypt, 100);
-    }
+async function submitPassword() {
+  const inp = document.getElementById("inputPass");
+  const pass = inp ? inp.value.trim().toLowerCase() : "";
+  const errEl = document.getElementById("pinError");
+  if (!pass) {
+    if (errEl) errEl.textContent = "Introduza a palavra-passe!";
+    return;
   }
-}
+  if (errEl) errEl.textContent = "A desencriptar...";
 
-function clearPin() {
-  inputPin = "";
-  updateDots();
-  document.getElementById("pinError").textContent = "";
-}
-
-function backspacePin() {
-  if (inputPin.length > 0) {
-    inputPin = inputPin.slice(0, -1);
-    updateDots();
-    document.getElementById("pinError").textContent = "";
-  }
-}
-
-async function verifyAndDecrypt() {
-  const decryptedDb = await tryDecryptWithPin(inputPin);
+  const decryptedDb = await tryDecryptWithPin(pass);
   if (decryptedDb && Array.isArray(decryptedDb)) {
-    DB = decryptedDb; // Desencriptado na RAM!
+    DB = decryptedDb;
     const remember = document.getElementById("chkRemember").checked;
     if (remember) {
-      try { localStorage.setItem("ateq_saved_pin", inputPin); } catch(e){}
+      try { localStorage.setItem("ateq_saved_pin", pass); } catch(e){}
+    } else {
+      try { localStorage.removeItem("ateq_saved_pin"); } catch(e){}
     }
     document.getElementById("screenPin").className = "screen";
     document.getElementById("screenHub").className = "screen active";
@@ -955,19 +927,25 @@ async function verifyAndDecrypt() {
     if (btnLock) btnLock.style.display = "inline-flex";
   } else {
     const card = document.getElementById("pinCard");
-    card.classList.add("shake");
-    document.getElementById("pinError").textContent = "PIN Incorreto. Chave criptográfica inválida.";
+    if (card) card.classList.add("shake");
+    if (errEl) errEl.textContent = "Palavra-passe incorreta!";
     setTimeout(() => {
-      card.classList.remove("shake");
-      clearPin();
-    }, 500);
+      if (card) card.classList.remove("shake");
+      if (inp) {
+        inp.value = "";
+        inp.focus();
+      }
+    }, 600);
   }
 }
 
 function lockApp() {
   try { localStorage.removeItem("ateq_saved_pin"); } catch(e){}
-  DB = null; // Apaga os dados desencriptados da RAM!
-  clearPin();
+  DB = null;
+  const inp = document.getElementById("inputPass");
+  if (inp) inp.value = "";
+  const errEl = document.getElementById("pinError");
+  if (errEl) errEl.textContent = "";
   document.getElementById("screenHub").className = "screen";
   document.getElementById("screenQuiz").className = "screen";
   document.getElementById("screenResults").className = "screen";
@@ -976,26 +954,13 @@ function lockApp() {
   if (btnLock) btnLock.style.display = "none";
 }
 
-window.addEventListener("keydown", function(e) {
-  const pinScreen = document.getElementById("screenPin");
-  if (pinScreen && pinScreen.classList.contains("active")) {
-    if (e.key >= "0" && e.key <= "9") {
-      pressKey(e.key);
-    } else if (e.key === "Backspace") {
-      backspacePin();
-    } else if (e.key === "Escape") {
-      clearPin();
-    }
-  }
-});
-
-// Auto-desbloqueio se guardado
+// Auto-desbloqueio se palavra-passe guardada
 window.addEventListener("DOMContentLoaded", async function() {
   try {
     const saved = localStorage.getItem("ateq_saved_pin");
-    if (saved && saved.length === 4) {
-      const decryptedDb = await tryDecryptWithPin(saved);
-      if (decryptedDb) {
+    if (saved) {
+      const decryptedDb = await tryDecryptWithPin(saved.trim().toLowerCase());
+      if (decryptedDb && Array.isArray(decryptedDb)) {
         DB = decryptedDb;
         document.getElementById("screenPin").className = "screen";
         document.getElementById("screenHub").className = "screen active";
