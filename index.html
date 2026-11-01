@@ -649,6 +649,17 @@ body {
       </div>
 
       <div class="modules-grid">
+        <!-- 0. Gestao Oficina ST & Orcamentos Executivos (Cofre AES-256) -->
+        <div class="module-card" onclick="openTool('oficina.html', 'Gestão Oficina ST & Orçamentos (Raúl / Carlos)')" style="border: 2px solid #005691; background: #F8FAFC;">
+          <div class="module-header">
+            <div class="module-icon-wrap" style="background: linear-gradient(135deg, #005691 0%, #00365C 100%); color: #FFFFFF; font-size: 20px;">💼</div>
+            <span class="module-badge" style="background: #EBF3F9; color: #005691; font-weight: 800; border: 1px solid rgba(0,86,145,0.25);">Oficina ST & Orçamentos</span>
+          </div>
+          <h3 class="module-title" style="color: #005691;">Gestão Oficina ST & Decisão Comercial</h3>
+          <p class="module-desc">Painel de Orçamentos do Diretor Raúl Garcia, Intervenções da Oficina do Carlos Barbosa, Fichas Metrológicas TDS, Armazém e Encomendas à Fábrica SAS. Blindado com encriptação AES-256.</p>
+          <button type="button" class="btn-open-module" style="background: #005691; color: #FFFFFF; font-weight: 700;">🔓 Aceder à Gestão ST ➔</button>
+        </div>
+
         <!-- 1. Calculadora & Guia de Campo -->
         <div class="module-card" onclick="openTool('fugas-ateq-calculadora.html', 'Calculadora & Guia de Campo')">
           <div class="module-header">
@@ -744,7 +755,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-const AUTH_PAYLOAD = {"salt": "bf65fd8a78876a3aa96390808c73db8e", "iv": "a3ba015602d12baa99a60260", "cipher": "uzM9N7J/nG4h+tHnjHXxSau+CIfGpzgSZesPy6qiN+HFHPiuBE2PUEXyrv13I17f4U3xUnMRX4cydwBUGc9Uio7Ytqoj9A=="};
+const AUTH_PAYLOAD = {"salt": "353673c307838f94254bb45a771900d0", "iv": "bdc320db0477459bff858cfb", "cipher": "jQh8p5jN2f2jbhiSfYXLJEL7+oD0HpHJxHUQRJqbZQQEmGVYfbVjCFf+yRXS8G4s99dL82WAY1sIOM1u17c2vnQlCrM="};
 
 function hexToBytes(hex) {
   const bytes = new Uint8Array(hex.length / 2);
