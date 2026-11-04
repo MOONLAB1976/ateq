@@ -755,7 +755,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-const AUTH_PAYLOAD = {"salt": "353673c307838f94254bb45a771900d0", "iv": "bdc320db0477459bff858cfb", "cipher": "jQh8p5jN2f2jbhiSfYXLJEL7+oD0HpHJxHUQRJqbZQQEmGVYfbVjCFf+yRXS8G4s99dL82WAY1sIOM1u17c2vnQlCrM="};
+const AUTH_PAYLOAD = {"salt": "d214d9e798f9133630467ffe4f1e46a9", "iv": "7220413abd35598f9235ea28", "cipher": "7Ql1AWGCrizLltmd01yTFi+csmFZj3tvzgAEBG9QotTCbjrJ4cJ527qjJrZhvLpxr9VK8dBG85PBoQ+4B56dMvBIlb8="};
 
 function hexToBytes(hex) {
   const bytes = new Uint8Array(hex.length / 2);
@@ -815,7 +815,35 @@ async function verifyPass(passStr) {
   }
 }
 
+
+const MAX_PORTAL_FALHAS = 3;
+const TEMPO_PORTAL_BLOQUEIO_MS = 5 * 60 * 1000;
+
+function verificarPortalBloqueio() {
+  const bloqueioAte = parseInt(localStorage.getItem("ateq_portal_lockout") || "0", 10);
+  const agora = Date.now();
+  if (bloqueioAte > agora) {
+    const rest = Math.ceil((bloqueioAte - agora) / 1000);
+    const errEl = document.getElementById("pinErrorMsg");
+    if (errEl) {
+      errEl.innerText = `Acesso temporariamente bloqueado por seguranca. Aguarde ${rest}s.`;
+      errEl.style.color = "#E30613";
+    }
+    const btn = document.querySelector(".btn-unlock");
+    if (btn) btn.disabled = true;
+    setTimeout(verificarPortalBloqueio, 1000);
+    return true;
+  } else {
+    localStorage.removeItem("ateq_portal_lockout");
+    localStorage.removeItem("ateq_portal_falhas");
+    const btn = document.querySelector(".btn-unlock");
+    if (btn) btn.disabled = false;
+    return false;
+  }
+}
+
 async function submitPortalPass() {
+  if (verificarPortalBloqueio()) return;
   const inp = document.getElementById("inputPass");
   const pass = inp ? inp.value.trim().toLowerCase() : "";
   const errEl = document.getElementById("pinErrorMsg");
@@ -827,6 +855,8 @@ async function submitPortalPass() {
 
   const isValid = await verifyPass(pass);
   if (isValid) {
+    localStorage.removeItem("ateq_portal_falhas");
+    localStorage.removeItem("ateq_portal_lockout");
     const remember = document.getElementById("chkRemember").checked;
     if (remember) {
       try {
@@ -847,9 +877,18 @@ async function submitPortalPass() {
     document.getElementById("screenPin").style.display = "none";
     document.getElementById("screenHub").style.display = "flex";
   } else {
+    let falhas = parseInt(localStorage.getItem("ateq_portal_falhas") || "0", 10) + 1;
+    localStorage.setItem("ateq_portal_falhas", falhas.toString());
     const card = document.getElementById("pinCard");
     card.classList.add("shake");
-    errEl.innerText = "Palavra-passe incorreta!";
+    if (falhas >= MAX_PORTAL_FALHAS) {
+      const ate = Date.now() + TEMPO_PORTAL_BLOQUEIO_MS;
+      localStorage.setItem("ateq_portal_lockout", ate.toString());
+      verificarPortalBloqueio();
+    } else {
+      const restantes = MAX_PORTAL_FALHAS - falhas;
+      errEl.innerText = `Palavra-passe incorreta! Restam ${restantes} tentativa(s).`;
+    }
     setTimeout(() => {
       card.classList.remove("shake");
       if (inp) {
@@ -932,6 +971,7 @@ function lockPortal() {
 
 // Auto-login se sessão guardada
 window.addEventListener("DOMContentLoaded", async () => {
+  verificarPortalBloqueio();
   try {
     const saved = localStorage.getItem("ateq_master_pass") || sessionStorage.getItem("ateq_master_pass");
     if (saved) {
