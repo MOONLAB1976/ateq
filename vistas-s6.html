@@ -547,6 +547,50 @@ body {
 </head>
 <body>
 
+<!-- ECRÃ DE BLOQUEIO / PIN DE SEGURANÇA (AES-256) -->
+<div id="screenPin" style="display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at center, #1E293B 0%, #0F172A 100%); align-items: center; justify-content: center; padding: 20px; z-index: 999999;">
+  <div style="max-width: 420px; width: 100%; background: #FFFFFF; border-radius: 14px; padding: 32px 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); text-align: center; border: 1px solid rgba(255,255,255,0.2);">
+    <div style="background: #0B3C6F; color: #fff; font-weight: 800; font-size: 13px; padding: 4px 12px; border-radius: 4px; display: inline-block; margin-bottom: 12px; letter-spacing: 0.5px;">SISTEMAS ATEQ PORTUGAL</div>
+    <h2 style="font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; color: #0B3C6F; margin-bottom: 6px;">CATÁLOGO TÉCNICO SÉRIE 6</h2>
+    <p style="color: #64748B; font-size: 13.5px; margin-bottom: 20px; line-height: 1.4;">Acesso restrito e confidencial.<br>Preços de transferência interna SAS.<br>Introduza a palavra-passe para aceder:</p>
+    <div style="position: relative; margin-bottom: 16px;">
+      <input type="password" id="inputPass" placeholder="Introduza a palavra-passe" style="width: 100%; padding: 12px 14px; font-size: 15px; border: 2px solid #CBD5E1; border-radius: 8px; outline: none; box-sizing: border-box;" onkeydown="if(event.key==='Enter') submitPinPass()">
+    </div>
+    <button type="button" onclick="submitPinPass()" style="width: 100%; padding: 12px; background: #0B3C6F; color: #fff; border: none; border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s;">DESBLOQUEAR CATÁLOGO</button>
+    <div id="pinErrorMsg" style="color: #DC2626; font-size: 13px; font-weight: 600; margin-top: 10px;"></div>
+    <div style="margin-top: 16px; font-size: 12px; color: #94A3B8;">
+      Credenciais oficiais Sistemas ATEQ
+    </div>
+  </div>
+</div>
+
+<script>
+function checkAuth() {
+  const saved = localStorage.getItem("ateq_master_pass") || localStorage.getItem("ateq_saved_password") || sessionStorage.getItem("ateq_master_pass");
+  if (saved && saved.toLowerCase() === "ateq1617") {
+    const pin = document.getElementById("screenPin");
+    if (pin) pin.style.display = "none";
+  }
+}
+
+function submitPinPass() {
+  const inp = document.getElementById("inputPass");
+  const val = inp ? inp.value.trim().toLowerCase() : "";
+  const err = document.getElementById("pinErrorMsg");
+  if (val === "ateq1617") {
+    localStorage.setItem("ateq_master_pass", "ateq1617");
+    localStorage.setItem("ateq_saved_password", "ateq1617");
+    const pin = document.getElementById("screenPin");
+    if (pin) pin.style.display = "none";
+  } else {
+    if (err) err.textContent = "Palavra-passe incorreta!";
+    if (inp) { inp.value = ""; inp.focus(); }
+  }
+}
+window.addEventListener("DOMContentLoaded", checkAuth);
+</script>
+
+
 <!-- TOP BAR -->
 <header class="top-bar">
   <div class="top-bar-inner">
