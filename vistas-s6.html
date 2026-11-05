@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="theme-color" content="#0B3C6F">
+<title>Catálogo Técnico & Vistas Explodidas Série 6 · Sistemas ATEQ Portugal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root {
+  --az-prim: #0B3C6F;
+  --az-light: #1C5AA0;
+  --az-dark: #072545;
+  --bg-page: #F4F7FA;
+  --card-bg: #FFFFFF;
+  --txt: #16202A;
+  --txt-muted: #516170;
+  --linha: #D3DBE3;
+  --verm: #E30613;
+  --verde: #16A34A;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-page);
+  color: var(--txt);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Top Navigation Bar */
+.top-bar {
+  background: linear-gradient(135deg, var(--az-dark) 0%, var(--az-prim) 100%);
+  color: #fff;
+  padding: calc(12px + var(--safe-top)) 16px 12px 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.top-bar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.top-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+.brand-badge {
+  background: var(--verm);
+  color: #fff;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.brand-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  line-height: 1.1;
+}
+.brand-sub {
+  font-size: 11px;
+  color: #B5D2EE;
+  display: block;
+}
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.btn-top:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+}
+.btn-top-gold {
+  background: #E8910C;
+  border-color: #E8910C;
+  color: #fff;
+}
+.btn-top-gold:hover {
+  background: #D07F07;
+}
+
+/* Main Container */
+.main-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 16px 60px 16px;
+}
+
+/* Header Banner */
+.doc-header {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--linha);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.doc-info h1 {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--az-prim);
+  margin-bottom: 4px;
+}
+.doc-info p {
+  color: var(--txt-muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.doc-meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.meta-pill {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #EBF3F9;
+  color: var(--az-prim);
+  font-weight: 600;
+  border: 1px solid #C8DEF0;
+}
+.meta-pill-sas {
+  background: #E8F5E9;
+  color: #1B5E20;
+  border-color: #A5D6A7;
+}
+
+/* Search Box */
+.search-container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: 1px solid var(--linha);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-bottom: 20px;
+}
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 44px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 2px solid var(--linha);
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s;
+  background: #F8FAFC;
+}
+.search-input:focus {
+  border-color: var(--az-light);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(28, 90, 160, 0.15);
+}
+.search-icon {
+  position: absolute;
+  left: 14px;
+  font-size: 18px;
+  color: #718096;
+  pointer-events: none;
+}
+.search-badge {
+  position: absolute;
+  right: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #E2E8F0;
+  color: #475569;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* Category Nav Tabs */
+.tabs-scroll {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+.tab-btn {
+  background: #fff;
+  border: 1px solid var(--linha);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--txt-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.tab-btn:hover {
+  border-color: var(--az-light);
+  color: var(--az-prim);
+}
+.tab-btn.active {
+  background: var(--az-prim);
+  color: #fff;
+  border-color: var(--az-prim);
+  box-shadow: 0 2px 6px rgba(11, 60, 111, 0.3);
+}
+.tab-count {
+  background: rgba(0, 0, 0, 0.08);
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 11px;
+}
+.tab-btn.active .tab-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+/* Main Block Layout: 2 Columns on Desktop */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 1024px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Image Viewer Card */
+.viewer-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid var(--linha);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  overflow: hidden;
+  position: sticky;
+  top: 76px;
+}
+.viewer-header {
+  padding: 14px 16px;
+  background: #FAFBFC;
+  border-bottom: 1px solid var(--linha);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.viewer-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--az-prim);
+}
+.viewer-actions {
+  display: flex;
+  gap: 6px;
+}
+.btn-viewer {
+  padding: 5px 10px;
+  background: #fff;
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--txt-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-viewer:hover {
+  border-color: var(--az-light);
+  color: var(--az-prim);
+}
+.viewer-img-wrap {
+  padding: 16px;
+  background: #F8FAFC;
+  text-align: center;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-in;
+  overflow: hidden;
+}
+.viewer-img {
+  max-width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s;
+}
+.viewer-img:hover {
+  transform: scale(1.01);
+}
+.viewer-hint {
+  padding: 8px 16px;
+  background: #FAFBFC;
+  border-top: 1px solid var(--linha);
+  font-size: 12px;
+  color: var(--txt-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Parts Table Card */
+.table-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid var(--linha);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  overflow: hidden;
+}
+.table-header {
+  padding: 14px 18px;
+  background: #FAFBFC;
+  border-bottom: 1px solid var(--linha);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.table-title {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--az-prim);
+}
+.table-count-badge {
+  background: #EBF3F9;
+  color: var(--az-prim);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.parts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  text-align: left;
+}
+.parts-table th {
+  background: #F1F5F9;
+  color: #475569;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--linha);
+  white-space: nowrap;
+}
+.parts-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #EDF2F7;
+  vertical-align: middle;
+}
+.parts-table tr:hover td {
+  background: #F8FAFC;
+}
+.part-code {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  color: var(--az-prim);
+  background: #EBF3F9;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  white-space: nowrap;
+}
+.part-desc {
+  font-weight: 500;
+  color: #1E293B;
+  line-height: 1.35;
+}
+.part-meta {
+  font-size: 11px;
+  color: #64748B;
+  margin-top: 2px;
+}
+.part-price {
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 700;
+  color: #0F5132;
+  white-space: nowrap;
+}
+.part-qty {
+  text-align: center;
+  font-weight: 600;
+  color: #475569;
+}
+.btn-copy {
+  background: #F1F5F9;
+  border: 1px solid #CBD5E1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.btn-copy:hover {
+  background: var(--az-prim);
+  color: #fff;
+  border-color: var(--az-prim);
+}
+
+/* Fullscreen Modal Image Zoom */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(10, 20, 35, 0.92);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.active {
+  display: flex;
+}
+.modal-img-box {
+  position: relative;
+  max-width: 95vw;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  background: #fff;
+  padding: 6px;
+}
+.modal-close {
+  position: absolute;
+  top: -42px;
+  right: 0;
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+}
+.modal-caption {
+  color: #fff;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #0B3C6F;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  z-index: 99999;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.3s;
+  border-left: 4px solid #16A34A;
+}
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="top-bar">
+  <div class="top-bar-inner">
+    <a href="index.html" class="top-brand">
+      <span class="brand-badge">ATEQ SAS</span>
+      <div>
+        <div class="brand-title">Catálogo & Vistas Explodidas S6</div>
+        <span class="brand-sub">Sistemas ATEQ Portugal · Manutenção & Reposição</span>
+      </div>
+    </a>
+    <div class="top-actions">
+      <a href="index.html" class="btn-top">
+        <span>🏠 Portal</span>
+      </a>
+      <a href="oficina.html" class="btn-top btn-top-gold">
+        <span>💼 Gestão Oficina ST</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="main-wrap">
+
+  <!-- DOC HEADER -->
+  <div class="doc-header">
+    <div class="doc-info">
+      <h1>Peças Sobressalentes & Esquemas de Montagem (Série 6)</h1>
+      <p>Base oficial de peças e vistas explodidas fornecidas pelo <strong>Jérôme Corel (Spare Parts Supervisor · ATEQ SAS França)</strong>.<br>
+      Utiliza este guia para identificar posições no bloco, referências exatas de encomenda e preços de transferência SAS 2025.</p>
+      <div class="doc-meta-pills">
+        <span class="meta-pill">Equipamentos: F620 · D620 · G620 · F600 · F6</span>
+        <span class="meta-pill meta-pill-sas">Preços de Transferência Oficiais SAS 2025</span>
+        <span class="meta-pill">Versão: 2025 Version A</span>
+        <span class="meta-pill">Total: 281 Artigos Catalogados</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH BOX -->
+  <div class="search-container">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar por Código SAS, Peça, Rosca, Tipo (ex: 6330215, 9200611, Hoerbiger, Amisco, O-ring, Burkert)..." oninput="handleSearch()">
+      <span class="search-badge" id="searchBadge">281 Peças</span>
+    </div>
+  </div>
+
+  <!-- CATEGORY TABS -->
+  <div class="tabs-scroll" id="tabsBar">
+    <button type="button" class="tab-btn active" onclick="switchCategory('f6_valve')">
+      <span>🟦 F620 Estanqueidade</span>
+      <span class="tab-count">59</span>
+    </button>
+    <button type="button" class="tab-btn" onclick="switchCategory('d6_valve')">
+      <span>🟩 D620 Caudal</span>
+      <span class="tab-count">18</span>
+    </button>
+    <button type="button" class="tab-btn" onclick="switchCategory('g6_valve')">
+      <span>🟨 G620 Vácuo / Gás</span>
+      <span class="tab-count">18</span>
+    </button>
+    <button type="button" class="tab-btn" onclick="switchCategory('f600_valve')">
+      <span>🟧 F600 Standard</span>
+      <span class="tab-count">11</span>
+    </button>
+    <button type="button" class="tab-btn" onclick="switchCategory('f600_hp_valve')">
+      <span>🟥 F600 HP (Alta Pressão)</span>
+      <span class="tab-count">12</span>
+    </button>
+    <button type="button" class="tab-btn" onclick="switchCategory('frames_chassis')">
+      <span>🟪 Chassis & Estrutura</span>
+      <span class="tab-count">37</span>
+    </button>
+    <button type="button" class="tab-btn" onclick="switchCategory('regulators')">
+      <span>🔘 Reguladores Hoerbiger</span>
+      <span class="tab-count">41</span>
+    </button>
+    <button type="button" class="tab-btn" onclick="switchCategory('electronics_sensors')">
+      <span>⚡ Eletrónica & Sensores</span>
+      <span class="tab-count">49</span>
+    </button>
+    <button type="button" class="tab-btn" onclick="switchCategory('wires_accessories')">
+      <span>🔌 Cabos & Acessórios</span>
+      <span class="tab-count">36</span>
+    </button>
+  </div>
+
+  <!-- MAIN CONTENT GRID (Exploded Viewer + Parts Table) -->
+  <div class="content-grid">
+    
+    <!-- LEFT: EXPLODED VIEW VIEWER -->
+    <div class="viewer-card" id="viewerCard">
+      <div class="viewer-header">
+        <div class="viewer-title" id="viewerTitle">Vista Explodida de Montagem</div>
+        <div class="viewer-actions">
+          <button type="button" class="btn-viewer" onclick="openModalZoom()">🔍 Zoom HD</button>
+          <a id="btnDownloadImg" class="btn-viewer" href="#" download>📥 Guardar</a>
+        </div>
+      </div>
+      <div class="viewer-img-wrap" onclick="openModalZoom()">
+        <img id="activeImg" class="viewer-img" src="img/s6/f6_valve_exploded.jpg" alt="Vista Explodida">
+      </div>
+      <div class="viewer-hint">
+        <span>💡 Clica na imagem para ampliar em alta resolução com detalhes de parafusos e posições.</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: PARTS TABLE -->
+    <div class="table-card">
+      <div class="table-header">
+        <div class="table-title" id="tableTitle">Peças da Válvula F620</div>
+        <span class="table-count-badge" id="tableCountBadge">59 Artigos</span>
+      </div>
+      <div class="table-responsive">
+        <table class="parts-table">
+          <thead>
+            <tr>
+              <th style="width: 120px;">Código SAS</th>
+              <th>Designação Oficial & Detalhes</th>
+              <th style="width: 60px; text-align: center;">Qtd</th>
+              <th style="width: 110px; text-align: right;">Custo SAS</th>
+              <th style="width: 80px; text-align: center;">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="partsTableBody">
+            <!-- Dynamic Rows -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FULLSCREEN MODAL ZOOM -->
+<div class="modal-overlay" id="modalZoom" onclick="closeModalZoom(event)">
+  <div class="modal-img-box">
+    <button type="button" class="modal-close" onclick="closeModalZoom(event)">✕ Fechar</button>
+    <img id="modalZoomImg" class="modal-img" src="" alt="Vista Explodida Zoom">
+    <div class="modal-caption" id="modalCaption">Vista Explodida</div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast">Código copiado para a área de transferência!</div>
+
+<script>
+const S6_DB = {"f6_valve": {"title": "Válvula de Estanqueidade F620 (Standard 1/8G & Mini Válvula M5)", "subtitle": "Bloco pneumático principal para ensaio de estanqueidade diferencial Série 6", "image": "img/s6/f6_valve_exploded.jpg", "items": [{"code": "9600469", "desc": "Output fitting 4/6 1/8G with oring - Raccord 4 - 6 + écrou + filtre avec joint", "price": 7.02, "raw_price": "7,02 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9600470", "desc": "Output fitting 6/8 1/8G with oring - Raccord 6 - 8 + écrou + filtre avec joint", "price": 7.02, "raw_price": "7,02 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9600468", "desc": "Output fitting 2,5/4 1/8G with oring - Raccord 2,5 - 4 + écrou + filtre avec joint", "price": 7.02, "raw_price": "7,02 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9600457", "desc": "Connection with removable filter 1/8G male and 1/8 female - Raccord avec filtre démontable", "price": 7.02, "raw_price": "7,02 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9200626", "desc": "Complete F6 valve (output 1/8 gas)", "price": 526.34, "raw_price": "526,34 €", "qty": "Quantity per valve", "bloco": "F6 Standard 1/8G"}, {"code": "9200988", "desc": "F6 minivalve", "price": 643.31, "raw_price": "643,31 €", "qty": "Quantity per valve", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9201018", "desc": "Complete F6 mini valve (output M5)", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9200611 SAV", "desc": "After sale body valve - Corps de vanne", "price": 128.67, "raw_price": "128,67 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200611 SAV", "desc": "After sale body valve Standard 1/8 gas - Corps de vanne F6 Standard 1/8 gas", "price": 128.67, "raw_price": "128,67 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9200616", "desc": "Piston Pusher D,16 vanne S6 - Piston poussoir", "price": 1.93, "raw_price": "1,93 €", "qty": "2", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9202213 SAV", "desc": "After sale body valve Standard M5 - Corps de vanne Mini valve M5", "price": 128.67, "raw_price": "128,67 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9200617", "desc": "Spool (fill/dump) - Tiroir remplissage / Vidage", "price": 7.81, "raw_price": "7,81 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200616", "desc": "Piston Pusher D,16 vanne S6 - Piston poussoir", "price": 1.93, "raw_price": "1,93 €", "qty": "2", "bloco": "F6 Standard 1/8G"}, {"code": "9200983", "desc": "Equalization spool - Tiroir égalisation S6", "price": 32.75, "raw_price": "32,75 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200617", "desc": "Spool (fill/dump) - Tiroir remplissage / Vidage", "price": 7.81, "raw_price": "7,81 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9200920", "desc": "Body pusher for F6 Valve - Corps de poussoir F6 D6 Usine", "price": 15.64, "raw_price": "15,64 €", "qty": "2", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200618", "desc": "Equalization spool - Tiroir égalisation S6", "price": 7.81, "raw_price": "7,81 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9200921", "desc": "Dump body pusher for F6 valve - Corps de poussoir F6 vidage usiné", "price": 14.62, "raw_price": "14,62 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200920", "desc": "Body pusher for F6 Valve - Corps de poussoir F6 D6 Usine", "price": 15.64, "raw_price": "15,64 €", "qty": "2", "bloco": "F6 Standard 1/8G"}, {"code": "9200621", "desc": "Piston Pusher D,12 for f6 - Piston poussoir Quantity min. : 10", "price": 2.01, "raw_price": "2,01 €", "qty": "2", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200921", "desc": "Dump body pusher for F6 valve - Corps de poussoir F6 vidage usiné", "price": 14.62, "raw_price": "14,62 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9200928", "desc": "Dump piston pusher D16 - Piston poussoir vidage S6 Quantity min. : 10", "price": 1.76, "raw_price": "1,76 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200621", "desc": "Piston Pusher D,12 for f6 - Piston poussoir Quantity min. : 10", "price": 2.01, "raw_price": "2,01 €", "qty": "2", "bloco": "F6 Standard 1/8G"}, {"code": "6310037", "desc": "Oring 10*2 PB701 - Joint 10*2 PB701 Quantity min. : 100", "price": 0.17, "raw_price": "0,17 €", "qty": "14", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200928", "desc": "Dump piston pusher D16 - Piston poussoir vidage S6 Quantity min. : 10", "price": 1.76, "raw_price": "1,76 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "6310251", "desc": "Oring 4*2 7DT 2080 - Joint 4*2 7DT 2080 Quantity min. : 100", "price": 0.24, "raw_price": "0,24 €", "qty": "7", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "6310037", "desc": "Oring 10*2 PB701 - Joint 10*2 PB701 Quantity min. : 100", "price": 0.17, "raw_price": "0,17 €", "qty": "14", "bloco": "F6 Standard 1/8G"}, {"code": "6310254", "desc": "Oring 3*1 NBR70 - Joint 3*1 NBR70 Quantity min. : 100", "price": 0.17, "raw_price": "0,17 €", "qty": "5", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "6310251", "desc": "Oring 4*2 7DT 2080 - Joint 4*2 7DT 2080 Quantity min. : 100", "price": 0.24, "raw_price": "0,24 €", "qty": "14", "bloco": "F6 Standard 1/8G"}, {"code": "6310255", "desc": "Oring 16*1 NBR70 - Joint 16*1 NBR70 Quantity min. : 50", "price": 0.17, "raw_price": "0,17 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "6310254", "desc": "Oring 3*1 NBR70 - Joint 3*1 NBR70 Quantity min. : 100", "price": 0.17, "raw_price": "0,17 €", "qty": "4", "bloco": "F6 Standard 1/8G"}, {"code": "6310252", "desc": "Lip seal \"N\" D:16MM 80 shore - Joint à lèvre Quantity min. : 50", "price": 0.59, "raw_price": "0,59 €", "qty": "3", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "6310255", "desc": "Oring 16*1 NBR70 - Joint 16*1 NBR70 Quantity min. : 50", "price": 0.17, "raw_price": "0,17 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "6310253", "desc": "Lip seal \"N\" D:12MM 80 shore - Joint à lèvre Quantity min. : 50", "price": 0.59, "raw_price": "0,59 €", "qty": "2", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "6310252", "desc": "Lip seal \"N\" D:16MM 80 shore - Joint à lèvre Quantity min. : 50", "price": 0.59, "raw_price": "0,59 €", "qty": "3", "bloco": "F6 Standard 1/8G"}, {"code": "9200939", "desc": "Spacer for F6 valve - Entretoise Quantity min. : 10", "price": 4.1, "raw_price": "4,10 €", "qty": "6", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "6310253", "desc": "Lip seal \"N\" D:12MM 80 shore - Joint à lèvre Quantity min. : 50", "price": 0.59, "raw_price": "0,59 €", "qty": "2", "bloco": "F6 Standard 1/8G"}, {"code": "9200937", "desc": "Valve Guide F6 N°1 - Guide vanne S6 N°1 Quantity min. : 10", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200939", "desc": "Spacer for F6 valve - Entretoise Quantity min. : 10", "price": 4.1, "raw_price": "4,10 €", "qty": "12", "bloco": "F6 Standard 1/8G"}, {"code": "9200938", "desc": "Valve Guide F6 N°2 - Guide vanne S6 N°2 Quantity min. : 10", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200937", "desc": "Valve Guide F6 N°1 - Guide vanne S6 N°1 Quantity min. : 10", "price": 5.85, "raw_price": "5,85 €", "qty": "2", "bloco": "F6 Standard 1/8G"}, {"code": "9200925 SAV", "desc": "Pneumatic Spring - Ressort pneumatique (petit) usiné rainure vanne S6", "price": 11.14, "raw_price": "11,14 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200938", "desc": "Valve Guide F6 N°2 - Guide vanne S6 N°2 Quantity min. : 10", "price": 5.85, "raw_price": "5,85 €", "qty": "2", "bloco": "F6 Standard 1/8G"}, {"code": "9200924 SAV", "desc": "Pneumatic Spring - Ressort pneumatique (petit) 8,3 usiné vanne S6", "price": 11.14, "raw_price": "11,14 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200925 SAV", "desc": "Pneumatic Spring - Ressort pneumatique (petit) usiné rainure vanne S6", "price": 11.14, "raw_price": "11,14 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9200980", "desc": "High speed guide valve F6 - Guide mini vanne F6", "price": 7.02, "raw_price": "7,02 €", "qty": "2", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200924 SAV", "desc": "Pneumatic Spring - Ressort pneumatique (petit) 8,3 usiné vanne S6", "price": 11.14, "raw_price": "11,14 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9200981", "desc": "Spacer with holes F6 - Entretoise percée mini vanne F6", "price": 29.24, "raw_price": "29,24 €", "qty": "4", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9200982", "desc": "Spacer F6 - Entretoise mini vanne F6", "price": 29.24, "raw_price": "29,24 €", "qty": "2", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9600677", "desc": "Kit Amisco ( Complete solenoid valve) 3/2 NC pilote valve - Electrovanne Quantity min. : 5", "price": 13.37, "raw_price": "13,37 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "6310330", "desc": "Oring 2,75*1,6 - Joint 2,75*1,6 min : 100", "price": 0.17, "raw_price": "0,17 €", "qty": "7", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "6340143", "desc": "Coil Electrovalves 24 v 26 cm wire – Bobine Quantity min. : 5", "price": 4.1, "raw_price": "4,10 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "6340143", "desc": "Coil Electrovalves 24 v 26 cm wire - Bobine écrou Quantity min. : 5", "price": 4.1, "raw_price": "4,10 €", "qty": "3", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "6340117", "desc": "Nut Electrovalves 24 v 26 cm wire – écrou Quantity min. : 5", "price": 0.12, "raw_price": "0,12 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "6340117", "desc": "Nut Electrovalves 24 v 26 cm wire – écrou écrou Quantity min. : 5", "price": 0.12, "raw_price": "0,12 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "6340116", "desc": "Pilote valve 3/2 NC - vanne pilote Quantity min. : 5", "price": 7.6, "raw_price": "7,60 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "6340116", "desc": "Pilote valve 3/2 NC - vanne pilote Quantity min. : 5", "price": 7.6, "raw_price": "7,60 €", "qty": "1", "bloco": "F6 Mini Válvula M5 / SAV"}, {"code": "9201035", "desc": "Double pressure block - Vanne double pression S6", "price": 292.42, "raw_price": "292,42 €", "qty": "1", "bloco": "F6 Standard 1/8G"}, {"code": "9600693", "desc": "Kit sealed component diff method – Kit composant scellé diff méthode", "price": 360.25, "raw_price": "360,25 €", "qty": "1", "bloco": "F6 Standard 1/8G"}]}, "d6_valve": {"title": "Válvula de Caudal D620 (Pressurizada D6P)", "subtitle": "Bloco de válvulas para ensaio de caudal contínuo e perda de carga", "image": "img/s6/d6_valve_exploded.jpg", "items": [{"code": "9202001B", "desc": "Pressurized Valve D620 - Vanne D620 préssurisée", "price": 526.34, "raw_price": "526,34 €", "qty": "Quantity per valve", "bloco": "D620 Caudal"}, {"code": "9200937", "desc": "Valve Guide F6 N°1 - Guide vanne S6 N°1 \"Relief\"", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "9200938", "desc": "Valve Guide F6 N°2 - Guide vanne S6 N°2 \"Plat\"", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "9200925 SAV", "desc": "Pneumatic Spring - Ressort pneumatique rainure vanne S6", "price": 11.14, "raw_price": "11,14 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "6310252", "desc": "Lip seal D:16MM - Joint à lèvre D:16MM Quantity min. : 50", "price": 0.59, "raw_price": "0,59 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "6310253", "desc": "Lip seal D:12MM - Joint à lèvre D:12MM Quantity min. : 50", "price": 0.59, "raw_price": "0,59 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "9200621", "desc": "Piston Pusher D.12 S6 - Piston poussoir D.12 S6", "price": 2.01, "raw_price": "2,01 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "9200616", "desc": "Piston Pusher D.16 S6 - Piston poussoir D.16 S6", "price": 1.93, "raw_price": "1,93 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "6310251", "desc": "Oring 4*2 7DT 2080 - Joint 4*2 7DT 2080 Quantity min. : 100", "price": 0.24, "raw_price": "0,24 €", "qty": "9", "bloco": "D620 Caudal"}, {"code": "6310037", "desc": "Oring 10*2 PB701 - Joint 10*2 PB701 Quantity min. : 100", "price": 0.17, "raw_price": "0,17 €", "qty": "9", "bloco": "D620 Caudal"}, {"code": "9200939", "desc": "Spacer for F6 valve - Entretoise vanne S6", "price": 4.1, "raw_price": "4,10 €", "qty": "8", "bloco": "D620 Caudal"}, {"code": "9202000", "desc": "Valve spool D6P - Tiroir vanne D6P", "price": 9.95, "raw_price": "9,95 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "9200920", "desc": "Body pusher for F6 Valve - Corps de poussoir D6 usiné", "price": 15.64, "raw_price": "15,64 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "9600677", "desc": "Kit Amisco 3/2 NC pilote valve Quantity min. : 5", "price": 13.37, "raw_price": "13,37 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "9202003", "desc": "Auto zero valve Burkert - Vanne auto zero Burkert", "price": 60.82, "raw_price": "60,82 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "6310362", "desc": "Auto zero valve oring - Joint vanne autozero piezo (JOINT 5.0*1.0 PB701) Quantity min. : 10", "price": 0.59, "raw_price": "0,59 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "6300111", "desc": "Straight fitting 2,5-4 M5 male SMC - Raccord droit 2,5-4 M5 male SMC Quantity min. : 10", "price": 0.77, "raw_price": "0,77 €", "qty": "1", "bloco": "D620 Caudal"}, {"code": "6360020", "desc": "Caps M5 with male oring cylindrical - Bouchon M5 avec joint male cylindrique Quantity min. : 50", "price": 0.57, "raw_price": "0,57 €", "qty": "1", "bloco": "D620 Caudal"}]}, "g6_valve": {"title": "Válvula G620 (Baixa Pressão & Vácuo)", "subtitle": "Bloco pneumático para ensaios em vácuo e gás com tirantes especiais", "image": "img/s6/g6_valve_exploded.png", "items": [{"code": "9200832", "desc": "G620 Valve Low pressure", "price": 526.0, "raw_price": "526 €", "qty": "Quantity per valve", "bloco": "G620 Vácuo"}, {"code": "9200937", "desc": "Valve Guide - Guide vanne S6 N°1 \"RELIEF\"", "price": 6.0, "raw_price": "6,00 €", "qty": "1", "bloco": "G620 Vácuo"}, {"code": "9200938", "desc": "Valve Guide F6 N°2 - Guide vanne S6 N°2 \"Plat\"", "price": 6.0, "raw_price": "6,00 €", "qty": "2", "bloco": "G620 Vácuo"}, {"code": "9200925 SAV", "desc": "Pneumatic Spring - Ressort pneumatique rainure vanne S6", "price": 11.0, "raw_price": "11,00 €", "qty": "1", "bloco": "G620 Vácuo"}, {"code": "6310252", "desc": "Lip seal D:16mm - Joint à lèvre D:16mm Quantity min. : 50", "price": 1.0, "raw_price": "1,00 €", "qty": "2", "bloco": "G620 Vácuo"}, {"code": "6310253", "desc": "Lip seal D:12mm - Joint à lèvre D:12mm Quantity min. : 50", "price": 1.0, "raw_price": "1,00 €", "qty": "2", "bloco": "G620 Vácuo"}, {"code": "9200621", "desc": "Piston Pusher D.12 S6 - Piston poussoir D.12 S6", "price": 2.0, "raw_price": "2,00 €", "qty": "2", "bloco": "G620 Vácuo"}, {"code": "9200616", "desc": "Piston Pusher D.16 S6 - Piston poussoir D.16 S6", "price": 2.0, "raw_price": "2,00 €", "qty": "2", "bloco": "G620 Vácuo"}, {"code": "6310251", "desc": "Oring 4*2 7DT 2080 - Joint 4*2 7DT 2080 Quantity min. : 100", "price": -0.0, "raw_price": "-00 €", "qty": "12", "bloco": "G620 Vácuo"}, {"code": "6310037", "desc": "Oring 10*2 PB701 - Joint 10*2 PB701 Quantity min. : 100", "price": -0.0, "raw_price": "-00 €", "qty": "12", "bloco": "G620 Vácuo"}, {"code": "9200939", "desc": "Spacer - Entretoise vanne S6", "price": 4.0, "raw_price": "4,00 €", "qty": "10", "bloco": "G620 Vácuo"}, {"code": "9200830EO", "desc": "Spool (fill/dump) - Tiroir remplissage / Vidage", "price": 13.0, "raw_price": "13,00 €", "qty": "1", "bloco": "G620 Vácuo"}, {"code": "9200831EO", "desc": "Spool (test) - Tiroir test", "price": 13.0, "raw_price": "13,00 €", "qty": "1", "bloco": "G620 Vácuo"}, {"code": "9200926 SAV", "desc": "Pneumatic spring – Ressort pneumatique", "price": 22.0, "raw_price": "22,00 €", "qty": "1", "bloco": "G620 Vácuo"}, {"code": "9200929", "desc": "Piston body – Corps de poussoir", "price": 17.0, "raw_price": "17,00 €", "qty": "2", "bloco": "G620 Vácuo"}, {"code": "9600566", "desc": "Auto zero valve - Vanne auto zero", "price": 24.0, "raw_price": "24,00 €", "qty": "1", "bloco": "G620 Vácuo"}, {"code": "9200829 SAV", "desc": "After sale body valve - Corps de vanne", "price": 135.0, "raw_price": "135,00 €", "qty": "1", "bloco": "G620 Vácuo"}, {"code": "6310254", "desc": "Oring 3*1 NBR70 - joint 3*1 NBR70 Quantity min. : 100", "price": -0.0, "raw_price": "-00 €", "qty": "4", "bloco": "G620 Vácuo"}]}, "f600_valve": {"title": "Válvula F600 Standard (10 bar / 20 bar)", "subtitle": "Bloco com válvulas solenoides Burkert e suporte POC", "image": "img/s6/f600_valve_exploded.jpg", "items": [{"code": "9220221", "desc": "Complete F600 valve 10 bar without piezo", "price": 388.0, "raw_price": "388 €", "qty": "Quantity per valve", "bloco": "F600 Standard"}, {"code": "9220226", "desc": "Complete F600 valve 20 bar without piezo", "price": 389.0, "raw_price": "389 €", "qty": "1", "bloco": "F600 Standard"}, {"code": "6340081", "desc": "Burkert 2/2 10 bar Solenoid valve", "price": 76.03, "raw_price": "76,03 €", "qty": "2", "bloco": "F600 Standard"}, {"code": "6340171", "desc": "Burkert 2/2 20 bar Solenoid valve", "price": 76.03, "raw_price": "76,03 €", "qty": "2", "bloco": "F600 Standard"}, {"code": "9420407B", "desc": "POC module card support bracket", "price": 14.04, "raw_price": "14,04 €", "qty": "1", "bloco": "F600 Standard"}, {"code": "6360029", "desc": "1/8 cylindrical plug + oring", "price": 0.57, "raw_price": "0,57 €", "qty": "1", "bloco": "F600 Standard"}, {"code": "6300202", "desc": "Elbow 8mm 1 / 8g", "price": 2.34, "raw_price": "2,34 €", "qty": "1", "bloco": "F600 Standard"}, {"code": "6120042", "desc": "Column M3 * 15 * H5 Male / Fem", "price": 0.34, "raw_price": "0,34 €", "qty": "3", "bloco": "F600 Standard"}, {"code": "9420250E", "desc": "Piezo Flange Compatible Serie 6", "price": 11.7, "raw_price": "11,70 €", "qty": "1", "bloco": "F600 Standard"}, {"code": "6310053", "desc": "Oring for piezzo keller", "price": 0.14, "raw_price": "0,14 €", "qty": "1", "bloco": "F600 Standard"}, {"code": "9220216 SAV", "desc": "Kit SAV POC body", "price": 123.52, "raw_price": "123,52 €", "qty": "1", "bloco": "F600 Standard"}]}, "f600_hp_valve": {"title": "Válvula F600 HP (Alta Pressão 50 a 200 bar)", "subtitle": "Bloco especial com conexões Swagelok inox e sensores Keller", "image": "img/s6/f600_hp_valve_exploded.jpg", "items": [{"code": "9220227", "desc": "F600 HP after sale body valve", "price": 1563.0, "raw_price": "1563 €", "qty": "Quantity per valve", "bloco": "F600 Alta Pressão"}, {"code": "6340080", "desc": "Valve 2/2 No Mono.", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "F600 Alta Pressão"}, {"code": "6340064", "desc": "Valve 2/2 Nf Mono.", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "F600 Alta Pressão"}, {"code": "6300282", "desc": "Straight Fitting 6 Mm 1 / 8g Swagelok Inox", "price": 13.03, "raw_price": "13,03 €", "qty": "1", "bloco": "F600 Alta Pressão"}, {"code": "9100182", "desc": "Sensor 200 Bar Pa-9fl", "price": 157.9, "raw_price": "157,90 €", "qty": "1", "bloco": "F600 Alta Pressão"}, {"code": "9100263", "desc": "Sensor 100 bar", "price": 157.9, "raw_price": "157,90 €", "qty": "1", "bloco": "F600 Alta Pressão"}, {"code": "9100262", "desc": "Sensor 50 bar", "price": 157.9, "raw_price": "157,90 €", "qty": "1", "bloco": "F600 Alta Pressão"}, {"code": "52145B", "desc": "Keller / Jst Adapter With Straight Connector", "price": 14.06, "raw_price": "14,06 €", "qty": "1", "bloco": "F600 Alta Pressão"}, {"code": "9230020", "desc": "Embase POC HP", "price": 111.39, "raw_price": "111,39 €", "qty": "1", "bloco": "F600 Alta Pressão"}, {"code": "6120117", "desc": "Column M3 * 6 * H5.5 Male / Female", "price": 0.21, "raw_price": "0,21 €", "qty": "2", "bloco": "F600 Alta Pressão"}, {"code": "6340128", "desc": "3/2 1 / 8g 24v Solenoid valve", "price": 11.36, "raw_price": "11,36 €", "qty": "2", "bloco": "F600 Alta Pressão"}, {"code": "6300591X", "desc": "Straight Fitting 6 Mm 1 / 8g Legris 3101 06 10", "price": 1.17, "raw_price": "1,17 €", "qty": "1", "bloco": "F600 Alta Pressão"}]}, "frames_chassis": {"title": "Chassis, Estrutura & Painéis Série 6", "subtitle": "Caixa exterior, painel frontal, traseira destacável, pés e suportes", "image": "img/s6/s6_device_exploded_1.jpg", "items": [{"code": "6160026", "desc": "Foot F6 x 1 - Pied F6 x1 Quantity min. : 10", "price": 0.59, "raw_price": "0,59 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "6300579", "desc": "Staubli fitting fem. - RBE03 raccord M5 fem. à encastrer", "price": 37.43, "raw_price": "37,43 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510209", "desc": "Removable rear frame - Chassis pour arrière détachable S6", "price": 69.23, "raw_price": "69,23 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510210", "desc": "Hatch - Trappe pour chassis S6", "price": 7.02, "raw_price": "7,02 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510211", "desc": "Bracket - Charnière pour chassis S6", "price": 7.02, "raw_price": "7,02 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510213", "desc": "Regulator plate - Support régulateur staubli chassis S6", "price": 11.7, "raw_price": "11,70 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510216", "desc": "Silicone Keyboard – Clavier silicone", "price": 2.93, "raw_price": "2,93 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510217", "desc": "Cover - Capot", "price": 43.26, "raw_price": "43,26 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510242", "desc": "Alimentation Card Cover - Capot carte Alimentation", "price": 4.68, "raw_price": "4,68 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510227", "desc": "Rear Face for F620/F600 – Tole face arrière F620/F600", "price": 37.85, "raw_price": "37,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510794", "desc": "Rear Face for G620 – Tole face arrière G620", "price": 37.85, "raw_price": "37,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510325", "desc": "Rear Face for D620 – Tole face arrière D620", "price": 37.85, "raw_price": "37,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510622", "desc": "Plastic Front Panel - Face avant Plastique", "price": 6.68, "raw_price": "6,68 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510625", "desc": "Display Plexiglass - Plexiglass Ecran 104X63MM", "price": 7.02, "raw_price": "7,02 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "6330019", "desc": "Metal filter 17 bar 1/8 g - Filtre métal 17 bar", "price": 33.42, "raw_price": "33,42 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "6330016", "desc": "Plastic filter 10 bar 1/8 g - Filtre plastique 10 bar", "price": 6.79, "raw_price": "6,79 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "6330018", "desc": "Plastic filter 10 bar 1/4 g- Filtre plastique 10 bar", "price": 6.79, "raw_price": "6,79 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530681", "desc": "Pressure label 12 bar - Etiquette pression 12 bar", "price": 5.32, "raw_price": "5,32 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530680", "desc": "Pressure label 6 bar - Etiquette pression 6 bar", "price": 5.32, "raw_price": "5,32 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9200046", "desc": "Autocoupling A+B - Connecteur Auto A+B", "price": 61.41, "raw_price": "61,41 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9510626", "desc": "USB Cover - Cache USB", "price": 0.24, "raw_price": "0,24 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530432", "desc": "F620 Front Label - Etiquette bandeau face avant F620", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530436", "desc": "F620 Rear Label - Poly Face Arrière F620", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530440", "desc": "Regulator plate Label F/D/G - Etiquette Support régulateur F/D/G", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530488", "desc": "D620 Front Label - Etiquette bandeau face avant D620", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530670", "desc": "D620 Rear Label - Poly Face Arrière D620", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530495", "desc": "F600 Front Label - Etiquette bandeau face avant F600", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530694", "desc": "F600 Rear Label - Etiquette bandeau arrière F600", "price": 9.35, "raw_price": "9,35 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530498", "desc": "F600 Regulator plate Label - Etiquette Support régulateur F600", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530692", "desc": "G6 Front Label - Etiquette bandeau face avant G6", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530699", "desc": "G6 Rear Label - Etiquette face arrière G6", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530496", "desc": "F6 CLASS Front Label - Etiquette bandeau face avant F6 Class", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530499", "desc": "F6 CLASS Regulator plate Label - Etiquette Support régulateur F6 class", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530493", "desc": "MF620 Front Label - Etiquette bandeau face avant MF620", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530494", "desc": "ERD 620 Front Label - Etiquette bandeau face avant ERD620", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530672", "desc": "F28+ Rear Poly - Poly Face Arrière F28+", "price": 15.21, "raw_price": "15,21 €", "qty": "1", "bloco": "Chassis & Estrutura"}, {"code": "9530671", "desc": "F28+ Front Poly - Poly Face Avant F28+", "price": 15.21, "raw_price": "15,21 €", "qty": "1", "bloco": "Chassis & Estrutura"}]}, "regulators": {"title": "Reguladores de Pressão (Hoerbiger & Mecânicos)", "subtitle": "Reguladores eletrónicos piezo Hoerbiger e pré-reguladores mecânicos", "image": "img/s6/s6_device_exploded_2.jpg", "items": [{"code": "6330034", "desc": "Preregulator 0 to 4 bar 1/4G (*S9)", "price": 8.19, "raw_price": "8,19 €", "qty": "1", "compat": "F620, D620, G620", "bloco": "Reguladores"}, {"code": "6330176", "desc": "Preregulator 1,5 to 16 bar 1/4 G 20 bar MAX", "price": 23.39, "raw_price": "23,39 €", "qty": "1", "compat": "F620, D620", "bloco": "Reguladores"}, {"code": "6330037", "desc": "Preregulator 10 bar 1/4G 16 bar max (*S9)", "price": 8.19, "raw_price": "8,19 €", "qty": "1", "compat": "F620, D620, G620", "bloco": "Reguladores"}, {"code": "6330592", "desc": "Electronic Regulator 200 mbar HOERBIGER", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "compat": "F620, D620", "bloco": "Reguladores"}, {"code": "6330215", "desc": "Electronic Regulator 500 mbar HOERBIGER", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "compat": "F620, D620", "bloco": "Reguladores"}, {"code": "6330194", "desc": "Electronic Regulator 2 bar HOERBIGER + Embase PS12655A", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "compat": "F620, D620", "bloco": "Reguladores"}, {"code": "6330493", "desc": "Electronic Regulator 5 bar HOERBIGER+ base plate with trainer", "price": 467.86, "raw_price": "467,86 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330490", "desc": "Electronic Regulator 10 bar HOERBIGER+ base plate with trainer", "price": 467.86, "raw_price": "467,86 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330494", "desc": "Electronic Regulator -1 / +1 BAR HOERBIGER + Base plate with strainer", "price": 467.86, "raw_price": "467,86 €", "qty": "1", "compat": "F620, D620", "bloco": "Reguladores"}, {"code": "6330495", "desc": "Electronic Regulator -1 / +4 bar HOERBIGER + Base plate with strainer", "price": 467.86, "raw_price": "467,86 €", "qty": "1", "compat": "F620, D620", "bloco": "Reguladores"}, {"code": "6330508", "desc": "Electronic Regulator -1 / +10 BAR HOERBIGER + Base plate with strainer", "price": 467.86, "raw_price": "467,86 €", "qty": "1", "compat": "F620, D620", "bloco": "Reguladores"}, {"code": "6330044", "desc": "Electronic Regulator joucomatic 1 - 16 bar 1/8G", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330090", "desc": "Electronic Regulator joucomatic 1 - 20 bar 1/8G", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330092", "desc": "Electronic Regulator joucomatic 1 - 40 bar 1/4G", "price": 994.2, "raw_price": "994,20 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330489", "desc": "Electronic Regulator 10 bar SMC ITV2050", "price": 292.42, "raw_price": "292,42 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330085", "desc": "Electronic Regulator vaccum SMC -0,8 / -20 mbar ITV 2090", "price": 315.81, "raw_price": "315,81 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330093", "desc": "Electronic Regulator SMC 1 bar ITV 2010", "price": 315.81, "raw_price": "315,81 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330086", "desc": "Electronic Regulator SMC 0,5 - 5 bar ITV2030 (*S9)", "price": 292.42, "raw_price": "292,42 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330588", "desc": "Mechanical Regulator 20 mbar BP3 3/4G", "price": 1002.55, "raw_price": "1 002,55 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330584", "desc": "Mechanical Regulator 60 mbar BP3 3/4G", "price": 1002.55, "raw_price": "1 002,55 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330046", "desc": "Mechanical Regulator 40.2 0,003 - 0,14 bar", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "compat": "F620, D620", "bloco": "Reguladores"}, {"code": "6330049", "desc": "Mechanical Regulator 42.15 0 - 1 bar", "price": 842.14, "raw_price": "842,14 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330050", "desc": "Mechanical Regulator 40.50 0,07 - 3,5 ba", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330048", "desc": "Mechanical Regulator 40.30 0,07 - 2,1 bar", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330053", "desc": "Mechanical Regulator 40.200 0,3 - 14 BAR", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330052", "desc": "Mechanical Regulator 40.100 0 a 7 bar", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330096", "desc": "Mechanical Regulator 40.15 1 bar 1/4G", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330569", "desc": "Mechanical Regulator 4bar Airtac", "price": 46.79, "raw_price": "46,79 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330566", "desc": "Mechanical Regulator 2bar Airtac", "price": 46.79, "raw_price": "46,79 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330570", "desc": "Mechanical Regulator 8bar Airtac", "price": 46.79, "raw_price": "46,79 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330218", "desc": "Mechanical Regulator 10 BAR R88 NUMATICS", "price": 208.58, "raw_price": "208,58 €", "qty": "1", "compat": "D620", "bloco": "Reguladores"}, {"code": "6330059", "desc": "Mechanical Regulator GO 0,5 - 16 bar / 250 psi", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330057", "desc": "Mechanical Regulator GO 0-35 bar / 500 psi", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330094", "desc": "Mechanical Regulator -1 bar SMC 1/4G IRV10", "price": 87.72, "raw_price": "87,72 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330076", "desc": "Mechanical Regulator SMC 0,5 - 9 bar 1/8G IR1020-F01", "price": 64.33, "raw_price": "64,33 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330075", "desc": "Mechanical Regulator SMC 4bar 1/8G IR1010-F01", "price": 64.33, "raw_price": "64,33 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330106", "desc": "Mechanical Regulator 172 bar 1/4NPT TESCOM without nuts", "price": 705.14, "raw_price": "705,14 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330193", "desc": "Pneumatic regulator CKD 2 bar RP1000-8G-02", "price": 90.07, "raw_price": "90,07 €", "qty": "1", "compat": "F620, G620", "bloco": "Reguladores"}, {"code": "6330151", "desc": "Nuts for TESCOM regulator 6330106", "price": 21.42, "raw_price": "21,42 €", "qty": "1", "compat": "F620", "bloco": "Reguladores"}, {"code": "6330567", "desc": "VENTURI ZH10DSA-06-06-08", "price": 35.09, "raw_price": "35,09 €", "qty": "1", "compat": "Série 6", "bloco": "Reguladores"}, {"code": "6330568", "desc": "SILENCER FOR VACUUM GENERATOR VENTURI", "price": 4.68, "raw_price": "4,68 €", "qty": "1", "compat": "Série 6", "bloco": "Reguladores"}]}, "electronics_sensors": {"title": "Eletrónica, CPU & Sensores Piezo", "subtitle": "Placas CPU 55016, Placa de Relés, Barramentos de Campo e Sensores", "image": "img/s6/s6_device_exploded_2.jpg", "items": [{"code": "52189B", "desc": "PIGGY TO REPLACE VARTA BATTERY ON BOARD 550.16", "price": 30.0, "raw_price": "30,00 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "53048D", "desc": "Relay Board – Carte à relais", "price": 116.96, "raw_price": "116,96 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "53046G", "desc": "Valve code Board – Carte Codes vannes", "price": 116.96, "raw_price": "116,96 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "52117A", "desc": "USB / Memory board – Carte USB / Memoire", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "54115S", "desc": "Sensor Board D620/F600/F28 light/F620 V2/F28+ – Carte Capteur pour D620/F600/F620 V2/F28 light", "price": 289.63, "raw_price": "289,63 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "55016N2", "desc": "CPU Board – Carte CPU", "price": 339.2, "raw_price": "339,20 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "55022", "desc": "CPU Board F28+ – Carte CPU F28+", "price": 339.2, "raw_price": "339,20 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "58055E", "desc": "Display Board – Carte Affichage", "price": 17.54, "raw_price": "17,54 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "52113C", "desc": "USB connectors board – Carte connecteurs USB", "price": 38.99, "raw_price": "38,99 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "6440261", "desc": "Power supply board – Carte Alimentation", "price": 19.89, "raw_price": "19,89 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9510915", "desc": "Kit power supply board F/D/G620 – Kit carte Alimentation F/D/G620", "price": 81.88, "raw_price": "81,88 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9510936", "desc": "Kit power supply board F/D/G670 – Kit carte Alimentation F/D/G670", "price": 81.88, "raw_price": "81,88 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "6430105", "desc": "Color Display – Ecran Couleur", "price": 70.18, "raw_price": "70,18 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "6230174", "desc": "Mains power supply for internal power - Prise secteur pour alim. interne", "price": 3.5, "raw_price": "3,50 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "52094D", "desc": "Ateq Board for Fieldbus ( Profibus / Devicenet/Profinet/Ethernet) - Carte fieldbus", "price": 175.45, "raw_price": "175,45 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "6600090", "desc": "Module Profibus COMX-100-DPS - Carte Profibus", "price": 163.75, "raw_price": "163,75 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "6600091", "desc": "Module Devicenet COMX-100 - Carte Devicenet", "price": 233.93, "raw_price": "233,93 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "6600099", "desc": "Real Ethernet COMX-100-RE Ethernet IP - Carte Ethernet IP", "price": 175.45, "raw_price": "175,45 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "6600100", "desc": "Real Ethernet COMX-100-RE Profinet - Carte Profinet", "price": 175.45, "raw_price": "175,45 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "6600092", "desc": "Real Ethernet COMX-51-RE Ethernet IP - Carte Ethernet IP", "price": 175.45, "raw_price": "175,45 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "6600086", "desc": "Real Ethernet COMX-51-RE Profinet - Carte Profinet", "price": 175.45, "raw_price": "175,45 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9600628", "desc": "Kit profibus serie 6 COMX-100 (boards 52094D+6600090+cable+screw) - Cartes 52094D+6600090+cable+vis", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9600656", "desc": "Kit devicenet serie 6 COMX-100 (boards 52094D+6600091+cable+screw) - Cartes 52094D+6600091+cable+vis", "price": 421.07, "raw_price": "421,07 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9600657", "desc": "Kit profinet serie 6 COMX-100 M12 connectors (boards 52094D+6600100+cable+screw) - Cartes 52094D+6600100+cable+vis", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9600631", "desc": "Kit profinet serie 6 COMX-51 M12 connectors (boards 52094D+6600086+cable+screw) - Cartes 52094D+6600086+cable+vis", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9600672", "desc": "Kit profinet serie 6 COMX-100 RJ45 connectors (boards 52094D+6600100+cable+screw) - Cartes 52094D+6600100+cable+vis", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9600687", "desc": "Kit profinet serie 6 COMX-51 RJ45 connectors (boards 52094D+6600086+cable+screw) - Cartes 52094D+6600086+cable+vis", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9600658", "desc": "Kit ethernet IP serie COMX-100 (boards 52094D+6600099+cable+screw) - Cartes 52094D+6600099+cable+vis", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9600629", "desc": "Kit ethernet IP serie COMX-51 (boards 52094D+6600092+cable+screw) - Cartes 52094D+6600092+cable+vis", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9600663", "desc": "Kit ethercat Serie 6 COMX-51 (boards 52094D+6600103+cable+screw) - Cartes 52094D+6600103+cable+vis", "price": 350.89, "raw_price": "350,89 €", "qty": "1", "bloco": "Hardware & Placas"}, {"code": "9100181", "desc": "Piezo sensor 0.2 bar PR9S + 5205300B for S6 - Capteur piezo", "price": 111.11, "raw_price": "111,11 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "9100168", "desc": "Piezo sensor 5 bar PR9S + 5205300B for S6 - Capteur piezo", "price": 111.11, "raw_price": "111,11 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "9100180", "desc": "Piezo sensor 20 bar PR9S + 5205300B for S6 - Capteur piezo", "price": 111.11, "raw_price": "111,11 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "9100256", "desc": "Differential sensor 6µ G6 - Capteur différentiel", "price": 269.02, "raw_price": "269,02 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "9100258", "desc": "Differential sensor 20µ D6 reduced volume - Capteur différentiel", "price": 269.02, "raw_price": "269,02 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "9100257", "desc": "Differential sensor 10µ D6 reduced volume - Capteur différentiel", "price": 269.02, "raw_price": "269,02 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "9100261", "desc": "Differential sensor 50µ F6 reduced volume - Capteur différentiel", "price": 269.02, "raw_price": "269,02 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "9100350", "desc": "Differential sensor 50µ F6 - Capteur différentiel", "price": 269.02, "raw_price": "269,02 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "9100188", "desc": "Differential sensor 50µ F6 HIGH PRESSURE 80 BAR - Capteur différentiel", "price": 526.34, "raw_price": "526,34 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "6310254", "desc": "Oring 3x1,1 (differential sensor and valve) - Joint 3*1 NBR70 Quantity min. : 100", "price": 0.17, "raw_price": "0,17 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "6310295", "desc": "Oring 38x1 (inside differential sensor) - Joint 38*1 lot de 50", "price": 0.82, "raw_price": "0,82 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "9100148", "desc": "Transducer tension ring", "price": 4.8, "raw_price": "4,80 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "6730024", "desc": "Box of 10 membranes 6µ - Boîte de 10 membranes 6µ", "price": 143.86, "raw_price": "143,86 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "6730025", "desc": "Box of 10 membranes 10µ - Boîte de 10 membranes 10µ", "price": 89.92, "raw_price": "89,92 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "6730026", "desc": "Box of 10 membranes 20µ - Boîte de 10 membranes 20µ", "price": 89.92, "raw_price": "89,92 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "6730027", "desc": "Box of 20 membranes 50µ - Boîte de 20 membranes 50µ", "price": 89.92, "raw_price": "89,92 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "9420250", "desc": "Flange for piezo sensor - Bride piezo", "price": 11.98, "raw_price": "11,98 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "6310053", "desc": "Piezo sensor Oring 15,1*2,7 PB701 - Joint torique pour piezo", "price": 0.14, "raw_price": "0,14 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}, {"code": "6360020", "desc": "Caps M5 with male oring cylindrical - Bouchon M5 avec joint male cylindrique Quantity min. : 50", "price": 0.57, "raw_price": "0,57 €", "qty": "1", "bloco": "Sensores Piezo / Transdutores"}]}, "wires_accessories": {"title": "Cablagens, Acessórios & Calibração", "subtitle": "Cabos internos M12/RS232, fontes de alimentação 24V e carregadores CDF", "image": "img/s6/s6_device_exploded_2.jpg", "items": [{"code": "5021007", "desc": "SUBD 9 pins Male RS232 internal cable - cable RS232 Male interne", "price": 2.93, "raw_price": "2,93 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5021012", "desc": "SUBD 9 pins Femelle Profibus internal cable - cable RS232 Female interne", "price": 2.93, "raw_price": "2,93 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5010440", "desc": "Electronic regulator wire Joucomatic - cable regulateur electronic Joucomatic S6", "price": 33.42, "raw_price": "33,42 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5010435", "desc": "Internal Male Profinet cable M12 - cable M12 profinet Male", "price": 23.39, "raw_price": "23,39 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5010340B", "desc": "Regu. electronic HOERBIGER 200 mbar connector VH6", "price": 32.45, "raw_price": "32,45 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5010331", "desc": "Cable M12 400mm regu. elec SMC & HOERBIGER connect vh S6", "price": 11.7, "raw_price": "11,70 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "6210443", "desc": "Display Flat cable 20 pin 1mm 100 mm - nappe ecran", "price": 2.81, "raw_price": "2,81 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5010436", "desc": "Long CAN cable – cable long CAN 300 mm", "price": 8.78, "raw_price": "8,78 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5010437", "desc": "Short CAN cable – cable court CAN 60 mm", "price": 5.85, "raw_price": "5,85 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5010438", "desc": "Network wire CAN 600 mm S6", "price": 11.7, "raw_price": "11,70 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5010244", "desc": "M12 Female Power supply connector - M12 connecteur alim.", "price": 11.7, "raw_price": "11,70 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5010245B", "desc": "supply cable for power supply 6440161 – cable alimentation interne pour alim. 6440161", "price": 5.57, "raw_price": "5,57 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "5014804", "desc": "supply cable for power supply 6440261 – cable alimentation interne pour alim. 6440261", "price": 13.5, "raw_price": "13,50 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "6200299", "desc": "16 pins phoenix connector – connecteur phoenix 16 pts Quantity min. : 10", "price": 2.93, "raw_price": "2,93 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "6200065", "desc": "2 pins phoenix connector – connecteur phoenix 2 pts Quantity min. : 10", "price": 1.17, "raw_price": "1,17 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "6200644", "desc": "M12 Female Devicenet cap - M12 Bouchon femelle devicenet", "price": 15.21, "raw_price": "15,21 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "6200643", "desc": "M12 Male Devicenet cap - M12 Bouchon male devicenet", "price": 15.21, "raw_price": "15,21 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "6270097", "desc": "RJ45 cable internal – cable interne RJ45 – 20 cm", "price": 2.93, "raw_price": "2,93 €", "qty": "1", "bloco": "Cablagens Internas"}, {"code": "6200806", "desc": "UK adapttor - Adaptateur UK", "price": 11.14, "raw_price": "11,14 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "6200805", "desc": "USA adaptor - Adaptateur USA", "price": 11.14, "raw_price": "11,14 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "6270056", "desc": "USB Cable 1m Type A - B", "price": 3.5, "raw_price": "3,50 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "9600593", "desc": "Unlock USB Key", "price": 30.41, "raw_price": "30,41 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "6600105", "desc": "Admin Key Subsidiary - Clé admin filiale", "price": 122.39, "raw_price": "122,39 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "51019", "desc": "Power supply F520 24V 25W with M12 Male connector (2: 24VDC / 4 : 0VDC) + type euro", "price": 44.56, "raw_price": "44,56 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "51020", "desc": "Power supply 24v 60W with M12 Male connector (2: 24VDC / 4 : 0VDC) + type euro", "price": 44.56, "raw_price": "44,56 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "51029", "desc": "Power supply 25W 24V external phoenix connector", "price": 44.56, "raw_price": "44,56 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "51033", "desc": "Power supply 60W 24V external phoenix connector", "price": 44.56, "raw_price": "44,56 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "51032", "desc": "Power supply 24V 25W with M12 female connector (1: 24VDC / 3 : 0VDC) + type euro", "price": 44.56, "raw_price": "44,56 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "51034", "desc": "Power supply 24V 60W with M12 female connector (1: 24VDC / 3 : 0VDC) + type euro", "price": 44.56, "raw_price": "44,56 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "51023B", "desc": "Charger CDF", "price": 66.84, "raw_price": "66,84 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "6440264", "desc": "Euro Cable", "price": 5.57, "raw_price": "5,57 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "6440265", "desc": "US Cable", "price": 5.57, "raw_price": "5,57 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "6440266", "desc": "UK Cable", "price": 5.57, "raw_price": "5,57 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "9600598", "desc": "I/O test - Testeur de carte I/O", "price": 233.93, "raw_price": "233,93 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "9600615", "desc": "Valve code board test - Testeur de carte code vanne", "price": 233.93, "raw_price": "233,93 €", "qty": "1", "bloco": "Acessórios & Alimentação"}, {"code": "9210024", "desc": "Reserve for G 153.5 +/- 0.5 cm³", "price": 99.42, "raw_price": "99,42 €", "qty": "1", "bloco": "Acessórios & Alimentação"}]}};
+
+let currentCategory = 'f6_valve';
+let isSearchMode = false;
+
+function renderCategory(catKey) {
+  const cat = S6_DB[catKey];
+  if (!cat) return;
+
+  currentCategory = catKey;
+  isSearchMode = false;
+
+  // Update tabs active state
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    const onclickStr = btn.getAttribute('onclick') || '';
+    if (onclickStr.includes("'" + catKey + "'")) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // Update Image Viewer
+  document.getElementById('viewerTitle').textContent = cat.title;
+  document.getElementById('activeImg').src = cat.image;
+  document.getElementById('btnDownloadImg').href = cat.image;
+  document.getElementById('modalZoomImg').src = cat.image;
+  document.getElementById('modalCaption').textContent = cat.title + " — Vista Explodida";
+
+  // Update Table
+  document.getElementById('tableTitle').textContent = cat.title;
+  document.getElementById('tableCountBadge').textContent = cat.items.length + " Artigos";
+
+  renderTableRows(cat.items);
+}
+
+function renderTableRows(items) {
+  const tbody = document.getElementById('partsTableBody');
+  if (!items || items.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 30px; color: #64748B;">Nenhum artigo encontrado com este critério.</td></tr>';
+    return;
+  }
+
+  let html = '';
+  items.forEach(it => {
+    const priceFormatted = it.price > 0 ? it.price.toFixed(2).replace('.', ',') + ' €' : (it.raw_price || 'Sob Consulta');
+    const blocoTag = it.bloco ? '<span class="part-meta">[' + it.bloco + '] ' + (it.compat ? '· Compatível: ' + it.compat : '') + '</span>' : '';
+    
+    html += '<tr>' +
+      '<td><span class="part-code">' + (it.code || 'S/ REF') + '</span></td>' +
+      '<td><div class="part-desc">' + it.desc + '</div>' + blocoTag + '</td>' +
+      '<td class="part-qty">' + (it.qty || '1') + '</td>' +
+      '<td class="part-price" style="text-align: right;">' + priceFormatted + '</td>' +
+      '<td style="text-align: center;">' +
+        '<button type="button" class="btn-copy" onclick="copyCode(\'' + (it.code || it.desc) + '\')">📋 Copiar</button>' +
+      '</td>' +
+    '</tr>';
+  });
+
+  tbody.innerHTML = html;
+}
+
+function switchCategory(catKey) {
+  document.getElementById('searchInput').value = '';
+  renderCategory(catKey);
+}
+
+function handleSearch() {
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  if (!query) {
+    renderCategory(currentCategory);
+    document.getElementById('searchBadge').textContent = "281 Peças";
+    return;
+  }
+
+  isSearchMode = true;
+  let matches = [];
+
+  // Search across ALL categories
+  Object.keys(S6_DB).forEach(k => {
+    const cat = S6_DB[k];
+    cat.items.forEach(it => {
+      const textToSearch = ((it.code || '') + ' ' + (it.desc || '') + ' ' + (it.bloco || '') + ' ' + (it.compat || '')).toLowerCase();
+      if (textToSearch.includes(query)) {
+        matches.push(Object.assign({}, it, { catTitle: cat.title, catImg: cat.image }));
+      }
+    });
+  });
+
+  document.getElementById('tableTitle').textContent = 'Resultados da Pesquisa ("' + query + '")';
+  document.getElementById('tableCountBadge').textContent = matches.length + ' Encontrados';
+  document.getElementById('searchBadge').textContent = matches.length + ' Encontrados';
+
+  // If there are matches and first match has an image, preview that image
+  if (matches.length > 0 && matches[0].catImg) {
+    document.getElementById('viewerTitle').textContent = matches[0].catTitle;
+    document.getElementById('activeImg').src = matches[0].catImg;
+    document.getElementById('btnDownloadImg').href = matches[0].catImg;
+    document.getElementById('modalZoomImg').src = matches[0].catImg;
+    document.getElementById('modalCaption').textContent = matches[0].catTitle;
+  }
+
+  renderTableRows(matches);
+}
+
+function copyCode(code) {
+  navigator.clipboard.writeText(code).then(() => {
+    showToast('Código "' + code + '" copiado com sucesso!');
+  }).catch(() => {
+    const t = document.createElement('textarea');
+    t.value = code;
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand('copy');
+    document.body.removeChild(t);
+    showToast('Código "' + code + '" copiado!');
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+
+function openModalZoom() {
+  document.getElementById('modalZoom').classList.add('active');
+}
+
+function closeModalZoom(e) {
+  if (e.target.id === 'modalZoom' || e.target.classList.contains('modal-close')) {
+    document.getElementById('modalZoom').classList.remove('active');
+  }
+}
+
+// Initialize with F6 Valve
+window.addEventListener('DOMContentLoaded', () => {
+  renderCategory('f6_valve');
+});
+</script>
+</body>
+</html>
