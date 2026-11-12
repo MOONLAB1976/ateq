@@ -5185,12 +5185,20 @@
             if (!dados.processos || dados.processos.length < 6) {
                 dados.processos = JSON.parse(JSON.stringify(initialDB.processos));
             } else {
-                // Auto-correção: assegurar que processos com EM_FRANCA ou em França têm o estado correto ENVIADO_FRANCA
+                // Auto-correção 1: assegurar que processos com EM_FRANCA ou em França têm o estado correto ENVIADO_FRANCA
                 dados.processos.forEach(p => {
                     if (p.estado_oficina === 'EM_FRANCA' || (p.sintoma && p.sintoma.includes('Em França') && p.estado_oficina === 'EM_DIAGNOSTICO')) {
                         p.estado_oficina = 'ENVIADO_FRANCA';
                     }
                 });
+                // Auto-correção 2: Assegurar que ST-2026-009 (Bosch G520 SN 197-0661) está sempre presente no topo
+                const hasBosch = dados.processos.some(p => p.numero === 'ST-2026-009' || (p.sn === '197-0661' && p.numero && p.numero.startsWith('ST-2026')));
+                if (!hasBosch) {
+                    const procBosch = initialDB.processos.find(p => p.numero === 'ST-2026-009');
+                    if (procBosch) {
+                        dados.processos.unshift(JSON.parse(JSON.stringify(procBosch)));
+                    }
+                }
             }
                         // --- ATUALIZAÇÃO AUTOMÁTICA PARA CATÁLOGO OFICIAL COMPLETO (170+ ARTIGOS ATEQ) ---
                         // --- AUTO-INJEÇÃO DINÂMICA DE PEÇAS OFICIAIS S6 (Caso faltem na cache local) ---
