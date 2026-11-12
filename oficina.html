@@ -688,7 +688,584 @@
             text-overflow: ellipsis;
         }
 
-    </style>
+    
+
+        /* ==============================================================
+           ATEQ PORTUGAL — ENHANCEMENT DE DESIGN MODERNO (INSPIRAÇÃO MOLONI)
+           Cards com cantos arredondados, sombras dinâmicas, hover e tabelas arejadas
+           ============================================================== */
+        
+        :root {
+            --ateq-blue: #005691;
+            --ateq-blue-light: #EBF3F9;
+            --ateq-navy: #1B2533;
+            --bg-body: #F4F6F9;
+            --bg-card: #FFFFFF;
+            --border: #E2E8F0;
+            --border-focus: #005691;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --primary: #005691;
+            --primary-hover: #004370;
+            --success: #10B981;
+            --success-light: #ECFDF5;
+            --warning: #F59E0B;
+            --warning-light: #FFFBEB;
+            --danger: #EF4444;
+            --danger-light: #FEF2F2;
+            --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 14px;
+        }
+
+        body {
+            background-color: var(--bg-body) !important;
+            color: var(--text-main) !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* CARDS ESTILO MOLONI */
+        .card, .kpi-card {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: var(--radius-md) !important;
+            box-shadow: var(--shadow-card) !important;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .card:hover, .kpi-card:hover {
+            box-shadow: var(--shadow-hover) !important;
+        }
+        .card-header {
+            padding: 14px 20px !important;
+            border-bottom: 1px solid var(--border) !important;
+            background: #FFFFFF !important;
+            border-top-left-radius: var(--radius-md);
+            border-top-right-radius: var(--radius-md);
+        }
+        .card-title {
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            color: var(--ateq-navy) !important;
+            letter-spacing: -0.2px;
+        }
+        .card-body {
+            padding: 20px !important;
+        }
+
+        /* TABELAS MODERNAS E AREJADAS */
+        table.data-table th, .table-raul-compact th {
+            background: #F8FAFC !important;
+            color: var(--text-muted) !important;
+            font-weight: 700 !important;
+            padding: 11px 12px !important;
+            border-bottom: 1px solid var(--border) !important;
+            font-size: 11px !important;
+            letter-spacing: 0.5px;
+        }
+        table.data-table td, .table-raul-compact td {
+            padding: 10px 12px !important;
+            border-bottom: 1px solid #F1F5F9 !important;
+            color: #334155 !important;
+        }
+        table.data-table tbody tr:hover, .table-raul-compact tbody tr:hover {
+            background-color: #F8FAFC !important;
+        }
+
+        /* INPUTS & SELECTS ESTILO MOLONI */
+        .form-control, select.table-inline-select {
+            border: 1px solid #CBD5E1 !important;
+            border-radius: var(--radius-sm) !important;
+            padding: 7px 11px !important;
+            font-size: 12.5px !important;
+            color: #1E293B !important;
+            background-color: #FFFFFF !important;
+            transition: all 0.15s ease-in-out;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+        }
+        .form-control:focus, select.table-inline-select:focus {
+            border-color: var(--ateq-blue) !important;
+            box-shadow: 0 0 0 3px rgba(0, 86, 145, 0.15) !important;
+            outline: none !important;
+        }
+
+        /* BOTÕES DE AÇÃO */
+        .btn {
+            border-radius: var(--radius-sm) !important;
+            font-weight: 600 !important;
+            padding: 7px 14px !important;
+            font-size: 12.5px !important;
+            transition: all 0.18s ease !important;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background: linear-gradient(180deg, #0066AA 0%, #005691 100%) !important;
+            border-color: #004D82 !important;
+        }
+        .btn-primary:hover {
+            background: #004D82 !important;
+        }
+
+        /* BADGES / PÍLULAS DE ESTADO */
+        .tag, .menu-badge {
+            border-radius: 9999px !important;
+            font-weight: 700 !important;
+            padding: 3px 9px !important;
+            letter-spacing: 0.2px;
+        }
+        .tag-success { background: #DCFCE7 !important; color: #15803D !important; border: 1px solid #BBF7D0; }
+        .tag-warning { background: #FEF3C7 !important; color: #B45309 !important; border: 1px solid #FDE68A; }
+        .tag-danger  { background: #FEE2E2 !important; color: #B91C1C !important; border: 1px solid #FECACA; }
+        .tag-blue    { background: #E0F2FE !important; color: #0369A1 !important; border: 1px solid #BAE6FD; }
+
+        /* KPI CARDS HIGHLIGHT */
+        .kpi-card {
+            border-left: 4px solid var(--ateq-blue) !important;
+        }
+        .kpi-value {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+            font-weight: 800 !important;
+            color: #0F172A !important;
+            letter-spacing: -0.5px;
+        }
+
+        /* SIDEBAR MODERNA COM SOMBRA SUAVE */
+        aside.sidebar {
+            box-shadow: 2px 0 8px 0 rgba(0, 0, 0, 0.03) !important;
+            border-right: 1px solid #E2E8F0 !important;
+        }
+        .sidebar-brand h2 {
+            font-weight: 900 !important;
+            letter-spacing: 0.8px !important;
+        }
+
+
+
+        /* ==============================================================
+           ATEQ PORTUGAL — UPGRADE ERGONÓMICO DOS MENUS (ESTILO MOLONI)
+           Largura expandida, texto 100% visível sem cortes, tipografia moderna
+           ============================================================== */
+        
+        aside.sidebar {
+            width: 295px !important; /* Espaço suficiente para ler tudo sem cortar */
+            background: #FFFFFF !important;
+            border-right: 1px solid #E2E8F0 !important;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.04) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            flex-shrink: 0 !important;
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 22px 20px 18px !important;
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+            border-bottom: 1px solid #E2E8F0 !important;
+        }
+
+        .sidebar-brand h2 {
+            color: #005691 !important;
+            font-size: 18px !important;
+            font-weight: 800 !important;
+            letter-spacing: 0.6px !important;
+            margin: 0 !important;
+        }
+
+        .sidebar-brand p {
+            color: #64748B !important;
+            font-size: 11.5px !important;
+            font-weight: 600 !important;
+            margin-top: 4px !important;
+        }
+
+        .sidebar-nav {
+            padding: 14px 12px !important;
+            gap: 2px !important;
+        }
+
+        .nav-category {
+            font-size: 10.5px !important;
+            font-weight: 800 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.8px !important;
+            color: #94A3B8 !important;
+            padding: 14px 10px 6px !important;
+            margin-top: 4px !important;
+        }
+
+        .menu-item {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 10px 14px !important;
+            border-radius: 8px !important;
+            color: #334155 !important;
+            text-decoration: none !important;
+            font-weight: 600 !important;
+            font-size: 13px !important;
+            line-height: 1.35 !important;
+            cursor: pointer !important;
+            margin-bottom: 3px !important;
+            transition: all 0.18s ease-in-out !important;
+            border-left: 4px solid transparent !important;
+        }
+
+        /* TEXTO DO MENU 100% VISÍVEL (ZERO CORTES / ZERO ELLIPSIS) */
+        .menu-item span, .menu-item span:first-child {
+            white-space: normal !important; /* Quebra de linha limpa se necessário */
+            overflow: visible !important;
+            text-overflow: clip !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            font-size: 13px !important;
+            color: inherit !important;
+        }
+
+        .menu-item:hover {
+            background: #F0F7FF !important;
+            color: #005691 !important;
+            border-left-color: #005691 !important;
+            transform: translateX(2px);
+        }
+
+        .menu-item.active {
+            background: linear-gradient(135deg, #005691 0%, #003F6B 100%) !important;
+            color: #FFFFFF !important;
+            font-weight: 700 !important;
+            border-left: 4px solid #00223A !important;
+            box-shadow: 0 4px 12px rgba(0, 86, 145, 0.28) !important;
+        }
+
+        .menu-item.active span {
+            color: #FFFFFF !important;
+        }
+
+        /* BADGES DO MENU ESTILO MODERNO */
+        .menu-badge {
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            padding: 2px 8px !important;
+            border-radius: 9999px !important;
+            background: #E2E8F0 !important;
+            color: #475569 !important;
+            white-space: nowrap !important;
+            margin-left: 8px !important;
+            flex-shrink: 0 !important;
+        }
+
+        .menu-item.active .menu-badge {
+            background: rgba(255, 255, 255, 0.22) !important;
+            color: #FFFFFF !important;
+            border: 1px solid rgba(255, 255, 255, 0.35) !important;
+        }
+
+        .sidebar-footer {
+            padding: 14px 18px !important;
+            background: #F8FAFC !important;
+            border-top: 1px solid #E2E8F0 !important;
+            font-size: 11.5px !important;
+            color: #64748B !important;
+            font-weight: 500 !important;
+        }
+
+        /* AJUSTE DO CONTEÚDO PRINCIPAL PARA ACOMPANHAR A SIDEBAR */
+        main.main-content {
+            padding: 24px 34px !important;
+        }
+
+
+
+        /* ==============================================================
+           ATEQ PORTUGAL — NAVBAR SUPERIOR HORIZONTAL (ESTILO MOLONI)
+           Header limpo com 100% da largura útil para o ecrã de bancada
+           ============================================================== */
+        
+        #app-layout {
+            display: flex !important;
+            flex-direction: column !important; /* Transforma layout em vertical (topo -> conteúdo) */
+            min-height: 100vh !important;
+            background-color: var(--bg-body) !important;
+        }
+
+        #moloni-top-header {
+            background: #FFFFFF !important;
+            border-bottom: 1px solid #CBD5E1 !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1000 !important;
+            width: 100% !important;
+        }
+
+        /* LINHA 1: BRANDING & PERFIL */
+        .top-bar-branding {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 28px 8px;
+            background: #1B2533; /* Azul escuro executivo ATEQ Navy */
+            color: #FFFFFF;
+        }
+
+        .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-logo-pill {
+            display: inline-flex;
+            align-items: center;
+            background: #005691;
+            padding: 4px 12px;
+            border-radius: 6px;
+            gap: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .ateq-tag {
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #FFFFFF;
+        }
+
+        .ateq-country {
+            font-size: 11px;
+            font-weight: 700;
+            color: #93C5FD;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .company-name {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #F8FAFC;
+        }
+
+        .system-sub {
+            font-size: 11px;
+            color: #94A3B8;
+        }
+
+        .user-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-profile-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .user-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #005691;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #60A5FA;
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .user-role {
+            font-size: 10px;
+            color: #CBD5E1;
+        }
+
+        .btn-lock-top {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #FCA5A5;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-lock-top:hover {
+            background: #EF4444;
+            color: #FFFFFF;
+            border-color: #EF4444;
+        }
+
+        /* LINHA 2: MENU DE NAVEGAÇÃO HORIZONTAL COM DROPDOWNS */
+        .top-nav-menu {
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            background: #FFFFFF;
+            gap: 6px;
+            border-bottom: 1px solid #E2E8F0;
+            position: relative;
+        }
+
+        .nav-tab-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            color: #475569;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.18s ease-in-out;
+            position: relative;
+            user-select: none;
+        }
+
+        .nav-tab-item:hover {
+            color: #005691;
+            background: #F8FAFC;
+        }
+
+        .nav-tab-item.active {
+            color: #005691 !important;
+            border-bottom: 3px solid #005691 !important;
+            background: #F0F7FF !important;
+            font-weight: 700 !important;
+        }
+
+        .nav-icon {
+            font-size: 14px;
+        }
+
+        .dropdown-arrow {
+            font-size: 11px;
+            color: #94A3B8;
+            transition: transform 0.2s;
+        }
+
+        .nav-tab-item:hover .dropdown-arrow {
+            transform: translateY(1px);
+            color: #005691;
+        }
+
+        /* MEGA-DROPDOWNS ESTILO MOLONI */
+        .has-dropdown .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #FFFFFF;
+            min-width: 310px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #CBD5E1;
+            border-radius: 0 0 10px 10px;
+            padding: 10px 8px;
+            z-index: 2000;
+        }
+
+        /* Abertura por hover e/ou classe open */
+        .has-dropdown:hover .dropdown-menu, .has-dropdown.open .dropdown-menu {
+            display: block !important;
+            animation: fadeInMenu 0.15s ease-out;
+        }
+
+        @keyframes fadeInMenu {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dropdown-header {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #94A3B8;
+            padding: 8px 12px 4px;
+        }
+
+        .dropdown-item {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 9px 14px !important;
+            color: #1E293B !important;
+            text-decoration: none !important;
+            font-size: 13px !important;
+            font-weight: 500 !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            transition: all 0.15s ease !important;
+            margin-bottom: 2px !important;
+        }
+
+        .dropdown-item:hover {
+            background: #F0F7FF !important;
+            color: #005691 !important;
+            transform: translateX(3px);
+        }
+
+        .dropdown-item.highlight-action {
+            background: #EFF6FF !important;
+            color: #1D4ED8 !important;
+            font-weight: 700 !important;
+        }
+        .dropdown-item.highlight-action:hover {
+            background: #DBEAFE !important;
+        }
+
+        .dropdown-item.special-s6 {
+            border-left: 3px solid #2563EB !important;
+            background: #F8FAFC !important;
+        }
+
+        /* EXPANSÃO PANORÂMICA DO MAIN CONTENT */
+        main.main-content {
+            flex-grow: 1 !important;
+            width: 100% !important;
+            max-width: 100% !important; /* 100% do monitor, sem limites de 1440px */
+            padding: 24px 36px !important;
+            box-sizing: border-box !important;
+        }
+
+        /* ESCONDER A SIDEBAR ANTIGA CASO EXISTA */
+        aside.sidebar {
+            display: none !important;
+        }
+
+</style>
 </head>
 <body>
 
@@ -713,94 +1290,143 @@
              2. RAÚL COMERCIAL
              3. BASE TDS & CLIENTES
              4. OFICINA NO FUNDO -->
-        <aside class="sidebar">
-            <div class="sidebar-brand">
-                <h2>ATEQ PORTUGAL</h2>
-                <p>Gestão ST & Comercial</p>
-            </div>
-
-            <nav class="sidebar-nav">
-                <!-- 1. TOPO: COCKPIT & DIREÇÃO GERAL -->
-                <div class="nav-category">Direção & Cockpit Geral</div>
-                <a class="menu-item active" onclick="nav('view-dashboard')">
-                    <span>📊 Visão Global & Cockpit</span>
-                </a>
-
-                <!-- 2. COMERCIAL & DECISÃO (RAÚL GARCIA) -->
-                <div class="nav-category">Comercial / Decisão (Raúl)</div>
-                <a class="menu-item" onclick="nav('view-orcamentos-raul')">
-                    <span>💼 Orçamentos Comerciais</span>
-                    <span class="menu-badge" id="badge-pendentes-raul">0</span>
-                </a>
-                <a class="menu-item" onclick="nav('view-encomendas-pecas-clientes')">
-                    <span>📦 Venda de Peças a Clientes</span>
-                    <span class="menu-badge" id="badge-total-venda-pecas">0</span>
-                </a>
-                <a class="menu-item" onclick="nav('view-maquinas-novas-tds')">
-                    <span>⚡ Cotação Máquinas Novas (TDS)</span>
-                    <span class="menu-badge badge-primary" id="badge-total-maquinas-novas">0</span>
-                </a>
-
-                <!-- 3. BASE METROLÓGICA & CLIENTES -->
-                <div class="nav-category">Base Metrológica & Clientes</div>
-                <a class="menu-item" onclick="nav('view-tds-geral')">
-                    <span>📑 Parque Geral & TDS</span>
-                    <span class="menu-badge" id="badge-total-tds">0</span>
-                </a>
-                <a class="menu-item" onclick="nav('view-clientes')">
-                    <span>🏢 Clientes & Contactos</span>
-                    <span class="menu-badge" id="badge-total-clientes">0</span>
-                </a>
-
-                <!-- 4. STOCKS, ARMAZÉM & FÁBRICA (ATEQ SAS) -->
-                <a class="menu-item" onclick="nav('view-vistas-s6')" style="background: #EFF6FF; border-left: 3px solid #2563EB;">
-                    <span>🛠️ Vistas Explodidas & Peças S6</span>
-                    <span class="menu-badge" style="background: #2563EB; color: #fff;">281 Peças</span>
-                </a>
-                <div class="nav-category">Stocks & Fábrica (ATEQ SAS)</div>
-                <a class="menu-item" onclick="nav('view-stock')">
-                    <span>📦 Armazém & Stock Peças</span>
-                    <span class="menu-badge" id="badge-alerta-stock">0</span>
-                </a>
-                <a class="menu-item" onclick="nav('view-encomendas')">
-                    <span>🚚 Encomendas Fábrica (SAS)</span>
-                    <span class="menu-badge" id="badge-total-encomendas">0</span>
-                </a>
-                <a class="menu-item" onclick="nav('view-historico-encomendas-recebidas')">
-                    <span>🏁 Encomendas Recebidas (SAS)</span>
-                    <span class="menu-badge" id="badge-total-enc-recebidas">0</span>
-                </a>
-
-                <!-- 5. OFICINA / BANCADA ST (CARLOS BARBOSA) -->
-                <div class="nav-category">Oficina / Bancada (Carlos)</div>
-                <a class="menu-item" onclick="abrirNovaFolhaObraLimpa()">
-                    <span>➕ Nova Folha de Bancada</span>
-                </a>
-                <a class="menu-item" onclick="nav('view-processos')">
-                    <span>📋 Intervenções da Oficina</span>
-                    <div style="display: flex; gap: 4px; align-items: center;">
-                        <span class="menu-badge badge-success" id="badge-autorizados-carlos" title="Autorizado pelo Raúl a reparar!" style="display: none;">0</span>
-                        <span class="menu-badge" id="badge-total-processos">0</span>
+        
+        <!-- HEADER / NAVBAR SUPERIOR HORIZONTAL (ESTILO MOLONI) -->
+        <header id="moloni-top-header">
+            <!-- LINHA 1: BARRA SUPERIOR BRANDING & USUÁRIO -->
+            <div class="top-bar-branding">
+                <div class="brand-left">
+                    <div class="brand-logo-pill">
+                        <span class="ateq-tag">ATEQ</span>
+                        <span class="ateq-country">PORTUGAL</span>
                     </div>
-                </a>
-                <a class="menu-item" onclick="nav('view-historico-reparadas')">
-                    <span>🏁 Máquinas Reparadas</span>
-                    <span class="menu-badge" id="badge-total-reparadas">0</span>
-                </a>
-                <a class="menu-item" onclick="nav('view-ferramentas')">
-                    <span>🔧 Ferramentas da Oficina</span>
-                    <span class="menu-badge" id="badge-total-ferramentas">0</span>
-                </a>
-            </nav>
+                    <div class="brand-info">
+                        <span class="company-name">Sistemas ATEQ Portugal</span>
+                        <span class="system-sub">Cockpit Metrológico & Gestão ST</span>
+                    </div>
+                </div>
 
-            <div class="sidebar-footer">
-                <div style="font-weight: 600; color: var(--text-main);">Carlos Barbosa (Berto)</div>
-                <div style="font-size: 11px; margin-top: 2px;">Técnico Responsável ST</div>
-                <button class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 10px; justify-content: center;" onclick="bloquearSistema()">
-                    🔒 Bloquear
-                </button>
+                <div class="user-right">
+                    <div class="autosave-container" id="autosave-indicator" style="display: inline-flex; align-items: center; margin-right: 15px;">
+                        <!-- Autosave pill renderizada via JS -->
+                    </div>
+                    <div class="user-profile-badge">
+                        <div class="user-avatar">CB</div>
+                        <div class="user-details">
+                            <span class="user-name">Carlos Barbosa (Berto)</span>
+                            <span class="user-role">Responsável ST & Metrologia</span>
+                        </div>
+                    </div>
+                    <button class="btn-lock-top" onclick="bloquearSistema()" title="Bloquear ecrã de trabalho">
+                        🔒 <span>Bloquear</span>
+                    </button>
+                </div>
             </div>
-        </aside>
+
+            <!-- LINHA 2: MENU DE NAVEGAÇÃO HORIZONTAL COM DROPDOWNS -->
+            <nav class="top-nav-menu">
+                <!-- 1. COCKPIT / PAINEL PRINCIPAL -->
+                <div class="nav-tab-item active" id="tab-nav-cockpit" onclick="nav('view-dashboard'); setActiveTopNav(this);">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Painel Principal</span>
+                </div>
+
+                <!-- 2. COMERCIAL / RAÚL (DROPDOWN) -->
+                <div class="nav-tab-item has-dropdown" id="tab-nav-comercial">
+                    <span class="nav-icon">💼</span>
+                    <span class="nav-text">Comercial & Propostas</span>
+                    <span class="dropdown-arrow">▾</span>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">Gestão Comercial (Raúl Garcia)</div>
+                        <a class="dropdown-item" onclick="nav('view-orcamentos-raul'); closeDropdowns();">
+                            <span class="item-title">💼 Orçamentos Comerciais</span>
+                            <span class="menu-badge" id="badge-pendentes-raul">0</span>
+                        </a>
+                        <a class="dropdown-item" onclick="nav('view-encomendas-pecas-clientes'); closeDropdowns();">
+                            <span class="item-title">📦 Venda de Peças a Clientes</span>
+                            <span class="menu-badge" id="badge-total-venda-pecas">0</span>
+                        </a>
+                        <a class="dropdown-item" onclick="nav('view-maquinas-novas-tds'); closeDropdowns();">
+                            <span class="item-title">⚡ Cotação Máquinas Novas (TDS)</span>
+                            <span class="menu-badge badge-primary" id="badge-total-maquinas-novas">0</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. OFICINA & BANCADA ST (DROPDOWN) -->
+                <div class="nav-tab-item has-dropdown" id="tab-nav-oficina">
+                    <span class="nav-icon">🛠️</span>
+                    <span class="nav-text">Oficina & Bancada ST</span>
+                    <span class="dropdown-arrow">▾</span>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">Assistência Técnica (Carlos Barbosa)</div>
+                        <a class="dropdown-item highlight-action" onclick="abrirNovaFolhaObraLimpa(); closeDropdowns();">
+                            <span class="item-title">➕ Nova Folha de Bancada</span>
+                        </a>
+                        <a class="dropdown-item" onclick="nav('view-processos'); closeDropdowns();">
+                            <span class="item-title">📋 Intervenções da Oficina</span>
+                            <div style="display: flex; gap: 4px; align-items: center;">
+                                <span class="menu-badge badge-success" id="badge-autorizados-carlos" style="display: none;">0</span>
+                                <span class="menu-badge" id="badge-total-processos">0</span>
+                            </div>
+                        </a>
+                        <a class="dropdown-item" onclick="nav('view-historico-reparadas'); closeDropdowns();">
+                            <span class="item-title">🏁 Máquinas Reparadas</span>
+                            <span class="menu-badge" id="badge-total-reparadas">0</span>
+                        </a>
+                        <a class="dropdown-item" onclick="nav('view-ferramentas'); closeDropdowns();">
+                            <span class="item-title">🔧 Ferramentas da Oficina</span>
+                            <span class="menu-badge" id="badge-total-ferramentas">0</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. PARQUE DE MÁQUINAS & CLIENTES (DROPDOWN) -->
+                <div class="nav-tab-item has-dropdown" id="tab-nav-parque">
+                    <span class="nav-icon">📑</span>
+                    <span class="nav-text">Parque Máquinas & Clientes</span>
+                    <span class="dropdown-arrow">▾</span>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">Base Metrológica ATEQ</div>
+                        <a class="dropdown-item" onclick="nav('view-tds-geral'); closeDropdowns();">
+                            <span class="item-title">📑 Parque Geral & TDS</span>
+                            <span class="menu-badge" id="badge-total-tds">0</span>
+                        </a>
+                        <a class="dropdown-item" onclick="nav('view-clientes'); closeDropdowns();">
+                            <span class="item-title">🏢 Clientes & Contactos</span>
+                            <span class="menu-badge" id="badge-total-clientes">0</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. STOCKS, PEÇAS S6 & FÁBRICA (DROPDOWN) -->
+                <div class="nav-tab-item has-dropdown" id="tab-nav-stock">
+                    <span class="nav-icon">📦</span>
+                    <span class="nav-text">Stocks & Fábrica (SAS)</span>
+                    <span class="dropdown-arrow">▾</span>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">Armazém e ATEQ SAS França</div>
+                        <a class="dropdown-item special-s6" onclick="nav('view-vistas-s6'); closeDropdowns();">
+                            <span class="item-title">🛠️ Vistas Explodidas & Peças S6</span>
+                            <span class="menu-badge" style="background: #2563EB; color: #fff;">281 Peças</span>
+                        </a>
+                        <a class="dropdown-item" onclick="nav('view-stock'); closeDropdowns();">
+                            <span class="item-title">📦 Armazém & Stock Peças</span>
+                            <span class="menu-badge" id="badge-alerta-stock">0</span>
+                        </a>
+                        <a class="dropdown-item" onclick="nav('view-encomendas'); closeDropdowns();">
+                            <span class="item-title">🚚 Encomendas Fábrica (SAS)</span>
+                            <span class="menu-badge" id="badge-total-encomendas">0</span>
+                        </a>
+                        <a class="dropdown-item" onclick="nav('view-historico-encomendas-recebidas'); closeDropdowns();">
+                            <span class="item-title">🏁 Encomendas Recebidas (SAS)</span>
+                            <span class="menu-badge" id="badge-total-enc-recebidas">0</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
 
         <!-- CONTEÚDO PRINCIPAL -->
         <main class="main-content">
@@ -5584,7 +6210,10 @@
                     </td>
                     <td>
                         <span style="font-weight: 600; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="${cli ? cli.nome : ''}">${cli ? cli.nome : '—'}</span>
-                        <span style="font-size: 10px; color: var(--text-muted); display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${p.modelo} (${p.maquina_sn || '—'})</span>
+                        <div style="margin-top: 2px; display: flex; align-items: center; gap: 5px;">
+                            <span style="font-size: 11px; font-weight: 600; color: #475569;">${p.modelo}</span>
+                            <span style="background: #005691; color: #FFFFFF; font-weight: 800; padding: 1px 6px; border-radius: 4px; font-size: 10.5px; letter-spacing: 0.4px;" title="Número de Série ATEQ França">S/N: ${p.maquina_sn || '—'}</span>
+                        </div>
                     </td>
                     <td style="text-align: right; font-weight: 600; color: var(--text-main);">
                         ${formatarMoeda(custoPecasCarlos)}<br>
@@ -7430,7 +8059,10 @@ Desejas arquivar e mover esta máquina para o menu "🏁 Máquinas Reparadas" pa
                     </td>
                     <td>
                         <div style="font-weight: 600; color: #1E293B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${cli ? cli.nome : ''}">${cli ? cli.nome : 'Cliente não definido'}</div>
-                        <div style="font-size: 11px; color: #475569;">${p.modelo} <span style="color: #94A3B8;">(${p.maquina_sn || 'S/N —'})</span></div>
+                        <div style="font-size: 11.5px; color: #334155; margin-top: 3px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                            <span style="font-weight: 600;">${p.modelo}</span>
+                            <span style="background: #005691; color: #FFFFFF; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,86,145,0.25);" title="Número de Série ATEQ França">S/N: ${p.maquina_sn || '—'}</span>
+                        </div>
                     </td>
                     <td>
                         <div style="font-size: 11px; color: #334155; line-height: 1.3;"><b>Sintoma:</b> ${p.sintoma || '—'}</div>
@@ -7553,7 +8185,10 @@ Desejas arquivar e mover esta máquina para o menu "🏁 Máquinas Reparadas" pa
                     </td>
                     <td>
                         <div style="font-weight: 600; color: #1E293B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${cli ? cli.nome : ''}">${cli ? cli.nome : 'Cliente não definido'}</div>
-                        <div style="font-size: 11px; color: #475569;">${p.modelo} <span style="color: #94A3B8;">(${p.maquina_sn || 'S/N —'})</span></div>
+                        <div style="font-size: 11.5px; color: #334155; margin-top: 3px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                            <span style="font-weight: 600;">${p.modelo}</span>
+                            <span style="background: #005691; color: #FFFFFF; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,86,145,0.25);" title="Número de Série ATEQ França">S/N: ${p.maquina_sn || '—'}</span>
+                        </div>
                     </td>
                     <td>
                         <div style="font-size: 11px; color: #334155; line-height: 1.3;"><b>Anomalia:</b> ${p.sintoma || '—'}</div>
@@ -10233,7 +10868,10 @@ Desejas arquivar e mover esta máquina para o menu "🏁 Máquinas Reparadas" pa
                             </td>
                             <td>
                                 <div style="font-weight: 600; color: #1E293B; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${cli ? cli.nome : ''}">${cli ? cli.nome : 'Cliente não definido'}</div>
-                                <div style="font-size: 11px; color: #475569;">${p.modelo} <span style="color: #94A3B8;">(${p.maquina_sn || 'S/N —'})</span></div>
+                                <div style="font-size: 11.5px; color: #334155; margin-top: 3px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                            <span style="font-weight: 600;">${p.modelo}</span>
+                            <span style="background: #005691; color: #FFFFFF; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-size: 11.5px; letter-spacing: 0.5px; box-shadow: 0 1px 3px rgba(0,86,145,0.25);" title="Número de Série ATEQ França">S/N: ${p.maquina_sn || '—'}</span>
+                        </div>
                             </td>
                             <td>
                                 <div style="font-size: 11px; color: #334155; line-height: 1.3;"><b>Sintoma:</b> ${p.sintoma || '—'}</div>
@@ -11744,7 +12382,63 @@ Desejas arquivar e mover esta máquina para o menu "🏁 Máquinas Reparadas" pa
             inicializarOficinaAteq();
         }
         setTimeout(inicializarOficinaAteq, 100);
-    </script>
+    
+
+    // Funções de Controlo da TopNav (Estilo Moloni)
+    function setActiveTopNav(el) {
+        document.querySelectorAll('.nav-tab-item').forEach(item => item.classList.remove('active'));
+        if (el) el.classList.add('active');
+    }
+
+    function closeDropdowns() {
+        document.querySelectorAll('.has-dropdown').forEach(item => item.classList.remove('open'));
+    }
+
+    // Alinhar navegação nativa nav(viewId) com Mapeamento Exato e Seguro (Estilo Moloni)
+    const originalNav = window.nav;
+    window.nav = function(viewId) {
+        if (typeof originalNav === 'function') {
+            originalNav(viewId);
+        }
+        closeDropdowns();
+        
+        // Remover classe active de todas as abas
+        document.querySelectorAll('.nav-tab-item').forEach(item => item.classList.remove('active'));
+
+        // MAPA EXATO 1-PARA-1 DE CADA VISTA PARA A SUA ABA DO TOPO
+        const mapAbas = {
+            // 1. Painel Principal
+            'view-dashboard': 'tab-nav-cockpit',
+
+            // 2. Comercial & Propostas (Raúl)
+            'view-orcamentos-raul': 'tab-nav-comercial',
+            'view-encomendas-pecas-clientes': 'tab-nav-comercial',
+            'view-maquinas-novas-tds': 'tab-nav-comercial',
+
+            // 3. Oficina & Bancada ST (Carlos)
+            'view-processos': 'tab-nav-oficina',
+            'view-historico-reparadas': 'tab-nav-oficina',
+            'view-ferramentas': 'tab-nav-oficina',
+
+            // 4. Parque Máquinas & Clientes
+            'view-tds-geral': 'tab-nav-parque',
+            'view-clientes': 'tab-nav-parque',
+
+            // 5. Stocks, Peças S6 & Fábrica (SAS)
+            'view-vistas-s6': 'tab-nav-stock',
+            'view-stock': 'tab-nav-stock',
+            'view-encomendas': 'tab-nav-stock',
+            'view-historico-encomendas-recebidas': 'tab-nav-stock'
+        };
+
+        const targetTabId = mapAbas[viewId];
+        if (targetTabId) {
+            const tabElem = document.getElementById(targetTabId);
+            if (tabElem) tabElem.classList.add('active');
+        }
+    };
+
+</script>
 
     <!-- DATALISTS PARA AUTOCOMPLETE RÁPIDO POR CÓDIGO E DESCRIÇÃO DE STOCK -->
     <datalist id="dl-stock-codigos"></datalist>
